@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>지적장애 쑥쑥 퀴즈</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--pink:#ffd6e0;--pink2:#ff8fab;--mint:#d4f5e4;--mint2:#4cc38a;--yel:#fff3bf;--yel2:#f7b731;--sky:#d6ecff;--ink:#4a3b52;--bg:#fff8f0;--card:#fff;--bad:#ff6b6b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Jua','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background-image:radial-gradient(var(--pink) 2px,transparent 2px),radial-gradient(var(--sky) 2px,transparent 2px);background-size:36px 36px;background-position:0 0,18px 18px}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 40px}
+.wrap.wide{max-width:1240px}
+.card{background:var(--card);border:4px solid var(--ink);border-radius:28px;box-shadow:0 8px 0 var(--ink);padding:26px 24px}
+h1{margin:0;font-size:clamp(30px,6vw,52px);text-align:center;line-height:1.25}
+h2{font-size:clamp(22px,3.4vw,30px)}h3{margin:22px 0 10px;font-size:22px;font-weight:normal}
+.mascot{font-size:clamp(70px,14vw,120px);text-align:center;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px) rotate(4deg)}}
+.sub{text-align:center;font-size:clamp(18px,3vw,24px);margin:8px 0 22px}
+.btn{font-family:inherit;font-size:clamp(20px,3.4vw,28px);background:var(--yel2);color:var(--ink);border:4px solid var(--ink);border-radius:999px;padding:12px 34px;cursor:pointer;box-shadow:0 6px 0 var(--ink);transition:.08s}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.btn:disabled{opacity:.6;cursor:default}
+.btn.sm{font-size:18px;padding:6px 16px;border-width:3px;box-shadow:0 4px 0 var(--ink)}
+.btn.alt{background:var(--sky)}.btn.red{background:var(--pink2)}
+.center{text-align:center}
+.inp{font-family:inherit;font-size:26px;color:var(--ink);border:4px solid var(--ink);border-radius:18px;padding:10px 16px;width:100%;max-width:380px;text-align:center;outline:none}
+.inp:focus{background:var(--yel)}
+.link{background:none;border:none;font-family:inherit;color:var(--ink);opacity:.55;text-decoration:underline;cursor:pointer;font-size:16px;margin-top:22px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:clamp(18px,3vw,24px)}
+.bar{flex:1;height:22px;background:#fff;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink2),var(--yel2));transition:width .4s}
+.score{background:var(--yel);border:3px solid var(--ink);border-radius:999px;padding:2px 14px}
+.tag{display:inline-block;background:var(--sky);border:3px solid var(--ink);border-radius:999px;padding:2px 14px;font-size:clamp(15px,2.4vw,20px);margin-bottom:10px}
+.q{font-size:clamp(24px,4.4vw,38px);line-height:1.4;margin:6px 0 20px;word-break:keep-all}
+.opts{display:grid;gap:14px}
+.opt{font-family:inherit;text-align:left;font-size:clamp(20px,3.4vw,30px);line-height:1.35;color:var(--ink);background:var(--pink);border:4px solid var(--ink);border-radius:22px;padding:14px 18px;cursor:pointer;box-shadow:0 6px 0 var(--ink);display:flex;gap:14px;align-items:center;word-break:keep-all;transition:.08s}
+.opt:nth-child(2){background:var(--mint)}.opt:nth-child(3){background:var(--yel)}.opt:nth-child(4){background:var(--sky)}
+.opt:hover:not(:disabled){transform:translateY(-3px)}
+.opt:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.opt .n{flex:none;width:46px;height:46px;border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center;font-size:26px}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--mint2)!important;animation:pop .5s}
+.opt.wrong{background:var(--bad)!important;animation:shake .4s;color:#fff}
+.opt.dim{opacity:.45}
+.ox{grid-template-columns:1fr 1fr}.ox .opt{justify-content:center;font-size:clamp(34px,7vw,64px);padding:22px}
+@keyframes pop{40%{transform:scale(1.04)}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{margin-top:20px;border:4px dashed var(--ink);border-radius:22px;padding:14px 18px;background:#fffdf5;font-size:clamp(18px,3vw,26px);line-height:1.5;display:none;word-break:keep-all}
+.fb.show{display:block;animation:pop .4s}
+.fb b{font-size:1.15em}
+.next{margin-top:20px;display:none;text-align:right}.next.show{display:block}
+.hint{text-align:center;margin-top:16px;font-size:16px;opacity:.7}
+.big{font-size:clamp(54px,12vw,110px);text-align:center;line-height:1.1}
+.res{font-size:clamp(22px,4vw,34px);text-align:center;margin:10px 0 20px}
+.wrongs{margin:16px 0 0;padding:0;list-style:none;font-size:clamp(16px,2.6vw,22px);text-align:left}
+.wrongs li{background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:8px 12px;margin-bottom:8px}
+.conf{position:fixed;top:-20px;font-size:28px;pointer-events:none;animation:fall 1.6s linear forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.8}}
+/* 교사 대시보드 */
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0 0}
+.stat{background:var(--yel);border:3px solid var(--ink);border-radius:18px;padding:10px;text-align:center;font-size:18px}
+.stat:nth-child(2){background:var(--mint)}.stat:nth-child(3){background:var(--pink)}.stat:nth-child(4){background:var(--sky)}
+.stat b{display:block;font-size:40px;font-weight:normal}
+.qbars{display:grid;gap:6px}
+.qb{display:grid;grid-template-columns:48px 1fr 110px;gap:10px;align-items:center;cursor:pointer;font-size:18px;padding:3px 8px;border-radius:12px}
+.qb:hover,.qb.sel{background:var(--yel)}
+.qb.low .bar>i{background:var(--bad)}
+.qb .bar{height:20px}
+.dr{display:grid;grid-template-columns:1fr minmax(100px,220px) 54px;gap:10px;align-items:center;margin-top:8px;font-size:.85em}
+.dr.ok{color:#1e7a4f}.dr .bar{height:16px}.dr.ok .bar>i{background:var(--mint2)}
+.tbl{overflow:auto;max-height:62vh;border:3px solid var(--ink);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:17px}
+th,td{border:1.5px solid #c9bfd0;padding:5px 6px;text-align:center}
+th{background:var(--sky);position:sticky;top:0;z-index:1}
+td.nm{text-align:left;white-space:nowrap}
+td.c-ok{background:var(--mint)}td.c-no{background:#ffd3d3}
+.wait{font-size:22px;padding:30px 10px}
+.live{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--mint2);margin-right:6px;animation:blink 1s infinite;vertical-align:middle}
+@keyframes blink{50%{opacity:.2}}
+.ov{position:fixed;inset:0;background:rgba(74,59,82,.6);display:grid;place-items:center;z-index:20;padding:16px}
+.ov .card{max-width:760px;width:100%;text-align:center;max-height:96vh;overflow:auto}
+#qr{display:inline-block;background:#fff;padding:16px;border:4px solid var(--ink);border-radius:20px;margin:14px 0}
+#qr img,#qr canvas{display:block;width:min(58vh,70vw);height:auto}
+td.tm{white-space:nowrap;font-size:15px}
+</style></head><body><div class="wrap" id="app"></div>
+<script>
+const Q=[
+{t:"기초",q:"지적장애의 3가지 특징에 해당하지 않는 것은?",o:["IQ 약 70 이하 (-2 표준편차)","하나 이상의 적응행동 결함","18세 이전에 발생","유전자 검사에서 이상이 확인됨"],a:3,e:"3가지 특징은 ① 낮은 지적기능 ② 적응행동 결함 ③ 18세 이전 발생이에요. 유전자 검사 결과는 진단 기준이 아니에요."},
+{t:"OX",q:"18세 이후에 지적기능이 떨어지면 지적장애로 진단한다.",o:["O","X"],ox:1,a:1,e:"X! 18세 이후의 지적기능 상실은 신경인지장애(치매)예요. 지적장애는 18세 이전에 발생해야 해요."},
+{t:"적응행동",q:"적응행동 영역 중 ‘사회적’ 영역에 해당하는 것은?",o:["돈 계산하기","규칙과 관습을 이해하고 따르기","교통수단 이용해 길 찾기","시간 말하기"],a:1,e:"개념적: 독서·숫자·돈·시간·의사소통 / 사회적: 규칙과 관습 이해 / 실제적 생활 기술: 먹기·옷 입기·길 찾기·직업 기술."},
+{t:"용어",q:"우리나라가 ‘정신지체’를 ‘지적장애’로 바꾼 개정 연도는?",o:["1989년","2007년","2015년","2019년"],a:1,e:"1989년 장애인복지법에서는 ‘정신지체’를 썼고, 2007년 개정으로 ‘지적장애’로 변경했어요."},
+{t:"분류",q:"IQ 검사에 의한 분류에서 ‘중등도’의 IQ 범위는?",o:["55~69","36~54","20~35","20 미만"],a:1,e:"경도 55~69 / 중등도 36~54 / 중도 20~35 / 최중도 20 미만. 비율은 85 · 10 · 3.5 · 1.5%예요."},
+{t:"OX",q:"IQ가 70 이하이면 적응행동과 관계없이 지적장애로 진단한다.",o:["O","X"],ox:1,a:1,e:"X! IQ만으로 정의하지 않아요. IQ가 낮아도 적응기술이 양호하면 지적장애가 아니에요."},
+{t:"AAIDD",q:"AAIDD 다차원적 분류의 5가지 차원이 아닌 것은?",o:["지적 능력","적응행동","학업 성적 석차","환경·문화·기회"],a:2,e:"5차원은 지적 능력 · 적응행동 · 참여/상호작용/사회적 역할 · 신체·정신 건강 · 환경/문화/기회예요. 5차원을 종합 평가해 지원의 종류와 강도를 정해요."},
+{t:"지원",q:"지원 강도가 가장 높은 단계는?",o:["간헐적 지원","제한적 지원","확장적 지원","전반적 지원"],a:3,e:"간헐적 → 제한적 → 확장적 → 전반적 순으로 강해져요. 전반적 지원은 여러 환경에 걸친 매우 집중적이고 일정한 지원이에요."},
+{t:"원인",q:"상황과 관련 없는 부적절한 웃음발작, 과잉행동, 수면장애가 나타나는 증후군은?",o:["다운증후군","프레더 윌리 증후군","안젤만 증후군","윌리엄스 증후군"],a:2,e:"안젤만 증후군(15번 염색체, 어머니로부터)이에요. 표현언어보다 수용언어가 더 뛰어난 점도 특징이에요."},
+{t:"원인",q:"후두 결함으로 고양이 울음소리를 내는 증후군은? (영아기 후반에 사라짐)",o:["묘성증후군 (5번)","윌리엄스 증후군 (7번)","다운증후군 (21번)","안젤만 증후군 (15번)"],a:0,e:"묘성증후군(5번 염색체 이상)이에요. 소두증, 작은 턱, 양안 격리증, 심한 지적장애를 보여요."},
+{t:"원인",q:"조기진단과 식이요법으로 지적장애를 예방할 수 있는 신진대사 이상은?",o:["페닐케톤뇨증","레트증후군","묘성증후군","저체중 출생"],a:0,e:"페닐케톤뇨증은 치료하지 않으면 대부분 심한 지적장애가 되지만, 조기진단으로 예방할 수 있어요. 갈락토스혈증은 유제품을 제외한 식이요법을 해요."},
+{t:"예방",q:"‘생의 전반에 걸친 교육 및 사회적 서비스 증대’는 몇 차 예방의 전략일까?",o:["1차 예방","2차 예방","3차 예방","해당 없음"],a:2,e:"3차 예방은 장애가 확정된 뒤 영향을 줄이고 잠재력 개발과 삶의 질을 극대화하는 단계예요. 1차는 발생 막기, 2차는 조기판별·처치!"},
+{t:"학습 특성",q:"교실에서 배운 인사를 집이나 복지관에서는 쓰지 못한다. 어떤 학습 특성일까?",o:["지각의 미분화","수량적 사고의 어려움","통찰의 편협성","전이와 일반화의 곤란"],a:3,e:"배운 기술을 다른 곳에 적용하기 어려운 ‘전이와 일반화의 곤란’이에요."},
+{t:"심리 특성",q:"‘노력하면 될 수 있는데도 많은 실패 경험 때문에 시도를 포기’하는 것은?",o:["외적 요인 귀인","강한 긍정 반응","지각의 미분화","학습된 무기력"],a:3,e:"학습된 무기력이에요. 잦은 실패로 기대가 낮아지고 시도 자체를 포기하게 돼요."},
+{t:"교육",q:"학급을 두 그룹으로 균등하게 나누고 두 교사가 같은 내용을 동시에 가르치는 협력교수 모델은?",o:["스테이션 교수","대안 교수","평행 교수","팀티칭"],a:2,e:"평행 교수예요. 스테이션은 학습 코너 순환, 대안은 소수 학생 보충·심화, 팀티칭은 두 교사가 함께 주고받으며 전체를 가르쳐요."}
+];
+const $=s=>document.querySelector(s),app=$('#app'),EM=['🐣','🐰','🐻','🐱'];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const keyOf=k=>typeof k==='string'?k:(k&&k.key);
+const fmtT=ms=>{if(!(ms>0))return '';const s=Math.round(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+let mode='home',i=0,score=0,wrong=[],locked=false,me=null,myKey='',saveQ=Promise.resolve();
+
+/* ---------- 저장소: Supabase (학생은 로그인 없이 /rest/v1/rpc 함수만 호출) ---------- */
+const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw',QUIZ='id4';
+async function rpc(fn,args){const ac=new AbortController(),to=setTimeout(()=>ac.abort(),10000);
+  try{const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{}),signal:ac.signal});
+    const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
+    if(!r.ok){const er=new Error((j&&j.message)||('HTTP '+r.status));er.status=r.status;throw er}
+    return j}finally{clearTimeout(to)}}
+const isBadPw=e=>!!e&&(e.status===403||/wrong_password/.test(e.message||''));
+const LS={get(k){try{return JSON.parse(localStorage.getItem('quiz4:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('quiz4:'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('quiz4:'+k)}catch(e){}}};
+const SS={get(k){try{return sessionStorage.getItem('quiz4:'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('quiz4:'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('quiz4:'+k)}catch(e){}}};
+let tPw=SS.get('pw')||'';
+async function getRound(){const r=await rpc('quiz_round',{p_quiz:QUIZ});return Number(r)||1}
+async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await new Promise(r=>setTimeout(r,1500))}}}
+function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringify(me)),id=myKey;
+  saveQ=saveQ.then(()=>putRec(id,v)).catch(e=>console.error('저장 실패',e))}
+
+/* ---------- 학생 화면 ---------- */
+function home(){mode='home';myKey='';me=null;app.className='wrap';
+app.innerHTML=`<div class="card"><div class="mascot">🐣</div><h1>지적장애<br>쑥쑥 퀴즈!</h1>
+<p class="sub">장애아동의 이해 · 4주차 · 총 ${Q.length}문제<br>이름(별명)을 쓰고 입장해요</p>
+<div class="center"><div id="resume"></div><input class="inp" id="nm" maxlength="12" placeholder="이름 또는 별명" autocomplete="off">
+<div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
+<p class="hint" id="msg"></p><div id="solo"></div>
+<button class="link" id="tc">👩‍🏫 교사용 대시보드</button></div></div>`;
+$('#nm').onkeydown=e=>{if(e.key==='Enter')join()};$('#go').onclick=join;$('#tc').onclick=teacher;
+offerResume()}
+
+/* 새로고침해도 같은 기록으로 이어서 풀기 (내 기록 id는 이 브라우저 localStorage에 보관) */
+async function offerResume(){const ss=LS.get('sess');if(!ss||!ss.key||mode!=='home')return;
+let g=null;try{g=await rpc('quiz_get',{p_id:ss.key})}catch(e){return}
+if(!g){LS.del('sess');return}
+if(g.round!==g.current)return;
+const rec=g.data;if(!rec||mode!=='home'||!$('#resume'))return;
+$('#resume').innerHTML=`<button class="btn alt" id="rs">${rec.d?'🏁 '+esc(rec.n)+' 결과 다시 보기':'▶ '+esc(rec.n)+' 이어서 풀기'}</button><p class="hint" style="margin:10px 0 18px">다른 이름으로 새로 시작하려면 아래에 입력하세요</p>`;
+$('#rs').onclick=()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
+  wrong=Object.keys(me.a).map(Number).sort((a,b)=>a-b).filter(k=>!me.a[k][1]);
+  if(me.d){i=Q.length;end();return}
+  i=0;while(i<Q.length&&me.a[i])i++;
+  mode='play';i<Q.length?show():end()}}
+
+async function join(){const n=$('#nm').value.trim();if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();return}
+$('#go').disabled=true;$('#msg').textContent='입장 중... 🚪';$('#solo').innerHTML='';
+i=0;score=0;wrong=[];const now=Date.now();me={n,a:{},s:0,c:0,d:false,st:now,f:0,t:now};
+try{const id=now.toString(36)+Math.random().toString(36).slice(2,9);
+  const round=await rpc('quiz_join',{p_quiz:QUIZ,p_id:id,p_data:me});
+  myKey=id;LS.set('sess',{key:id,round:Number(round)});
+}catch(e){myKey='';$('#go').disabled=false;
+  $('#msg').textContent='⚠️ 선생님 화면과 연결하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.';
+  $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';show()};return}
+mode='play';show()}
+
+function show(){locked=false;const d=Q[i];if(me&&myKey){me.c=i;save()}
+app.innerHTML=`<div class="top"><span>${i+1}/${Q.length}</span><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><span class="score">⭐ ${score}</span></div>
+<div class="card"><div class="row"><span class="tag">${EM[i%4]} ${d.t}</span><span class="tag" style="background:var(--yel)">🙋 ${esc(me?me.n:'')}${myKey?'':' (혼자)'}</span></div><div class="q">${d.q}</div>
+<div class="opts ${d.ox?'ox':''}">${d.o.map((x,k)=>`<button class="opt" data-k="${k}"><span class="n">${d.ox?(k?'✖':'⭕'):k+1}</span>${d.ox?'':x}</button>`).join('')}</div>
+<div class="fb" id="fb"></div><div class="next" id="nx"><button class="btn" id="nb">${i==Q.length-1?'결과 보기 🎉':'다음 문제 ▶'}</button></div></div>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));$('#nb').onclick=next}
+
+function pick(k){if(locked)return;locked=true;const d=Q[i],ok=k===d.a,bs=document.querySelectorAll('.opt');
+bs.forEach((b,n)=>{b.disabled=true;if(n===d.a)b.classList.add('right');else if(n===k)b.classList.add('wrong');else b.classList.add('dim')});
+if(ok){score++;confetti()}else wrong.push(i);
+if(me&&myKey){me.a[i]=[k,ok?1:0];me.s=score;save()}
+const f=$('#fb');f.innerHTML=(ok?'<b>🎉 정답!</b> ':'<b>🥲 아쉬워요!</b> ')+d.e;f.classList.add('show');$('#nx').classList.add('show');$('.score').textContent='⭐ '+score}
+
+function next(){i++;i<Q.length?show():end()}
+
+function end(){mode='play';if(me&&myKey&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
+const p=Math.round(score/Q.length*100),m=p>=90?['🏆','대단해요! 척척박사!']:p>=60?['🌟','잘했어요! 조금만 더!']:['🌱','괜찮아요, 같이 복습해요!'];
+const el=me&&me.f&&me.st?`<div class="tag" style="background:var(--yel)">⏱ 걸린 시간 ${fmtT(me.f-me.st)}</div>`:'';
+app.innerHTML=`<div class="card"><div class="mascot">${m[0]}</div><div class="big">${score} / ${Q.length}</div><div class="res">${m[1]}</div><div class="center">${el}</div>${wrong.length?`<div class="tag">🔁 다시 볼 문제</div><ul class="wrongs">${wrong.map(n=>`<li><b>${n+1}.</b> ${Q[n].q}<br>→ ${Q[n].o[Q[n].a]}</li>`).join('')}</ul>`:'<div class="res">모두 정답! 🎊</div>'}<div class="center" style="margin-top:20px"><button class="btn" id="re">처음으로 🏠</button></div></div>`;
+$('#re').onclick=home;if(p>=60)for(let n=0;n<3;n++)setTimeout(confetti,n*350)}
+
+function confetti(){const c=['🎉','⭐','🌸','🍬','💖','✨'];for(let n=0;n<14;n++){const s=document.createElement('span');s.className='conf';s.textContent=c[n%c.length];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.4+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2200)}}
+
+document.addEventListener('keydown',e=>{if(mode!=='play'||e.target.tagName==='INPUT')return;const nx=$('#nx');
+if(e.key==='Enter'||e.key===' '||e.key==='ArrowRight'){if(nx&&nx.classList.contains('show')){e.preventDefault();next()}else if($('#re')){$('#re').click()}return}
+const n=parseInt(e.key);if(n>=1&&n<=4&&document.querySelectorAll('.opt').length>=n)pick(n-1);
+if(e.key.toLowerCase()==='o'&&Q[i]&&Q[i].ox)pick(0);if(e.key.toLowerCase()==='x'&&Q[i]&&Q[i].ox)pick(1)});
+
+/* ---------- 교사 대시보드 ---------- */
+let tTimer=null,tRound=1,tData=[],tSel=null,tUrl=/^https?:$/.test(location.protocol)?location.origin+location.pathname:'',tPaused=false,resetArm=false,busy=false;
+
+function teacherLogin(msg){mode='login';clearInterval(tTimer);app.className='wrap';
+app.innerHTML=`<div class="card"><div class="mascot">👩‍🏫</div><h1 style="font-size:clamp(28px,5vw,44px)">교사용 대시보드</h1>
+<p class="sub">비밀번호를 입력해 주세요</p>
+<div class="center"><input class="inp" id="pw" type="password" autocomplete="current-password" placeholder="비밀번호">
+<div style="margin-top:18px"><button class="btn" id="pg">확인 ▶</button> <button class="btn alt" id="ph">🏠</button></div>
+<p class="hint" id="pm">${msg||''}</p></div></div>`;
+const go=async()=>{const v=$('#pw').value;if(!v){$('#pm').textContent='비밀번호를 입력해 주세요!';$('#pw').focus();return}
+  $('#pg').disabled=true;$('#pm').textContent='확인 중...';
+  try{await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:v});tPw=v;SS.set('pw',v);teacher()}
+  catch(e){$('#pg').disabled=false;$('#pm').textContent=isBadPw(e)?'⚠️ 비밀번호가 맞지 않아요.':'⚠️ 연결하지 못했어요. 인터넷 연결을 확인해 주세요.';$('#pw').select()}};
+$('#pg').onclick=go;$('#pw').onkeydown=e=>{if(e.key==='Enter')go()};$('#ph').onclick=home;$('#pw').focus()}
+
+function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';
+app.innerHTML=`<div class="card">
+<div class="row"><h2 style="margin:0">👩‍🏫 실시간 대시보드</h2>
+<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
+<div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
+<div class="stats" id="stats"></div>
+<h3>📊 문항별 정답률 <small style="opacity:.6">(문항을 누르면 선택지별 응답 수)</small></h3><div class="qbars" id="bars"></div><div id="det"></div>
+<h3>🧒 학생별 현황 <small style="opacity:.6">⭕ 정답 · ✖ 오답 · 👀 지금 푸는 중 · 🏁 완료 · 동점이면 빨리 끝낸 순</small></h3><div class="tbl" id="tbl"></div></div>`;
+$('#bq').onclick=qrOpen;
+$('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
+$('#br').onclick=resetRound;
+$('#bh').onclick=()=>{clearInterval(tTimer);home()};
+render();refresh();clearInterval(tTimer);tTimer=setInterval(()=>{if(!tPaused&&mode==='teacher')refresh()},3000)}
+
+async function refresh(){if(busy)return;busy=true;
+try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});
+  tRound=Number(r&&r.round)||1;tData=((r&&r.players)||[]).filter(Boolean);render();
+  const s=$('#st');if(s&&mode==='teacher')s.innerHTML=`<span class="live"></span>라운드 ${tRound} · ${new Date().toLocaleTimeString('ko-KR')} 갱신 (3초마다) · Supabase`;
+}catch(e){if(isBadPw(e)&&mode==='teacher'){busy=false;tPw='';SS.del('pw');teacherLogin('⚠️ 비밀번호를 다시 입력해 주세요.');return}
+  const s=$('#st');if(s)s.textContent='⚠️ 불러오기 실패: '+(e&&e.message||e)+' (인터넷 연결 확인)'}
+busy=false}
+
+const elapsed=p=>p.d&&p.f&&p.st?p.f-p.st:Infinity;
+function rank(a,b){return (b.s||0)-(a.s||0)||(b.d?1:0)-(a.d?1:0)||elapsed(a)-elapsed(b)||String(a.n).localeCompare(String(b.n),'ko')}
+
+function render(){if(mode!=='teacher')return;const D=tData,n=D.length,done=D.filter(p=>p.d).length;
+const avg=n?(D.reduce((s,p)=>s+(p.s||0),0)/n).toFixed(1):'-';
+const tot=D.reduce((s,p)=>s+Object.keys(p.a||{}).length,0);
+$('#stats').innerHTML=[['👥 참여',n],['🏁 완료',`${done}`],['⭐ 평균 점수',avg],['📝 총 응답',tot]].map(([a,b])=>`<div class="stat">${a}<b>${b}</b></div>`).join('');
+
+$('#bars').innerHTML=Q.map((q,k)=>{let an=0,ok=0;D.forEach(p=>{const r=p.a&&p.a[k];if(r){an++;ok+=r[1]}});
+  const pc=an?Math.round(ok/an*100):0;
+  return `<div class="qb ${an&&pc<50?'low':''} ${tSel===k?'sel':''}" data-k="${k}"><span>Q${k+1}</span><div class="bar"><i style="width:${pc}%"></i></div><span>${an?pc+'%':'-'} <small>(${ok}/${an})</small></span></div>`}).join('');
+document.querySelectorAll('.qb').forEach(b=>b.onclick=()=>{const k=+b.dataset.k;tSel=tSel===k?null:k;render()});
+
+if(tSel!==null){const q=Q[tSel],cnt=q.o.map(()=>0);D.forEach(p=>{const r=p.a&&p.a[tSel];if(r&&cnt[r[0]]!==undefined)cnt[r[0]]++});
+  const t=cnt.reduce((a,b)=>a+b,0);
+  $('#det').innerHTML=`<div class="fb show" style="margin-top:12px"><b>Q${tSel+1}.</b> ${q.q}${q.o.map((o,k)=>`<div class="dr ${k===q.a?'ok':''}"><span>${k===q.a?'✅':'▫️'} ${q.ox?(k?'X':'O'):(k+1)+'. '+o}</span><div class="bar"><i style="width:${t?cnt[k]/t*100:0}%"></i></div><span>${cnt[k]}명</span></div>`).join('')}<div style="margin-top:10px;font-size:.85em">💡 ${q.e}</div></div>`;
+}else $('#det').innerHTML='';
+
+const rows=[...D].sort(rank),MD=['🥇','🥈','🥉'];
+$('#tbl').innerHTML=n?`<table><thead><tr><th>순위</th><th>이름</th>${Q.map((_,k)=>`<th>${k+1}</th>`).join('')}<th>점수</th><th>걸린 시간</th></tr></thead><tbody>${rows.map((p,r)=>`<tr><td>${p.d&&r<3?MD[r]:r+1}</td><td class="nm">${p.d?'🏁 ':''}${esc(p.n)}</td>${Q.map((_,k)=>{const x=p.a&&p.a[k];return `<td class="${x?(x[1]?'c-ok':'c-no'):''}">${x?(x[1]?'⭕':'✖'):(!p.d&&p.c===k?'👀':'')}</td>`}).join('')}<td><b>${p.s||0}</b></td><td class="tm">${p.d?fmtT(elapsed(p)):'풀이 중'}</td></tr>`).join('')}</tbody></table>`
+:'<p class="wait center">아직 입장한 학생이 없어요.<br>📱 입장 QR을 띄워 주세요!</p>'}
+
+async function resetRound(){const b=$('#br');
+if(!resetArm){resetArm=true;b.textContent='⚠️ 한 번 더 누르면 초기화';setTimeout(()=>{resetArm=false;const x=$('#br');if(x&&!x.disabled)x.textContent='🔄 새 라운드'},3000);return}
+resetArm=false;b.disabled=true;b.textContent='초기화 중...';let err='';
+try{tRound=Number(await rpc('quiz_reset',{p_quiz:QUIZ,p_pw:tPw}))||tRound+1}catch(e){console.error(e);err=e&&e.message||String(e)}
+tSel=null;if(!err)tData=[];b.disabled=false;b.textContent='🔄 새 라운드';
+if(err){const s=$('#st');if(s)s.textContent='⚠️ 새 라운드 실패: '+err;return}
+refresh()}
+
+function qrOpen(){const o=document.createElement('div');o.className='ov';o.id='ov';document.body.appendChild(o);o.onclick=e=>{if(e.target===o)o.remove()};qrDraw()}
+function qrDraw(){const o=$('#ov');if(!o)return;
+if(!tUrl){o.innerHTML=`<div class="card"><h2 style="margin-top:0">📱 입장 QR 만들기</h2><p class="sub">이 퀴즈의 <b>공유 링크</b>를 붙여 넣어 주세요</p>
+<input class="inp" id="ui" placeholder="https://..." style="max-width:100%;font-size:18px">
+<div style="margin-top:18px"><button class="btn" id="ub">QR 만들기</button> <button class="btn alt" id="uc">닫기</button></div></div>`;
+  const go=()=>{const v=$('#ui').value.trim();if(/^https?:\/\//.test(v)){tUrl=v;qrDraw()}else{$('#ui').style.borderColor='var(--bad)'}};
+  $('#ub').onclick=go;$('#ui').onkeydown=e=>{if(e.key==='Enter')go()};$('#uc').onclick=()=>o.remove();$('#ui').focus();return}
+o.innerHTML=`<div class="card"><h1 style="font-size:clamp(28px,5vw,44px)">카메라로 찍고 입장! 📸</h1><div id="qr"></div>
+<div style="word-break:break-all;font-size:14px;opacity:.7;margin-bottom:14px">${esc(tUrl)}</div>
+<button class="btn" id="uc">닫기</button><br><button class="link" id="ue">링크 바꾸기</button></div>`;
+$('#uc').onclick=()=>o.remove();$('#ue').onclick=()=>{tUrl='';qrDraw()};
+if(window.QRCode){new QRCode($('#qr'),{text:tUrl,width:512,height:512,correctLevel:QRCode.CorrectLevel.M})}
+else $('#qr').textContent='QR 라이브러리를 불러오지 못했어요. 링크를 직접 공유해 주세요.'}
+
+home();
+</script>
+</body></html>
