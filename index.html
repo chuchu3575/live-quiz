@@ -82,6 +82,17 @@ td.c-ok{background:var(--mint)}td.c-no{background:#ffd3d3}
 #qr{display:inline-block;background:#fff;padding:16px;border:4px solid var(--ink);border-radius:20px;margin:14px 0}
 #qr img,#qr canvas{display:block;width:min(58vh,70vw);height:auto}
 td.tm{white-space:nowrap;font-size:15px}
+/* 구슬 레이스 */
+.conf{z-index:40}
+.ov .card.race{max-width:1100px;padding:18px}
+.rbox{display:flex;gap:12px;margin-top:10px;align-items:stretch}
+.rcw{position:relative;flex:1;min-width:0}
+#rcv{display:block;width:100%;height:min(68vh,760px);border:4px solid var(--ink);border-radius:18px;background:#fffdf5}
+.rlist{width:200px;margin:0;padding:8px 10px 8px 36px;border:3px solid var(--ink);border-radius:16px;background:#fff;text-align:left;font-size:18px;overflow:auto;max-height:min(68vh,760px)}
+.rlist li{margin:3px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rwin{position:absolute;left:50%;top:14px;transform:translateX(-50%);background:var(--yel);border:4px solid var(--ink);border-radius:20px;padding:6px 24px;font-size:clamp(26px,5vw,46px);display:none;white-space:nowrap;box-shadow:0 6px 0 var(--ink);z-index:2}
+.rwin.show{display:block;animation:pop .6s}
+@media(max-width:700px){.rbox{flex-direction:column}.rlist{width:auto;max-height:120px}}
 </style></head><body><div class="wrap" id="app"></div>
 <script>
 const Q=[
@@ -209,15 +220,15 @@ $('#pg').onclick=go;$('#pw').onkeydown=e=>{if(e.key==='Enter')go()};$('#ph').onc
 function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';
 app.innerHTML=`<div class="card">
 <div class="row"><h2 style="margin:0">👩‍🏫 실시간 대시보드</h2>
-<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
+<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm" id="bm" style="background:var(--mint)">🎱 1등 뽑기</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
 <div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
 <div class="stats" id="stats"></div>
 <h3>📊 문항별 정답률 <small style="opacity:.6">(문항을 누르면 선택지별 응답 수)</small></h3><div class="qbars" id="bars"></div><div id="det"></div>
 <h3>🧒 학생별 현황 <small style="opacity:.6">⭕ 정답 · ✖ 오답 · 👀 지금 푸는 중 · 🏁 완료 · 동점이면 빨리 끝낸 순</small></h3><div class="tbl" id="tbl"></div></div>`;
-$('#bq').onclick=qrOpen;
+$('#bq').onclick=qrOpen;$('#bm').onclick=raceOpen;
 $('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
 $('#br').onclick=resetRound;
-$('#bh').onclick=()=>{clearInterval(tTimer);home()};
+$('#bh').onclick=()=>{clearInterval(tTimer);raceClose();home()};
 render();refresh();clearInterval(tTimer);tTimer=setInterval(()=>{if(!tPaused&&mode==='teacher')refresh()},3000)}
 
 async function refresh(){if(busy)return;busy=true;
@@ -271,6 +282,99 @@ o.innerHTML=`<div class="card"><h1 style="font-size:clamp(28px,5vw,44px)">카메
 $('#uc').onclick=()=>o.remove();$('#ue').onclick=()=>{tUrl='';qrDraw()};
 if(window.QRCode){new QRCode($('#qr'),{text:tUrl,width:512,height:512,correctLevel:QRCode.CorrectLevel.M})}
 else $('#qr').textContent='QR 라이브러리를 불러오지 못했어요. 링크를 직접 공유해 주세요.'}
+
+/* ---------- 🎱 구슬 레이스: 동점자 1등 재미있게 뽑기 ---------- */
+const RW=480,RH=2640,RR=11,FY=2540;let race=null;
+function topTies(){const D=tData.filter(p=>p.d);if(!D.length)return tData.map(p=>p.n);
+  const mx=Math.max(...D.map(p=>p.s||0));return D.filter(p=>(p.s||0)===mx).map(p=>p.n)}
+function raceStop(){if(race){cancelAnimationFrame(race.raf);race=null}}
+function raceClose(){raceStop();const o=$('#rov');if(o)o.remove()}
+function raceOpen(){raceClose();const o=document.createElement('div');o.className='ov';o.id='rov';document.body.appendChild(o);raceSetup()}
+function raceSetup(names){const o=$('#rov');if(!o)return;raceStop();
+const ties=topTies(),done=tData.filter(p=>p.d).map(p=>p.n),init=names||ties;
+o.onclick=e=>{if(e.target===o)raceClose()};
+o.innerHTML=`<div class="card"><h2 style="margin-top:0">🎱 구슬 레이스로 1등 뽑기</h2>
+<p class="sub" style="margin-bottom:12px">가장 먼저 결승선을 통과한 구슬이 1등!<br><small>이름은 한 줄에 한 명씩 (쉼표로 구분해도 돼요)</small></p>
+<textarea class="inp" id="rn" rows="6" style="max-width:100%;font-size:20px;text-align:left;resize:vertical" placeholder="이름을 넣어 주세요">${esc(init.join('\n'))}</textarea>
+<div style="margin:12px 0 4px"><button class="btn sm alt" id="rt">🏆 1등 동점자 (${ties.length}명)</button> <button class="btn sm alt" id="ra">🏁 완료한 학생 전체 (${done.length}명)</button></div>
+<p class="hint" id="rm" style="margin-top:6px"></p>
+<div><button class="btn" id="rg">출발! ▶</button> <button class="btn alt" id="rc">닫기</button></div></div>`;
+$('#rt').onclick=()=>{$('#rn').value=ties.join('\n')};$('#ra').onclick=()=>{$('#rn').value=done.join('\n')};$('#rc').onclick=raceClose;
+$('#rg').onclick=()=>{const ns=$('#rn').value.split(/[\n,]/).map(s=>s.trim()).filter(Boolean).slice(0,60);
+  if(ns.length<2){$('#rm').textContent='⚠️ 이름을 2명 이상 넣어 주세요!';return}raceRun(ns)}}
+
+function raceCourse(){const S=[],P=[],SP=[],seg=(a,b,c,d)=>S.push([a,b,c,d]);
+seg(0,-300,0,RH);seg(RW,-300,RW,RH);
+const pegRow=(y,odd,r)=>{if(odd){for(let x=30;x<=450;x+=60)P.push([x,y,r])}else{for(let x=0;x<=RW;x+=60)P.push([x,y,r])}};
+for(let r=0,y=230;y<=870;r++,y+=58)pegRow(y,r%2,7);
+SP.push({x:130,y:1010,l:150,w:1.7,a:0},{x:350,y:1010,l:150,w:-1.7,a:.8},{x:240,y:1200,l:210,w:1.25,a:0});
+P.push([240,1010,9],[40,1200,9],[440,1200,9],[130,1110,8],[350,1110,8]);
+seg(0,1380,320,1450);seg(RW,1530,160,1600);seg(0,1680,320,1750);seg(RW,1830,160,1900);
+P.push([400,1475,8],[80,1625,8],[400,1775,8],[80,1925,8]);
+for(let r=0,y=1980;y<=2320;r++,y+=48){const odd=r%2;for(let x=odd?30:0;x<=(odd?450:RW);x+=60){if(Math.hypot(x-240,y-2150)<88)continue;P.push([x,y,6])}}
+SP.push({x:240,y:2150,l:120,w:2.3,a:0});
+seg(0,2370,RW/2-37,2480);seg(RW,2370,RW/2+37,2480);
+return {S,P,SP}}
+
+function rBounce(m,nx,ny,svx,svy,e){const vn=(m.vx-svx)*nx+(m.vy-svy)*ny;if(vn>=0)return;
+m.vx-=(1+e)*vn*nx;m.vy-=(1+e)*vn*ny;const tx=-ny,ty=nx,vt=(m.vx-svx)*tx+(m.vy-svy)*ty;m.vx-=vt*.015*tx;m.vy-=vt*.015*ty}
+function rCirc(m,cx,cy,r){const dx=m.x-cx,dy=m.y-cy,d=Math.hypot(dx,dy),R=r+RR;if(d>=R||d===0)return;
+const nx=dx/d,ny=dy/d;m.x=cx+nx*R;m.y=cy+ny*R;rBounce(m,nx,ny,0,0,.55)}
+function rSeg(m,x1,y1,x2,y2,cx,cy,w,th){const ex=x2-x1,ey=y2-y1,L2=ex*ex+ey*ey;let t=((m.x-x1)*ex+(m.y-y1)*ey)/L2;t=t<0?0:t>1?1:t;
+const px=x1+ex*t,py=y1+ey*t,dx=m.x-px,dy=m.y-py,d=Math.hypot(dx,dy),R=RR+th;if(d>=R)return;
+let nx,ny;if(d>1e-6){nx=dx/d;ny=dy/d}else{const L=Math.sqrt(L2);nx=-ey/L;ny=ex/L}
+m.x=px+nx*R;m.y=py+ny*R;rBounce(m,nx,ny,-w*(py-cy),w*(px-cx),.4)}
+function rStep(R,h){const {ms,C}=R;for(const s of C.SP)s.a+=s.w*h;
+for(const m of ms){if(m.f)continue;m.vy+=900*h;m.x+=m.vx*h;m.y+=m.vy*h;
+  for(const s of C.S)rSeg(m,s[0],s[1],s[2],s[3],0,0,0,2);
+  for(const p of C.P)if(Math.abs(p[1]-m.y)<30)rCirc(m,p[0],p[1],p[2]);
+  for(const s of C.SP){if(Math.abs(s.y-m.y)>s.l)continue;const c=Math.cos(s.a)*s.l/2,d=Math.sin(s.a)*s.l/2;rSeg(m,s.x-c,s.y-d,s.x+c,s.y+d,s.x,s.y,s.w,5)}
+  const sp=Math.hypot(m.vx,m.vy);if(sp>900){m.vx*=900/sp;m.vy*=900/sp}
+  if(sp<25){m.st+=h;if(m.st>1.2){m.vy=-280;m.vx=(Math.random()-.5)*320;m.st=0}}else m.st=0;
+  if(m.y>FY){m.f=true;R.fin.push(m);rFinish(R,m)}}
+for(let a=0;a<ms.length;a++){const A=ms[a];if(A.f)continue;for(let b=a+1;b<ms.length;b++){const B=ms[b];if(B.f)continue;
+  const dx=B.x-A.x,dy=B.y-A.y,d2=dx*dx+dy*dy;if(d2>=4*RR*RR||d2===0)continue;
+  const d=Math.sqrt(d2),nx=dx/d,ny=dy/d,ov=(2*RR-d)/2;A.x-=nx*ov;A.y-=ny*ov;B.x+=nx*ov;B.y+=ny*ov;
+  const rv=(B.vx-A.vx)*nx+(B.vy-A.vy)*ny;if(rv<0){const j=-1.6*rv/2;A.vx-=j*nx;A.vy-=j*ny;B.vx+=j*nx;B.vy+=j*ny}}}}
+
+function rFinish(R,m){const MD=['🥇','🥈','🥉'],k=R.fin.length;
+const li=document.createElement('li');li.innerHTML=`<span style="color:${m.c}">●</span> ${MD[k-1]||''} ${esc(m.n)}`;const l=$('#rlst');if(l)l.appendChild(li);
+const c=$('#rcnt');if(c)c.textContent=`${k} / ${R.ms.length} 도착`;
+if(k===1){const w=$('#rwin');if(w){w.innerHTML=`🏆 1등 <b>${esc(m.n)}</b>`;w.classList.add('show')}for(let n=0;n<4;n++)setTimeout(confetti,n*300)}
+if(k===R.ms.length)R.phase='done'}
+
+function rDraw(R){const {cv,ctx,C,ms}=R,dpr=window.devicePixelRatio||1,cw=cv.clientWidth,ch=cv.clientHeight;if(!cw||!ch)return;
+if(cv.width!==Math.round(cw*dpr)||cv.height!==Math.round(ch*dpr)){cv.width=Math.round(cw*dpr);cv.height=Math.round(ch*dpr)}
+const sc=cw/RW,vh=ch/sc;let lead=null;for(const m of ms)if(!m.f&&(!lead||m.y>lead.y))lead=m;
+const tgt=Math.max(-30,Math.min(RH-vh,(lead?lead.y:RH)-vh*.45));R.cam+=(tgt-R.cam)*(R.phase==='count'?1:.08);
+ctx.setTransform(dpr*sc,0,0,dpr*sc,0,-R.cam*dpr*sc);ctx.fillStyle='#fffdf5';ctx.fillRect(0,R.cam,RW,vh);
+for(let x=0;x<RW;x+=16){const o=(x/16)%2;ctx.fillStyle=o?'#4a3b52':'#fff';ctx.fillRect(x,FY,16,8);ctx.fillStyle=o?'#fff':'#4a3b52';ctx.fillRect(x,FY+8,16,8)}
+ctx.lineCap='round';ctx.strokeStyle='#4a3b52';ctx.lineWidth=4;for(const s of C.S){ctx.beginPath();ctx.moveTo(s[0],s[1]);ctx.lineTo(s[2],s[3]);ctx.stroke()}
+ctx.lineWidth=2;for(const p of C.P){ctx.beginPath();ctx.arc(p[0],p[1],p[2],0,7);ctx.fillStyle='#ff8fab';ctx.fill();ctx.stroke()}
+for(const s of C.SP){const c=Math.cos(s.a)*s.l/2,d=Math.sin(s.a)*s.l/2;ctx.lineWidth=14;ctx.strokeStyle='#4a3b52';ctx.beginPath();ctx.moveTo(s.x-c,s.y-d);ctx.lineTo(s.x+c,s.y+d);ctx.stroke();
+  ctx.lineWidth=8;ctx.strokeStyle='#f7b731';ctx.stroke();ctx.beginPath();ctx.arc(s.x,s.y,5,0,7);ctx.fillStyle='#4a3b52';ctx.fill()}
+ctx.font="15px Jua, 'Malgun Gothic', sans-serif";ctx.textAlign='center';ctx.lineJoin='round';
+for(const m of ms){if(m.f)continue;ctx.beginPath();ctx.arc(m.x,m.y,RR,0,7);ctx.fillStyle=m.c;ctx.fill();ctx.lineWidth=2.5;ctx.strokeStyle='#4a3b52';ctx.stroke();
+  const lb=(m===lead&&R.phase==='run'?'👑 ':'')+m.n;ctx.lineWidth=4;ctx.strokeStyle='#fff';ctx.strokeText(lb,m.x,m.y-RR-5);ctx.fillStyle='#4a3b52';ctx.fillText(lb,m.x,m.y-RR-5)}
+ctx.setTransform(dpr,0,0,dpr,0,0);
+if(R.phase==='count'){const n=Math.ceil(R.cd);ctx.font=`${Math.min(cw,ch)*.28}px Jua, sans-serif`;ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.lineWidth=10;ctx.strokeStyle='#fff';ctx.strokeText(n,cw/2,ch/2);ctx.fillStyle='#ff8fab';ctx.fillText(n,cw/2,ch/2);ctx.textBaseline='alphabetic'}
+const pg=Math.max(0,Math.min(1,(lead?lead.y:FY)/FY));ctx.fillStyle='rgba(74,59,82,.15)';ctx.fillRect(cw-8,0,8,ch);ctx.fillStyle='#4cc38a';ctx.fillRect(cw-8,0,8,ch*pg)}
+
+function raceRun(ns){const o=$('#rov');if(!o)return;raceStop();o.onclick=null;
+o.innerHTML=`<div class="card race"><div class="row"><h2 style="margin:0">🎱 구슬 레이스</h2><span class="tag" id="rcnt" style="margin:0">0 / ${ns.length} 도착</span></div>
+<div class="rbox"><div class="rcw"><canvas id="rcv"></canvas><div class="rwin" id="rwin"></div></div><ol class="rlist" id="rlst"></ol></div>
+<div style="margin-top:14px"><button class="btn sm" id="rre">🔁 다시 달리기</button> <button class="btn sm alt" id="red">✏️ 이름 바꾸기</button> <button class="btn sm alt" id="rcl">닫기</button></div></div>`;
+$('#rre').onclick=()=>raceRun(ns);$('#red').onclick=()=>raceSetup(ns);$('#rcl').onclick=raceClose;
+const sh=[...ns];for(let k=sh.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[sh[k],sh[j]]=[sh[j],sh[k]]}
+const cols=Math.min(sh.length,15),gap=(RW-60)/cols;
+const ms=sh.map((n,k)=>({n,x:30+gap*((k%cols)+.5)+(Math.random()-.5)*4,y:40+Math.floor(k/cols)*28,vx:(Math.random()-.5)*30,vy:0,st:0,f:false,c:`hsl(${Math.round(k*360/sh.length)},85%,68%)`}));
+const cv=$('#rcv'),R={cv,ctx:cv.getContext('2d'),C:raceCourse(),ms,fin:[],cam:-30,phase:'count',cd:3,last:0,raf:0,t:0};race=R;window.__race=R;
+const loop=ts=>{if(race!==R||!document.body.contains(cv))return;const dt=R.last?Math.min(.033,(ts-R.last)/1000):0;R.last=ts;
+  if(R.phase==='count'){R.cd-=dt;if(R.cd<=0)R.phase='run'}
+  else if(R.phase==='run'){R.t+=dt;for(let k=0;k<6;k++)rStep(R,dt/6)}
+  rDraw(R);if(R.phase!=='done')R.raf=requestAnimationFrame(loop)};
+R.raf=requestAnimationFrame(loop)}
 
 home();
 </script>
