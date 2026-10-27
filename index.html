@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>자폐범주장애 쑥쑥 퀴즈</title>
+<title>지체장애 쑥쑥 퀴즈</title>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -82,6 +82,8 @@ td.c-ok{background:var(--mint)}td.c-no{background:#ffd3d3}
 #qr{display:inline-block;background:#fff;padding:16px;border:4px solid var(--ink);border-radius:20px;margin:14px 0}
 #qr img,#qr canvas{display:block;width:min(58vh,70vw);height:auto}
 td.tm{white-space:nowrap;font-size:15px}
+.tmr{white-space:nowrap}.tmr.low{background:var(--bad);color:#fff;animation:blink 1s infinite}
+.timeup{background:var(--bad);color:#fff;border:3px solid var(--ink);border-radius:18px;padding:8px 14px;font-size:clamp(20px,3.6vw,30px);text-align:center;margin:0 0 12px}
 /* 구슬 레이스 */
 .conf{z-index:40}
 .ov .card.race{max-width:1100px;padding:18px}
@@ -96,53 +98,57 @@ td.tm{white-space:nowrap;font-size:15px}
 </style></head><body><div class="wrap" id="app"></div>
 <script>
 const Q=[
-{t:"용어",q:"1943년 11명의 아동을 관찰한 보고서를 발표하고 ‘유아자폐증(Early Infantile Autism)’이라고 이름 붙인 사람은?",o:["Bleuler","Kanner","Asperger","Bettelheim"],a:1,e:"Kanner(1943)예요. Bleuler(1911)는 조현병 증상을 설명하며 ‘autism’이라는 말을 처음 썼고, Asperger(1944)는 언어·인지가 비교적 양호한 아동을 보고했어요."},
-{t:"OX",q:"자폐는 부모의 차갑고 거부적인 양육 태도에서 비롯된다(‘냉장고 엄마’ 이론).",o:["O","X"],ox:1,a:1,e:"X! Bettelheim(1956)의 잘못된 주장이에요. Rimland(1964)가 반박했고, 현재는 유전적·신경학적 요인으로 봐요."},
-{t:"용어",q:"Kanner의 자폐와 아스퍼거 증후군이 하나의 연속선 위에 있음을 밝혀 ‘스펙트럼’ 개념의 토대를 만든 사람은?",o:["Rimland","Bettelheim","Lorna Wing","Bleuler"],a:2,e:"Lorna Wing(1981)이에요. 자폐 딸을 둔 영국 정신과 의사로, 잊혀 있던 Asperger의 논문을 다시 찾아냈어요."},
-{t:"진단기준 A",q:"DSM-5-TR 진단기준 A(사회적 의사소통·상호작용 결함)의 하위 항목은 몇 개가 충족되어야 할까?",o:["1개 이상","2개 이상","4개 중 2개","3개 모두"],a:3,e:"A.1 사회-감정적 상호성, A.2 비언어적 의사소통, A.3 관계 발전·유지·이해 — 세 항목 모두에서 결함이 확인되어야 해요(현재 또는 과거력)."},
-{t:"OX",q:"DSM-5-TR 진단기준 B(제한적·반복적 행동·흥미·활동)는 4개 항목 중 2가지 이상이 나타나야 한다.",o:["O","X"],ox:1,a:0,e:"O! A는 ‘3개 모두’, B는 ‘4개 중 2개 이상’이에요. 헷갈리기 쉬우니 짝지어 외워 두세요."},
-{t:"진단기준 B",q:"진단기준 B 중 DSM-5에서 새로 들어온 항목은?",o:["상동적·반복적 운동, 물건 사용, 말하기","동일성 고집과 의례적 행동","강도나 초점이 비정상적인 고정된 흥미","감각 정보에 대한 과잉 또는 과소 반응"],a:3,e:"B.4 감각 항목이 DSM-5에서 새로 들어왔어요. 치료실에서 가장 먼저 눈에 띄는 단서이기도 해요."},
-{t:"진단기준 B",q:"어제 TV에서 들은 “콩순이 팝콘 시작!”을 오늘 블록 놀이 중 뜬금없이 반복한다. 무엇에 해당할까?",o:["반향어 (B.1)","의례적 인사 (B.2)","감각 추구 (B.4)","상징놀이"],a:0,e:"과거에 들었던 말을 뒤늦게 그대로 반복하는 반향어로, B.1(상동적·반복적 말하기)에 속해요."},
-{t:"진단기준 B",q:"늘 가던 길이 공사로 막혀 다른 길로 가자 아이가 심하게 울며 힘들어한다. 해당하는 항목은?",o:["B.1 상동적·반복적 운동","B.2 동일성에 대한 고집","B.3 극도로 고정된 흥미","B.4 감각에 대한 특이한 반응"],a:1,e:"사소한 변화에 극도의 고통, 같은 길·같은 음식에 대한 요구는 B.2 동일성 고집이에요."},
-{t:"OX",q:"언어 손상이 동반되어야 자폐스펙트럼장애로 진단할 수 있다.",o:["O","X"],ox:1,a:1,e:"X! 언어 손상 동반 여부는 진단 기준이 아니라 함께 적는 ‘명시자(specifier)’예요. 지적 손상 동반 여부도 마찬가지예요."},
-{t:"감별진단",q:"사회적(화용적) 의사소통장애(SCD)와 자폐스펙트럼장애를 가르는 핵심은?",o:["언어 손상의 유무","지적장애의 유무","제한적·반복적 행동(B 기준)의 유무","증상이 나타난 연령"],a:2,e:"B 기준(제한적·반복적 행동)이 없으면 SCD, 있으면 ASD예요. 현재나 과거력에서 B가 확인되면 SCD로 진단하지 않아요."},
-{t:"OX",q:"AAC(보완·대체 의사소통)를 사용하면 말이 늦어지므로, 말이 나올 때까지 사용을 미루는 것이 좋다.",o:["O","X"],ox:1,a:1,e:"X! AAC는 말을 포기하는 것이 아니라 의사소통의 통로를 먼저 열어 주는 것이에요. AAC가 구어 발달을 막지 않는다는 연구가 쌓여 있어요."},
-{t:"하위유형",q:"X 염색체의 MECP2 유전자 돌연변이가 원인으로 밝혀져 DSM-5에서 자폐스펙트럼장애에서 제외된 하위유형은?",o:["레트장애","아스퍼거장애","달리 명시되지 않은 PDD","아동기 붕괴성 장애"],a:0,e:"레트장애예요. 주로 여아에게 나타나고, 손의 사용 기능을 잃고 상동적인 손 움직임을 보여요."},
-{t:"문제행동 지도",q:"타임아웃(time-out)이 효과를 내기 위한 전제 조건은?",o:["재미없는 활동 중에 사용한다","‘타임인(time-in)’이 풍부해야 한다","나이와 관계없이 30분 이상 실시한다","예고 없이 갑자기 실시한다"],a:1,e:"타임인이 즐거워야 빠지는 게 손해가 돼요. 재미없는 활동 중 타임아웃은 오히려 해방감을 줘 행동이 늘어요. 시간은 연령당 1분이 기준이에요."},
-{t:"문제행동 지도",q:"“싫어하는 숙제를 다 하면 축구를 할 수 있게 해 준다.” 어떤 강화일까?",o:["토큰 강화(조건강화)","부적강화","반응대가","활동강화(프리맥 효과)"],a:3,e:"빈도가 높은(좋아하는) 행동으로 빈도가 낮은 행동을 강화하는 활동강화, 즉 프리맥 효과예요."},
-{t:"하위유형",q:"달리 명시되지 않은 PDD 중 ‘지적 능력이 비교적 양호하고 타인에게 적극적으로 다가가지만, 눈치 없이 자기 관심사만 일방적으로 말하는’ 집단은?",o:["무관심한 집단","수동적인 집단","적극적이지만 이상한 집단","고립된 집단"],a:2,e:"적극적이지만 이상한 집단이에요. 눈맞춤을 피하지 않고 오히려 너무 빤히 쳐다보기도 해요."},
-{t:"원인",q:"자폐스펙트럼장애의 출현율이 높아진 이유로 가장 크게 설명되는 것은?",o:["발견·진단 체계의 변화","부모의 양육 방식 변화","출생아 수의 증가","아동의 스마트폰 사용 증가"],a:0,e:"전문가 인식 향상, 조기 발견 체계 개선, 진단 경계 완화, 진단 도구 발달 등 발견·진단 체계의 변화가 상당 부분을 설명해요."},
-{t:"조기 신호",q:"CDC(2014) 시기별 위험 신호 중 ‘가리키기 행동이 없음(사물에 대한 관심을 표현하지 않음)’을 꼭 확인할 시기는?",o:["6개월","12개월","14개월","18개월"],a:2,e:"14개월이에요. 12개월은 이름을 불러도 반응하지 않음, 18개월은 상징놀이를 하지 않음이 핵심 신호예요."},
-{t:"의사소통 특성",q:"자폐 아동이 비언어적 의사소통의 한계를 보상하려고 주로 사용하는 ‘도구적 몸짓’은?",o:["가리키기","보여주기","끄덕이기","다른 사람의 손 조작하기"],a:3,e:"성인을 데려가기, 잡아당기기, 다른 사람의 손 조작하기가 도구적 몸짓이에요. 가리키기·보여주기·끄덕이기는 일반 아동이 많이 쓰는 사회적 몸짓이에요."},
-{t:"예후",q:"자폐 아동의 예후를 가장 크게 좌우하는 두 가지는?",o:["IQ 50 이상, 언어적 의사소통 가능 여부","성별, 출생 순서","서번트 기술 유무, 진단받은 병원","형제 수, 거주 지역"],a:0,e:"IQ 50 이상과 언어적 의사소통 가능 여부예요. 조기 발견·교육 시기, 총 교육 시간, 사회적 성숙도도 중요한 변인이에요."},
-{t:"PECS",q:"PECS 1단계에 대한 설명으로 옳지 않은 것은?",o:["언어적 촉진을 적극적으로 사용한다","의사소통 상대자와 물리적 촉진자, 2명이 필요하다","한 번에 그림을 한 장만 사용한다","원하는 사물을 얻기 위해 그림을 교환하는 것을 배운다"],a:0,e:"1단계에서는 언어적 촉진을 사용하지 않아요. 물리적 촉진자는 어떤 상호작용도 하지 않고, 선호 사물은 손이 닿지 않는 곳에 둬요."}
+{t:"지체",q:"서기·걷기 같은 이동 기능을 맡는 지체 부위는?",o:["체간 (몸통)","상지 (팔)","하지 (다리)","두부 (머리)"],a:2,e:"하지(다리)예요. 체간은 몸을 세우고 지탱하고, 상지는 먹기·쓰기·잡기 같은 작업을 해요."},
+{t:"OX",q:"2001년 장애인복지법 시행규칙 개정 이후, 뇌성마비는 ‘지체장애’에 포함된다.",o:["O","X"],ox:1,a:1,e:"X! 뇌성마비는 뇌병변장애에 포함돼요. 지체장애는 절단, 관절장애, 지체 기능장애, 변형 등이에요."},
+{t:"법·제도",q:"2019년 7월 장애등급제 폐지 이후 장애인을 구분하는 방식은?",o:["1~6급","1~3급","장애 정도가 ‘심한 / 심하지 않은’","경도·중등도·중도·최중도"],a:2,e:"1~6급 대신 ‘장애 정도가 심한 / 심하지 않은’ 장애인으로 구분해요."},
+{t:"근위축증",q:"듀센형 진행성 근위축증에 대한 설명으로 옳은 것은?",o:["디스트로핀 단백질이 부족하고 주로 남아에게 나타난다","폴리오 바이러스 감염으로 생긴다","주로 여아에게 나타나는 MECP2 돌연변이다","뇌 손상이 더 진행하지 않는다"],a:0,e:"X염색체 열성 유전이라 주로 남아에게 나타나요. 2.5세쯤 증상, 10~12세쯤 걷기가 어려워지고 이후 호흡·심장 관리가 중요해요."},
+{t:"OX",q:"소아마비(척수성)는 폴리오 바이러스가 원인이며, 예방접종으로 막을 수 있다.",o:["O","X"],ox:1,a:0,e:"O! 오염된 물·음식(구강-분변 경로)으로 전파돼요. 우리나라가 속한 WHO 서태평양 지역은 2000년에 폴리오 퇴치 인증을 받았어요."},
+{t:"뇌성마비",q:"뇌성마비의 정의로 옳은 것은?",o:["뇌 손상이 시간이 지나며 계속 진행된다","출생~5세 뇌 발달기의 비진행성 병변으로 생긴 운동·자세 장애","근육 자체가 약해지는 유전 질환","18세 이전에 나타나는 지적기능 저하"],a:1,e:"뇌가 자라는 시기(출생~5세)의 비진행성 병변·손상으로 생긴, 평생 이어지는 운동·자세의 어려움이에요."},
+{t:"원인",q:"다음 중 뇌성마비의 ‘출산 후’ 원인은?",o:["풍진 바이러스 태아 감염","태반경색","조산","뇌수막염"],a:3,e:"출산 후 원인은 머리·목 손상, 뇌수막염·뇌염 같은 중추신경계 감염 등이에요. 풍진·태반경색은 출산 전, 조산은 분만 전후 원인이에요."},
+{t:"운동신경원",q:"상위운동신경원(UMN)이 다치면 나타나는 모습은?",o:["경직 (근긴장↑, 반사↑)","이완 (근긴장↓, 반사↓)","균형·협응의 어려움","의도와 다른 움직임"],a:0,e:"UMN 손상은 경직(뻣뻣함)이에요. 하위운동신경원(LMN)이 다치면 이완(흐늘흐늘)과 근육 위축이 나타나요."},
+{t:"OX",q:"왼쪽 뇌가 다치면 왼쪽 몸이 마비된다.",o:["O","X"],ox:1,a:1,e:"X! 운동 명령은 연수 아래쪽에서 교차해요. 그래서 왼쪽 뇌가 다치면 반대쪽(오른쪽) 몸이 마비돼요."},
+{t:"추체로",q:"다음 중 추체로(직접 경로)에 속하는 것은?",o:["적핵척수로","망상체척수로","피질척수로","전정척수로"],a:2,e:"이름에 ‘피질’이 있으면 추체로(피질척수로·피질뇌간로)예요. 적핵·망상체·전정·중뇌개로 시작하면 추체외로예요."},
+{t:"유형",q:"기저핵이 손상되었을 때 나타나는 뇌성마비 유형은?",o:["경직형","불수의운동형","실조형","저긴장형"],a:1,e:"기저핵 → 불수의운동형(의도와 다른 움직임)이에요. 추체로 → 경직형, 소뇌 → 실조형이에요."},
+{t:"부위별 분류",q:"양쪽이 마비되며, 양쪽 다리가 팔보다 더 심한 유형은?",o:["단마비","편마비","삼지마비","양지마비"],a:3,e:"양지마비예요. 편마비는 한쪽 팔·다리(팔이 더 심함), 사지마비는 양쪽 팔·다리 모두예요."},
+{t:"GMFCS",q:"GMFCS에서 ‘혼자 걷기는 어렵고 휠체어로 이동하며, 자세는 유지할 수 있는’ 단계는?",o:["2단계","3단계","5단계","4단계"],a:3,e:"도움 도구로 기억해요. 3단계 보행 보조기, 4단계 휠체어, 5단계 보호자 도움이에요."},
+{t:"동반 어려움",q:"뇌성마비 아동에게 함께 나타나는 어려움 중 비율이 가장 높은 것은?",o:["통증 (3/4)","지적 어려움 (1/2)","말하기 어려움 (1/4)","심한 시각 문제 (1/10)"],a:0,e:"통증이 약 3/4로 가장 많아요. 말하기 어려움(1/4)과 침 조절 어려움(1/5)은 언어재활사가 특히 관여하는 영역이에요."},
+{t:"AAC",q:"AAC 중 ‘음성 버튼, 간단한 음성 출력기’는 어느 수준에 해당할까?",o:["저기술 (Low tech)","고기술 (High tech)","중기술"],a:2,e:"중기술이에요. 저기술은 그림카드·의사소통판, 고기술은 태블릿 앱·시선 추적·스위치예요."}
 ];
 const $=s=>document.querySelector(s),app=$('#app'),EM=['🐣','🐰','🐻','🐱'];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const keyOf=k=>typeof k==='string'?k:(k&&k.key);
 const fmtT=ms=>{if(!(ms>0))return '';const s=Math.round(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const LIMIT=180;let tick=null;
+const mmss=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+const left=()=>me&&me.st?Math.max(0,Math.ceil((me.st+LIMIT*1000-Date.now())/1000)):LIMIT;
+function startTimer(){clearInterval(tick);const draw=()=>{const s=left(),el=$('#tm');
+  if(el){el.textContent='⏱ '+mmss(s);el.classList.toggle('low',s<=30)}
+  if(s<=0){clearInterval(tick);timeUp()}};draw();tick=setInterval(draw,250)}
+function timeUp(){if(mode!=='play'||!me||me.d)return;locked=true;
+  me.to=true;me.d=true;me.f=me.st+LIMIT*1000;me.c=Q.length;save();end()}
 let mode='home',i=0,score=0,wrong=[],locked=false,me=null,myKey='',saveQ=Promise.resolve();
 
 /* ---------- 저장소: Supabase (학생은 로그인 없이 /rest/v1/rpc 함수만 호출) ---------- */
-const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw',QUIZ='asd5';
+const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw',QUIZ='pd6';
 async function rpc(fn,args){const ac=new AbortController(),to=setTimeout(()=>ac.abort(),10000);
   try{const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{}),signal:ac.signal});
     const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
     if(!r.ok){const er=new Error((j&&j.message)||('HTTP '+r.status));er.status=r.status;throw er}
     return j}finally{clearTimeout(to)}}
 const isBadPw=e=>!!e&&(e.status===403||/wrong_password/.test(e.message||''));
-const LS={get(k){try{return JSON.parse(localStorage.getItem('quiz5:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('quiz5:'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('quiz5:'+k)}catch(e){}}};
-const SS={get(k){try{return sessionStorage.getItem('quiz5:'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('quiz5:'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('quiz5:'+k)}catch(e){}}};
+const LS={get(k){try{return JSON.parse(localStorage.getItem('quiz6:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('quiz6:'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('quiz6:'+k)}catch(e){}}};
+const SS={get(k){try{return sessionStorage.getItem('quiz6:'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('quiz6:'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('quiz6:'+k)}catch(e){}}};
 let tPw=SS.get('pw')||'';
 async function getRound(){const r=await rpc('quiz_round',{p_quiz:QUIZ});return Number(r)||1}
 async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await new Promise(r=>setTimeout(r,1500))}}}
 function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringify(me)),id=myKey;
   saveQ=saveQ.then(()=>putRec(id,v)).catch(e=>console.error('저장 실패',e))}
 
+
 /* ---------- 학생 화면 ---------- */
-function home(){mode='home';myKey='';me=null;app.className='wrap';
-app.innerHTML=`<div class="card"><div class="mascot">🐣</div><h1>자폐범주장애<br>쑥쑥 퀴즈!</h1>
-<p class="sub">장애아동의 이해 · 5주차 · 총 ${Q.length}문제<br>이름(별명)을 쓰고 입장해요</p>
+function home(){clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
+app.innerHTML=`<div class="card"><div class="mascot">🐣</div><h1>지체장애<br>쑥쑥 퀴즈!</h1>
+<p class="sub">장애아동의 이해 · 6주차 · 총 ${Q.length}문제 · ⏱ 제한시간 ${LIMIT/60}분<br>이름(별명)을 쓰고 입장해요</p>
 <div class="center"><div id="resume"></div><input class="inp" id="nm" maxlength="12" placeholder="이름 또는 별명" autocomplete="off">
 <div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
 <p class="hint" id="msg"></p><div id="solo"></div>
@@ -161,7 +167,7 @@ $('#rs').onclick=()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
   wrong=Object.keys(me.a).map(Number).sort((a,b)=>a-b).filter(k=>!me.a[k][1]);
   if(me.d){i=Q.length;end();return}
   i=0;while(i<Q.length&&me.a[i])i++;
-  mode='play';i<Q.length?show():end()}}
+  mode='play';if(left()<=0){timeUp();return}startTimer();i<Q.length?show():end()}}
 
 async function join(){const n=$('#nm').value.trim();if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();return}
 $('#go').disabled=true;$('#msg').textContent='입장 중... 🚪';$('#solo').innerHTML='';
@@ -171,28 +177,30 @@ try{const id=now.toString(36)+Math.random().toString(36).slice(2,9);
   myKey=id;LS.set('sess',{key:id,round:Number(round)});
 }catch(e){myKey='';$('#go').disabled=false;
   $('#msg').textContent='⚠️ 선생님 화면과 연결하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.';
-  $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';show()};return}
-mode='play';show()}
+  $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';me.st=Date.now();startTimer();show()};return}
+mode='play';startTimer();show()}
 
 function show(){locked=false;const d=Q[i];if(me&&myKey){me.c=i;save()}
-app.innerHTML=`<div class="top"><span>${i+1}/${Q.length}</span><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><span class="score">⭐ ${score}</span></div>
+app.innerHTML=`<div class="top"><span>${i+1}/${Q.length}</span><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><span class="score">⭐ ${score}</span><span class="score tmr" id="tm">⏱ ${mmss(left())}</span></div>
 <div class="card"><div class="row"><span class="tag">${EM[i%4]} ${d.t}</span><span class="tag" style="background:var(--yel)">🙋 ${esc(me?me.n:'')}${myKey?'':' (혼자)'}</span></div><div class="q">${d.q}</div>
 <div class="opts ${d.ox?'ox':''}">${d.o.map((x,k)=>`<button class="opt" data-k="${k}"><span class="n">${d.ox?(k?'✖':'⭕'):k+1}</span>${d.ox?'':x}</button>`).join('')}</div>
 <div class="fb" id="fb"></div><div class="next" id="nx"><button class="btn" id="nb">${i==Q.length-1?'결과 보기 🎉':'다음 문제 ▶'}</button></div></div>`;
 document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));$('#nb').onclick=next}
 
-function pick(k){if(locked)return;locked=true;const d=Q[i],ok=k===d.a,bs=document.querySelectorAll('.opt');
+function pick(k){if(locked||left()<=0)return;locked=true;const d=Q[i],ok=k===d.a,bs=document.querySelectorAll('.opt');
 bs.forEach((b,n)=>{b.disabled=true;if(n===d.a)b.classList.add('right');else if(n===k)b.classList.add('wrong');else b.classList.add('dim')});
 if(ok){score++;confetti()}else wrong.push(i);
-if(me&&myKey){me.a[i]=[k,ok?1:0];me.s=score;save()}
+if(me){me.a[i]=[k,ok?1:0];me.s=score;save()}
 const f=$('#fb');f.innerHTML=(ok?'<b>🎉 정답!</b> ':'<b>🥲 아쉬워요!</b> ')+d.e;f.classList.add('show');$('#nx').classList.add('show');$('.score').textContent='⭐ '+score}
 
-function next(){i++;i<Q.length?show():end()}
+function next(){if(me&&me.d)return;i++;i<Q.length?show():end()}
 
-function end(){mode='play';if(me&&myKey&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
+function end(){clearInterval(tick);mode='play';locked=true;if(me&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
+if(me){score=me.s||0;wrong=Q.map((_,k)=>k).filter(k=>!(me.a[k]&&me.a[k][1]))}
 const p=Math.round(score/Q.length*100),m=p>=90?['🏆','대단해요! 척척박사!']:p>=60?['🌟','잘했어요! 조금만 더!']:['🌱','괜찮아요, 같이 복습해요!'];
 const el=me&&me.f&&me.st?`<div class="tag" style="background:var(--yel)">⏱ 걸린 시간 ${fmtT(me.f-me.st)}</div>`:'';
-app.innerHTML=`<div class="card"><div class="mascot">${m[0]}</div><div class="big">${score} / ${Q.length}</div><div class="res">${m[1]}</div><div class="center">${el}</div>${wrong.length?`<div class="tag">🔁 다시 볼 문제</div><ul class="wrongs">${wrong.map(n=>`<li><b>${n+1}.</b> ${Q[n].q}<br>→ ${Q[n].o[Q[n].a]}</li>`).join('')}</ul>`:'<div class="res">모두 정답! 🎊</div>'}<div class="center" style="margin-top:20px"><button class="btn" id="re">처음으로 🏠</button></div></div>`;
+const tu=me&&me.to?`<div class="timeup">⏰ 시간 종료! 푼 문제까지만 채점했어요</div>`:'';
+app.innerHTML=`<div class="card">${tu}<div class="mascot">${m[0]}</div><div class="big">${score} / ${Q.length}</div><div class="res">${m[1]}</div><div class="center">${el}</div>${wrong.length?`<div class="tag">🔁 다시 볼 문제</div><ul class="wrongs">${wrong.map(n=>`<li><b>${n+1}.</b> ${me&&!me.a[n]?'<i>(못 푼 문제)</i> ':''}${Q[n].q}<br>→ ${Q[n].o[Q[n].a]}</li>`).join('')}</ul>`:'<div class="res">모두 정답! 🎊</div>'}<div class="center" style="margin-top:20px"><button class="btn" id="re">처음으로 🏠</button></div></div>`;
 $('#re').onclick=home;if(p>=60)for(let n=0;n<3;n++)setTimeout(confetti,n*350)}
 
 function confetti(){const c=['🎉','⭐','🌸','🍬','💖','✨'];for(let n=0;n<14;n++){const s=document.createElement('span');s.className='conf';s.textContent=c[n%c.length];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.4+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2200)}}
@@ -224,7 +232,7 @@ app.innerHTML=`<div class="card">
 <div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
 <div class="stats" id="stats"></div>
 <h3>📊 문항별 정답률 <small style="opacity:.6">(문항을 누르면 선택지별 응답 수)</small></h3><div class="qbars" id="bars"></div><div id="det"></div>
-<h3>🧒 학생별 현황 <small style="opacity:.6">⭕ 정답 · ✖ 오답 · 👀 지금 푸는 중 · 🏁 완료 · 동점이면 빨리 끝낸 순</small></h3><div class="tbl" id="tbl"></div></div>`;
+<h3>🧒 학생별 현황 <small style="opacity:.6">⭕ 정답 · ✖ 오답 · 👀 지금 푸는 중 · 🏁 완료 · 동점이면 빨리 끝낸 순 · ⏰ 3분 초과</small></h3><div class="tbl" id="tbl"></div></div>`;
 $('#bq').onclick=qrOpen;$('#bm').onclick=raceOpen;
 $('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
 $('#br').onclick=resetRound;
@@ -258,7 +266,7 @@ if(tSel!==null){const q=Q[tSel],cnt=q.o.map(()=>0);D.forEach(p=>{const r=p.a&&p.
 }else $('#det').innerHTML='';
 
 const rows=[...D].sort(rank),MD=['🥇','🥈','🥉'];
-$('#tbl').innerHTML=n?`<table><thead><tr><th>순위</th><th>이름</th>${Q.map((_,k)=>`<th>${k+1}</th>`).join('')}<th>점수</th><th>걸린 시간</th></tr></thead><tbody>${rows.map((p,r)=>`<tr><td>${p.d&&r<3?MD[r]:r+1}</td><td class="nm">${p.d?'🏁 ':''}${esc(p.n)}</td>${Q.map((_,k)=>{const x=p.a&&p.a[k];return `<td class="${x?(x[1]?'c-ok':'c-no'):''}">${x?(x[1]?'⭕':'✖'):(!p.d&&p.c===k?'👀':'')}</td>`}).join('')}<td><b>${p.s||0}</b></td><td class="tm">${p.d?fmtT(elapsed(p)):'풀이 중'}</td></tr>`).join('')}</tbody></table>`
+$('#tbl').innerHTML=n?`<table><thead><tr><th>순위</th><th>이름</th>${Q.map((_,k)=>`<th>${k+1}</th>`).join('')}<th>점수</th><th>걸린 시간</th></tr></thead><tbody>${rows.map((p,r)=>`<tr><td>${p.d&&r<3?MD[r]:r+1}</td><td class="nm">${p.d?'🏁 ':''}${esc(p.n)}</td>${Q.map((_,k)=>{const x=p.a&&p.a[k];return `<td class="${x?(x[1]?'c-ok':'c-no'):''}">${x?(x[1]?'⭕':'✖'):(!p.d&&p.c===k?'👀':'')}</td>`}).join('')}<td><b>${p.s||0}</b></td><td class="tm">${p.d?(p.to?'⏰ '+fmtT(elapsed(p)):fmtT(elapsed(p))):(p.st&&Date.now()>p.st+LIMIT*1000?'⏰ 미제출':'풀이 중')}</td></tr>`).join('')}</tbody></table>`
 :'<p class="wait center">아직 입장한 학생이 없어요.<br>📱 입장 QR을 띄워 주세요!</p>'}
 
 async function resetRound(){const b=$('#br');
@@ -282,6 +290,7 @@ o.innerHTML=`<div class="card"><h1 style="font-size:clamp(28px,5vw,44px)">카메
 $('#uc').onclick=()=>o.remove();$('#ue').onclick=()=>{tUrl='';qrDraw()};
 if(window.QRCode){new QRCode($('#qr'),{text:tUrl,width:512,height:512,correctLevel:QRCode.CorrectLevel.M})}
 else $('#qr').textContent='QR 라이브러리를 불러오지 못했어요. 링크를 직접 공유해 주세요.'}
+
 
 /* ---------- 🎱 구슬 레이스: 동점자 1등 재미있게 뽑기 ---------- */
 const RW=480,RH=2640,RR=11,FY=2540;let race=null;
