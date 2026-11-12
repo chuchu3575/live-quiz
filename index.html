@@ -493,7 +493,7 @@ o.innerHTML=`<div class="card"><h2 style="margin:0 0 6px">🏆 1등 뽑기 <smal
 <div style="margin:10px 0 4px"><button class="btn sm alt" id="rt">🏆 1등 동점자 (${ties.length}명)</button> <button class="btn sm alt" id="r7">🏅 상위 7명</button> <button class="btn sm alt" id="ra">🏁 완료한 학생 전체 (${done.length}명)</button></div>
 <p class="hint" id="rm" style="margin-top:6px"></p>
 <div><button class="btn" id="rg">출발! ▶</button> <button class="btn alt" id="rc">닫기</button></div></div>`;
-const desc=()=>{const l=+KS.get('laps',3),m=KS.get('mode','marble');$('#kdesc').textContent=m==='cupkart'?`부산가톨릭대 교정 실제 도로 약 1.2km · ${+KS.get('claps',2)||2}바퀴 약 ${(+KS.get('claps',2)||2)*43+4}초 · `+(KS.get('pad',true)?'📱 참가자가 휴대폰으로 아이템 쓸 타이밍을 정해요 (5초 뒤 자동 사용)':'아이템은 컴퓨터가 자동으로 써요'):m==='robot'?'230m 직선 트랙 · 허들 4개 · ⚡배터리 터보 · 🔥과열 · 약 25초':m==='battle'?'레이저 배틀 · 줄어드는 자기장 · ➕회복 🛡️방패 ⚡연사 · 약 30~60초':m==='snow'?'부산가톨릭대 메인 캠퍼스 · 눈보라 자기장 · ☕회복 🧥패딩 🧤연사 · 3명 이하면 NPC 팀전 후 최후의 결투 · 약 50~80초':`한 바퀴 약 12초 · ${l}바퀴면 약 ${l*12+5}초 · 🍌바나나 🚀로켓 🛡️방패 ⚡번개 🔥부스터`};
+const desc=()=>{const l=+KS.get('laps',3),m=KS.get('mode','marble');$('#kdesc').textContent=m==='cupkart'?`부산가톨릭대 교정 실제 도로 약 1.2km · ${+KS.get('claps',2)||2}바퀴 약 ${(+KS.get('claps',2)||2)*43+4}초 · `+(KS.get('pad',true)?'📱 참가자가 휴대폰 버튼으로 원할 때 아이템을 써요':'아이템은 컴퓨터가 자동으로 써요'):m==='robot'?'230m 직선 트랙 · 허들 4개 · ⚡배터리 터보 · 🔥과열 · 약 25초':m==='battle'?'레이저 배틀 · 줄어드는 자기장 · ➕회복 🛡️방패 ⚡연사 · 약 30~60초':m==='snow'?'부산가톨릭대 메인 캠퍼스 · 눈보라 자기장 · ☕회복 🧥패딩 🧤연사 · 3명 이하면 NPC 팀전 후 최후의 결투 · 약 50~80초':`한 바퀴 약 12초 · ${l}바퀴면 약 ${l*12+5}초 · 🍌바나나 🚀로켓 🛡️방패 ⚡번개 🔥부스터`};
 const showOpt=m=>{$('#kopt').style.display=['kart','robot','battle','snow','cupkart'].includes(m)?'':'none';$('#klps').style.display=m==='kart'?'':'none';$('#kcps').style.display=$('#kphs').style.display=m==='cupkart'?'':'none';$('#rm').textContent='';desc()};
 let md=KS.get('mode','marble');if(!GLIST.some(g=>g[0]===md))md='marble';
 kSeg('rlp',KS.get('laps',3),v=>{KS.set('laps',+v);desc()});
@@ -594,7 +594,7 @@ const p0=kAt(T,16),p1=kAt(T,-14);K.cp.set(p0.x,7,p0.z);K.cl.set(p1.x,0,p1.z)}
 function kOrder(K){return [...K.ks].sort((a,b)=>a.fin&&b.fin?a.ft-b.ft:a.fin?-1:b.fin?1:b.s-a.s)}
 function kEvent(K,txt,col,k,major){K.ev.unshift({txt,col,t:K.t});K.ev.length=Math.min(K.ev.length,4);K.evDirty=true;if(major&&k)K.major={k,t:K.t}}
 function kGive(K,k){const n=K.ks.length,rf=n>1?k.pos/(n-1):0,W=[['banana',34*(1-rf)+6],['shield',22*(1-rf)+6],['rocket',k.pos===0?0:6+30*rf],['boost',8+34*rf],['zap',n>2&&rf>.3?3+14*rf:0]];
-let r=Math.random()*W.reduce((a,b)=>a+b[1],0);for(const w of W){r-=w[1];if(r<=0){k.item=w[0];break}}if(!k.item)k.item='boost';k.useAt=K.t+(k.ctl?K.autoT:.5+Math.random()*1.5);kSnd('item');if(K.onGive)K.onGive(k)}
+let r=Math.random()*W.reduce((a,b)=>a+b[1],0);for(const w of W){r-=w[1];if(r<=0){k.item=w[0];break}}if(!k.item)k.item='boost';k.useAt=k.ctl?1e9:K.t+.5+Math.random()*1.5;kSnd('item');if(K.onGive)K.onGive(k)}
 function kUse(K,k){const it=k.item;k.item=null;const T=K.T,nm=esc(k.n);if(K.onUse)K.onUse(k,it);
 if(it==='banana'||(it==='rocket'&&k.pos===0)){if(K.hz.length>40)K.S.remove(K.hz.shift().m);const m=new THREE.Mesh(K.G.banana,K.M.banana);m.scale.set(1,.55,.62);const h={s:((k.s-2.6)%T.L+T.L)%T.L,d:k.d,m,seen:new Set()};kPlace(m,T,h.s,h.d,.3);K.S.add(m);K.hz.push(h)}
 else if(it==='rocket'){const ord=K.order,tg=ord[k.pos-1];if(!tg||tg.fin)return;const m=new THREE.Mesh(K.G.rocket,K.M.rocket);m.rotation.order='YXZ';K.S.add(m);K.rk.push({s:k.s+1.2,d:k.d,tg,from:k,m,life:0});kEvent(K,`🚀 ${nm} 로켓 발사!`,'#d9480f')}
@@ -1627,7 +1627,7 @@ const padTopic=()=>'lqk-'+QUIZ;
 /* 교사 화면: 대기실 + 참가자 휴대폰과 주고받기 (상태 방송 · 아이템 사용 · 경적) */
 function padHost(K){const now=()=>performance.now(),P={ok:false,t0:now()};K.padH=P;
 const lob=document.createElement('div');lob.className='klob';lob.id='klob';
-lob.innerHTML=`<h2>📱 휴대폰 연결 대기실</h2><p>참가자는 퀴즈 <b>결과 화면</b>을 그대로 켜 두세요. 조종기가 자동으로 떠요.<br><small>(안 뜨면 휴대폰 화면을 한 번 터치해 주세요 · 퀴즈 페이지를 닫았으면 QR로 다시 들어오면 돼요)</small></p><p class="sm">아이템을 먹으면 휴대폰의 큰 버튼으로 <b>쓸 타이밍</b>을 정해요 · ${K.autoT}초 안에 안 누르면 자동 사용 · 연결 안 된 카트는 컴퓨터가 대신 써요</p>
+lob.innerHTML=`<h2>📱 휴대폰 연결 대기실</h2><p>참가자는 퀴즈 <b>결과 화면</b>을 그대로 켜 두세요. 조종기가 자동으로 떠요.<br><small>(안 뜨면 휴대폰 화면을 한 번 터치해 주세요 · 퀴즈 페이지를 닫았으면 QR로 다시 들어오면 돼요)</small></p><p class="sm">아이템을 먹으면 휴대폰의 큰 버튼을 <b>원할 때</b> 눌러 써요 · 누르기 전까지 계속 들고 있고, 그동안은 새 상자를 못 먹어요 · 연결 안 된 카트는 컴퓨터가 대신 써요</p>
 <div class="klist" id="klist"></div><p class="sm" id="kls">연결 서버에 접속 중...</p><div><button class="btn" id="kgo">🏁 경기 시작</button> <button class="btn alt sm" id="kgo2">📵 휴대폰 없이 시작</button></div>`;
 $('#kov').appendChild(lob);
 const send=()=>{if(kart!==K||!K.rt)return;const tn=now();if(tn-(P.sT||0)<110){if(!P.sQ)P.sQ=setTimeout(()=>{P.sQ=0;send()},120);return}P.sT=tn;const ord=K.order||[],L=K.T.L;
@@ -1640,7 +1640,7 @@ K.rt=rtOpen(padTopic(),(ev,pl)=>{if(kart!==K)return;const c=String(pl.c||'').sli
   if(!k)return;k.seen=now();
   if(ev==='use'){if(K.phase==='run'&&k.item&&!k.fin){k.man=1;kUse(K,k);send()}}
   else if(ev==='horn'){if(now()-(k.hornT||0)>500){k.hornT=now();k.honk=.5;kSnd('horn')}}},ok=>{P.ok=ok;if(ok)send()});
-P.iv=setInterval(()=>{if(kart!==K){clearInterval(P.iv);return}const t=now();K.ks.forEach(k=>{if(k.c&&t-(k.seen||0)>15000)k.c='';k.ctl=K.pad&&!!k.c&&t-(k.seen||0)<9000;if(k.lb)k.lb.classList.toggle('kpad',!!k.ctl)});send()},350);
+P.iv=setInterval(()=>{if(kart!==K){clearInterval(P.iv);return}const t=now();K.ks.forEach(k=>{if(k.c&&t-(k.seen||0)>15000)k.c='';k.ctl=K.pad&&!!k.c&&t-(k.seen||0)<9000;if(k.item&&!k.ctl&&k.useAt>1e8)k.useAt=K.t+1+Math.random();if(k.lb)k.lb.classList.toggle('kpad',!!k.ctl)});send()},350);
 K.onGive=()=>send();
 K.onUi=()=>{if(K.phase!=='lobby'||!$('#klist'))return;const n=K.ks.filter(k=>k.ctl).length;
   $('#klist').innerHTML=K.ks.map(k=>`<span class="${k.ctl?'on':''}"><i style="background:${k.col}"></i>${esc(k.n)} ${k.ctl?'📱':'⏳'}</span>`).join('');
@@ -1694,7 +1694,7 @@ if(ph==='lobby'){rank='<span class="sm">참가 확정! 🎉</span>';info='선생
 else if(ph==='count'){rank='<span class="sm">곧 출발! 🚦</span>';info=`${n}명 · ${pl.lp}바퀴`;em='🏎️';lab='준비';msg='아이템 상자(?)를 먹으면 이 버튼이 켜져요'}
 else if(ph==='done'||(fl&1)){rank=`<b>${pos}</b><small>위 ${ph==='done'?'· 최종':'골인!'}</small>`;info=ph==='done'?`${n}명 중 ${pos}위`:'🏁 다른 카트를 기다리는 중';em=pos===1?'🏆':'🏁';lab=pos===1?'1등!':'골인';msg=pos===1?'축하해요! 🎉':'수고했어요!'}
 else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=`LAP ${m[7]}/${pl.lp}${zone?' · 📍 '+zone:''}`;gap=(m[10]>=0?`앞차 ${m[10]}m`:'내가 선두!')+(m[11]>=0?` · 뒤차 ${m[11]}m`:'');
-  if(it&&!PAD.wait){const I=PADI[it]||['❓',it,''];em=I[0];lab=I[1];msg=I[2]+`<br><small>${Math.ceil(m[9])}초 뒤 자동 사용</small>`;on=true;dis=false;bar=Math.max(0,Math.min(1,m[9]/(pl.a||5)))}
+  if(it&&!PAD.wait){const I=PADI[it]||['❓',it,''];em=I[0];lab=I[1];msg=I[2]+'<br><small>원할 때 누르세요 · 쓰기 전엔 새 상자를 못 먹어요</small>';on=true;dis=false;bar=0}
   else{em=PAD.wait?(PADI[PAD.wait]||['✨'])[0]:'❔';lab=PAD.wait?'사용!':'아이템 없음';msg=(fl&2)?'🌀 으악! 미끄러지는 중...':(fl&8)?'🔥 부스터 가속 중!':(fl&4)?'🛡️ 방패 켜짐':'노란 ? 상자를 먹으면 버튼이 켜져요'}
   if(warn)msg='🚨 로켓이 날아와요!'+(it==='shield'&&!PAD.wait?' 지금 방패를 켜요!':'')}
 set('pdr',rank);set('pdi',info);set('pdg',gap);set('pde',em);set('pdl',lab);set('pdm',msg);b.disabled=dis;b.classList.toggle('on',on);$('#pdu').style.width=(bar*100).toFixed(0)+'%'}
