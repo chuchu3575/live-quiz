@@ -141,7 +141,7 @@ td.tm{white-space:nowrap;font-size:15px}
 .klist{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}
 .klist span{display:flex;align-items:center;gap:6px;border:3px solid var(--ink);border-radius:999px;padding:3px 14px 3px 8px;font-size:clamp(17px,2vw,24px);background:#eee;opacity:.6}
 .klist span.on{background:#d3f9d8;opacity:1}.klist i{width:16px;height:16px;border-radius:50%;border:2px solid var(--ink);flex:none}
-.klb.pad::after{content:'📱';font-size:.8em}
+.klb.kpad::after{content:'📱';font-size:.8em}
 .pad{--kc:#2f8fff;position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:6px;padding:max(12px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#2b2b33,#3d3558);color:#fff;font-family:'Jua','Malgun Gothic',sans-serif;text-align:center;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;overflow:hidden}
 .pad.warn{background:linear-gradient(180deg,#7a1020,#c92a2a)}
 .pad-top{display:flex;align-items:center;gap:8px;font-size:22px;width:100%}.pad-top i{width:24px;height:24px;border-radius:50%;background:var(--kc);border:3px solid #fff;flex:none}
@@ -1640,7 +1640,7 @@ K.rt=rtOpen(padTopic(),(ev,pl)=>{if(kart!==K)return;const c=String(pl.c||'').sli
   if(!k)return;k.seen=now();
   if(ev==='use'){if(K.phase==='run'&&k.item&&!k.fin){k.man=1;kUse(K,k);send()}}
   else if(ev==='horn'){if(now()-(k.hornT||0)>500){k.hornT=now();k.honk=.5;kSnd('horn')}}},ok=>{P.ok=ok;if(ok)send()});
-P.iv=setInterval(()=>{if(kart!==K){clearInterval(P.iv);return}const t=now();K.ks.forEach(k=>{if(k.c&&t-(k.seen||0)>15000)k.c='';k.ctl=K.pad&&!!k.c&&t-(k.seen||0)<9000;if(k.lb)k.lb.classList.toggle('pad',!!k.ctl)});send()},350);
+P.iv=setInterval(()=>{if(kart!==K){clearInterval(P.iv);return}const t=now();K.ks.forEach(k=>{if(k.c&&t-(k.seen||0)>15000)k.c='';k.ctl=K.pad&&!!k.c&&t-(k.seen||0)<9000;if(k.lb)k.lb.classList.toggle('kpad',!!k.ctl)});send()},350);
 K.onGive=()=>send();
 K.onUi=()=>{if(K.phase!=='lobby'||!$('#klist'))return;const n=K.ks.filter(k=>k.ctl).length;
   $('#klist').innerHTML=K.ks.map(k=>`<span class="${k.ctl?'on':''}"><i style="background:${k.col}"></i>${esc(k.n)} ${k.ctl?'📱':'⏳'}</span>`).join('');
