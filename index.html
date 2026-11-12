@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>학습장애 쑥쑥 퀴즈</title>
+<title>정서·행동장애 쑥쑥 퀴즈</title>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -179,21 +179,21 @@ td.tm{white-space:nowrap;font-size:15px}
 </style></head><body><div class="wrap" id="app"></div>
 <script>
 const Q=[
-{t:"OX",q:"DSM-5 특정학습장애는 읽기·쓰기·수학 중 한 가지 증상이 6개월 이상 지속되어야 한다.",o:["O","X"],ox:1,a:0,e:"O! DSM-5(2013)는 ‘정상 수준의 지능 + 읽기·쓰기·수학 중 한 가지 증상이 6개월 이상 지속’을 기준으로 해요."},
-{t:"유형",q:"읽기·쓰기·수학 중 어느 한 영역으로 분류되지 않는 학습의 어려움을 무엇이라고 할까?",o:["읽기장애","불특정 학습장애","수학장애","쓰기장애"],a:1,e:"불특정 학습장애예요. 학습장애의 네 가지 얼굴은 읽기장애 · 쓰기장애 · 수학장애 · 불특정 학습장애!"},
-{t:"출현율",q:"학습장애의 약 85%를 차지하는 유형은?",o:["수학장애","쓰기장애","읽기장애","불특정 학습장애"],a:2,e:"읽기장애예요. 음운인식·글자지식 부족에서 시작된 읽기 어려움이 쓰기·수학 등 다른 영역으로 번져요 (Lyon, 1999)."},
-{t:"OX",q:"우리나라 학습장애 학생은 전체 학생 수의 4.5%이다.",o:["O","X"],ox:1,a:1,e:"X! 4.5%는 미국 수치예요. 우리나라는 전체 학생 수의 1.8%로, ‘과소 판별’ 가능성이 자주 논의돼요."},
-{t:"유사 개념",q:"지능은 정상인데 가정·경제적 환경 결손 때문에 성적이 낮고, 보충교육을 받으면 점차 나아지는 경우는?",o:["학습장애","학습지진","지적장애","학습부진"],a:3,e:"학습부진이에요. 학습지진은 경계선 지적기능(IQ 75~85), 학습장애는 정상 지능 + 개인 내적(신경학적) 요인으로 특정 영역에 어려움이 있어요."},
-{t:"조기 중재",q:"학습장애 아동을 일찍 도와야 하는 가장 큰 이유는?",o:["크면 저절로 좋아지기 때문","학습결손이 쌓여 격차가 점점 커지기 때문","어릴수록 지능이 낮기 때문","늦게 도울수록 효과가 크기 때문"],a:1,e:"앞 단계를 모르면 다음 단계도 막혀 격차가 벌어져요. 어릴 때 투자할수록 효과도 커요 (Heckman, 2006). ‘좀 더 기다려 보자’가 가장 위험한 선택!"},
-{t:"읽기",q:"읽기학습장애의 증상으로 알맞은 것은?",o:["단어를 하나씩 끊어서 천천히 읽는다","어절 단위로 매끄럽게 읽는다","책을 멀리 두고 편하게 읽는다","읽기를 매우 좋아한다"],a:0,e:"단어를 끊어서 천천히 읽고, 멈칫하며 되돌아가 다시 읽어요. 책을 너무 가까이 보고 읽기 자체를 꺼리기도 해요."},
-{t:"쓰기",q:"‘학교’를 ‘학꾜’, ‘갑니다’를 ‘감니다’처럼 소리 나는 대로 쓴다. 어떤 학습장애의 증상일까?",o:["수학학습장애","읽기학습장애","쓰기학습장애","사고장애"],a:2,e:"쓰기학습장애예요. 읽기학습장애는 ‘읽는 것’(끊어 읽기·느린 읽기)이 어렵고, 쓰기학습장애는 ‘쓰는 것’(소리 나는 대로 쓰기, 들쑥날쑥한 글씨, 느린 쓰기)이 어려워요."},
-{t:"수학",q:"27+5를 계산하며 5를 십의 자리에 맞춰 77이라고 쓰고, 이상하다는 것도 알아차리지 못한다. 어떤 학습장애일까?",o:["읽기학습장애","수학학습장애","쓰기학습장애","구어장애"],a:1,e:"수학학습장애예요. 수 배열 혼란, 6과 9 방향 혼돈, 기호·소수점 빠뜨리기, 비합리적인 답을 알아차리지 못하는 것이 특징이에요."},
-{t:"연령별 신호",q:"학령기 이전(유아기)에 나타나는 학습장애 신호는?",o:["접두사·접미사·어근 배우기가 느리다","단어 문제(문장제) 풀기를 어려워한다","친구를 사귀기 어려워한다","말이 늦고 발음에 문제가 있다"],a:3,e:"학령기 이전에는 말이 늦고 발음 문제, 어휘가 늦게 늘어요. 나머지 세 가지는 초등 고학년의 신호예요."},
-{t:"판별",q:"지능검사 점수와 학업성취 수준 사이의 ‘심각한 차이’로 학습장애를 판별하는 방법은?",o:["불일치 모델","중재반응모델","다감각법","직접교수"],a:0,e:"불일치 모델이에요. 예) 지능 100 − 성취 70 = 30 → 불일치! 하지만 격차가 벌어질 때까지 기다려야 하는 ‘실패를 기다리는 모델’이라는 한계가 있어요."},
-{t:"OX",q:"중재반응모델(RTI)은 ‘실패를 기다리지 않고 먼저 가르친 뒤, 반응을 보고’ 학습장애를 판별한다.",o:["O","X"],ox:1,a:0,e:"O! 1단계 일반교육 → 2단계 집중교육(20~25%) → 3단계 개별화교육(5~10%)에도 반응이 없으면 학습장애로 판별해요."},
-{t:"선정 절차",q:"국내 특수교육대상자(학습장애) 선정 절차의 순서로 옳은 것은?",o:["교육장·교육감 → 지원센터 → 의뢰 → 운영위원회","진단·평가 의뢰 → 지원센터 → 운영위원회 → 교육장·교육감","운영위원회 → 의뢰 → 교육장·교육감 → 지원센터","지원센터 → 교육장·교육감 → 의뢰 → 운영위원회"],a:1,e:"보호자·학교장 의뢰 → 특수교육지원센터 진단·평가(30일 이내 보고) → 특수교육운영위원회 심사 → 교육장·교육감 2주 이내 결정·통지!"},
-{t:"평가 도구",q:"학습장애 진단에서 K-WISC-V(웩슬러 아동지능검사)로 꼭 확인하는 것은?",o:["시력과 청력","지능이 70 이상인지 (지적장애가 아닌지)","읽기 속도","부모의 양육 태도"],a:1,e:"지능 70 이상 여부로 지적장애를 배제하고, 인지 강점·약점 프로파일로 중재 방향을 정해요. 대상은 만 6세 0개월~16세 11개월이에요."},
-{t:"중재",q:"다감각법(Fernald) 지도에서 아동은 교사가 써 준 오류 단어를 어떻게 연습할까?",o:["눈으로만 조용히 여러 번 본다","친구에게 대신 읽어 달라고 한다","사전에서 뜻을 찾아 적는다","손가락으로 따라 쓰면서 소리 내어 천천히 읽는다"],a:3,e:"시각·청각·운동감각·촉각(VAKT)을 함께 써요. 발견 → 따라 쓰기 → 기억해서 쓰기 → 다시 읽기의 순서로 진행해요."}
+{t:"OX",q:"정서·행동장애의 법적 정의 다섯 가지의 공통점은 ‘오랫동안 이어지고, 학습의 어려움으로 연결된다’는 것이다.",o:["O","X"],ox:1,a:0,e:"O! 하루 이틀 떼쓰는 것은 해당하지 않아요. 장기간 이어지고 학습의 어려움으로 연결될 때 정서·행동장애로 봐요."},
+{t:"빙산",q:"빙산의 물 아래, 조용해서 놓치기 쉬운 ‘내재화’ 문제에 해당하는 것은?",o:["공격 행동","과도한 언쟁","우울·불안·위축","과잉행동"],a:2,e:"우울, 불안, 위축, 신체 증상은 내재화 문제예요. 공격, 언쟁, 성질부림, 과잉행동은 눈에 잘 띄는 외현화 행동이에요."},
+{t:"OX",q:"남아는 주로 내현적 문제를, 여아는 주로 외현적 문제를 보인다.",o:["O","X"],ox:1,a:1,e:"X! 반대예요. 남아는 주로 외현적 문제, 여아는 주로 내현적 문제를 보여요. 조용하다고 괜찮은 것은 아니에요."},
+{t:"출현율",q:"국내 특수교육대상자 중 정서·행동장애 비율(2018년 2.4%)이 낮게 나타나는 이유가 아닌 것은?",o:["명칭에 대한 부정적 인식","모호한 진단기준","진단도구의 부족","실제로 그런 아이가 거의 없어서"],a:3,e:"실제로 적어서가 아니라 잘 ‘찾아내지 못해서’ 낮게 나타날 수 있어요. 미국의 출현율은 3~6%예요."},
+{t:"원인",q:"정서·행동장애의 원인에 대한 설명으로 옳은 것은?",o:["부모의 양육 방식 하나 때문이다","생물학적 요인과 환경적 요인이 함께 작용한다","특정 유전자 하나가 원인으로 밝혀졌다","학교 환경만이 원인이다"],a:1,e:"유전·신경학적 같은 생물학적 요인과 가족·학교·또래 같은 환경적 요인이 함께 작용해요. ‘누구 탓’을 찾는 것이 목적이 아니에요."},
+{t:"불안장애",q:"분리불안장애를 아동에게 진단할 때 필요한 지속 기간은?",o:["4주 이상","1개월 이상","6개월 이상","1년 이상"],a:0,e:"아동 4주(성인은 6개월)예요. 암기 팁: 분리불안 4주 → 함구증·공황 1개월 → 나머지 공포증은 6개월!"},
+{t:"OX",q:"선택적 함구증은 입학 후 첫 1개월 동안 말을 하지 않는 것도 포함해서 진단한다.",o:["O","X"],ox:1,a:1,e:"X! 입학 후 첫 1개월은 부끄러워하는 시기라 제외해요. 말을 ‘못’ 하는 것이 아니라 특정 상황에서 말이 ‘안 나오는’ 것이에요."},
+{t:"불안장애",q:"특정공포증, 사회불안장애, 광장공포증의 공통 지속 기간 기준은?",o:["4주 이상","1개월 이상","6개월 이상","1년 이상"],a:2,e:"세 가지 모두 6개월 이상 이어질 때 진단해요. 기간 정리: 4주 · 1개월 · 6개월 · 1년(틱)!"},
+{t:"OX",q:"제2형 양극성장애는 경조증(가벼운 조증)과 심한 우울이 나타난다.",o:["O","X"],ox:1,a:0,e:"O! 차이는 ‘위로 얼마나 올라가느냐’예요. 1형은 조증까지, 2형은 경조증까지. 우울은 둘 다 깊어요."},
+{t:"틱장애",q:"여러 가지 운동 틱과 음성 틱이 1년 이상 이어지는 장애는?",o:["일과성(잠정적) 틱장애","뚜렛장애","강박장애","공황장애"],a:1,e:"뚜렛장애예요. 틱장애의 기준은 ‘1년’! 1년 미만이면 일과성(잠정적) 틱장애예요."},
+{t:"ADHD",q:"ADHD의 세 가지 핵심 증상이 아닌 것은?",o:["부주의","과잉행동","충동성","우울감"],a:3,e:"ADHD는 부주의 · 과잉행동 · 충동성 세 단어예요. ‘하기 싫어서’가 아니라 ‘조절이 어려워서’ 나타나는 행동이에요."},
+{t:"선별",q:"학교에서 실시하는 학생정서·행동특성검사의 대상 학년은?",o:["초1·초4·중1·고1","초6·중3·고3","초등학교 1학년만","전 학년 매달"],a:0,e:"초1·4, 중1, 고1이 매년 검사를 받아요. 선별검사는 ‘진단’이 아니라 도움이 필요한 학생을 일찍 찾는 첫 단계예요."},
+{t:"평가",q:"K-CBCL(아동·청소년 행동평가척도)에서 문제행동 점수는 크게 어떤 두 가지로 나뉘어 나올까?",o:["읽기 점수와 쓰기 점수","언어 점수와 비언어 점수","내재화 문제와 외현화 문제","지능 점수와 성적 점수"],a:2,e:"앞에서 배운 빙산이 검사 점수로 그대로 나와요. 내재화 문제 점수와 외현화 문제 점수가 따로 나와요."},
+{t:"ADHD",q:"K-ARS(한국어판 ADHD 평정척도)에서 위험군으로 보는 점수는?",o:["9점 이상","15점 이상","19점 이상","30점 이상"],a:2,e:"19점 이상이에요. 15점은 위험군이 아니에요! ADHD 숫자 세 개: 증상 6개월 이상 · 9개 중 6개 이상 · K-ARS 19점."},
+{t:"중재",q:"정서·행동장애 아동을 돕는 일반 지도 방법의 기본 세 단어는?",o:["처벌 · 무시 · 격리","규칙 · 칭찬 · 일관성","경쟁 · 비교 · 순위","숙제 · 시험 · 반복"],a:1,e:"적절한 행동의 규칙을 먼저 정하고, 그 행동이 나오면 자주 칭찬하고, 대가를 줄 때는 일관되게! 여기에 자기점검을 더해요."}
 ];
 const $=s=>document.querySelector(s),app=$('#app'),EM=['🐣','🐰','🐻','🐱'];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -210,15 +210,15 @@ function timeUp(){if(mode!=='play'||!me||me.d)return;locked=true;
 let mode='home',i=0,score=0,wrong=[],locked=false,me=null,myKey='',saveQ=Promise.resolve();
 
 /* ---------- 저장소: Supabase (학생은 로그인 없이 /rest/v1/rpc 함수만 호출) ---------- */
-const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw',QUIZ='ld7';
+const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw',QUIZ='ebd9';
 async function rpc(fn,args){const ac=new AbortController(),to=setTimeout(()=>ac.abort(),10000);
   try{const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{}),signal:ac.signal});
     const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
     if(!r.ok){const er=new Error((j&&j.message)||('HTTP '+r.status));er.status=r.status;throw er}
     return j}finally{clearTimeout(to)}}
 const isBadPw=e=>!!e&&(e.status===403||/wrong_password/.test(e.message||''));
-const LS={get(k){try{return JSON.parse(localStorage.getItem('quiz7:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('quiz7:'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('quiz7:'+k)}catch(e){}}};
-const SS={get(k){try{return sessionStorage.getItem('quiz7:'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('quiz7:'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('quiz7:'+k)}catch(e){}}};
+const LS={get(k){try{return JSON.parse(localStorage.getItem('quiz9:'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('quiz9:'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('quiz9:'+k)}catch(e){}}};
+const SS={get(k){try{return sessionStorage.getItem('quiz9:'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('quiz9:'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('quiz9:'+k)}catch(e){}}};
 let tPw=SS.get('pw')||'';
 async function getRound(){const r=await rpc('quiz_round',{p_quiz:QUIZ});return Number(r)||1}
 async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await new Promise(r=>setTimeout(r,1500))}}}
@@ -228,8 +228,8 @@ function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringi
 
 /* ---------- 학생 화면 ---------- */
 function home(){clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
-app.innerHTML=`<div class="card"><div class="mascot">🐣</div><h1>학습장애<br>쑥쑥 퀴즈!</h1>
-<p class="sub">장애아동의 이해 · 7주차 · 총 ${Q.length}문제 · ⏱ 제한시간 ${LIMIT/60}분<br>이름(별명)을 쓰고 입장해요</p>
+app.innerHTML=`<div class="card"><div class="mascot">🐣</div><h1>정서·행동장애<br>쑥쑥 퀴즈!</h1>
+<p class="sub">장애아동의 이해 · 9주차 · 총 ${Q.length}문제 · ⏱ 제한시간 ${LIMIT/60}분<br>이름(별명)을 쓰고 입장해요</p>
 <div class="center"><div id="resume"></div><input class="inp" id="nm" maxlength="12" placeholder="이름 또는 별명" autocomplete="off">
 <div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
 <p class="hint" id="msg"></p><div id="solo"></div>
