@@ -156,6 +156,21 @@ td.tm{white-space:nowrap;font-size:15px}
 .pad-btn.on{background:var(--kc);animation:padp .6s infinite alternate}.pad-btn.on:active,.pad-btn.hit{transform:translateY(8px);box-shadow:0 2px 0 rgba(0,0,0,.35)}
 .pad-btn:disabled{opacity:.55}.pad-btn u{position:absolute;left:0;bottom:0;height:12px;background:#ffd43b;width:0;transition:width .3s linear}
 @keyframes padp{to{box-shadow:0 10px 0 rgba(0,0,0,.35),0 0 0 14px rgba(255,255,255,.2)}}
+.pad.pk .pad-btn,.pad.pk .pad-msg,.pad.pk .pad-gap{display:none}
+.pad.pk .pad-rank{font-size:clamp(22px,6.4vw,32px);min-height:0}
+.pad-pick{flex:1;min-height:0;width:100%;overflow:auto;display:flex;flex-direction:column;gap:6px;-webkit-overflow-scrolling:touch}
+.pk-now{background:rgba(255,255,255,.1);border-radius:14px;padding:6px 10px;font-size:19px;line-height:1.35}.pk-big{font-size:34px;vertical-align:middle}
+.pk-now i{display:inline-block;width:16px;height:16px;border-radius:50%;border:2px solid #fff;vertical-align:middle;background:#888}
+.pk-now small{opacity:.8;font-size:13px}
+.pk-t{font-size:15px;opacity:.8;text-align:left;margin-top:2px}
+.pk-g{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.pk-g button{font:inherit;color:#fff;background:rgba(255,255,255,.12);border:3px solid transparent;border-radius:12px;padding:3px 0;display:flex;flex-direction:column;align-items:center;font-size:26px;line-height:1.1;touch-action:manipulation}
+.pk-g button small{font-size:11px;opacity:.85}
+.pk-g button.on{border-color:#ffd43b;background:rgba(255,212,59,.25)}
+.pk-g button:disabled{opacity:.22}
+.pk-g.c button{height:38px;padding:0;background:var(--sw);border:3px solid rgba(255,255,255,.45)}
+.pk-g.c button.on{border-color:#fff;box-shadow:0 0 0 3px #ffd43b}
+.pk-horn{font:inherit;color:#fff;background:rgba(255,255,255,.14);border:0;border-radius:12px;padding:8px;font-size:17px;margin-bottom:2px}
 .pad-msg{font-size:19px;min-height:60px;display:grid;place-content:center;line-height:1.3}.pad-msg small{opacity:.75}
 .padbar{position:fixed;left:8px;right:8px;top:8px;z-index:55;background:rgba(43,43,51,.93);color:#fff;border-radius:14px;padding:8px 14px;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:'Jua','Malgun Gothic',sans-serif;text-align:center}
 .kfinal{z-index:5;position:absolute;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);font-size:clamp(60px,11vw,140px);font-style:italic;color:#ffd43b;-webkit-text-stroke:4px #4a3b52;text-shadow:0 8px 0 #4a3b52;pointer-events:none;transition:transform .35s;white-space:nowrap}
@@ -1638,8 +1653,9 @@ if(PAD.rt&&(!n||(tn>PAD.until&&!live))){PAD.rt.close();PAD.rt=null}
 if(!n&&(PAD.el||PAD.bar))padHide();
 if((PAD.el||PAD.bar)&&performance.now()-PAD.last>8000)padHide()}
 function padWake(){try{if(navigator.wakeLock&&!PAD.wl)navigator.wakeLock.request('screen').then(w=>{PAD.wl=w;w.addEventListener('release',()=>{PAD.wl=null})}).catch(()=>{})}catch(e){}}
-function padHide(){if(PAD.el){PAD.el.remove();PAD.el=null}if(PAD.bar){PAD.bar.remove();PAD.bar=null}PAD.ph='';PAD.item='';try{if(PAD.wl){PAD.wl.release();PAD.wl=null}}catch(e){}}
+function padHide(){if(PAD.el){PAD.el.remove();PAD.el=null}if(PAD.bar){PAD.bar.remove();PAD.bar=null}PAD.ph='';PAD.item='';PAD.pa=null;PAD.pc=null;try{if(PAD.wl){PAD.wl.release();PAD.wl=null}}catch(e){}}
 function padMsg(ev,pl){if(ev!=='st'||!PAD.name||!PAD.rt)return;if(pl.p==='end'){PAD.mute=false;padHide();return}
+if(pl.an)PAD.an=pl.an;if(pl.cl)PAD.cl=pl.cl;
 const t=performance.now(),ks=pl.ks||[];PAD.last=t;if(pl.p==='lobby')PAD.mute=false;
 const mine=ks.find(k=>k[3]===PAD.cid);
 if(!mine){if(pl.pad&&pl.p!=='done'&&t-PAD.hiT>900&&ks.some(k=>k[1]===PAD.name&&!k[3])){PAD.hiT=t;PAD.rt.send('hi',{n:PAD.name,c:PAD.cid})}
@@ -1665,7 +1681,8 @@ if(PAD.wait&&(it!==PAD.wait||performance.now()-PAD.waitT>1500))PAD.wait='';
 if(it&&it!==PAD.item){try{navigator.vibrate&&navigator.vibrate([90,50,90])}catch(x){}}PAD.item=it;
 const zone=typeof m[8]==='string'?m[8]:((typeof CUPK!=='undefined'&&CUPK.ZN[m[8]])||''),warn=ph==='run'&&(fl&16)&&!(fl&4);el.classList.toggle('warn',!!warn);
 let rank='',info='',gap='',em='',lab='',msg='',on=false,dis=true,bar=0;
-if(ph==='lobby'){rank='<span class="sm">참가 확정! 🎉</span>';info='선생님이 출발시키면 시작해요';em='📣';lab='빵빵! (연결 확인)';msg=pl.g?'버튼을 누르면 큰 화면에 내 이름이 반짝여요.<br>화면을 끄지 말고 기다려 주세요.':'버튼을 누르면 큰 화면의 내 카트가 폴짝 뛰어요.<br>화면을 끄지 말고 기다려 주세요.';on=true;dis=false}
+if(ph==='lobby'){rank=pl.g?'<span class="sm">🎨 내 캐릭터를 골라요!</span>':'<span class="sm">참가 확정! 🎉</span>';info='선생님이 출발시키면 시작해요';em='📣';lab='빵빵! (연결 확인)';msg=pl.g?'버튼을 누르면 큰 화면에 내 이름이 반짝여요.<br>화면을 끄지 말고 기다려 주세요.':'버튼을 누르면 큰 화면의 내 카트가 폴짝 뛰어요.<br>화면을 끄지 말고 기다려 주세요.';on=true;dis=false}
+else if(ph==='intro'){rank='<span class="sm">🎤 선수 소개 중!</span>';info='곧 출발해요';em='🎤';lab='준비';msg='큰 화면을 보세요!<br>내 차례에 멋지게 등장해요 😎'}
 else if(ph==='count'){rank='<span class="sm">곧 출발! 🚦</span>';info=`${n}명 · ${pl.lp}바퀴`;em='🏎️';lab='준비';msg='아이템 상자(?)를 먹으면 이 버튼이 켜져요'}
 else if(ph==='done'||(fl&1)){rank=`<b>${pos}</b><small>위 ${ph==='done'?'· 최종':'골인!'}</small>`;info=ph==='done'?`${n}명 중 ${pos}위`:'🏁 다른 카트를 기다리는 중';em=pos===1?'🏆':'🏁';lab=pos===1?'1등!':'골인';msg=pos===1?'축하해요! 🎉':'수고했어요!'}
 else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=`LAP ${m[7]}/${pl.lp}${zone?' · 📍 '+zone:''}`;gap=(m[10]>=0?`앞차 ${m[10]}m`:'내가 선두!')+(m[11]>=0?` · 뒤차 ${m[11]}m`:'')+(pl.g?`  ${'●'.repeat(Math.max(0,m[12]))}${'○'.repeat(Math.max(0,(pl.mu||3)-m[12]))}`:'');
@@ -1673,14 +1690,37 @@ else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=`LAP ${m[7]}/${pl.lp}
   else if(pl.g&&m[12]<=0&&!PAD.wait){em='🤖';lab='자동 주행';msg='아이템 '+(pl.mu||3)+'번을 모두 썼어요.<br>이제부터는 자동으로 달려요.'}
   else{em=PAD.wait?((pl.g&&PADG[PAD.wait])||PADI[PAD.wait]||['✨'])[0]:'❔';lab=PAD.wait?'사용!':'아이템 없음';msg=(fl&2)?'🌀 으악! 미끄러지는 중...':(fl&8)?'🚀 부스터 가속 중!':(fl&4)?'🛡️ 방패 켜짐':(pl.g?'물음표 상자를 먹으면 버튼이 켜져요':'노란 ? 상자를 먹으면 버튼이 켜져요')}
   if(warn)msg=(pl.g?'🚨 물풍선이 날아와요!':'🚨 로켓이 날아와요!')+(it==='shield'&&!PAD.wait?' 지금 방패를 켜요!':'')}
-set('pdr',rank);set('pdi',info);set('pdg',gap);set('pde',em);set('pdl',lab);set('pdm',msg);b.disabled=dis;b.classList.toggle('on',on);$('#pdu').style.width=(bar*100).toFixed(0)+'%'}
+padPick(el,pl,m,ph==='lobby'&&!!pl.g&&!!PAD.an&&!!PAD.cl);set('pdr',rank);set('pdi',info);set('pdg',gap);set('pde',em);set('pdl',lab);set('pdm',msg);b.disabled=dis;b.classList.toggle('on',on);$('#pdu').style.width=(bar*100).toFixed(0)+'%'}
 
 /* ---------- 🌉 광안대교 카트: gwangan.html(같은 폴더)을 전체 화면으로 띄우고, 휴대폰 조종은 같은 연결 채널을 써요 ---------- */
 const PADG={boost:['🚀','부스터','2초 동안 빨라져요 · 직선에서 쓰면 좋아요'],banana:['🍌','바나나 놓기','내 뒤에 바나나를 놓아요 · 뒤차가 바짝 붙었을 때!'],balloon:['💧','물풍선 던지기','바로 앞 카트 1대에게 던져요'],shield:['🛡️','방패 켜기','5초 동안 한 번 막아 줘요 · 물풍선·바나나 막기!'],jump:['🦘','점프','공사콘·물웅덩이를 뛰어넘어요']};
+/* 대기실에서 캐릭터(동물)와 카트 색 고르기: 고른 값은 큰 화면에 바로 나타나요 */
+function padPick(el,pl,m,show){
+  let box=$('#pdk');
+  if(!show){if(box)box.remove();el.classList.remove('pk');return}
+  el.classList.add('pk');
+  const key=PAD.an.length+':'+PAD.cl.length;
+  if(!box||box.dataset.k!==key){if(box)box.remove();box=document.createElement('div');box.id='pdk';box.className='pad-pick';box.dataset.k=key;
+    box.innerHTML='<div class="pk-now" id="pkn"></div><div class="pk-t">캐릭터</div><div class="pk-g" id="pkA">'+PAD.an.map((a,i)=>'<button data-a="'+i+'"><span>'+a[0]+'</span><small>'+esc(a[1])+'</small></button>').join('')+'</div><div class="pk-t">카트 색깔</div><div class="pk-g c" id="pkC">'+PAD.cl.map((c,i)=>'<button data-k="'+i+'" style="--sw:'+c[0]+'" aria-label="'+esc(c[1])+'"></button>').join('')+'</div><button class="pk-horn" id="pkH">📣 빵빵 (연결 확인)</button>';
+    el.insertBefore(box,$('#pdb'));
+    box.onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;
+      if(b.id==='pkH'){if(PAD.rt)PAD.rt.send('horn',{c:PAD.cid});try{navigator.vibrate&&navigator.vibrate(25)}catch(x){}return}
+      if(b.dataset.a!=null)PAD.pa=+b.dataset.a;if(b.dataset.k!=null)PAD.pc=+b.dataset.k;
+      if(PAD.rt)PAD.rt.send('pick',{c:PAD.cid,a:PAD.pa==null?-1:PAD.pa,k:PAD.pc==null?-1:PAD.pc});
+      try{navigator.vibrate&&navigator.vibrate(15)}catch(x){}padPickPaint()}}
+  PAD.lastPl=pl;PAD.lastM=m;padPickPaint()}
+function padPickPaint(){const pl=PAD.lastPl,m=PAD.lastM;if(!pl||!m||!PAD.an||!PAD.cl)return;
+  const mA=m[14]>=0?m[14]:(PAD.pa==null?-1:PAD.pa),mC=m[15]>=0?m[15]:(PAD.pc==null?-1:PAD.pc),tA=new Set(),tC=new Set();
+  for(const k of pl.ks){if(k[3]===PAD.cid)continue;if(k[14]>=0)tA.add(k[14]);if(k[15]>=0)tC.add(k[15])}
+  const uA=pl.ks.length<=PAD.an.length,uC=pl.ks.length<=PAD.cl.length;
+  document.querySelectorAll('#pkA button').forEach(b=>{const i=+b.dataset.a;b.classList.toggle('on',i===mA);b.disabled=uA&&tA.has(i)});
+  document.querySelectorAll('#pkC button').forEach(b=>{const i=+b.dataset.k;b.classList.toggle('on',i===mC);b.disabled=uC&&tC.has(i)});
+  const a=PAD.an[mA],c=PAD.cl[mC],n=$('#pkn');
+  if(n)n.innerHTML=(a&&c)?'<span class="pk-big">'+a[0]+'</span> <b>'+esc(a[1])+'</b> · <i style="background:'+c[0]+'"></i> '+esc(c[1])+' 카트<br><small>✅ 큰 화면에 나왔어요! 마음에 안 들면 다시 골라요</small>':'<small>아래에서 캐릭터와 색을 골라요 (안 골라도 괜찮아요, 랜덤으로 정해져요)</small>'}
 function gkRun(ns){kartClose();gameClose();r3Close();const ro=$('#rov');if(ro)ro.style.display='none';document.documentElement.style.overflow='hidden';
 const ov=document.createElement('div');ov.className='gkv';ov.id='gkv';ov.innerHTML='<div class="kload">🌉 광안대교 준비 중...</div>';document.body.appendChild(ov);
 const q={high:'h',mid:'m',low:'l'}[KS.get('q','mid')]||'m',enc=encodeURIComponent;
-const gb=window.GK_URL||'gwangan.html',url=gb+(gb.indexOf('blob:')===0?'#':'?')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&names='+enc(JSON.stringify(ns));
+const gb=window.GK_URL||'gwangan.html',url=gb+(gb.indexOf('blob:')===0?'#':'?')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&intro='+(KS.get('gkintro',1)?1:0)+'&names='+enc(JSON.stringify(ns));
 const fr=document.createElement('iframe');fr.setAttribute('allow','autoplay; fullscreen');gkNs=ns;
 const F={ov,fr,ready:false,t:setTimeout(()=>{if(gkFrame!==F||F.ready)return;ov.innerHTML='<div class="kload">⚠️ 광안대교 화면을 불러오지 못했어요.<br><small>인터넷 연결을 확인하거나 다른 게임을 골라 주세요.</small><br><button class="btn" id="gkbk">돌아가기</button></div>';$('#gkbk').onclick=()=>gkBack()},25000)};
 gkFrame=F;fr.src=url;ov.appendChild(fr)}
@@ -1690,7 +1730,7 @@ function gkBack(){const ns=gkNs;gkClose();const o=$('#rov');if(o){o.style.displa
 addEventListener('message',e=>{if(e.origin!==location.origin||!e.data||!e.data.gk||!gkFrame)return;const d=e.data;
 if(d.gk==='ready'){gkFrame.ready=true;clearTimeout(gkFrame.t);const k=gkFrame.ov.querySelector('.kload');if(k)k.remove()}
 else if(d.gk==='back')gkBack();else if(d.gk==='close')raceClose();
-else if(d.gk==='opt'){if([30,60,120].includes(+d.dur))KS.set('gkdur',+d.dur);if([1,1.5,2].includes(+d.spd))KS.set('gkspd',+d.spd)}});
+else if(d.gk==='opt'){if([30,60,120].includes(+d.dur))KS.set('gkdur',+d.dur);if([1,1.5,2].includes(+d.spd))KS.set('gkspd',+d.spd);if(d.intro!=null)KS.set('gkintro',+d.intro?1:0)}});
 
 try{padBoot()}catch(e){console.error(e)}
 home();

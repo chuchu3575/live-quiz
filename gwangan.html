@@ -32,43 +32,6 @@ h1{margin:0 0 6px;font-size:clamp(26px,4.4vw,46px);text-align:center;letter-spac
 .note{font-size:13px;color:#5b5f86;font-weight:700;margin-top:10px;line-height:1.5}
 .pilotChip{display:inline-block;margin-top:12px;background:#1c1f3a;color:#fff;border-radius:999px;padding:7px 16px;font-size:clamp(13px,1.9vw,17px);cursor:pointer}
 .pilotChip b{color:#ffd23f}
-/* settings */
-#settings{position:fixed;inset:0;z-index:60;background:#f2f0ea;display:flex;flex-direction:column;color:#171a33}
-.sHead{background:#171a33;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:12px 22px;flex:none}
-.sTitle{font-size:clamp(22px,4vh,34px);font-weight:900}
-.sX{width:52px;height:52px;border:0;border-radius:14px;background:#2d3260;color:#fff;font-size:26px;cursor:pointer;font-family:inherit}
-.sTabs{background:#dcd8cc;display:flex;gap:8px;flex-wrap:wrap;padding:12px 14px 0;flex:none}
-.sTabs button{font:inherit;font-size:clamp(15px,2.4vh,21px);font-weight:900;padding:11px 20px;border:0;border-radius:18px 18px 0 0;background:#c3beae;color:#171a33;cursor:pointer}
-.sTabs button.on{background:#f2f0ea}
-.sBody{flex:1;overflow:auto;padding:10px 26px 50px}
-.sBody h3{font-size:clamp(19px,2.9vh,25px);margin:20px 0 6px}
-.sBody p{color:#45486a;font-weight:600;line-height:1.6;margin:4px 0 10px;font-size:clamp(14px,2vh,17px)}
-.sIn{font:inherit;font-weight:700;font-size:18px;border:4px solid #171a33;border-radius:16px;padding:9px 14px;background:#fff;color:#171a33;user-select:text;-webkit-user-select:text}
-.sBtn{font:inherit;font-weight:900;font-size:18px;border:0;border-radius:14px;padding:11px 22px;background:#ffc93a;color:#171a33;box-shadow:0 5px 0 #b98a12;cursor:pointer;margin:4px 6px 8px 0}
-.sBtn:active{transform:translateY(3px);box-shadow:0 2px 0 #b98a12}
-.sBtn.alt{background:#d6d1c2;box-shadow:none}
-.sBtn.danger{background:#f3b5a8;box-shadow:none}
-.sBtn.mini{font-size:14px;padding:7px 12px;margin:2px 4px 2px 0}
-.sRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0}
-.sSeg{display:inline-flex;border:4px solid #171a33;border-radius:18px;overflow:hidden;background:#fff;margin:4px 8px 6px 0}
-.sSeg button{font:inherit;font-weight:900;font-size:18px;padding:9px 18px;border:0;background:#fff;color:#171a33;cursor:pointer}
-.sSeg button.on{background:#ffc93a}
-.chips{display:flex;flex-wrap:wrap;gap:10px}
-.chip2{border:4px solid #171a33;border-radius:18px;background:#fff;padding:7px 15px;font-weight:900;font-size:18px}
-.chip2 small{color:#8a8672;margin-right:8px;font-size:.7em}
-.chip2.pick{cursor:pointer}.chip2.off{opacity:.33;text-decoration:line-through}
-.chip2.pilot{background:#ffe27a}
-.rec{background:#fff;border:3px solid #171a33;border-radius:14px;padding:10px 16px;margin:8px 0;font-weight:700}
-.rec summary{cursor:pointer;font-weight:900;font-size:17px}
-.rec div{margin-top:8px;line-height:1.8;font-size:16px}
-.code{font-family:Consolas,monospace;font-size:28px;letter-spacing:6px;background:#171a33;color:#ffd23f;border-radius:12px;padding:4px 14px}
-.seats{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.seat{background:#fff;border:3px solid #171a33;border-radius:16px;padding:12px;display:flex;gap:12px;align-items:flex-start}
-.qr{width:104px;height:104px;flex:none;border:3px dashed #8a8fb5;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;color:#6b6f96;line-height:1.3;background:#f4f5fb}
-.seat .nm{font-size:19px}
-.seat .lk{font-size:11.5px;font-weight:600;color:#45486a;word-break:break-all;user-select:text;-webkit-user-select:text;margin:4px 0}
-.dotOn{display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#bbb;margin-right:6px}
-.dotOn.on{background:#22c55e}
 #toast{position:fixed;left:50%;bottom:6vh;transform:translateX(-50%) translateY(20px);opacity:0;z-index:90;pointer-events:none;background:#171a33;color:#fff;border-radius:999px;padding:12px 26px;font-size:clamp(15px,2.2vw,20px);transition:all .25s;max-width:92vw;text-align:center}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 /* HUD */
@@ -127,66 +90,65 @@ h1{margin:0 0 6px;font-size:clamp(26px,4.4vw,46px);text-align:center;letter-spac
 .bg em{margin-left:auto;font-style:normal;visibility:hidden;color:#1f9d55}
 .bg.ck{opacity:.42}.bg.ck em{visibility:visible}
 .bg.g1{background:#ffd23f}.bg.g2{background:#dfe5ee}.bg.g3{background:#f0b98a}
-/* phone controller */
-body.ctrl{overflow:auto;background:linear-gradient(180deg,#0c1340,#3a1c66);color:#fff}
-#ctrl{min-height:100%;display:flex;flex-direction:column;align-items:center;padding:18px 16px 26px;gap:12px;text-align:center}
-#cRoom{font-size:14px;opacity:.75;font-weight:700}
-#cAva{width:132px;height:132px;border-radius:28px;background:rgba(255,255,255,.12);border:4px solid rgba(255,255,255,.5)}
-#cName{font-size:30px}
-#cRank{font-size:56px;line-height:1;color:#ffd23f;min-height:60px}
-#cRank small{font-size:22px;color:#fff;opacity:.8}
-#cUse{font:inherit;width:min(86vw,360px);height:min(86vw,360px);max-height:44vh;border-radius:40px;border:6px solid #fff;background:#ffd23f;color:#1c1f3a;box-shadow:0 10px 0 rgba(0,0,0,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;touch-action:manipulation}
-#cUse:active{transform:translateY(6px);box-shadow:0 4px 0 rgba(0,0,0,.45)}
-#cUse:disabled{background:#4b4f77;color:#a9add0;border-color:#8a8fb5;box-shadow:none}
-#cUse.flash{animation:fl .5s 3}
-@keyframes fl{50%{background:#fff}}
-#cUseE{font-size:min(30vw,120px);line-height:1}
-#cUseN{font-size:28px}
-#cDots{font-size:30px;letter-spacing:8px;color:#ffd23f}
-#cMsg{font-size:17px;font-weight:700;line-height:1.5;opacity:.92;max-width:360px}
 /* 라이브 퀴즈 연동 */
 .onlyEmb{display:none}
 body.embed div.onlyEmb:not(.lqList){display:block}body.embed button.onlyEmb{display:inline-block}
-body.embed .lqList{display:flex}
-body.embed .hero{min-height:0;margin:0 0 6px}body.embed .hero img{width:clamp(30px,4.4vw,46px);height:clamp(30px,4.4vw,46px);border-radius:10px;border-width:2px}
+body.embed .lqList{display:flex;max-height:34vh}
 body.embed #homeCnt{font-size:clamp(15px,2.2vw,20px);margin:2px 0}body.embed .card.home{padding:14px 18px}body.embed h1{font-size:clamp(24px,3.6vw,38px)}
 body.embed .btn.go{padding:10px 24px;margin-top:8px}body.embed .optRow{margin-top:10px}
 body.embed .gear,body.embed #roomchip{display:none!important}
 .lqList{flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 4px;max-height:20vh;overflow:auto}
-.lq{flex:none;white-space:nowrap;border:3px solid #1c1f3a;border-radius:999px;padding:1px 11px;background:#e9e9f2;font-size:clamp(13px,1.8vw,17px);opacity:.75}
-.lq.on{background:#b9f6ca;opacity:1}.lq.flash{animation:lqf .6s 2}
+.lqt{flex:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;border:3px solid #1c1f3a;border-radius:16px;padding:3px 12px 3px 5px;background:#e9e9f2;font-size:clamp(14px,1.9vw,19px);opacity:.8}
+.lqt img{width:clamp(34px,4.6vw,48px);height:clamp(34px,4.6vw,48px);border-radius:10px;background:linear-gradient(180deg,#27336b,#0e1433);flex:none}
+.lqt em{width:clamp(34px,4.6vw,48px);height:clamp(34px,4.6vw,48px);border-radius:10px;background:#cfd2e6;display:grid;place-items:center;font-style:normal;flex:none}
+.lqt i{font-style:normal}
+.lqList{gap:8px}
+.lqt.on{background:#b9f6ca;opacity:1}.lqt.flash{animation:lqf .6s 2}
 @keyframes lqf{50%{background:#ffd23f;transform:scale(1.14)}}
 body.embed #pilots{max-height:calc(100vh - 130px);overflow:auto}
+#intro{position:fixed;inset:0;pointer-events:none;z-index:6;color:#1c1f3a}
+#icTop{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:rgba(255,253,246,.95);border:3px solid #1c1f3a;border-radius:999px;padding:3px 20px;font-size:clamp(15px,2.2vw,24px);box-shadow:0 3px 0 #1c1f3a;white-space:nowrap}
+#icCard{position:absolute;left:4vw;bottom:7vh;display:flex;gap:18px;align-items:center;background:rgba(255,253,246,.96);border:5px solid #1c1f3a;border-left:18px solid var(--cc,#ffd23f);border-radius:28px;padding:12px 30px 12px 20px;box-shadow:0 8px 0 #1c1f3a;max-width:92vw}
+#icAni{font-size:clamp(48px,8vw,96px);line-height:1}
+#icName{font-size:clamp(32px,6.4vw,78px);line-height:1.05;letter-spacing:-1px;white-space:nowrap}
+#icSub{font-size:clamp(14px,2.2vw,26px);color:#5b5f86;margin-top:2px}
+#icTag{font-size:clamp(18px,3.2vw,38px);margin-top:4px;color:#e0503a}
+#icCard.in{animation:icin .5s cubic-bezier(.2,1.5,.4,1)}
+@keyframes icin{from{transform:translateX(-70%) scale(.8);opacity:0}to{transform:none;opacity:1}}
+#icFinal{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);font-size:clamp(34px,7.4vw,104px);color:#fff;-webkit-text-stroke:clamp(2px,.5vw,6px) #1c1f3a;paint-order:stroke fill;text-shadow:0 6px 0 #1c1f3a;white-space:nowrap;animation:icfin .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes icfin{from{transform:translate(-50%,-50%) scale(.4);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+#bIntroSkip{position:absolute;right:14px;bottom:14px;pointer-events:auto}
 </style>
 </head>
 <body>
 <canvas id="gl"></canvas>
 
 <div id="setup" class="screen hidden">
-  <button class="btn gear" id="bGear">⚙️ 설정</button>
   <div class="card home">
-    <div class="hero" id="hero"></div>
     <h1 id="homeTitle">🏎️ 광안대교 카트 대회</h1>
     <div class="sub">센텀 출발 → 상층 다리 → 남천동 램프 → 하층 터널 → 해안도로 → 결승!</div>
     <div id="homeCnt"></div>
-    <div id="lqList" class="lqList onlyEmb"></div>
+    <div id="lqList" class="lqList"></div>
     <button class="btn go" id="bStart">카트 출발!</button>
     <div class="optRow"><b>경기 길이</b>
       <div class="seg" id="durSeg"><button data-d="30">30초</button><button data-d="60">1분</button><button data-d="120">2분</button></div>
       <b>속도</b>
       <div class="seg" id="spdSeg"><button data-s="1">1x</button><button data-s="1.5">1.5x</button><button data-s="2">2x</button></div>
+      <b>선수 소개</b>
+      <div class="seg" id="introSeg"><button data-i="1">켜기</button><button data-i="0">끄기</button></div>
     </div>
     <div class="pilotChip" id="pilotChip"></div>
-    <div class="note onlyEmb" id="lqNote"></div>
-    <button class="btn sm onlyEmb" id="bLqBack" style="margin-top:12px">🎲 1등 뽑기로 돌아가기</button>
+    <div class="note" id="lqNote"></div>
+    <button class="btn sm" id="bLqBack" style="margin-top:12px">🎲 1등 뽑기로 돌아가기</button>
     <div class="note" id="homeEst"></div>
   </div>
 </div>
 
-<div id="settings" class="hidden">
-  <div class="sHead"><div class="sTitle">⚙️ 설정</div><button class="sX" id="sClose">✕</button></div>
-  <div class="sTabs" id="sTabs"><button data-t="names">학생 명단</button><button data-t="parts">참가선수</button><button data-t="pilot">📱 아이템 조종사</button><button data-t="recs">순서 기록</button><button data-t="disp">화면·소리</button></div>
-  <div class="sBody" id="sBody"></div>
+<div id="intro" class="hidden">
+  <div id="icTop">🎤 선수 소개 <b id="icNo"></b></div>
+  <div id="icCard"><div id="icAni"></div><div><div id="icName"></div><div id="icSub"></div><div id="icTag"></div></div></div>
+  <div id="icFinal" class="hidden">🏁 과연 우승은 누구?!</div>
+  <button class="btn sm" id="bIntroSkip">⏭ 소개 건너뛰기</button>
 </div>
 
 <div id="hud" class="hidden">
@@ -208,9 +170,9 @@ body.embed #pilots{max-height:calc(100vh - 130px);overflow:auto}
     <div id="rest"></div>
     <div class="row">
       <button class="btn" id="bBig" style="background:#6ff0c4">🔍 순위표 크게 보기</button>
-      <button class="btn" id="bSave">📷 순위 이미지 저장</button>
+      
       <button class="btn" id="bAgain">🔁 다시 하기</button>
-      <button class="btn" id="bHome">🏠 처음으로</button>
+      <button class="btn" id="bHome">🎨 대기실로</button>
       <button class="btn onlyEmb" id="bLqBack2" style="background:#c9b8ff">🎲 다른 게임·이름 바꾸기</button>
       <button class="btn onlyEmb" id="bLqClose2">✖ 닫기</button>
     </div>
@@ -222,15 +184,6 @@ body.embed #pilots{max-height:calc(100vh - 130px);overflow:auto}
   <div id="bigList"></div>
 </div>
 
-<div id="ctrl" class="hidden">
-  <div id="cRoom"></div>
-  <img id="cAva" alt="">
-  <div id="cName"></div>
-  <div id="cRank"></div>
-  <button id="cUse" disabled><span id="cUseE">🎁</span><span id="cUseN">대기 중</span></button>
-  <div id="cDots"></div>
-  <div id="cMsg"></div>
-</div>
 <div id="toast"></div>
 
 <script>
@@ -250,9 +203,7 @@ body.embed #pilots{max-height:calc(100vh - 130px);overflow:auto}
    ===================================================================== */
 const $=s=>document.querySelector(s);
 const QS=new URLSearchParams(location.search||location.hash.replace(/^#/,''));
-const JOIN=(QS.get('join')||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,8);
-const SEAT=Math.max(0,parseInt(QS.get('seat')||'0',10)||0);
-const IS_CTRL=!!JOIN;
+const IS_CTRL=false;
 /* 라이브 퀴즈(1등 뽑기) 안에서 쓰는 모드: ?embed=1&topic=..&u=..&k=..&names=[..] */
 const EMBED=QS.get('embed')==='1'&&!IS_CTRL;
 const EMBED_NAMES=(()=>{if(!EMBED)return [];try{const a=JSON.parse(QS.get('names')||'[]');return (Array.isArray(a)?a:[]).map(s=>String(s).trim()).filter(Boolean).slice(0,30);}catch(e){return [];}})();
@@ -289,50 +240,6 @@ const MAX_USES=3;   // 조종사가 한 경기에 직접 쓸 수 있는 횟수
      → 같은 PC, 같은 브라우저의 다른 탭끼리만 연결됩니다 (테스트용).
    나중에 실제 휴대폰을 붙일 때: 아래 createTransport() 한 곳만 바꾸면 됩니다.
    ===================================================================== */
-class LocalTransport{
-  constructor(room){
-    this.room=room;this.handlers=[];this.seen=new Set();this.key='gk_bus_'+room;
-    try{this.bc=new BroadcastChannel('gk_'+room);this.bc.onmessage=e=>this._in(e.data);}catch(e){this.bc=null;}
-    this._st=e=>{if(e.key===this.key&&e.newValue){try{this._in(JSON.parse(e.newValue));}catch(_){}}};
-    addEventListener('storage',this._st);
-  }
-  send(msg){
-    msg.room=this.room;msg._id=Math.random().toString(36).slice(2)+Date.now().toString(36);this.seen.add(msg._id);
-    try{if(this.bc)this.bc.postMessage(msg);}catch(e){}
-    try{localStorage.setItem(this.key,JSON.stringify(msg));}catch(e){}
-  }
-  _in(m){
-    if(!m||m.room!==this.room||this.seen.has(m._id))return;
-    this.seen.add(m._id);if(this.seen.size>800)this.seen.clear();
-    for(const f of this.handlers)f(m);
-  }
-  onMessage(f){this.handlers.push(f);}
-  close(){try{if(this.bc)this.bc.close();}catch(e){}removeEventListener('storage',this._st);this.handlers=[];}
-}
-/* ---------------------------------------------------------------------
-   ★ PeerJS로 바꿔 끼울 자리 ★
-   1) PeerJS 라이브러리(https://unpkg.com/peerjs@1/dist/peerjs.min.js)를 script 태그로 추가하고
-   2) 아래 PeerTransport 주석을 풀어 createTransport 에서 돌려주면 됩니다.
-
-   class PeerTransport{
-     constructor(room,role){            // role: 'host' | 'ctrl'
-       this.handlers=[];this.conns=[];
-       const hostId='gk-kart-'+room;
-       if(role==='host'){
-         this.peer=new Peer(hostId);
-         this.peer.on('connection',c=>{this.conns.push(c);c.on('data',d=>this.handlers.forEach(f=>f(d)));
-           c.on('close',()=>{this.conns=this.conns.filter(x=>x!==c);});});
-       }else{
-         this.peer=new Peer();
-         this.peer.on('open',()=>{const c=this.peer.connect(hostId,{reliable:true});
-           c.on('open',()=>{this.conns=[c];});c.on('data',d=>this.handlers.forEach(f=>f(d)));});
-       }
-     }
-     send(msg){this.conns.forEach(c=>{if(c.open)c.send(msg);});}
-     onMessage(f){this.handlers.push(f);}
-     close(){try{this.peer.destroy();}catch(e){}}
-   }
-   --------------------------------------------------------------------- */
 /* 라이브 퀴즈 연결: 퀴즈 페이지(학생 휴대폰)와 같은 Supabase Realtime 방송 채널을 WebSocket으로 직접 사용해요.
    휴대폰 → 'hi'{n:이름,c:기기번호} / 'use'{c} / 'horn'{c},  큰 화면 → 'st'{p,lp,ks:[...]} (broadcast 함수) */
 class LQTransport{
@@ -370,7 +277,7 @@ class LQTransport{
     const c=String(pl.c||'').slice(0,12);if(!c)return;const now=Date.now();
     if(ev==='hi'){const seat=this._seat(String(pl.n||'').trim(),c);if(seat){this.sc[seat]={c,t:now};for(const f of this.handlers)f({t:'join',seat,cid:c});}}
     else{const seat=this.cmap[c];if(!seat)return;this.sc[seat]={c,t:now};
-      const t=ev==='use'?'useItem':ev==='horn'?'horn':'';if(t)for(const f of this.handlers)f({t,seat,cid:c});}
+      const t=ev==='use'?'useItem':ev==='horn'?'horn':ev==='pick'?'pick':'';if(t)for(const f of this.handlers)f({t,seat,cid:c,a:pl.a,k:pl.k});}
   }
   send(m){}   // 게임 원래 방식의 개별 메시지는 쓰지 않고, lqBroadcast()가 한꺼번에 방송해요
   broadcast(ev,pl){
@@ -380,75 +287,9 @@ class LQTransport{
   onMessage(f){this.handlers.push(f);}
   close(){this.dead=true;clearTimeout(this.rt);clearInterval(this.hb);this.handlers=[];try{if(this.ws)this.ws.close();}catch(e){}}
 }
-function createTransport(room,role){
-  if(EMBED&&role==='host')return new LQTransport();
-  // return new PeerTransport(room,role);   // ← 실제 휴대폰 연결 시 이 줄로 교체
-  return new LocalTransport(room);
+function createTransport(){
+  return QS.get('u')?new LQTransport():{ok:false,send(){},broadcast(){return false},onMessage(){},close(){}};   // 주소에 연결 정보가 없으면(미리보기) 휴대폰 없이 실행
 }
-/* QR 자리: 나중에 QR 라이브러리(qrcode.js 등)를 넣으면 window.GK_QR=(el,url)=>{...} 로 그려 주세요. */
-function drawQR(el,url){
-  if(typeof window.GK_QR==='function'){try{window.GK_QR(el,url);return;}catch(e){}}
-  el.innerHTML='QR 자리<br>(주소를 올린 뒤<br>QR이 들어가요)';
-}
-
-/* =====================================================================
-   휴대폰 컨트롤러 화면
-   ===================================================================== */
-if(IS_CTRL){
-  document.body.classList.add('ctrl');
-  $('#gl').classList.add('hidden');$('#ctrl').classList.remove('hidden');
-  document.title='아이템 조종사';
-  const cid=Math.random().toString(36).slice(2,10);
-  const tp=createTransport(JOIN,'ctrl');
-  let st=null,last=0,ava='',lastItem=null;
-  const render=()=>{
-    const alive=st&&Date.now()-last<6000;
-    $('#cRoom').textContent='방 코드 '+JOIN+' · '+SEAT+'번';
-    const use=$('#cUse'),msg=$('#cMsg');
-    if(ava)$('#cAva').src=ava;
-    if(!SEAT){use.disabled=true;msg.textContent='주소에 번호(seat)가 없어요. 선생님께 주소를 다시 받아 주세요.';return;}
-    if(!alive){use.disabled=true;$('#cUseE').textContent='📡';$('#cUseN').textContent='연결 중';$('#cRank').innerHTML='';$('#cDots').textContent='';
-      msg.textContent='큰 화면을 기다리는 중이에요. 선생님 화면이 켜져 있는지 확인해 주세요.';return;}
-    $('#cName').textContent=st.name||(SEAT+'번');
-    if(!st.ok){use.disabled=true;$('#cUseE').textContent='🙅';$('#cUseN').textContent='조종사 아님';$('#cRank').innerHTML='';$('#cDots').textContent='';
-      msg.textContent=st.reason==='noSeat'?'명단에 없는 번호예요. 선생님께 확인해 주세요.':'이번에는 아이템 조종사로 지정되지 않았어요. 퀴즈 1등이 되면 선생님이 지정해 줘요.';return;}
-    const left=st.usesLeft==null?MAX_USES:st.usesLeft;
-    $('#cDots').textContent='●'.repeat(left)+'○'.repeat(MAX_USES-left);
-    if(st.phase==='race'){
-      $('#cRank').innerHTML=st.place?('도착 '+st.place+'등'):(st.rank+'등 <small>/ '+st.total+'명'+(st.laps>1?' · '+st.lap+'/'+st.laps+'바퀴':'')+'</small>');
-      if(st.place){use.disabled=true;$('#cUseE').textContent='🏁';$('#cUseN').textContent='도착!';msg.textContent='수고했어요! 큰 화면에서 결과를 확인해요.';}
-      else if(left<=0){use.disabled=true;$('#cUseE').textContent='🤖';$('#cUseN').textContent='자동 주행';msg.textContent='아이템 3번을 모두 썼어요. 이제부터는 자동으로 달려요.';}
-      else if(st.item){const it=ITEMS[st.item];use.disabled=false;$('#cUseE').textContent=it.e;$('#cUseN').textContent=it.n+' 쓰기!';msg.textContent=it.d+' (남은 횟수 '+left+'번)';}
-      else{use.disabled=true;$('#cUseE').textContent='🎁';$('#cUseN').textContent='아이템 없음';msg.textContent='물음표 상자를 먹으면 버튼이 켜져요.';}
-    }else if(st.phase==='count'){
-      use.disabled=true;$('#cUseE').textContent='🚦';$('#cUseN').textContent='곧 출발!';$('#cRank').innerHTML='';msg.textContent='준비! 아이템을 얻으면 원할 때 눌러요.';
-    }else if(st.phase==='result'){
-      use.disabled=true;$('#cUseE').textContent='🏆';$('#cUseN').textContent='경기 끝';$('#cRank').innerHTML=st.place?('최종 '+st.place+'등'):'';msg.textContent='다음 경기를 기다려요.';
-    }else{
-      use.disabled=true;$('#cUseE').textContent='✅';$('#cUseN').textContent='연결됨';$('#cRank').innerHTML='';msg.textContent='아이템 조종사로 연결됐어요! 경기가 시작되면 버튼이 켜져요.';
-    }
-  };
-  tp.onMessage(m=>{
-    if(m.seat!==SEAT)return;
-    if(m.t==='state'||m.t==='joined'){
-      st=Object.assign(st||{},m);last=Date.now();if(m.avatar)ava=m.avatar;
-      if(m.t==='joined'&&!m.ok)st.phase='lobby';
-      render();
-    }else if(m.t==='itemReady'){
-      try{if(navigator.vibrate)navigator.vibrate([80,60,80]);}catch(e){}
-      const u=$('#cUse');u.classList.remove('flash');void u.offsetWidth;u.classList.add('flash');
-    }
-  });
-  const hello=()=>tp.send({t:'join',seat:SEAT,cid});
-  hello();setInterval(hello,2000);setInterval(render,1000);render();
-  $('#cUse').onclick=()=>{
-    if($('#cUse').disabled)return;
-    tp.send({t:'useItem',seat:SEAT,cid});
-    $('#cUse').disabled=true;$('#cUseN').textContent='발동!';
-    try{if(navigator.vibrate)navigator.vibrate(40);}catch(e){}
-  };
-}
-
 </script>
 <script>
 'use strict';
@@ -471,26 +312,16 @@ function hue3(h,o,i,w){h=((h%1)+1)%1*6;const k=Math.floor(h),f=h-k;let r,g,b;swi
   w=w||0;o[i]=r+(1-r)*w;o[i+1]=g+(1-g)*w;o[i+2]=b+(1-b)*w;}
 
 /* ================= config ================= */
-const CFG={className:'',names:[],numCount:25,partDate:'',part:[],partMode:'exclude',pilots:[],proxy:'auto',room:'',quality:'m',sfx:true,bgm:true,duration:60,speed:1,recordOn:true};
-function store(k,v){try{localStorage.setItem(k,v);}catch(e){}}
-function load(k){try{return localStorage.getItem(k);}catch(e){return null;}}
-function newRoom(){const ab='ABCDEFGHJKMNPQRSTUVWXYZ';let s='';for(let i=0;i<4;i++)s+=ab[Math.floor(Math.random()*ab.length)];return s;}
+const CFG={className:'',names:[],numCount:25,partDate:'',part:[],partMode:'exclude',pilots:[],proxy:'auto',room:'',quality:'m',sfx:true,bgm:true,duration:60,speed:1,recordOn:false,intro:1};
 function embedCfg(){
   const q=QS.get('q');CFG.quality=['h','m','l'].includes(q)?q:'m';
-  CFG.names=EMBED_NAMES.slice();CFG.numCount=clamp(CFG.names.length||2,2,MAXN);CFG.className='광안대교 카트 대회';
+  CFG.names=EMBED_NAMES.slice();CFG.numCount=clamp(CFG.names.length||8,2,MAXN);CFG.intro=QS.get('intro')==='0'?0:1;CFG.className='광안대교 카트 대회';
   CFG.partDate=dateStr();CFG.part=Array(CFG.names.length).fill(true);CFG.partMode='exclude';CFG.pilots=[];CFG.proxy='auto';CFG.room='LIVE';
   const sn=QS.get('snd')!=='0';CFG.sfx=sn;CFG.bgm=sn;CFG.recordOn=false;
   const d=+QS.get('dur');CFG.duration=[30,60,120].includes(d)?d:60;const sp=+QS.get('spd');CFG.speed=[1,1.5,2].includes(sp)?sp:1;
 }
-function loadCfg(){if(EMBED){embedCfg();return;}try{Object.assign(CFG,JSON.parse(load('gk_cfg')||'{}'));}catch(e){}
-  CFG.names=(CFG.names||[]).slice(0,MAXN);CFG.numCount=clamp(+CFG.numCount||25,2,MAXN);
-  if(![30,60,120].includes(+CFG.duration))CFG.duration=60;if(![1,1.5,2].includes(+CFG.speed))CFG.speed=1;
-  if(!['h','m','l'].includes(CFG.quality))CFG.quality='m';if(!Array.isArray(CFG.pilots))CFG.pilots=[];
-  if(!/^[A-Z0-9]{3,8}$/.test(CFG.room||'')){CFG.room=newRoom();}
-  saveCfg();}
-function saveCfg(){if(EMBED)return;store('gk_cfg',JSON.stringify(CFG));}
-let RECS=[];
-function loadRecs(){try{RECS=JSON.parse(load('gk_rec')||'[]');}catch(e){RECS=[];}}
+function loadCfg(){embedCfg();}
+function saveCfg(){}
 function dateStr(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function rosterNames(){return CFG.names.length?CFG.names:Array.from({length:CFG.numCount},(_,i)=>(i+1)+'번');}
 function syncPart(){const n=rosterNames().length,t=dateStr();
@@ -498,15 +329,6 @@ function syncPart(){const n=rosterNames().length,t=dateStr();
   const before=CFG.pilots.length;CFG.pilots=CFG.pilots.filter(i=>i<n);if(before!==CFG.pilots.length)saveCfg();}
 function partIdx(){syncPart();return rosterNames().map((_,i)=>i).filter(i=>CFG.part[i]);}
 function isPilotSeat(seat){const i=seat-1;return i>=0&&i<rosterNames().length&&(EMBED||CFG.pilots.includes(i));}
-function parseNames(txt){
-  const out=[];
-  for(const line of txt.split(/\r?\n/)){
-    let parts=line.split('\t').map(x=>x.trim()).filter(Boolean);
-    if(parts.length>1&&/^\d+$/.test(parts[0]))parts=parts.slice(1);
-    for(const p of parts)for(const q of p.split(',')){const w=q.trim();if(w)out.push(w.slice(0,10));}
-  }
-  return out;
-}
 let toastT=0;
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2800);}
 
@@ -1166,7 +988,7 @@ function avatarURL(K){
 /* ---- 매 프레임 애니메이션 ---- */
 function setExpr(r,e){if(r.expr!==e){r.expr=e;r.K.ftex.offset.x=e/EXN;}}
 function updateVisual(r,dt,t){
-  const K=r.K,counting=state==='count';
+  const K=r.K,counting=state==='count'||state==='intro';
   pathAt(r.s);const yaw=Math.atan2(PT.tx,PT.tz),pitch=-Math.atan(PT.sl);
   const jt=r.jumpT>0?1-r.jumpT/r.jumpDur:-1,jy=jt>=0?Math.sin(jt*PI)*2.4:0;
   K.root.position.set(PT.x-PT.tz*r.x,PT.y+jy,PT.z+PT.tx*r.x);
@@ -1183,6 +1005,7 @@ function updateVisual(r,dt,t){
   else if(r.st==='bump'||r.wetT>0){ex=5;hz=Math.sin(t*22)*.1;}
   else if(jt>=0){ex=6;aLx=aRx=-2.7;aLz=-.4;aRz=.4;eL=eR=-.1;}
   else if(r.boostT>0){ex=3;lean=.2;hx=.1;}
+  else if(r.spot){ex=7;aRx=-2.8;aRz=.55+Math.sin(t*9)*.35;eR=-.15;hy=Math.sin(t*2.4)*.3;hx=-.05;}
   else if(counting){hy=Math.sin(t*1.4+r.bob)*.55;hz=Math.sin(t*.9+r.bob)*.08;if(Math.sin(t*.7+r.bob*3)>.55)ex=2;if(Math.sin(t*.55+r.bob*2)>.7){aRx=-2.8;aRz=.5+Math.sin(t*10)*.3;eR=-.2;}}
   else if(r.exprT>0)ex=2;
   if(r.throwT>0){const u=1-r.throwT/.5;aRx=-2.9+u*1.6;aRz=.3;eR=-.1;}
@@ -1275,6 +1098,10 @@ function wrapD(d){d%=TL;if(d>TL/2)d-=TL;else if(d<-TL/2)d+=TL;return d;}
 function buildRoster(){
   roster.forEach(p=>disposeVisual(p.K));
   const names=rosterNames(),idx=partIdx(),lk=makeLooks(idx.length);
+  {const seenC=new Set(),seenA=new Set();idx.forEach(ni=>{const p=PICKS[ni+1];if(p){seenC.add(p.color);seenA.add(p.animal);}});
+   lk.forEach((l,k)=>{const p=PICKS[idx[k]+1];if(p){lk[k]=Object.assign({},p);return;}
+     if(seenC.has(l.color)){const f=KCOL.find(c=>!seenC.has(c));if(f!==undefined)l.color=f;}seenC.add(l.color);if(l.accent===l.color)l.accent=KCOL.find(c=>c!==l.color);
+     if(seenA.has(l.animal)){const f=ANI.find(a=>!seenA.has(a));if(f!==undefined){l.animal=f;l.fur=pick(ANIMALS[f].fur);}}seenA.add(l.animal);});}
   roster=idx.map((ni,k)=>{const name=names[ni],look=lk[k],desig=EMBED?seatOn(ni+1):CFG.pilots.includes(ni),K=makeVisual(look,name,desig),url=avatarURL(K),img=new Image();img.src=url;return {ni,name,look,K,url,img,desig};});
 }
 function newRace(){
@@ -1466,6 +1293,7 @@ function updateCamera(dt,t){
   let fov=55,k=Math.min(1,dt*3.2);const wide=camera.aspect<1?clamp(.8/camera.aspect,1,2.2):1;
   if(state==='home'){const a=t*.045;_v.set(Math.sin(a)*290,50+Math.sin(t*.11)*13,-255-Math.cos(a)*45);_v2.set(Math.sin(a)*40,36,30);fov=50;k=Math.min(1,dt*2);}
   else if(state==='count'){const p=clamp(1-countT/3.6,0,1);toW(15.5,lerp(-6,6,p),3.7,_v);toW(-7,0,1.4,_v2);}
+  else if(state==='intro'&&intro){fov=introCam();k=1;}
   else if(follow&&!follow.done){const low=isCov(follow.s)||isCov(follow.s-10);toW(follow.s-9.5*wide,follow.x*.7,low?3.3:4.7*wide,_v);toW(follow.s+9,follow.x*.8,1.3,_v2);}
   else if(firstFinT>=0){finCam();k=Math.min(1,dt*2.2);}
   else{
@@ -1519,33 +1347,46 @@ const NET={tp:null,seats:{}};
 function seatOn(seat){const o=NET.seats[seat];return !!o&&Date.now()-o.last<(EMBED?9000:6500);}
 function netOpen(){if(NET.tp)NET.tp.close();NET.seats={};NET.tp=createTransport(CFG.room,'host');NET.tp.onMessage(netIn);}
 function netIn(m){
-  if(m.t==='join'){const seat=+m.seat;if(!seat)return;const was=seatOn(seat),o=NET.seats[seat]||(NET.seats[seat]={});o.cid=m.cid;o.last=Date.now();
-    if(!was){o.needAva=true;const nmS=rosterNames()[seat-1],ok=isPilotSeat(seat);NET.tp.send({t:'joined',seat,ok,name:nmS||'',reason:ok?'':(nmS?'notPilot':'noSeat')});
-      if(ok)toast('📱 '+nmS+' 휴대폰 연결! 아이템 조종사가 됐어요');netState(seat);refreshHome();if(!$('#settings').classList.contains('hidden')&&sTab==='pilot')rerender();}}
-  else if(m.t==='useItem'){const o=NET.seats[+m.seat];if(o)o.last=Date.now();const r=racers.find(q=>q.ni===m.seat-1);if(r)pilotUse(r);netState(+m.seat);}
-  else if(m.t==='horn'){const o=NET.seats[+m.seat];if(o)o.last=Date.now();const nmH=rosterNames()[m.seat-1];
-    if(nmH){toast('📣 '+nmH+' 빵빵!');sfx('item');lqFlash(+m.seat);const r=racers.find(q=>q.ni===m.seat-1);if(r&&state!=='home')emote(r,'📣',1.0);}}
+  const seat=+m.seat;if(!seat)return;const was=seatOn(seat),o=NET.seats[seat]||(NET.seats[seat]={});o.last=Date.now();
+  if(m.t==='join'){o.cid=m.cid;if(!was){const nmS=rosterNames()[seat-1];if(nmS)toast('📱 '+nmS+' 휴대폰 연결!');refreshHome();}}
+  else if(m.t==='useItem'){const r=racers.find(q=>q.ni===seat-1);if(r)pilotUse(r);}
+  else if(m.t==='horn'){const nmH=rosterNames()[seat-1];
+    if(nmH){toast('📣 '+nmH+' 빵빵!');sfx('item');lqFlash(seat);const r=racers.find(q=>q.ni===seat-1);if(r&&state!=='home')emote(r,'📣',1.0);}}
+  else if(m.t==='pick'){if(state==='home')lqPick(seat,m.a,m.k);}
 }
-function netState(seat){
-  const names=rosterNames(),ok=isPilotSeat(seat),o=NET.seats[seat];
-  const m={t:'state',seat,ok,reason:ok?'':(names[seat-1]?'notPilot':'noSeat'),name:names[seat-1]||'',phase:state==='home'?'lobby':state,usesLeft:MAX_USES,item:null};
-  const r=racers.find(q=>q.ni===seat-1);
-  if(r&&state!=='home'){m.rank=r.rank+1;m.total=racers.length;m.item=isManual(r)?r.item:null;m.usesLeft=MAX_USES-r.uses;m.place=r.done?r.place:0;m.lap=Math.min(LAPS,Math.floor(Math.max(0,r.s)/TL)+1);m.laps=LAPS;if(o&&o.needAva){m.avatar=r.url;o.needAva=false;}}
-  NET.tp.send(m);
+/* ---- 캐릭터·카트 색 고르기 (휴대폰에서 고른 모습을 기억해 두었다가 경기 때 적용) ---- */
+const ANIINFO={bear:['🐻','곰'],rabbit:['🐰','토끼'],cat:['🐱','고양이'],dog:['🐶','강아지'],fox:['🦊','여우'],panda:['🐼','판다'],frog:['🐸','개구리'],chick:['🐥','병아리'],pig:['🐷','돼지'],mouse:['🐭','생쥐'],koala:['🐨','코알라'],tiger:['🐯','호랑이'],penguin:['🐧','펭귄'],deer:['🦌','사슴'],monkey:['🐵','원숭이'],unicorn:['🦄','유니콘'],dino:['🦖','공룡']};
+const COLNAME=['빨강','하늘','초록','노랑','보라','주황','청록','분홍','하양','남색','연두','갈색','파랑','진분홍','회색'];
+const PICKS={},AVT={};
+function lqAva(seat){const L=PICKS[seat];if(!L)return;try{const K=makeVisual(L,'',false);AVT[seat]=avatarURL(K);disposeVisual(K);}catch(e){console.error(e);}}
+function lqPick(seat,ai,ci){
+  const names=rosterNames(),n=names.length;if(!names[seat-1])return;
+  ai=Number.isFinite(+ai)?+ai:-1;ci=Number.isFinite(+ci)?+ci:-1;
+  const old=PICKS[seat],tA=new Set(),tC=new Set();
+  for(const k in PICKS)if(+k!==seat){tA.add(PICKS[k].animal);tC.add(PICKS[k].color);}
+  const uA=n<=ANI.length,uC=n<=KCOL.length;   // 사람 수가 적을 때만 서로 다른 캐릭터·색으로
+  let animal=old?old.animal:null,color=old?old.color:null;
+  if(ai>=0&&ai<ANI.length&&!(uA&&tA.has(ANI[ai])))animal=ANI[ai];
+  if(ci>=0&&ci<KCOL.length&&!(uC&&tC.has(KCOL[ci])))color=KCOL[ci];
+  if(!animal)animal=shuffle(ANI.filter(a=>!(uA&&tA.has(a))))[0]||pick(ANI);
+  if(!color)color=shuffle(KCOL.filter(c=>!(uC&&tC.has(c))))[0]||pick(KCOL);
+  const L={animal,color,accent:(old&&old.color===color)?old.accent:null,fur:(old&&old.animal===animal)?old.fur:pick(ANIMALS[animal].fur),eye:old?old.eye:Math.floor(Math.random()*3),kart:old?old.kart:Math.floor(Math.random()*3)};
+  if(L.accent==null)L.accent=pick(KCOL.filter(c=>c!==color));
+  const first=!old;PICKS[seat]=L;lqAva(seat);lqHome();lqFlash(seat);if(first)sfx('item');
 }
-setInterval(()=>{for(const k in NET.seats)if(seatOn(+k))netState(+k);},350);
-function lqFlash(seat){const el=document.querySelector('.lq[data-seat="'+seat+'"]');if(!el)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');}
+function lqFlash(seat){const el=document.querySelector('.lqt[data-seat="'+seat+'"]');if(!el)return;el.classList.remove('flash');void el.offsetWidth;el.classList.add('flash');}
 function lqHome(){
-  const names=rosterNames(),con=names.filter((_,i)=>seatOn(i+1)).length,tp=NET.tp;
-  $('#pilotChip').innerHTML='📱 휴대폰 연결 <b>'+con+'명</b> / '+names.length+'명';
-  const html=names.map((n,i)=>'<span class="lq'+(seatOn(i+1)?' on':'')+'" data-seat="'+(i+1)+'">'+(seatOn(i+1)?'📱':'⏳')+' '+esc(n)+'</span>').join('');
+  const names=rosterNames(),con=names.filter((_,i)=>seatOn(i+1)).length,tp=NET.tp,np=Object.keys(PICKS).length;
+  $('#pilotChip').innerHTML='📱 휴대폰 연결 <b>'+con+'명</b> / '+names.length+'명 · 캐릭터 직접 고른 친구 <b>'+np+'명</b>';
+  const html=names.map((n,i)=>{const s=i+1,on=seatOn(s),u=AVT[s];return '<span class="lqt'+(on?' on':'')+'" data-seat="'+s+'">'+(u?'<img src="'+u+'" alt="">':'<em>❔</em>')+'<span>'+esc(n)+'</span>'+(on?'<i>📱</i>':'')+'</span>';}).join('');
   const L=$('#lqList');if(L.dataset.k!==html){L.dataset.k=html;const keep=[...L.querySelectorAll('.flash')].map(e=>e.dataset.seat);L.innerHTML=html;keep.forEach(s=>lqFlash(+s));}
   $('#lqNote').innerHTML=(tp&&tp.ok?'📶 연결 서버 접속됨':'⚠️ 연결 서버에 접속 중... (안 되면 그냥 출발해도 돼요. 컴퓨터가 아이템을 대신 써요)')
-    +'<br>참가자는 퀴즈 <b>결과 화면</b>을 켜 두면 휴대폰에 조종기가 자동으로 떠요 · 아이템은 원할 때 큰 버튼으로 (한 경기 최대 '+MAX_USES+'번) · 연결 안 된 카트는 컴퓨터가 대신 써요';
+    +'<br>참가자는 퀴즈 <b>결과 화면</b>을 켜 두면 휴대폰에 조종기가 자동으로 떠요 · 캐릭터와 카트 색을 고를 수 있어요 (안 고른 친구는 랜덤) · 아이템은 원할 때 큰 버튼으로 (한 경기 최대 '+MAX_USES+'번)';
 }
+let lqAC=0,lqLast=0;
 function lqBroadcast(){
-  const tp=NET.tp;if(!EMBED||!tp||!tp.ok)return;
-  const ph=state==='home'?'lobby':state==='count'?'count':state==='race'?'run':'done',names=rosterNames(),ks=[];
+  const tp=NET.tp;if(!tp||!tp.ok)return;
+  const ph=state==='home'?'lobby':state==='intro'?'intro':state==='count'?'count':state==='race'?'run':'done',names=rosterNames(),ks=[];
   const cidOf=seat=>seatOn(seat)?(NET.seats[seat].cid||''):'';
   if(racers.length&&state!=='home'){
     for(const r of racers){
@@ -1555,98 +1396,24 @@ function lqBroadcast(){
       ks.push([r.ni,r.name,r.css,cid,r.done?r.place-1:r.rank,(cid&&isManual(r)&&r.item)?r.item:'',fl,Math.min(LAPS,Math.floor(Math.max(0,r.s)/TL)+1),zone,0,
         (ah&&!r.done)?Math.round(ah.s-r.s):-1,(bh&&!bh.done&&!r.done)?Math.round(r.s-bh.s):-1,MAX_USES-r.uses,r.done?r.place:0]);
     }
-  }else names.forEach((n,i)=>ks.push([i,n,'#8fa3ff',cidOf(i+1),i,'',0,1,'',0,-1,-1,MAX_USES,0]));
-  tp.broadcast('st',{p:ph,lp:LAPS,a:0,pad:1,g:1,mu:MAX_USES,n:ks.length,ks});
+  }else names.forEach((n,i)=>{const L=PICKS[i+1];ks.push([i,n,L?hex(L.color):'#8fa3ff',cidOf(i+1),i,'',0,1,'',0,-1,-1,MAX_USES,0,L?ANI.indexOf(L.animal):-1,L?KCOL.indexOf(L.color):-1]);});
+  const pl={p:ph,lp:LAPS,a:0,pad:1,g:1,mu:MAX_USES,n:ks.length,ks},now=Date.now();
+  if(ph==='lobby'&&now-lqAC>2000){lqAC=now;pl.an=ANI.map(a=>ANIINFO[a]||['🐾',a]);pl.cl=KCOL.map((c,i)=>[hex(c),COLNAME[i]||'']);}
+  tp.broadcast('st',pl);
 }
 
 /* ================= 첫 화면 · 설정 ================= */
 function refreshHome(){
-  const title=CFG.className.trim()||'광안대교 카트 대회';
-  $('#homeTitle').textContent='🏎️ '+title;document.title=title;
-  const all=rosterNames().length,on=partIdx().length;
-  $('#homeCnt').textContent='오늘 참가 '+on+'명'+(all>on?' (빠짐 '+(all-on)+'명)':'')+(CFG.names.length?'':' · 번호로 경기');
+  const all=rosterNames().length;document.title='광안대교 카트 대회';
+  $('#homeCnt').textContent='참가 선수 '+all+'명';[...$('#introSeg').children].forEach(b=>b.classList.toggle('on',+b.dataset.i===CFG.intro));
   [...$('#spdSeg').children].forEach(b=>b.classList.toggle('on',+b.dataset.s===CFG.speed));
   [...$('#durSeg').children].forEach(b=>b.classList.toggle('on',+b.dataset.d===CFG.duration));
   const sec=Math.max(5,Math.round(CFG.duration*1.04/CFG.speed/5)*5);
-  $('#homeEst').textContent=(CFG.duration===30?'30초는 한 바퀴를 두 배 빠르게 달려요':CFG.duration===120?'2분은 두 바퀴를 달려요':'1분은 한 바퀴(약 1.3km)를 달려요')+' · 예상 약 '+(sec>=60?Math.floor(sec/60)+'분'+(sec%60?' '+sec%60+'초':''):sec+'초')+' · 캐릭터는 매 경기 새로 뽑혀요';
-  const names=rosterNames(),ps=CFG.pilots.filter(i=>i<names.length),con=ps.filter(i=>seatOn(i+1)).length;
-  $('#pilotChip').innerHTML=ps.length?('📱 아이템 조종사 <b>'+ps.length+'명</b> 지정 · 휴대폰 연결 <b>'+con+'명</b> · 방 코드 <b>'+CFG.room+'</b>'):'📱 아이템 조종사 지정하기 (퀴즈 1등에게 아이템 버튼 주기)';
-  if(EMBED)lqHome();
-}
-function buildHero(){
-  const lk=makeLooks(10);
-  $('#hero').innerHTML=lk.map(l=>{const K=makeVisual(l,'',false),u=avatarURL(K);disposeVisual(K);return '<img src="'+u+'" alt="">';}).join('');
+  $('#homeEst').textContent=(CFG.duration===30?'30초는 한 바퀴를 두 배 빠르게 달려요':CFG.duration===120?'2분은 두 바퀴를 달려요':'1분은 한 바퀴(약 1.3km)를 달려요')+' · 예상 약 '+(sec>=60?Math.floor(sec/60)+'분'+(sec%60?' '+sec%60+'초':''):sec+'초')+(CFG.intro?' · 선수 소개 약 '+Math.round(rosterNames().length*Math.min(3.2,Math.max(.9,21/rosterNames().length))+3)+'초 (건너뛰기 가능)':'');
+  lqHome();
 }
 $('#spdSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;CFG.speed=+b.dataset.s;saveCfg();refreshHome();};
 $('#durSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;CFG.duration=+b.dataset.d;saveCfg();refreshHome();};
-$('#pilotChip').onclick=()=>{if(EMBED)return;sTab='pilot';openSettings();};
-let sTab='names';
-const seg=(act,items,cur)=>'<div class="sSeg">'+items.map(([v,l])=>'<button data-act="'+act+'" data-v="'+v+'" class="'+(String(cur)===String(v)?'on':'')+'">'+l+'</button>').join('')+'</div>';
-const chipsHTML=mode=>rosterNames().map((n,i)=>{let c='chip2',a='';if(mode==='part'){c+=' pick'+(CFG.part[i]?'':' off');a=' data-act="partToggle" data-v="'+i+'"';}else if(mode==='pilot'){c+=' pick'+(CFG.pilots.includes(i)?' pilot':'');a=' data-act="pilotToggle" data-v="'+i+'"';}
-  return '<div class="'+c+'"'+a+'><small>'+(i+1)+'</small>'+(mode==='pilot'&&CFG.pilots.includes(i)?'🎮 ':'')+esc(n)+'</div>';}).join('');
-const joinURL=seat=>location.href.split('#')[0].split('?')[0]+'?join='+CFG.room+'&seat='+seat;
-const PANEL={
-  names(){return `<h3>우리 반 이름</h3><p>첫 화면 제목과 드론쇼 글자로 나와요. 예) <b>햇살반 카트 대회</b> (비우면 '광안대교 카트 대회')</p>
-<div class="sRow"><input class="sIn" id="inClass" maxlength="30" placeholder="예) 햇살반 카트 대회" value="${esc(CFG.className)}" style="flex:1;max-width:520px"><button class="sBtn" data-act="saveClass">반 이름 저장</button></div>
-<h3>학생 이름 한 번에 넣기</h3><p>한 줄에 한 명씩, 번호 순서대로 붙여 넣으세요. 엑셀에서 '번호 + 이름' 두 칸을 복사해 와도 이름만 골라 넣어요. 쉼표로 이어 써도 돼요. (최대 30명)<br>명단을 비우면 번호로 경기해요. 명단은 이 컴퓨터의 브라우저에만 저장돼요.</p>
-<textarea class="sIn" id="inNames" style="width:100%;height:230px;resize:vertical" placeholder="예)&#10;김하늘&#10;이바다&#10;박구름">${esc(CFG.names.join('\n'))}</textarea>
-<div class="sRow"><button class="sBtn" data-act="saveNames">명단 저장</button><button class="sBtn alt" data-act="clearNames">명단 비우기 (번호로 경기)</button></div>
-<div class="sRow"><b style="font-size:20px">번호 모드 인원</b><input class="sIn" id="inNum" type="number" min="2" max="30" value="${CFG.numCount}" style="width:110px"><span style="font-weight:700">명 (명단이 없을 때 1번부터 이 번호까지 출전)</span></div>
-<h3>현재 명단</h3><div class="chips">${chipsHTML('')}</div>`;},
-  parts(){syncPart();const names=rosterNames(),on=partIdx().length,ex=CFG.partMode==='exclude';
-    return `<h3>참가선수 고르기</h3>${seg('partMode',[['exclude','빠질 학생 고르기'],['include','참가할 학생 고르기']],CFG.partMode)}
-<p>${ex?'결석생처럼 <b>빠질 학생</b>을 눌러 주세요. 누른 학생은 흐리게 보이고 경기에 나오지 않아요.':'<b>참가할 학생</b>을 눌러 주세요. 누르지 않은 학생은 경기에 나오지 않아요.'} 다시 누르면 되돌아가요. <b>날짜가 바뀌면 자동으로 '모두 참여'로 돌아가요.</b></p>
-<div class="sRow"><b style="font-size:20px">${CFG.partDate} · 참가 ${on}명 / 빠짐 ${names.length-on}명</b><button class="sBtn alt" data-act="partAll">모두 참여</button></div>
-<div class="chips">${chipsHTML('part')}</div>`;},
-  pilot(){syncPart();const names=rosterNames(),ps=CFG.pilots.filter(i=>i<names.length).sort((a,b)=>a-b);
-    return `<h3>📱 아이템 조종사</h3><p>라이브 퀴즈에서 1등한 학생처럼 <b>아이템을 직접 쓰게 해 줄 학생</b>을 눌러 주세요. 지정된 학생이 휴대폰으로 접속하면 자동으로 '아이템 조종사'가 돼요. 조종사는 아이템을 쥐고 있다가 원할 때 휴대폰 버튼으로 쓰고, <b>한 경기에 최대 ${MAX_USES}번</b>까지 쓸 수 있어요. 나머지 학생은 아이템이 자동으로 쓰여요.</p>
-<div class="chips">${chipsHTML('pilot')}</div>
-<div class="sRow" style="margin-top:14px"><b style="font-size:20px">방 코드</b><span class="code">${CFG.room}</span><button class="sBtn alt" data-act="newRoom">새 코드 만들기</button><button class="sBtn alt" data-act="pilotClear">조종사 모두 해제</button></div>
-<h3>접속 주소 (조종사별)</h3>
-${ps.length?'<div class="seats">'+ps.map(i=>{const u=joinURL(i+1);return '<div class="seat"><div class="qr" data-url="'+esc(u)+'"></div><div style="min-width:0;flex:1"><div class="nm"><span class="dotOn'+(seatOn(i+1)?' on':'')+'"></span>'+(i+1)+'번 '+esc(names[i])+'</div><div class="lk">'+esc(u)+'</div><button class="sBtn mini" data-act="copyLink" data-v="'+(i+1)+'">주소 복사</button><button class="sBtn mini alt" data-act="openLink" data-v="'+(i+1)+'">새 탭에서 열기 (테스트)</button></div></div>';}).join('')+'</div>':'<p>아직 지정된 조종사가 없어요. 위에서 학생을 눌러 주세요.</p>'}
-<h3>휴대폰이 연결되지 않은 조종사는</h3>${seg('proxy',[['auto','자동으로 달리기'],['teacher','선생님이 대신 누르기']],CFG.proxy)}
-<p>경기 중에는 큰 화면 오른쪽에 조종사 목록이 나와요. <b>'쓰기' 버튼</b>(또는 키보드 숫자 1~9)으로 선생님이 대신 눌러 줄 수 있어요.</p>
-<p style="background:#fff7d6;border-radius:12px;padding:10px 14px"><b>연결 안내</b> · 지금은 <b>같은 PC, 같은 브라우저의 다른 탭</b>에서만 연결돼요(테스트용). 실제 휴대폰으로 접속하려면 이 파일을 인터넷 주소에 올리고, 코드의 <b>createTransport()</b> 한 곳을 PeerJS 등으로 바꿔 끼우면 돼요. QR 칸도 그때 채워져요.</p>`;},
-  recs(){return `<h3>순서 기록</h3><p>경기가 끝날 때마다 전체 순서를 이 컴퓨터의 브라우저에 저장해요. 최근 30번까지 남아요. 발표·줄 서기 순서로 써 보세요.</p>
-${seg('recOn',[['1','기록 켜기'],['0','기록 끄기']],CFG.recordOn?'1':'0')}
-<div class="sRow"><button class="sBtn danger" data-act="recClear">기록 모두 지우기</button></div>
-${RECS.length?RECS.map(r=>{const d=new Date(r.t);return '<details class="rec"><summary>'+(d.getMonth()+1)+'/'+d.getDate()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')+' · '+r.n+'명 · '+(r.dur===30?'30초':r.dur===120?'2분':'1분')+' · 속도 '+r.spd+'x · 1등 '+esc(r.order[0]||'')+'</summary><div>'+r.order.map((n,i)=>'<b>'+(i+1)+'</b> '+esc(n)).join(' &nbsp; ')+'</div></details>';}).join(''):'<p>아직 기록이 없어요.</p>'}`;},
-  disp(){return `<h3>화질</h3><p><b>높음</b>: 그림자 + 빛 번짐, <b>보통</b>: 빛 번짐만, <b>가벼움</b>: 그림자와 빛 번짐을 끄고 해상도를 낮춰요. 전자칠판이 느리면 '가벼움'을 골라 주세요.</p>${seg('quality',[['h','높음'],['m','보통'],['l','가벼움']],CFG.quality)}
-<h3>경기 길이</h3><p>30초는 한 바퀴를 두 배 빠르게, 1분은 한 바퀴, 2분은 두 바퀴를 달려요. 속도(1x·1.5x·2x)는 첫 화면에서도 고를 수 있어요.</p>${seg('dur',[['30','30초'],['60','1분'],['120','2분']],CFG.duration)}${seg('speed',[['1','1x'],['1.5','1.5x'],['2','2x']],CFG.speed)}
-<h3>효과음</h3>${seg('sfx',[['1','켜기'],['0','끄기']],CFG.sfx?'1':'0')}
-<h3>배경음</h3>${seg('bgm',[['1','켜기'],['0','끄기']],CFG.bgm?'1':'0')}`;}
-};
-function setTab(t){sTab=t;[...$('#sTabs').children].forEach(b=>b.classList.toggle('on',b.dataset.t===t));$('#sBody').innerHTML=PANEL[t]();$('#sBody').querySelectorAll('.qr').forEach(el=>drawQR(el,el.dataset.url));}
-function rerender(){const st=$('#sBody').scrollTop;setTab(sTab);$('#sBody').scrollTop=st;}
-function openSettings(){syncPart();$('#settings').classList.remove('hidden');setTab(sTab);}
-function closeSettings(){$('#settings').classList.add('hidden');refreshHome();CAM.snap=true;}
-$('#bGear').onclick=openSettings;$('#sClose').onclick=closeSettings;
-$('#sTabs').onclick=e=>{const b=e.target.closest('button');if(b)setTab(b.dataset.t);};
-$('#sBody').addEventListener('change',e=>{if(e.target.id==='inNum'){CFG.numCount=clamp(Math.round(+e.target.value)||25,2,MAXN);e.target.value=CFG.numCount;saveCfg();syncPart();rerender();toast('번호 모드 인원 '+CFG.numCount+'명');}});
-$('#sBody').addEventListener('click',e=>{
-  const el=e.target.closest('[data-act]');if(!el)return;const a=el.dataset.act,v=el.dataset.v;
-  switch(a){
-    case 'saveClass':CFG.className=$('#inClass').value.trim().slice(0,30);saveCfg();droneSpecs();toast('반 이름을 저장했어요');break;
-    case 'saveNames':{const all=parseNames($('#inNames').value);CFG.names=all.slice(0,MAXN);CFG.part=[];CFG.pilots=[];saveCfg();syncPart();toast(all.length>MAXN?'최대 30명까지만 저장했어요':CFG.names.length+'명 명단을 저장했어요');rerender();break;}
-    case 'clearNames':CFG.names=[];CFG.part=[];CFG.pilots=[];saveCfg();syncPart();toast('명단을 비웠어요. 번호로 경기해요');rerender();break;
-    case 'partMode':CFG.partMode=v;CFG.part=Array(rosterNames().length).fill(v==='exclude');CFG.partDate=dateStr();saveCfg();rerender();break;
-    case 'partAll':CFG.part=Array(rosterNames().length).fill(true);CFG.partDate=dateStr();saveCfg();rerender();break;
-    case 'partToggle':CFG.part[+v]=!CFG.part[+v];saveCfg();rerender();break;
-    case 'pilotToggle':{const i=+v,k=CFG.pilots.indexOf(i);if(k>=0)CFG.pilots.splice(k,1);else{if(CFG.pilots.length>=8){toast('조종사는 8명까지 지정할 수 있어요');break;}CFG.pilots.push(i);}saveCfg();rerender();break;}
-    case 'pilotClear':CFG.pilots=[];saveCfg();rerender();break;
-    case 'newRoom':CFG.room=newRoom();saveCfg();netOpen();toast('새 방 코드 '+CFG.room+' · 휴대폰은 새 주소로 다시 접속해요');rerender();break;
-    case 'copyLink':{const u=joinURL(+v);(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('주소를 복사했어요'),()=>toast('복사가 안 됐어요. 주소를 길게 눌러 복사해 주세요'));break;}
-    case 'openLink':window.open(joinURL(+v),'_blank');break;
-    case 'proxy':CFG.proxy=v;saveCfg();rerender();break;
-    case 'recOn':CFG.recordOn=v==='1';saveCfg();rerender();break;
-    case 'recClear':RECS=[];store('gk_rec','[]');toast('기록을 지웠어요');rerender();break;
-    case 'quality':CFG.quality=v;saveCfg();applyQuality();rerender();break;
-    case 'dur':CFG.duration=+v;saveCfg();rerender();break;
-    case 'speed':CFG.speed=+v;saveCfg();rerender();break;
-    case 'sfx':CFG.sfx=v==='1';saveCfg();if(CFG.sfx){SND.init();sfx('item');}rerender();break;
-    case 'bgm':CFG.bgm=v==='1';saveCfg();rerender();break;
-  }
-});
 $('#bSound').onclick=()=>{SND.on=!SND.on;$('#bSound').textContent=SND.on?'🔊':'🔇';};
 
 /* ================= 진행 ================= */
@@ -1658,44 +1425,64 @@ function startRace(){
   buildRoster();newRace();setupHUD();
   for(const k in NET.seats)NET.seats[k].needAva=true;
   $('#setup').classList.add('hidden');$('#result').classList.add('hidden');$('#hud').classList.remove('hidden');
-  state='count';countT=3.6;lastCount=4;endWait=0;hudT=0;
-  banner('준비~',900);updateHUD();
+  lastCount=4;endWait=0;hudT=0;updateHUD();
+  if(CFG.intro&&racers.length>=2)introStart();else beginCount();
+}
+function beginCount(){$('#hud').classList.remove('hidden');$('#intro').classList.add('hidden');state='count';countT=3.6;lastCount=4;banner('준비~',900);}
+/* ---- 출발 전 선수 소개: 한 명씩 클로즈업(다양한 각도) → 전체 모습 → 3·2·1 ---- */
+const TAGS=['🔥 우승 후보 1순위!','🌪️ 복병 등장!','⚡ 폭주 예감!','😎 여유만만 드라이버','🍀 행운의 주인공?','🚀 출발이 빠른 선수!','🎯 코너링의 달인!','🦊 숨은 실력자!','💪 불꽃 투지!','🌟 오늘의 주인공!','🤫 조용한 강자','🎲 예측불가 드라이버','🏆 우승이 보인다!','🥁 심장이 두근두근!'];
+let intro=null;
+function introStart(){
+  const n=racers.length,D=clamp(21/n,.9,3.2),na=D>=2.8?3:D>=1.8?2:1;
+  intro={list:racers.slice(),i:0,t:0,D,na,ai:-1,phase:'spot',tags:shuffle(TAGS.slice()),spot:null};
+  state='intro';$('#hud').classList.add('hidden');$('#result').classList.add('hidden');$('#intro').classList.remove('hidden');
+  $('#icCard').classList.remove('hidden');$('#icTop').classList.remove('hidden');$('#icFinal').classList.add('hidden');
+  CO.shd.count=0;CAM.snap=true;introShow();
+}
+function introShow(){
+  const I=intro,r=I.list[I.i];I.spot=r;I.t=0;I.ai=-1;
+  racers.forEach(q=>{q.K.root.visible=(q===r);q.spot=(q===r);q.K.label.visible=false;});
+  emote(r,pick(['😎','🔥','⭐','💪']),I.D*.9);puff(r,'conf',14,1.4);sfx('item');
+  const L=r.look,info=ANIINFO[L.animal]||['🐾',''],cn=COLNAME[KCOL.indexOf(L.color)]||'';
+  $('#icNo').textContent=(I.i+1)+' / '+I.list.length;$('#icAni').textContent=info[0];$('#icName').textContent=r.name;
+  $('#icSub').textContent=info[1]+' · '+cn+' 카트'+(seatOn(r.ni+1)?' · 📱 직접 조종!':'');
+  $('#icTag').textContent=I.tags[I.i%I.tags.length];
+  const c=$('#icCard');c.style.setProperty('--cc',r.css);c.classList.remove('in');void c.offsetWidth;c.classList.add('in');
+}
+function introTick(dt){
+  const I=intro;if(!I)return;I.t+=dt;
+  if(I.phase==='spot'){if(I.t>=I.D){I.i++;if(I.i>=I.list.length)introWide();else introShow();}}
+  else if(I.phase==='wide'){if(I.t>=2.4)introEnd();}
+}
+function introWide(){
+  const I=intro;I.phase='wide';I.t=0;I.spot=null;
+  racers.forEach(q=>{q.K.root.visible=true;q.spot=false;q.K.label.visible=true;});CO.shd.count=racers.length;
+  $('#icCard').classList.add('hidden');$('#icTop').classList.add('hidden');$('#icFinal').classList.remove('hidden');sfx('count');CAM.snap=true;
+}
+function introEnd(){
+  racers.forEach(q=>{q.K.root.visible=true;q.spot=false;q.K.label.visible=true;});CO.shd.count=racers.length;intro=null;beginCount();
+}
+function introCam(){
+  const I=intro;
+  if(I.phase==='wide'){const p=clamp(I.t/2.4,0,1),e=p*p*(3-2*p);toW(15.5,lerp(8,-6,e),lerp(5.4,3.7,e),_v);toW(-7,0,1.4,_v2);return lerp(46,55,e);}
+  const r=I.spot,u=clamp(I.t/I.D,0,.999),ai=Math.min(I.na-1,Math.floor(u*I.na)),a=u*I.na-ai,e=a*a*(3-2*a),kind=[['front'],['front','orbit'],['front','orbit','crane']][I.na-1][ai];
+  if(ai!==I.ai){I.ai=ai;CAM.snap=true;}
+  const s=r.s,x=r.x;let fv=40;
+  if(kind==='front'){toW(s+lerp(9.5,4.4,e),x+lerp(2.2,.5,e),lerp(.8,1.6,e),_v);toW(s,x,1.35,_v2);fv=lerp(52,34,e);}
+  else if(kind==='orbit'){const th=lerp(.35,1.9,e),R=lerp(5.6,4.6,e);toW(s+Math.cos(th)*R,x+Math.sin(th)*R,lerp(1.5,2.2,e),_v);toW(s,x,1.35,_v2);fv=40;}
+  else{toW(s+lerp(3.2,5.6,e),x-lerp(3.6,1.8,e),lerp(1.1,4.6,e),_v);toW(s,x,1.2,_v2);fv=lerp(38,50,e);}
+  return fv;
 }
 function toHome(){$('#big').classList.add('hidden');state='home';bgmStop();FW.on=false;$('#hud').classList.add('hidden');$('#result').classList.add('hidden');$('#setup').classList.remove('hidden');$('#banner').classList.remove('on');
   racers.forEach(r=>scene.remove(r.K.root));racers=[];order=[];CO.shd.count=0;CO.ban.count=0;CO.bal.forEach(m=>m.visible=false);CO.marker.visible=false;CAM.snap=true;refreshHome();}
 $('#bStart').onclick=startRace;$('#bAgain').onclick=startRace;$('#bHome').onclick=toHome;$('#bQuit').onclick=toHome;
-function addRecord(){if(!CFG.recordOn)return;RECS.unshift({t:Date.now(),spd:curSpd,dur:duration,n:finalOrder.length,order:finalOrder.map(r=>r.name)});RECS=RECS.slice(0,30);store('gk_rec',JSON.stringify(RECS));}
 function showResult(){
-  resultShown=true;bgmStop();addRecord();state='result';
+  resultShown=true;bgmStop();state='result';
   const f=finalOrder,pd=(r,cls,m)=>r?'<div class="pd '+cls+'"><img src="'+r.url+'" alt=""><div class="nm">'+esc(r.name)+'</div><div class="st">'+m+'</div></div>':'';
   $('#podium').innerHTML=pd(f[1],'p2','🥈 2등')+pd(f[0],'p1','🥇 1등')+pd(f[2],'p3','🥉 3등');
   $('#rest').innerHTML=f.slice(3).map((r,i)=>'<div class="rr"><b>'+(i+4)+'</b><img src="'+r.url+'" alt=""><span>'+esc(r.name)+'</span></div>').join('');
   $('#result').classList.remove('hidden');$('#result').scrollTop=0;
 }
-function fit(g,s,w){if(g.measureText(s).width<=w)return s;while(s.length>1&&g.measureText(s+'…').width>w)s=s.slice(0,-1);return s+'…';}
-function resultCanvas(){
-  const f=finalOrder,n=f.length,rest=Math.max(0,n-3),cols=rest>18?4:3,rowsN=Math.ceil(rest/cols),Wd=1400,H=660+rowsN*84+50;
-  const c=document.createElement('canvas');c.width=Wd;c.height=H;const g=c.getContext('2d');
-  const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#0e1647');gr.addColorStop(1,'#43206b');g.fillStyle=gr;g.fillRect(0,0,Wd,H);
-  for(let i=0;i<90;i++){g.fillStyle='rgba(255,255,255,'+rand(.2,.8)+')';g.fillRect(Math.random()*Wd,Math.random()*330,2,2);}
-  g.fillStyle='#fff';g.textAlign='center';g.textBaseline='middle';g.font='900 60px '+FONT;g.fillText('🏆 '+(CFG.className.trim()||'광안대교 카트 대회')+' 결과',Wd/2,70);
-  const d=new Date();g.font='700 26px '+FONT;g.fillStyle='#c9d2ff';g.fillText(d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.',Wd/2,126);
-  const pod=[[f[1],Wd/2-300,150,'#dfe5ee','2등'],[f[0],Wd/2,210,'#ffd23f','1등'],[f[2],Wd/2+300,110,'#f0b98a','3등']],baseY=620;
-  for(const [r,x,h,col,txt] of pod){if(!r)continue;
-    g.fillStyle=col;g.strokeStyle='#1c1f3a';g.lineWidth=6;g.beginPath();g.rect(x-130,baseY-h,260,h);g.fill();g.stroke();
-    g.fillStyle='#1c1f3a';g.font='900 46px '+FONT;g.fillText(txt,x,baseY-h/2);
-    try{g.drawImage(r.img,x-100,baseY-h-250,200,200);}catch(e){}
-    g.fillStyle='#fff';g.font='900 38px '+FONT;g.fillText(fit(g,r.name,250),x,baseY-h-30);}
-  const cw=(Wd-100)/cols;
-  for(let i=0;i<rest;i++){const r=f[i+3],cx=50+(i%cols)*cw,cy=660+Math.floor(i/cols)*84;
-    g.fillStyle='#fff';g.strokeStyle='#1c1f3a';g.lineWidth=4;rr(g,cx+6,cy,cw-12,72,18);g.fill();g.stroke();
-    g.fillStyle='#1c1f3a';g.textAlign='right';g.font='900 34px '+FONT;g.fillText(String(i+4),cx+70,cy+38);
-    try{g.drawImage(r.img,cx+78,cy+4,64,64);}catch(e){}
-    g.textAlign='left';g.font='800 32px '+FONT;g.fillText(fit(g,r.name,cw-170),cx+150,cy+38);g.textAlign='center';}
-  return c;
-}
-function savePNG(){const d=new Date();resultCanvas().toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='광안대교카트_결과_'+d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0')+'.png';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);toast('순위 이미지를 저장했어요');});}
-$('#bSave').onclick=savePNG;
 const bigCk=new Set();
 function showBig(){
   const f=finalOrder,n=f.length,cols=n<=8?1:n<=20?2:3,rows=Math.ceil(n/cols),el=$('#bigList');
@@ -1711,13 +1498,13 @@ let last=performance.now();
 function tick(dt){
   visT+=dt;
   if(state==='home'){
-    if(!$('#settings').classList.contains('hidden'))return;
     dronesUpdate(dt,visT);ledUpdate(visT);fwUpdate(dt);updateCamera(dt,visT);renderFrame();return;
   }
   if(state==='count'){
     countT-=dt;const c=Math.ceil(countT-.6);
     if(c!==lastCount&&c>=1&&c<=3){lastCount=c;banner(String(c),800);sfx('count');}
     if(countT<=0){state='race';banner('출발!',900);sfx('go');bgmStart();CAM.snap=true;}
+  }else if(state==='intro'){introTick(dt);
   }else if(state==='race'){
     const sdt=dt*curSpd,steps=Math.max(1,Math.ceil(sdt/.02));for(let k=0;k<steps;k++)simStep(sdt/steps);
     if(endT>=0){endWait+=dt;if(endWait>3.8&&!resultShown)showResult();}
@@ -1732,12 +1519,12 @@ function tick(dt){
 function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last)/1000);last=now;tick(dt);}
 
 /* ================= 시작 ================= */
-loadCfg();loadRecs();syncPart();
+loadCfg();syncPart();
 buildTrack();buildWorld();buildDrones();buildFireworks();buildCourse();buildParts();resetCourse();
-applyQuality();netOpen();buildHero();refreshHome();
+applyQuality();netOpen();refreshHome();
 $('#setup').classList.remove('hidden');
-setInterval(()=>{if(state==='home'&&$('#settings').classList.contains('hidden'))refreshHome();},2000);
-const GK=window.GK={fast:false,tick,startRace,toHome,CFG,MK,SEC,FW,CAM,pilotUse,resultCanvas,dbg:{scene,camera,NET},
+setInterval(()=>{if(state==='home')refreshHome();},2000);
+const GK=window.GK={fast:false,tick,startRace,toHome,CFG,MK,SEC,FW,CAM,pilotUse,PICKS,get intro(){return intro;},dbg:{scene,camera,NET},
   get state(){return state;},get racers(){return racers;},get raceT(){return raceT;},get TL(){return TL;},get info(){return renderer.info;},
   shot(w){renderFrame();const c=document.createElement('canvas');c.width=w||960;c.height=Math.round(c.width*canvas.height/canvas.width);c.getContext('2d').drawImage(canvas,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.82);}};
 if(EMBED){
@@ -1747,9 +1534,11 @@ if(EMBED){
   const bye=()=>{try{if(NET.tp)NET.tp.broadcast('st',{p:'end'});}catch(e){}};
   addEventListener('message',e=>{if(e.origin!==location.origin||!e.data)return;if(e.data.gk==='end')bye();});
   addEventListener('pagehide',bye);
-  const rem=()=>toParent({gk:'opt',dur:CFG.duration,spd:CFG.speed});
+  const rem=()=>toParent({gk:'opt',dur:CFG.duration,spd:CFG.speed,intro:CFG.intro});
   $('#durSeg').addEventListener('click',rem);$('#spdSeg').addEventListener('click',rem);
-  setInterval(lqBroadcast,150);setInterval(()=>{if(state==='home')lqHome();},600);lqHome();
+  $('#introSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;CFG.intro=+b.dataset.i;refreshHome();rem();};
+  $('#bIntroSkip').onclick=()=>{if(state==='intro')introEnd();};
+  setInterval(()=>{if(state==='home'&&Date.now()-lqLast<400)return;lqLast=Date.now();lqBroadcast();},150);setInterval(()=>{if(state==='home')lqHome();},600);lqHome();
   toParent({gk:'ready'});
 }
 requestAnimationFrame(frame);
