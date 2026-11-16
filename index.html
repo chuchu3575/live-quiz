@@ -138,6 +138,9 @@ td.tm{white-space:nowrap;font-size:15px}
 .klight.off{display:none}
 .klob{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:6;width:min(900px,92vw);max-height:86vh;overflow:auto;background:rgba(255,255,255,.96);color:var(--ink);border:5px solid var(--ink);border-radius:26px;padding:18px 26px 22px;text-align:center;box-shadow:0 8px 0 rgba(0,0,0,.25)}
 .klob h2{margin:0 0 6px;font-size:clamp(26px,3.4vw,40px)}.klob p{margin:6px 0;font-size:clamp(18px,2.1vw,24px)}.klob p.sm{font-size:clamp(15px,1.6vw,19px);opacity:.75}
+.gkv{position:fixed;inset:0;z-index:30;background:#070c22;font-family:'Jua','Malgun Gothic',sans-serif}
+.gkv iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#070c22}
+.gkv .kload{background:#070c22;color:#fff}
 .klist{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0}
 .klist span{display:flex;align-items:center;gap:6px;border:3px solid var(--ink);border-radius:999px;padding:3px 14px 3px 8px;font-size:clamp(17px,2vw,24px);background:#eee;opacity:.6}
 .klist span.on{background:#d3f9d8;opacity:1}.klist i{width:16px;height:16px;border-radius:50%;border:2px solid var(--ink);flex:none}
@@ -460,7 +463,7 @@ const pg=Math.max(0,Math.min(1,(lead?lead.y:FY)/FY));ctx.fillStyle='rgba(74,59,8
 function raceRun(ns){const o=$('#rov');if(!o)return;raceStop();o.onclick=null;
 o.innerHTML=`<div class="card race"><div class="row"><h2 style="margin:0">🎱 구슬 레이스</h2><span class="tag" id="rcnt" style="margin:0">0 / ${ns.length} 도착</span></div>
 <div class="rbox"><div class="rcw"><canvas id="rcv"></canvas><div class="rwin" id="rwin"></div></div><ol class="rlist" id="rlst"></ol></div>
-<div style="margin-top:14px"><button class="btn sm" id="rre">🔁 다시 달리기</button> <button class="btn sm alt" id="red">✏️ 방식·이름 바꾸기</button> <button class="btn sm alt" id="rcp">닫기</button></div></div>`;
+<div style="margin-top:14px"><button class="btn sm" id="rre">🔁 다시 달리기</button> <button class="btn sm alt" id="red">✏️ 방식·이름 바꾸기</button> <button class="btn sm alt" id="rcl">닫기</button></div></div>`;
 $('#rre').onclick=()=>raceRun(ns);$('#red').onclick=()=>raceSetup(ns);$('#rcl').onclick=raceClose;
 const sh=[...ns];for(let k=sh.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[sh[k],sh[j]]=[sh[j],sh[k]]}
 const cols=Math.min(sh.length,15),gap=(RW-60)/cols;
@@ -493,8 +496,8 @@ o.innerHTML=`<div class="card"><h2 style="margin:0 0 6px">🏆 1등 뽑기 <smal
 <div style="margin:10px 0 4px"><button class="btn sm alt" id="rt">🏆 1등 동점자 (${ties.length}명)</button> <button class="btn sm alt" id="r7">🏅 상위 7명</button> <button class="btn sm alt" id="ra">🏁 완료한 학생 전체 (${done.length}명)</button></div>
 <p class="hint" id="rm" style="margin-top:6px"></p>
 <div><button class="btn" id="rg">출발! ▶</button> <button class="btn alt" id="rc">닫기</button></div></div>`;
-const desc=()=>{const l=+KS.get('laps',3),m=KS.get('mode','marble');$('#kdesc').textContent=m==='cupkart'?`부산가톨릭대 교정 실제 도로 약 1.2km · ${+KS.get('claps',2)||2}바퀴 약 ${(+KS.get('claps',2)||2)*43+4}초 · `+(KS.get('pad',true)?'📱 참가자가 휴대폰 버튼으로 원할 때 아이템을 써요':'아이템은 컴퓨터가 자동으로 써요'):m==='robot'?'230m 직선 트랙 · 허들 4개 · ⚡배터리 터보 · 🔥과열 · 약 25초':m==='battle'?'레이저 배틀 · 줄어드는 자기장 · ➕회복 🛡️방패 ⚡연사 · 약 30~60초':m==='snow'?'부산가톨릭대 메인 캠퍼스 · 눈보라 자기장 · ☕회복 🧥패딩 🧤연사 · 3명 이하면 NPC 팀전 후 최후의 결투 · 약 50~80초':`한 바퀴 약 12초 · ${l}바퀴면 약 ${l*12+5}초 · 🍌바나나 🚀로켓 🛡️방패 ⚡번개 🔥부스터`};
-const showOpt=m=>{$('#kopt').style.display=['kart','robot','battle','snow','cupkart'].includes(m)?'':'none';$('#klps').style.display=m==='kart'?'':'none';$('#kcps').style.display=$('#kphs').style.display=m==='cupkart'?'':'none';$('#rm').textContent='';desc()};
+const desc=()=>{const l=+KS.get('laps',3),m=KS.get('mode','marble');$('#kdesc').textContent=m==='gwangan'?'광안대교 야경 코스 약 1.3km · 약 1분 (출발 화면에서 30초·2분 선택) · 📱 참가자가 휴대폰 큰 버튼으로 원할 때 아이템을 써요 (한 경기 최대 3번)':m==='cupkart'?`부산가톨릭대 교정 실제 도로 약 1.2km · ${+KS.get('claps',2)||2}바퀴 약 ${(+KS.get('claps',2)||2)*43+4}초 · `+(KS.get('pad',true)?'📱 참가자가 휴대폰 버튼으로 원할 때 아이템을 써요':'아이템은 컴퓨터가 자동으로 써요'):m==='robot'?'230m 직선 트랙 · 허들 4개 · ⚡배터리 터보 · 🔥과열 · 약 25초':m==='battle'?'레이저 배틀 · 줄어드는 자기장 · ➕회복 🛡️방패 ⚡연사 · 약 30~60초':m==='snow'?'부산가톨릭대 메인 캠퍼스 · 눈보라 자기장 · ☕회복 🧥패딩 🧤연사 · 3명 이하면 NPC 팀전 후 최후의 결투 · 약 50~80초':`한 바퀴 약 12초 · ${l}바퀴면 약 ${l*12+5}초 · 🍌바나나 🚀로켓 🛡️방패 ⚡번개 🔥부스터`};
+const showOpt=m=>{$('#kopt').style.display=['kart','robot','battle','snow','cupkart','gwangan'].includes(m)?'':'none';$('#klps').style.display=m==='kart'?'':'none';$('#kcps').style.display=$('#kphs').style.display=m==='cupkart'?'':'none';$('#rm').textContent='';desc()};
 let md=KS.get('mode','marble');if(!GLIST.some(g=>g[0]===md))md='marble';
 kSeg('rlp',KS.get('laps',3),v=>{KS.set('laps',+v);desc()});
 kSeg('rmd',md,v=>{KS.set('mode',v);showOpt(v)});KS.set('mode',md);showOpt(md);
@@ -504,14 +507,15 @@ kSeg('rsd',KS.get('snd',true)?1:0,v=>KS.set('snd',v==='1'));
 $('#rt').onclick=()=>{$('#rn').value=ties.join('\n')};$('#r7').onclick=()=>{$('#rn').value=[...tData].filter(p=>p.d).sort(rank).slice(0,7).map(p=>p.n).join('\n')};$('#ra').onclick=()=>{$('#rn').value=done.join('\n')};$('#rc').onclick=raceClose;
 $('#rg').onclick=()=>{const ns=$('#rn').value.split(/[\n,]/).map(s=>s.trim()).filter(Boolean).slice(0,60),m=KS.get('mode','marble');
   if(ns.length<2){$('#rm').textContent='⚠️ 이름을 2명 이상 넣어 주세요!';return}
-  m==='kart'?kartRun(ns):m==='cupkart'?kartRun(ns,{laps:+KS.get('claps',2)||2,pad:!!KS.get('pad',true)}):m==='marble'?raceRun(ns):(m==='robot'||m==='battle'||m==='snow')?r3Run(m,ns):gameRun(m,ns)}}
+  if(m==='gwangan'&&ns.length>30){$('#rm').textContent='⚠️ 광안대교 카트는 최대 30명까지예요 (지금 '+ns.length+'명). 이름을 줄여 주세요!';return}
+  m==='gwangan'?gkRun(ns):m==='kart'?kartRun(ns):m==='cupkart'?kartRun(ns,{laps:+KS.get('claps',2)||2,pad:!!KS.get('pad',true)}):m==='marble'?raceRun(ns):(m==='robot'||m==='battle'||m==='snow')?r3Run(m,ns):gameRun(m,ns)}}
 
 /* ---------- 🏎️ 카트 레이스: 3D 서킷에서 실제 시뮬레이션으로 순위 결정 ---------- */
 const KCOL=['#2f8fff','#ff4b4b','#ffc93c','#ff7fbf','#3ccf6e','#9b6bff','#ff9a2e','#27c7d6','#eeeeee','#8a5a3c','#a3e635','#e11d74'];
 const kColor=i=>i<KCOL.length?KCOL[i]:`hsl(${(i*47)%360},78%,60%)`;
 const KITEM={banana:'🍌',rocket:'🚀',shield:'🛡️',zap:'⚡',boost:'🔥'};
 const KW=12,KLANE=KW/2-1.3,KDT=1/60;
-let kart=null,kAC=null;
+let kart=null,kAC=null,gkFrame=null,gkNs=null;
 
 function loadThree(){if(window.THREE)return Promise.resolve();
 const urls=['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js','https://unpkg.com/three@0.128.0/build/three.min.js'];
@@ -690,7 +694,7 @@ U.res.classList.add('show');
 $('#kbig').onclick=()=>{U.res.classList.toggle('big');$('#kbig').textContent=U.res.classList.contains('big')?'↩ 시상대로 돌아가기':'🔠 전체 큰 글씨로 보기'};
 $('#kagain').onclick=()=>kartRun(K.ns,K.opt);$('#kchg').onclick=()=>kartBack(K.ns);$('#kcls').onclick=raceClose}
 
-function kartClose(){if(kart){if(kart.onClose)kart.onClose();cancelAnimationFrame(kart.raf);window.removeEventListener('keydown',kart.key);try{kart.S&&kart.S.traverse(o=>{if(o.geometry)o.geometry.dispose();const m=o.material;(Array.isArray(m)?m:m?[m]:[]).forEach(x=>{if(x.map)x.map.dispose();x.dispose()})});kart.R&&kart.R.dispose()}catch(e){}kart=null}
+function kartClose(){gkClose();if(kart){if(kart.onClose)kart.onClose();cancelAnimationFrame(kart.raf);window.removeEventListener('keydown',kart.key);try{kart.S&&kart.S.traverse(o=>{if(o.geometry)o.geometry.dispose();const m=o.material;(Array.isArray(m)?m:m?[m]:[]).forEach(x=>{if(x.map)x.map.dispose();x.dispose()})});kart.R&&kart.R.dispose()}catch(e){}kart=null}
 const o=$('#kov');if(o)o.remove();document.documentElement.style.overflow=''}
 function kartBack(ns){kartClose();const o=$('#rov');if(o){o.style.display='';raceSetup(ns)}}
 
@@ -740,7 +744,7 @@ const GLIST=[
 ['cupkart','🏫','캠퍼스 카트','우리 학교 교정 · 📱 아이템 조종'],
 ['pirate','🏴‍☠️','해적 룰렛','해적이 튀어나오면 당첨'],
 ['snow','⛄','캠퍼스 눈싸움','부산가톨릭대 교정 · 최후의 1인'],
-['slot','🎰','슬롯머신','레버를 당겨 잭팟!']];
+['gwangan','🌉','광안대교 카트','광안대교 야경 · 📱 아이템 조종']];
 const INK='#4a3b52',TAU=Math.PI*2;
 const gShuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 function gFont(s){return `${s}px Jua, 'Malgun Gothic', 'Segoe UI Emoji', sans-serif`}
@@ -851,36 +855,7 @@ G.draw=(c,W,H,dt)=>{const bw=Math.min(W*.8,1000),rows=n<=8?1:n<=20?2:3,cols=Math
     const pw=Math.max(40,sw-8),fs=gFit(c,P[i].n,Math.min(20,rh*.2),pw-12),win=pop&&i===trap;
     gRR(c,x-pw/2,y+hw*.7+4,pw,fs+10,10);c.fillStyle=win?'#ffd43b':'rgba(255,255,255,.92)';c.fill();c.lineWidth=win?4:2;c.strokeStyle=win?'#ff4b4b':INK;c.stroke();gTxt(c,P[i].n,x,y+hw*.7+9+fs/2,fs,INK)}}},
 
-/* 🎰 슬롯머신: 이름 릴이 무작위 당첨자에 멈춤 */
-slot(G){const P=G.ps,n=P.length,win=Math.floor(Math.random()*n),EM=['🍒','🍋','⭐','🔔','💎','7️⃣','🍉'],RL=64;
-const reel=[];for(let i=0;i<RL;i++){let k;do{k=Math.floor(Math.random()*n)}while(n>1&&reel.length&&k===reel[reel.length-1]);reel.push(k)}
-const side=[0,1].map(()=>Array.from({length:30},()=>EM[Math.floor(Math.random()*EM.length)]));
-const R=[{pos:Math.random()*30,v:0},{pos:Math.random()*RL,v:0},{pos:Math.random()*30,v:0}];let phase='ready',t=0,lever=0,lastI=-1;
-const pull=()=>{if(phase!=='ready')return;G.btn();phase='spin';t=0;lever=1;kSnd('click');R[0].v=R[2].v=20;R[1].v=16;G.msg('돌아가는 중... 🎰')};
-G.btn('🎰 레버 당기기!',pull);G.msg('레버를 당겨 보세요!');G.click=(x,y)=>{if(G.lv&&Math.hypot(x-G.lv[0],y-G.lv[1])<70)pull()};
-const stopAt=(r,arr,len,val)=>{const to=Math.floor(r.pos)+(arr?8:20);if(arr)arr[to%len]=val;else reel[to%len]=val;r.st={from:r.pos,to,t:0,dur:3*(to-r.pos)/r.v}};
-G.draw=(c,W,H,dt)=>{if(phase==='spin'){t+=dt;if(t>1.6&&!R[0].st&&!R[0].done)stopAt(R[0],side[0],30,'7️⃣');if(t>2.6&&!R[2].st&&!R[2].done)stopAt(R[2],side[1],30,'7️⃣');if(t>3.4&&!R[1].st&&!R[1].done)stopAt(R[1],null,RL,win)}
-  for(const r of R){if(r.st){r.st.t+=dt;const p=Math.min(1,r.st.t/r.st.dur);r.pos=r.st.from+(r.st.to-r.st.from)*(1-Math.pow(1-p,3));if(p>=1){r.pos=r.st.to;r.st=null;r.done=true;kSnd('click')}}else if(phase==='spin'&&!r.done)r.pos+=r.v*dt}
-  const ci=Math.floor(R[1].pos);if(phase==='spin'&&ci!==lastI){lastI=ci;gTick()}
-  if(phase==='spin'&&R.every(r=>r.done)){phase='win';kSnd('pop');G.msg(`🎉 JACKPOT! ${P[win].n}`);G.done([P[win]])}
-  lever=Math.max(0,lever-dt*1.5);
-  const mw=Math.min(W*.82,960),mh=Math.min(H*.86,600),mx=(W-mw)/2,my=(H-mh)/2+6;
-  gRR(c,mx+8,my+12,mw,mh,36);c.fillStyle='rgba(74,59,82,.3)';c.fill();gRR(c,mx,my,mw,mh,36);c.fillStyle='#ff6b6b';c.fill();c.lineWidth=6;c.strokeStyle=INK;c.stroke();
-  gRR(c,mx+30,my+18,mw-60,mh*.16,20);c.fillStyle=INK;c.fill();gTxt(c,phase==='win'&&Math.floor(G.t*4)%2?'🎉 JACKPOT 🎉':'★ LUCKY SLOT ★',W/2,my+18+mh*.08,Math.min(44,mh*.09),'#ffd43b');
-  for(let b=0;b<18;b++){const x=mx+40+(mw-80)*b/17;c.beginPath();c.arc(x,my+mh*.16+30,5,0,TAU);c.fillStyle=(Math.floor(G.t*(phase==='spin'?10:phase==='win'?6:2))+b)%2?'#ffd43b':'#fff';c.fill()}
-  const wy=my+mh*.25,wh=mh*.5,gap=14,sw=(mw-60)*.2,cwid=(mw-60)-sw*2-gap*2,xs=[mx+30,mx+30+sw+gap,mx+30+sw+gap+cwid+gap],ws=[sw,cwid,sw],ih=wh/3;
-  R.forEach((r,ri)=>{const x=xs[ri],w=ws[ri];gRR(c,x,wy,w,wh,16);c.fillStyle='#fff';c.fill();c.save();gRR(c,x,wy,w,wh,16);c.clip();
-    const f=r.pos-Math.floor(r.pos);for(let j=-2;j<=2;j++){const idx=Math.floor(r.pos)+j,y=wy+wh/2+(j-f)*ih;
-      if(ri===1){const p=P[reel[((idx%RL)+RL)%RL]],fs=gFit(c,p.n,Math.min(56,ih*.5),w-60),big=phase==='win'&&j===0&&f<.01;
-        if(big){c.fillStyle=`rgba(255,212,59,${.5+.4*Math.sin(G.t*10)})`;c.fillRect(x,y-ih/2,w,ih)}c.beginPath();c.arc(x+28,y,9,0,TAU);c.fillStyle=p.col;c.fill();gTxt(c,p.n,x+w/2+10,y+2,fs,INK)}
-      else gTxt(c,side[ri?1:0][((idx%30)+30)%30],x+w/2,y+2,Math.min(60,ih*.55,w*.6),INK)}
-    const g=c.createLinearGradient(0,wy,0,wy+wh);g.addColorStop(0,'rgba(0,0,0,.28)');g.addColorStop(.3,'rgba(0,0,0,0)');g.addColorStop(.7,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.28)');c.fillStyle=g;c.fillRect(x,wy,w,wh);c.restore();
-    gRR(c,x,wy,w,wh,16);c.lineWidth=5;c.strokeStyle=INK;c.stroke()});
-  c.strokeStyle='rgba(255,59,59,.85)';c.lineWidth=4;c.beginPath();c.moveTo(mx+20,wy+wh/2);c.lineTo(mx+mw-20,wy+wh/2);c.stroke();
-  gRR(c,mx+mw*.3,my+mh*.82,mw*.4,mh*.1,14);c.fillStyle=INK;c.fill();gTxt(c,'1등을 뽑아요!',W/2,my+mh*.87,Math.min(28,mh*.05),'#fff');
-  const lx=mx+mw+22,ly0=my+mh*.3,ang=lever>0?Math.sin(lever*Math.PI)*1.2:0,lx1=lx+Math.sin(ang)*20,ly1=ly0-mh*.22*Math.cos(ang)+(lever>0?mh*.25*Math.sin(lever*Math.PI):0);
-  c.lineWidth=12;c.strokeStyle='#adb5bd';c.lineCap='round';c.beginPath();c.moveTo(lx,ly0+40);c.lineTo(lx1,ly1);c.stroke();c.lineWidth=6;c.strokeStyle=INK;c.beginPath();c.moveTo(lx-14,ly0+40);c.lineTo(lx-14,ly0+90);c.stroke();
-  c.beginPath();c.arc(lx1,ly1,22,0,TAU);c.fillStyle='#ff3b3b';c.fill();c.lineWidth=5;c.stroke();G.lv=[lx1,ly1]}}};
+};
 
 
 /* ---------- 🤖 로봇 달리기 · 🔫 로봇 서바이벌 (3D, 실제 시뮬레이션) ---------- */
@@ -1654,7 +1629,7 @@ const PADI={banana:['🍌','바나나 놓기','뒤차가 바짝 붙었을 때 �
 function padBoot(){try{PAD.cid=sessionStorage.getItem('lqk:cid')||''}catch(e){}if(!PAD.cid){PAD.cid=Math.random().toString(36).slice(2,10);try{sessionStorage.setItem('lqk:cid',PAD.cid)}catch(e){}}
 const arm=()=>{PAD.until=Date.now()+PAD.keep};document.addEventListener('pointerdown',arm,{passive:true});
 setInterval(()=>{try{padTick()}catch(e){}},1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){arm();if(PAD.rt)PAD.rt.kick();if(PAD.el)padWake()}})}
-function padTick(){let n='';try{if(kart||mode==='login'){}else if(mode==='play'&&me&&me.d&&me.n){n=String(me.n);localStorage.setItem('lqk:n:'+QUIZ,n)}else if(mode==='home')n=localStorage.getItem('lqk:n:'+QUIZ)||''}catch(e){}
+function padTick(){let n='';try{if(kart||gkFrame||mode==='login'){}else if(mode==='play'&&me&&me.d&&me.n){n=String(me.n);localStorage.setItem('lqk:n:'+QUIZ,n)}else if(mode==='home')n=localStorage.getItem('lqk:n:'+QUIZ)||''}catch(e){}
 PAD.name=n;const live=PAD.last>0&&performance.now()-PAD.last<10000,tn=Date.now();
 if(n&&!PAD.armed){PAD.armed=true;PAD.until=tn+PAD.keep}if(!n)PAD.armed=false;if(live)PAD.until=Math.max(PAD.until,tn+300000);
 /* 퀴즈를 끝낸 뒤 20분(화면을 건드리면 다시 20분) 동안만 연결을 열어 둔다 */
@@ -1674,7 +1649,7 @@ if(PAD.bar){PAD.bar.remove();PAD.bar=null}
 if(!PAD.mute)padShow(pl,mine)}
 function padSpec(pl){if(pl.p==='lobby'||PAD.mute){if(PAD.bar){PAD.bar.remove();PAD.bar=null}return}
 if(!PAD.bar){PAD.bar=document.createElement('div');PAD.bar.className='padbar';document.body.appendChild(PAD.bar)}
-const top=[...pl.ks].sort((a,b)=>a[4]-b[4]).slice(0,3);PAD.bar.innerHTML=`🏎️ 캠퍼스 카트 ${pl.p==='done'?'결과':'중계'} · `+top.map((k,n)=>`${['🥇','🥈','🥉'][n]} ${esc(k[1])}`).join(' ')}
+const top=[...pl.ks].sort((a,b)=>a[4]-b[4]).slice(0,3);PAD.bar.innerHTML=`${pl.g?'🌉 광안대교 카트':'🏎️ 캠퍼스 카트'} ${pl.p==='done'?'결과':'중계'} · `+top.map((k,n)=>`${['🥇','🥈','🥉'][n]} ${esc(k[1])}`).join(' ')}
 function padShow(pl,m){if(!PAD.el){const el=document.createElement('div');el.className='pad';el.id='pad';
   el.innerHTML=`<div class="pad-top"><i></i><b id="pdn"></b><button id="pdx">✕ 닫기</button></div><div class="pad-rank" id="pdr"></div><div class="pad-info" id="pdi"></div><div class="pad-gap" id="pdg"></div>
 <button class="pad-btn" id="pdb"><em id="pde"></em><span id="pdl"></span><u id="pdu"></u></button><div class="pad-msg" id="pdm"></div>`;
@@ -1688,16 +1663,34 @@ const el=PAD.el,n=pl.n||pl.ks.length,pos=m[4]+1,it=m[5],fl=m[6],ph=pl.p,b=$('#pd
 PAD.ph=ph;el.style.setProperty('--kc',m[2]);set('pdn',esc(m[1]));
 if(PAD.wait&&(it!==PAD.wait||performance.now()-PAD.waitT>1500))PAD.wait='';
 if(it&&it!==PAD.item){try{navigator.vibrate&&navigator.vibrate([90,50,90])}catch(x){}}PAD.item=it;
-const zone=(typeof CUPK!=='undefined'&&CUPK.ZN[m[8]])||'',warn=ph==='run'&&(fl&16)&&!(fl&4);el.classList.toggle('warn',!!warn);
+const zone=typeof m[8]==='string'?m[8]:((typeof CUPK!=='undefined'&&CUPK.ZN[m[8]])||''),warn=ph==='run'&&(fl&16)&&!(fl&4);el.classList.toggle('warn',!!warn);
 let rank='',info='',gap='',em='',lab='',msg='',on=false,dis=true,bar=0;
-if(ph==='lobby'){rank='<span class="sm">참가 확정! 🎉</span>';info='선생님이 출발시키면 시작해요';em='📣';lab='빵빵! (연결 확인)';msg='버튼을 누르면 큰 화면의 내 카트가 폴짝 뛰어요.<br>화면을 끄지 말고 기다려 주세요.';on=true;dis=false}
+if(ph==='lobby'){rank='<span class="sm">참가 확정! 🎉</span>';info='선생님이 출발시키면 시작해요';em='📣';lab='빵빵! (연결 확인)';msg=pl.g?'버튼을 누르면 큰 화면에 내 이름이 반짝여요.<br>화면을 끄지 말고 기다려 주세요.':'버튼을 누르면 큰 화면의 내 카트가 폴짝 뛰어요.<br>화면을 끄지 말고 기다려 주세요.';on=true;dis=false}
 else if(ph==='count'){rank='<span class="sm">곧 출발! 🚦</span>';info=`${n}명 · ${pl.lp}바퀴`;em='🏎️';lab='준비';msg='아이템 상자(?)를 먹으면 이 버튼이 켜져요'}
 else if(ph==='done'||(fl&1)){rank=`<b>${pos}</b><small>위 ${ph==='done'?'· 최종':'골인!'}</small>`;info=ph==='done'?`${n}명 중 ${pos}위`:'🏁 다른 카트를 기다리는 중';em=pos===1?'🏆':'🏁';lab=pos===1?'1등!':'골인';msg=pos===1?'축하해요! 🎉':'수고했어요!'}
-else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=`LAP ${m[7]}/${pl.lp}${zone?' · 📍 '+zone:''}`;gap=(m[10]>=0?`앞차 ${m[10]}m`:'내가 선두!')+(m[11]>=0?` · 뒤차 ${m[11]}m`:'');
-  if(it&&!PAD.wait){const I=PADI[it]||['❓',it,''];em=I[0];lab=I[1];msg=I[2]+'<br><small>원할 때 누르세요 · 쓰기 전엔 새 상자를 못 먹어요</small>';on=true;dis=false;bar=0}
-  else{em=PAD.wait?(PADI[PAD.wait]||['✨'])[0]:'❔';lab=PAD.wait?'사용!':'아이템 없음';msg=(fl&2)?'🌀 으악! 미끄러지는 중...':(fl&8)?'🔥 부스터 가속 중!':(fl&4)?'🛡️ 방패 켜짐':'노란 ? 상자를 먹으면 버튼이 켜져요'}
-  if(warn)msg='🚨 로켓이 날아와요!'+(it==='shield'&&!PAD.wait?' 지금 방패를 켜요!':'')}
+else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=`LAP ${m[7]}/${pl.lp}${zone?' · 📍 '+zone:''}`;gap=(m[10]>=0?`앞차 ${m[10]}m`:'내가 선두!')+(m[11]>=0?` · 뒤차 ${m[11]}m`:'')+(pl.g?`  ${'●'.repeat(Math.max(0,m[12]))}${'○'.repeat(Math.max(0,(pl.mu||3)-m[12]))}`:'');
+  if(it&&!PAD.wait){const I=(pl.g&&PADG[it])||PADI[it]||['❓',it,''];em=I[0];lab=I[1];msg=I[2]+'<br><small>원할 때 누르세요 · 쓰기 전엔 새 상자를 못 먹어요'+(pl.g?` · 남은 횟수 ${m[12]}번`:'')+'</small>';on=true;dis=false;bar=0}
+  else if(pl.g&&m[12]<=0&&!PAD.wait){em='🤖';lab='자동 주행';msg='아이템 '+(pl.mu||3)+'번을 모두 썼어요.<br>이제부터는 자동으로 달려요.'}
+  else{em=PAD.wait?((pl.g&&PADG[PAD.wait])||PADI[PAD.wait]||['✨'])[0]:'❔';lab=PAD.wait?'사용!':'아이템 없음';msg=(fl&2)?'🌀 으악! 미끄러지는 중...':(fl&8)?'🚀 부스터 가속 중!':(fl&4)?'🛡️ 방패 켜짐':(pl.g?'물음표 상자를 먹으면 버튼이 켜져요':'노란 ? 상자를 먹으면 버튼이 켜져요')}
+  if(warn)msg=(pl.g?'🚨 물풍선이 날아와요!':'🚨 로켓이 날아와요!')+(it==='shield'&&!PAD.wait?' 지금 방패를 켜요!':'')}
 set('pdr',rank);set('pdi',info);set('pdg',gap);set('pde',em);set('pdl',lab);set('pdm',msg);b.disabled=dis;b.classList.toggle('on',on);$('#pdu').style.width=(bar*100).toFixed(0)+'%'}
+
+/* ---------- 🌉 광안대교 카트: gwangan.html(같은 폴더)을 전체 화면으로 띄우고, 휴대폰 조종은 같은 연결 채널을 써요 ---------- */
+const PADG={boost:['🚀','부스터','2초 동안 빨라져요 · 직선에서 쓰면 좋아요'],banana:['🍌','바나나 놓기','내 뒤에 바나나를 놓아요 · 뒤차가 바짝 붙었을 때!'],balloon:['💧','물풍선 던지기','바로 앞 카트 1대에게 던져요'],shield:['🛡️','방패 켜기','5초 동안 한 번 막아 줘요 · 물풍선·바나나 막기!'],jump:['🦘','점프','공사콘·물웅덩이를 뛰어넘어요']};
+function gkRun(ns){kartClose();gameClose();r3Close();const ro=$('#rov');if(ro)ro.style.display='none';document.documentElement.style.overflow='hidden';
+const ov=document.createElement('div');ov.className='gkv';ov.id='gkv';ov.innerHTML='<div class="kload">🌉 광안대교 준비 중...</div>';document.body.appendChild(ov);
+const q={high:'h',mid:'m',low:'l'}[KS.get('q','mid')]||'m',enc=encodeURIComponent;
+const gb=window.GK_URL||'gwangan.html',url=gb+(gb.indexOf('blob:')===0?'#':'?')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&names='+enc(JSON.stringify(ns));
+const fr=document.createElement('iframe');fr.setAttribute('allow','autoplay; fullscreen');gkNs=ns;
+const F={ov,fr,ready:false,t:setTimeout(()=>{if(gkFrame!==F||F.ready)return;ov.innerHTML='<div class="kload">⚠️ 광안대교 화면을 불러오지 못했어요.<br><small>인터넷 연결을 확인하거나 다른 게임을 골라 주세요.</small><br><button class="btn" id="gkbk">돌아가기</button></div>';$('#gkbk').onclick=()=>gkBack()},25000)};
+gkFrame=F;fr.src=url;ov.appendChild(fr)}
+function gkClose(){const F=gkFrame;if(!F)return;gkFrame=null;clearTimeout(F.t);try{F.fr.contentWindow.postMessage({gk:'end'},location.origin)}catch(e){}
+document.documentElement.style.overflow='';setTimeout(()=>{try{F.ov.remove()}catch(e){}},400)}
+function gkBack(){const ns=gkNs;gkClose();const o=$('#rov');if(o){o.style.display='';raceSetup(ns)}}
+addEventListener('message',e=>{if(e.origin!==location.origin||!e.data||!e.data.gk||!gkFrame)return;const d=e.data;
+if(d.gk==='ready'){gkFrame.ready=true;clearTimeout(gkFrame.t);const k=gkFrame.ov.querySelector('.kload');if(k)k.remove()}
+else if(d.gk==='back')gkBack();else if(d.gk==='close')raceClose();
+else if(d.gk==='opt'){if([30,60,120].includes(+d.dur))KS.set('gkdur',+d.dur);if([1,1.5,2].includes(+d.spd))KS.set('gkspd',+d.spd)}});
 
 try{padBoot()}catch(e){console.error(e)}
 home();
