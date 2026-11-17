@@ -1722,20 +1722,23 @@ function padPickPaint(){const pl=PAD.lastPl,m=PAD.lastM;if(!pl||!m||!PAD.an||!PA
 function gkRun(ns,g){g=g||'gw';gkG=g;kartClose();gameClose();r3Close();const ro=$('#rov');if(ro)ro.style.display='none';document.documentElement.style.overflow='hidden';
 const ov=document.createElement('div');ov.className='gkv';ov.id='gkv';ov.innerHTML='<div class="kload">'+(g==='kong'?'🏃 콩콩 달리기 준비 중...':'🌉 광안대교 준비 중...')+'</div>';document.body.appendChild(ov);
 const q={high:'h',mid:'m',low:'l'}[KS.get('q','mid')]||'m',enc=encodeURIComponent;
-const gb=window.GK_URL||(g==='kong'?'kongkong.html':'gwangan.html'),url=gb+(gb.indexOf('blob:')===0?'#':'?')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&intro='+(KS.get('gkintro',1)?1:0)+'&names='+enc(JSON.stringify(ns));
+const gb=window.GK_URL||(g==='kong'?'kongkong.html':'gwangan.html'),blb=gb.indexOf('blob:')===0,url=gb+(blb?'#':'?')+(blb?'':'_v='+Date.now()+'&')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&intro='+(KS.get('gkintro',1)?1:0)+'&names='+enc(JSON.stringify(ns));
 const fr=document.createElement('iframe');fr.setAttribute('allow','autoplay; fullscreen');gkNs=ns;
-const F={ov,fr,ready:false,t:setTimeout(()=>{if(gkFrame===F&&!F.ready)gkFail('timeout')},25000)};
-gkFrame=F;fr.src=url;ov.appendChild(fr)}
+const F={ov,fr,ready:false,tries:0,url,blb,loaded:0,t:0};fr.onload=()=>{F.loaded=1};
+gkFrame=F;gkWatch(F);fr.src=url;ov.appendChild(fr)}
+/* 15초 안에 안 뜨면 주소를 바꿔(캐시 우회) 한 번 자동으로 다시 불러오고, 그래도 안 되면 이유와 함께 안내해요 */
+function gkWatch(F){F.t=setTimeout(()=>{if(gkFrame!==F||F.ready)return;if(!F.tries){F.tries=1;if(!F.blb){F.loaded=0;F.fr.src=F.url.replace(/_v=\d+/,'_v='+Date.now())}gkWatch(F)}else gkFail('timeout')},F.tries?25000:15000)}
 /* 화면을 못 켰을 때: 이유 안내 + 2D 구슬 레이스로 바로 하기 */
-function gkFail(why){const F=gkFrame;if(!F||F.ready)return;clearTimeout(F.t);const nm0=gkG==='kong'?'콩콩 달리기':'광안대교';
-F.ov.innerHTML='<div class="kload">⚠️ '+nm0+' 화면을 불러오지 못했어요.<br><small>'+(why==='fail'?'이 컴퓨터(브라우저)에서 3D 화면(WebGL)을 켤 수 없는 것 같아요.<br>크롬으로 열거나, 크롬 설정 → 시스템 → "가능한 경우 그래픽 가속 사용"을 켜 주세요.':'인터넷 연결을 확인하거나 크롬으로 열어 주세요.')+'</small><br><span><button class="btn" id="gkmb">🎱 구슬 레이스로 하기</button> <button class="btn alt" id="gkbk">돌아가기</button></span></div>';try{F.fr.style.display='none'}catch(e){}
+function gkFail(why,msg){const F=gkFrame;if(!F||F.ready)return;clearTimeout(F.t);let dg='';try{const d=F.fr.contentDocument,w=F.fr.contentWindow;dg='진단: 문서 '+(d?d.readyState:'?')+' · 제목 "'+(d?d.title:'')+'" · 글자수 '+(d&&d.body?d.body.innerText.length:0)+' · 게임코드 '+(typeof w.embedBoot)+(F.loaded?' · 로드됨':' · 로드 안 됨')+(msg?' · 오류: '+String(msg).replace(/[<>&]/g,''):'')}catch(e){dg='진단: 읽을 수 없음'}const nm0=gkG==='kong'?'콩콩 달리기':'광안대교';
+F.ov.innerHTML='<div class="kload">⚠️ '+nm0+' 화면을 불러오지 못했어요.<br><small>'+(why==='fail'?'이 컴퓨터(브라우저)에서 3D 화면(WebGL)을 켤 수 없는 것 같아요.<br>크롬으로 열거나, 크롬 설정 → 시스템 → "가능한 경우 그래픽 가속 사용"을 켜 주세요.':'인터넷 연결을 확인하거나 크롬으로 열어 주세요.')+'</small><br><small style="opacity:.65;font-size:.55em">'+dg+'</small><br><span><button class="btn" id="gkrt">🔄 다시 시도</button> <button class="btn" id="gkmb">🎱 구슬 레이스로 하기</button> <button class="btn alt" id="gkbk">돌아가기</button></span></div>';try{F.fr.style.display='none'}catch(e){}
+$('#gkrt').onclick=()=>{const ns=gkNs,g2=gkG;gkClose();gkRun(ns,g2)};
 $('#gkbk').onclick=()=>gkBack();$('#gkmb').onclick=()=>{const ns=gkNs;gkClose();const o=$('#rov');if(o)o.style.display='';raceRun(ns)}}
 function gkClose(){const F=gkFrame;if(!F)return;gkFrame=null;clearTimeout(F.t);try{F.fr.contentWindow.postMessage({gk:'end'},location.origin)}catch(e){}
 document.documentElement.style.overflow='';setTimeout(()=>{try{F.ov.remove()}catch(e){}},400)}
 function gkBack(){const ns=gkNs;gkClose();const o=$('#rov');if(o){o.style.display='';raceSetup(ns)}}
 addEventListener('message',e=>{if(e.origin!==location.origin||!e.data||!e.data.gk||!gkFrame)return;const d=e.data;
 if(d.gk==='ready'){gkFrame.ready=true;clearTimeout(gkFrame.t);const k=gkFrame.ov.querySelector('.kload');if(k)k.remove()}
-else if(d.gk==='fail')gkFail('fail');else if(d.gk==='back')gkBack();else if(d.gk==='close')raceClose();
+else if(d.gk==='fail')gkFail('fail',d.msg);else if(d.gk==='back')gkBack();else if(d.gk==='close')raceClose();
 else if(d.gk==='opt'){if([30,60,120].includes(+d.dur))KS.set('gkdur',+d.dur);if([1,1.5,2].includes(+d.spd))KS.set('gkspd',+d.spd);if(d.intro!=null)KS.set('gkintro',+d.intro?1:0)}});
 
 try{padBoot()}catch(e){console.error(e)}
