@@ -511,8 +511,8 @@ o.innerHTML=`<div class="card"><h2 style="margin:0 0 6px">🏆 1등 뽑기 <smal
 <div style="margin:10px 0 4px"><button class="btn sm alt" id="rt">🏆 1등 동점자 (${ties.length}명)</button> <button class="btn sm alt" id="r7">🏅 상위 7명</button> <button class="btn sm alt" id="ra">🏁 완료한 학생 전체 (${done.length}명)</button></div>
 <p class="hint" id="rm" style="margin-top:6px"></p>
 <div><button class="btn" id="rg">출발! ▶</button> <button class="btn alt" id="rc">닫기</button></div></div>`;
-const desc=()=>{const l=+KS.get('laps',3),m=KS.get('mode','marble');$('#kdesc').textContent=m==='gwangan'?'광안대교 야경 코스 약 1.3km · 약 1분 (출발 화면에서 30초·2분 선택) · 📱 참가자가 휴대폰 큰 버튼으로 원할 때 아이템을 써요 (한 경기 최대 3번)':m==='cupkart'?`부산가톨릭대 교정 실제 도로 약 1.2km · ${+KS.get('claps',2)||2}바퀴 약 ${(+KS.get('claps',2)||2)*43+4}초 · `+(KS.get('pad',true)?'📱 참가자가 휴대폰 버튼으로 원할 때 아이템을 써요':'아이템은 컴퓨터가 자동으로 써요'):m==='robot'?'230m 직선 트랙 · 허들 4개 · ⚡배터리 터보 · 🔥과열 · 약 25초':m==='battle'?'레이저 배틀 · 줄어드는 자기장 · ➕회복 🛡️방패 ⚡연사 · 약 30~60초':m==='snow'?'부산가톨릭대 메인 캠퍼스 · 눈보라 자기장 · ☕회복 🧥패딩 🧤연사 · 3명 이하면 NPC 팀전 후 최후의 결투 · 약 50~80초':`한 바퀴 약 12초 · ${l}바퀴면 약 ${l*12+5}초 · 🍌바나나 🚀로켓 🛡️방패 ⚡번개 🔥부스터`};
-const showOpt=m=>{$('#kopt').style.display=['kart','robot','battle','snow','cupkart','gwangan'].includes(m)?'':'none';$('#klps').style.display=m==='kart'?'':'none';$('#kcps').style.display=$('#kphs').style.display=m==='cupkart'?'':'none';$('#rm').textContent='';desc()};
+const desc=()=>{const l=+KS.get('laps',3),m=KS.get('mode','marble');$('#kdesc').textContent=m==='kong'?'교실 → 운동장 → 도로 → 수영장 → 급식실 장애물 달리기 · 약 1분 (출발 화면에서 30초·2분, 속도 선택) · 📱 참가자가 휴대폰 큰 버튼으로 원할 때 아이템(번개·무적 별·로켓)을 써요':m==='gwangan'?'광안대교 야경 코스 약 1.3km · 약 1분 (출발 화면에서 30초·2분 선택) · 📱 참가자가 휴대폰 큰 버튼으로 원할 때 아이템을 써요 (한 경기 최대 3번)':m==='cupkart'?`부산가톨릭대 교정 실제 도로 약 1.2km · ${+KS.get('claps',2)||2}바퀴 약 ${(+KS.get('claps',2)||2)*43+4}초 · `+(KS.get('pad',true)?'📱 참가자가 휴대폰 버튼으로 원할 때 아이템을 써요':'아이템은 컴퓨터가 자동으로 써요'):m==='robot'?'230m 직선 트랙 · 허들 4개 · ⚡배터리 터보 · 🔥과열 · 약 25초':m==='battle'?'레이저 배틀 · 줄어드는 자기장 · ➕회복 🛡️방패 ⚡연사 · 약 30~60초':m==='snow'?'부산가톨릭대 메인 캠퍼스 · 눈보라 자기장 · ☕회복 🧥패딩 🧤연사 · 3명 이하면 NPC 팀전 후 최후의 결투 · 약 50~80초':`한 바퀴 약 12초 · ${l}바퀴면 약 ${l*12+5}초 · 🍌바나나 🚀로켓 🛡️방패 ⚡번개 🔥부스터`};
+const showOpt=m=>{$('#kopt').style.display=['kart','robot','battle','snow','cupkart','gwangan','kong'].includes(m)?'':'none';$('#klps').style.display=m==='kart'?'':'none';$('#kcps').style.display=$('#kphs').style.display=m==='cupkart'?'':'none';$('#rm').textContent='';desc()};
 let md=KS.get('mode','marble');if(!GLIST.some(g=>g[0]===md))md='marble';
 kSeg('rlp',KS.get('laps',3),v=>{KS.set('laps',+v);desc()});
 kSeg('rmd',md,v=>{KS.set('mode',v);showOpt(v)});KS.set('mode',md);showOpt(md);
@@ -522,15 +522,16 @@ kSeg('rsd',KS.get('snd',true)?1:0,v=>KS.set('snd',v==='1'));
 $('#rt').onclick=()=>{$('#rn').value=ties.join('\n')};$('#r7').onclick=()=>{$('#rn').value=[...tData].filter(p=>p.d).sort(rank).slice(0,7).map(p=>p.n).join('\n')};$('#ra').onclick=()=>{$('#rn').value=done.join('\n')};$('#rc').onclick=raceClose;
 $('#rg').onclick=()=>{const ns=$('#rn').value.split(/[\n,]/).map(s=>s.trim()).filter(Boolean).slice(0,60),m=KS.get('mode','marble');
   if(ns.length<2){$('#rm').textContent='⚠️ 이름을 2명 이상 넣어 주세요!';return}
+  if(m==='kong'&&ns.length>40){$('#rm').textContent='⚠️ 콩콩 달리기는 최대 40명까지예요 (지금 '+ns.length+'명). 이름을 줄여 주세요!';return}
   if(m==='gwangan'&&ns.length>30){$('#rm').textContent='⚠️ 광안대교 카트는 최대 30명까지예요 (지금 '+ns.length+'명). 이름을 줄여 주세요!';return}
-  m==='gwangan'?gkRun(ns):m==='kart'?kartRun(ns):m==='cupkart'?kartRun(ns,{laps:+KS.get('claps',2)||2,pad:!!KS.get('pad',true)}):m==='marble'?raceRun(ns):(m==='robot'||m==='battle'||m==='snow')?r3Run(m,ns):gameRun(m,ns)}}
+  m==='kong'?gkRun(ns,'kong'):m==='gwangan'?gkRun(ns):m==='kart'?kartRun(ns):m==='cupkart'?kartRun(ns,{laps:+KS.get('claps',2)||2,pad:!!KS.get('pad',true)}):m==='marble'?raceRun(ns):(m==='robot'||m==='battle'||m==='snow')?r3Run(m,ns):gameRun(m,ns)}}
 
 /* ---------- 🏎️ 카트 레이스: 3D 서킷에서 실제 시뮬레이션으로 순위 결정 ---------- */
 const KCOL=['#2f8fff','#ff4b4b','#ffc93c','#ff7fbf','#3ccf6e','#9b6bff','#ff9a2e','#27c7d6','#eeeeee','#8a5a3c','#a3e635','#e11d74'];
 const kColor=i=>i<KCOL.length?KCOL[i]:`hsl(${(i*47)%360},78%,60%)`;
 const KITEM={banana:'🍌',rocket:'🚀',shield:'🛡️',zap:'⚡',boost:'🔥'};
 const KW=12,KLANE=KW/2-1.3,KDT=1/60;
-let kart=null,kAC=null,gkFrame=null,gkNs=null;
+let kart=null,kAC=null,gkFrame=null,gkNs=null,gkG='gw';
 
 function loadThree(){if(window.THREE)return Promise.resolve();
 const urls=['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js','https://unpkg.com/three@0.128.0/build/three.min.js'];
@@ -757,7 +758,7 @@ const GLIST=[
 ['battle','🔫','로봇 서바이벌','레이저 배틀 · 최후의 1인'],
 ['duck','🦆','오리 경주','물살·바위·소용돌이'],
 ['cupkart','🏫','캠퍼스 카트','우리 학교 교정 · 📱 아이템 조종'],
-['pirate','🏴‍☠️','해적 룰렛','해적이 튀어나오면 당첨'],
+['kong','🏃','콩콩 달리기','교실→운동장→도로→수영장→급식실 · 📱 아이템 조종'],
 ['snow','⛄','캠퍼스 눈싸움','부산가톨릭대 교정 · 최후의 1인'],
 ['gwangan','🌉','광안대교 카트','광안대교 야경 · 📱 아이템 조종']];
 const INK='#4a3b52',TAU=Math.PI*2;
@@ -1665,7 +1666,7 @@ if(PAD.bar){PAD.bar.remove();PAD.bar=null}
 if(!PAD.mute)padShow(pl,mine)}
 function padSpec(pl){if(pl.p==='lobby'||PAD.mute){if(PAD.bar){PAD.bar.remove();PAD.bar=null}return}
 if(!PAD.bar){PAD.bar=document.createElement('div');PAD.bar.className='padbar';document.body.appendChild(PAD.bar)}
-const top=[...pl.ks].sort((a,b)=>a[4]-b[4]).slice(0,3);PAD.bar.innerHTML=`${pl.g?'🌉 광안대교 카트':'🏎️ 캠퍼스 카트'} ${pl.p==='done'?'결과':'중계'} · `+top.map((k,n)=>`${['🥇','🥈','🥉'][n]} ${esc(k[1])}`).join(' ')}
+const top=[...pl.ks].sort((a,b)=>a[4]-b[4]).slice(0,3);PAD.bar.innerHTML=`${pl.kg?'🏃 콩콩 달리기':pl.g?'🌉 광안대교 카트':'🏎️ 캠퍼스 카트'} ${pl.p==='done'?'결과':'중계'} · `+top.map((k,n)=>`${['🥇','🥈','🥉'][n]} ${esc(k[1])}`).join(' ')}
 function padShow(pl,m){if(!PAD.el){const el=document.createElement('div');el.className='pad';el.id='pad';
   el.innerHTML=`<div class="pad-top"><i></i><b id="pdn"></b><button id="pdx">✕ 닫기</button></div><div class="pad-rank" id="pdr"></div><div class="pad-info" id="pdi"></div><div class="pad-gap" id="pdg"></div>
 <button class="pad-btn" id="pdb"><em id="pde"></em><span id="pdl"></span><u id="pdu"></u></button><div class="pad-msg" id="pdm"></div>`;
@@ -1685,14 +1686,15 @@ if(ph==='lobby'){rank=pl.g?'<span class="sm">🎨 내 캐릭터를 골라요!</s
 else if(ph==='intro'){rank='<span class="sm">🎤 선수 소개 중!</span>';info='곧 출발해요';em='🎤';lab='준비';msg='큰 화면을 보세요!<br>내 차례에 멋지게 등장해요 😎'}
 else if(ph==='count'){rank='<span class="sm">곧 출발! 🚦</span>';info=`${n}명 · ${pl.lp}바퀴`;em='🏎️';lab='준비';msg='아이템 상자(?)를 먹으면 이 버튼이 켜져요'}
 else if(ph==='done'||(fl&1)){rank=`<b>${pos}</b><small>위 ${ph==='done'?'· 최종':'골인!'}</small>`;info=ph==='done'?`${n}명 중 ${pos}위`:'🏁 다른 카트를 기다리는 중';em=pos===1?'🏆':'🏁';lab=pos===1?'1등!':'골인';msg=pos===1?'축하해요! 🎉':'수고했어요!'}
-else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=`LAP ${m[7]}/${pl.lp}${zone?' · 📍 '+zone:''}`;gap=(m[10]>=0?`앞차 ${m[10]}m`:'내가 선두!')+(m[11]>=0?` · 뒤차 ${m[11]}m`:'')+(pl.g?`  ${'●'.repeat(Math.max(0,m[12]))}${'○'.repeat(Math.max(0,(pl.mu||3)-m[12]))}`:'');
-  if(it&&!PAD.wait){const I=(pl.g&&PADG[it])||PADI[it]||['❓',it,''];em=I[0];lab=I[1];msg=I[2]+'<br><small>원할 때 누르세요 · 쓰기 전엔 새 상자를 못 먹어요'+(pl.g?` · 남은 횟수 ${m[12]}번`:'')+'</small>';on=true;dis=false;bar=0}
+else{rank=`<b>${pos}</b><small>위 / ${n}명</small>`;info=pl.kg?(zone?'📍 '+zone:'달리는 중!'):`LAP ${m[7]}/${pl.lp}${zone?' · 📍 '+zone:''}`;gap=(m[10]>=0?`앞차 ${m[10]}m`:'내가 선두!')+(m[11]>=0?` · 뒤차 ${m[11]}m`:'')+(pl.g?`  ${'●'.repeat(Math.max(0,m[12]))}${'○'.repeat(Math.max(0,(pl.mu||3)-m[12]))}`:'');
+  if(it&&!PAD.wait){const I=(pl.kg&&PADK[it])||(pl.g&&PADG[it])||PADI[it]||['❓',it,''];em=I[0];lab=I[1];msg=I[2]+'<br><small>원할 때 누르세요 · 쓰기 전엔 새 상자를 못 먹어요'+(pl.g?` · 남은 횟수 ${m[12]}번`:'')+'</small>';on=true;dis=false;bar=0}
   else if(pl.g&&m[12]<=0&&!PAD.wait){em='🤖';lab='자동 주행';msg='아이템 '+(pl.mu||3)+'번을 모두 썼어요.<br>이제부터는 자동으로 달려요.'}
-  else{em=PAD.wait?((pl.g&&PADG[PAD.wait])||PADI[PAD.wait]||['✨'])[0]:'❔';lab=PAD.wait?'사용!':'아이템 없음';msg=(fl&2)?'🌀 으악! 미끄러지는 중...':(fl&8)?'🚀 부스터 가속 중!':(fl&4)?'🛡️ 방패 켜짐':(pl.g?'물음표 상자를 먹으면 버튼이 켜져요':'노란 ? 상자를 먹으면 버튼이 켜져요')}
+  else{em=PAD.wait?((pl.kg&&PADK[PAD.wait])||(pl.g&&PADG[PAD.wait])||PADI[PAD.wait]||['✨'])[0]:'❔';lab=PAD.wait?'사용!':'아이템 없음';msg=(fl&2)?'🌀 으악! 미끄러지는 중...':(fl&8)?'🚀 부스터 가속 중!':(fl&4)?(pl.kg?'⭐ 무적 별 효과 중!':'🛡️ 방패 켜짐'):(pl.kg?'아이템 상자를 먹으면 버튼이 켜져요':pl.g?'물음표 상자를 먹으면 버튼이 켜져요':'노란 ? 상자를 먹으면 버튼이 켜져요')}
   if(warn)msg=(pl.g?'🚨 물풍선이 날아와요!':'🚨 로켓이 날아와요!')+(it==='shield'&&!PAD.wait?' 지금 방패를 켜요!':'')}
 padPick(el,pl,m,ph==='lobby'&&!!pl.g&&!!PAD.an&&!!PAD.cl);set('pdr',rank);set('pdi',info);set('pdg',gap);set('pde',em);set('pdl',lab);set('pdm',msg);b.disabled=dis;b.classList.toggle('on',on);$('#pdu').style.width=(bar*100).toFixed(0)+'%'}
 
 /* ---------- 🌉 광안대교 카트: gwangan.html(같은 폴더)을 전체 화면으로 띄우고, 휴대폰 조종은 같은 연결 채널을 써요 ---------- */
+const PADK={bolt:['⚡','번개 치기','앞선 친구들 3명이 느려져요'],star:['⭐','무적 별','3초 동안 장애물이 안 통해요 · 장애물 앞에서 누르세요'],rocket:['🚀','로켓 부스트','2초 동안 빨라져요 · 직선에서 쓰면 좋아요']};
 const PADG={boost:['🚀','부스터','2초 동안 빨라져요 · 직선에서 쓰면 좋아요'],banana:['🍌','바나나 놓기','내 뒤에 바나나를 놓아요 · 뒤차가 바짝 붙었을 때!'],balloon:['💧','물풍선 던지기','바로 앞 카트 1대에게 던져요'],shield:['🛡️','방패 켜기','5초 동안 한 번 막아 줘요 · 물풍선·바나나 막기!'],jump:['🦘','점프','공사콘·물웅덩이를 뛰어넘어요']};
 /* 대기실에서 캐릭터(동물)와 카트 색 고르기: 고른 값은 큰 화면에 바로 나타나요 */
 function padPick(el,pl,m,show){
@@ -1717,19 +1719,23 @@ function padPickPaint(){const pl=PAD.lastPl,m=PAD.lastM;if(!pl||!m||!PAD.an||!PA
   document.querySelectorAll('#pkC button').forEach(b=>{const i=+b.dataset.k;b.classList.toggle('on',i===mC);b.disabled=uC&&tC.has(i)});
   const a=PAD.an[mA],c=PAD.cl[mC],n=$('#pkn');
   if(n)n.innerHTML=(a&&c)?'<span class="pk-big">'+a[0]+'</span> <b>'+esc(a[1])+'</b> · <i style="background:'+c[0]+'"></i> '+esc(c[1])+' 카트<br><small>✅ 큰 화면에 나왔어요! 마음에 안 들면 다시 골라요</small>':'<small>아래에서 캐릭터와 색을 골라요 (안 골라도 괜찮아요, 랜덤으로 정해져요)</small>'}
-function gkRun(ns){kartClose();gameClose();r3Close();const ro=$('#rov');if(ro)ro.style.display='none';document.documentElement.style.overflow='hidden';
-const ov=document.createElement('div');ov.className='gkv';ov.id='gkv';ov.innerHTML='<div class="kload">🌉 광안대교 준비 중...</div>';document.body.appendChild(ov);
+function gkRun(ns,g){g=g||'gw';gkG=g;kartClose();gameClose();r3Close();const ro=$('#rov');if(ro)ro.style.display='none';document.documentElement.style.overflow='hidden';
+const ov=document.createElement('div');ov.className='gkv';ov.id='gkv';ov.innerHTML='<div class="kload">'+(g==='kong'?'🏃 콩콩 달리기 준비 중...':'🌉 광안대교 준비 중...')+'</div>';document.body.appendChild(ov);
 const q={high:'h',mid:'m',low:'l'}[KS.get('q','mid')]||'m',enc=encodeURIComponent;
-const gb=window.GK_URL||'gwangan.html',url=gb+(gb.indexOf('blob:')===0?'#':'?')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&intro='+(KS.get('gkintro',1)?1:0)+'&names='+enc(JSON.stringify(ns));
+const gb=window.GK_URL||(g==='kong'?'kongkong.html':'gwangan.html'),url=gb+(gb.indexOf('blob:')===0?'#':'?')+'embed=1&topic='+enc(padTopic())+'&u='+enc(SB_URL)+'&k='+enc(SB_KEY)+'&q='+q+'&snd='+(KS.get('snd',true)?1:0)+'&dur='+(+KS.get('gkdur',60)||60)+'&spd='+(+KS.get('gkspd',1)||1)+'&intro='+(KS.get('gkintro',1)?1:0)+'&names='+enc(JSON.stringify(ns));
 const fr=document.createElement('iframe');fr.setAttribute('allow','autoplay; fullscreen');gkNs=ns;
-const F={ov,fr,ready:false,t:setTimeout(()=>{if(gkFrame!==F||F.ready)return;ov.innerHTML='<div class="kload">⚠️ 광안대교 화면을 불러오지 못했어요.<br><small>인터넷 연결을 확인하거나 다른 게임을 골라 주세요.</small><br><button class="btn" id="gkbk">돌아가기</button></div>';$('#gkbk').onclick=()=>gkBack()},25000)};
+const F={ov,fr,ready:false,t:setTimeout(()=>{if(gkFrame===F&&!F.ready)gkFail('timeout')},25000)};
 gkFrame=F;fr.src=url;ov.appendChild(fr)}
+/* 화면을 못 켰을 때: 이유 안내 + 2D 구슬 레이스로 바로 하기 */
+function gkFail(why){const F=gkFrame;if(!F||F.ready)return;clearTimeout(F.t);const nm0=gkG==='kong'?'콩콩 달리기':'광안대교';
+F.ov.innerHTML='<div class="kload">⚠️ '+nm0+' 화면을 불러오지 못했어요.<br><small>'+(why==='fail'?'이 컴퓨터(브라우저)에서 3D 화면(WebGL)을 켤 수 없는 것 같아요.<br>크롬으로 열거나, 크롬 설정 → 시스템 → "가능한 경우 그래픽 가속 사용"을 켜 주세요.':'인터넷 연결을 확인하거나 크롬으로 열어 주세요.')+'</small><br><span><button class="btn" id="gkmb">🎱 구슬 레이스로 하기</button> <button class="btn alt" id="gkbk">돌아가기</button></span></div>';try{F.fr.style.display='none'}catch(e){}
+$('#gkbk').onclick=()=>gkBack();$('#gkmb').onclick=()=>{const ns=gkNs;gkClose();const o=$('#rov');if(o)o.style.display='';raceRun(ns)}}
 function gkClose(){const F=gkFrame;if(!F)return;gkFrame=null;clearTimeout(F.t);try{F.fr.contentWindow.postMessage({gk:'end'},location.origin)}catch(e){}
 document.documentElement.style.overflow='';setTimeout(()=>{try{F.ov.remove()}catch(e){}},400)}
 function gkBack(){const ns=gkNs;gkClose();const o=$('#rov');if(o){o.style.display='';raceSetup(ns)}}
 addEventListener('message',e=>{if(e.origin!==location.origin||!e.data||!e.data.gk||!gkFrame)return;const d=e.data;
 if(d.gk==='ready'){gkFrame.ready=true;clearTimeout(gkFrame.t);const k=gkFrame.ov.querySelector('.kload');if(k)k.remove()}
-else if(d.gk==='back')gkBack();else if(d.gk==='close')raceClose();
+else if(d.gk==='fail')gkFail('fail');else if(d.gk==='back')gkBack();else if(d.gk==='close')raceClose();
 else if(d.gk==='opt'){if([30,60,120].includes(+d.dur))KS.set('gkdur',+d.dur);if([1,1.5,2].includes(+d.spd))KS.set('gkspd',+d.spd);if(d.intro!=null)KS.set('gkintro',+d.intro?1:0)}});
 
 try{padBoot()}catch(e){console.error(e)}
