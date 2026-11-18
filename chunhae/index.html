@@ -3,7 +3,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>춘해보건대학교 쑥쑥 퀴즈</title>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root{--pink:#ffd6e0;--pink2:#ff8fab;--mint:#d4f5e4;--mint2:#4cc38a;--yel:#fff3bf;--yel2:#f7b731;--sky:#d6ecff;--ink:#4a3b52;--bg:#fff8f0;--card:#fff;--bad:#ff6b6b}
@@ -85,215 +84,177 @@ td.c-ok{background:var(--mint)}td.c-no{background:#ffd3d3}
 td.tm{white-space:nowrap;font-size:15px}
 .tmr{white-space:nowrap}.tmr.low{background:var(--bad);color:#fff;animation:blink 1s infinite}
 .timeup{background:var(--bad);color:#fff;border:3px solid var(--ink);border-radius:18px;padding:8px 14px;font-size:clamp(20px,3.6vw,30px);text-align:center;margin:0 0 12px}
-.fld{display:grid;gap:10px;justify-items:center;margin-top:6px}
-.lv{font-style:normal;border:2px solid var(--ink);border-radius:999px;padding:0 10px;font-size:.8em;white-space:nowrap}
-.lv.good{background:var(--mint)}.lv.mid{background:var(--yel)}.lv.low{background:#ffd3d3}
 /* ================= 리포트 v2 ================= */
-.wrap.mid{max-width:1060px}
-.rep{font-family:'Pretendard Variable',Pretendard,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;color:var(--ink);text-align:left;word-break:keep-all;line-height:1.5}
-.rep h2,.rep h3,.jua{font-family:'Jua','Malgun Gothic',sans-serif;font-weight:normal}
-.rh{position:relative;overflow:hidden;display:grid;grid-template-columns:210px 1fr;gap:24px;align-items:center;padding:26px 28px;border-radius:28px;color:#fff;background:linear-gradient(130deg,#5b4bc4 0%,#9d5fd6 38%,#ff7fa8 72%,#ffb571 100%);box-shadow:0 18px 36px -16px rgba(91,75,196,.7)}
-.rh:before,.rh:after{content:'';position:absolute;border-radius:50%;background:rgba(255,255,255,.13);pointer-events:none}
-.rh:before{width:300px;height:300px;right:-80px;top:-120px}.rh:after{width:180px;height:180px;left:38%;bottom:-110px}
-.rh>*{position:relative;z-index:1}
-.spark{position:absolute;color:#fff;opacity:.55;font-size:18px;z-index:0}
-.anim .spark{animation:tw 2.4s ease-in-out infinite}@keyframes tw{50%{opacity:.1;transform:scale(.6)}}
-.ring{width:200px;height:200px;display:block;margin:auto;overflow:visible}
-.ring .bg{fill:rgba(255,255,255,.12);stroke:rgba(255,255,255,.28);stroke-width:16}
-.ring .fg{fill:none;stroke:#fff;stroke-width:16;stroke-linecap:round;transform:rotate(-90deg);transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 6px rgba(255,255,255,.8))}
-.anim .ring .fg{animation:ringIn 1.8s cubic-bezier(.2,.8,.2,1) both}
-@keyframes ringIn{from{stroke-dashoffset:var(--c)}}
-.ring text{fill:#fff;font-family:'Jua';text-anchor:middle}
-.rh-k{font-size:13px;letter-spacing:1.5px;opacity:.9;font-weight:700}
-.rh h2{font-size:clamp(28px,4.6vw,42px);margin:4px 0 2px;line-height:1.15}
-.rh-s{opacity:.88;font-size:15px}
-.type{display:flex;gap:14px;align-items:center;background:rgba(255,255,255,.17);border:2px solid rgba(255,255,255,.55);border-radius:20px;padding:10px 16px;margin:14px 0 12px;backdrop-filter:blur(6px)}
-.type em{font-style:normal;font-size:44px;line-height:1}.type b{font-family:'Jua';font-weight:normal;font-size:24px;display:block;line-height:1.2}.type span{font-size:15px;opacity:.95}
-.anim .type em{animation:pop2 .9s .9s cubic-bezier(.3,1.6,.5,1) both}@keyframes pop2{from{transform:scale(0) rotate(-30deg)}}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{background:rgba(255,255,255,.22);border-radius:999px;padding:5px 13px;font-size:14px;font-weight:700}
-.one{margin:18px 0 4px;padding:16px 20px 16px 58px;border-radius:22px;background:#fff;border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink);font-size:clamp(16.5px,2.3vw,20px);line-height:1.7;position:relative}
-.one:before{content:'💬';position:absolute;left:16px;top:14px;font-size:28px}
-.one b{background:linear-gradient(transparent 58%,#ffe08a 58%);font-weight:800}
-.sec{margin-top:28px;break-inside:avoid}
-.sh{display:flex;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap}
-.sh i{font-style:normal;width:36px;height:36px;border-radius:12px;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:'Jua';font-size:19px;flex:none;box-shadow:0 3px 0 #9d8fa8}
-.sh h3{margin:0;font-size:clamp(21px,3vw,27px)}.sh small{opacity:.62;font-size:14px;margin-left:auto}
-.panel{background:#fff;border:3px solid var(--ink);border-radius:24px;padding:18px 20px;box-shadow:0 6px 0 var(--ink)}
-.map{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:center}.map.one-col{grid-template-columns:1fr}
-.radar2{width:100%;height:auto;display:block}
-.anim .radar2 .me{animation:grow 1.3s .35s cubic-bezier(.2,.9,.3,1.25) both;transform-box:view-box}
+:root{--okc:#2fb879;--midc:#f59f00;--lowc:#f0506e}
+.wrap.rpw{max-width:1040px}
+.rp{text-align:left}
+.sec{background:#fff;border:3px solid var(--ink);border-radius:26px;padding:20px 22px;margin:18px 0;box-shadow:0 6px 0 var(--ink);position:relative}
+.sec h3{margin:0;font-size:clamp(21px,3vw,27px);display:flex;align-items:center;gap:10px}
+.sec h3 .no{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;font-size:17px;flex:none}
+.sec .cap{margin:4px 0 14px;opacity:.62;font-size:15px;line-height:1.5}
+.hero{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;background:linear-gradient(120deg,#fff0f4 0%,#fff8e1 50%,#e8f6ff 100%);overflow:hidden}
+.hero::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.9),rgba(255,255,255,0) 70%);pointer-events:none}
+.hero .who{font-size:16px;opacity:.65}.hero h2{margin:2px 0 10px;font-size:clamp(26px,4.4vw,40px);line-height:1.2}
+.lvb{display:inline-flex;align-items:center;gap:8px;padding:4px 18px;border-radius:999px;border:3px solid var(--ink);background:#fff;font-size:clamp(18px,2.6vw,24px);box-shadow:0 4px 0 var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.chip{border:2px solid var(--ink);border-radius:999px;padding:3px 13px;background:#fff;font-size:16px;white-space:nowrap}
+.chip.hot{background:var(--ink);color:#fff}
+.diag{margin-top:14px;font-size:clamp(17px,2.4vw,21px);line-height:1.65;word-break:keep-all;background:rgba(255,255,255,.75);border-radius:16px;padding:10px 14px;border:2px dashed var(--ink)}
+.diag b{background:linear-gradient(transparent 58%,#ffe066 58%)}
+.ringbox{position:relative;width:min(220px,46vw);aspect-ratio:1}
+.ringbox svg{width:100%;height:100%;display:block;transform:rotate(-90deg)}
+.ringbox .ctr{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1}
+.ringbox .ctr b{font-size:clamp(46px,9vw,72px);font-weight:normal}.ringbox .ctr b small{font-size:.4em}
+.ringbox .ctr span{font-size:17px;opacity:.7;margin-top:6px}
+.duo{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:center}
+.duo svg{width:100%;height:auto;display:block;overflow:visible}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:15px;margin-top:6px;justify-content:center}
+.lg i{display:inline-block;width:22px;height:10px;border-radius:4px;margin-right:5px;vertical-align:middle}
+.pcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px}
+.pcard{border:3px solid var(--ink);border-radius:20px;padding:16px 14px 12px;background:#fff;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;left:0;top:0;right:0;height:9px;background:var(--pc)}
+.pcard .ph{display:flex;align-items:center;gap:10px}
+.pcard .ph svg{width:64px;height:64px;flex:none;transform:rotate(-90deg)}
+.pcard .pn{font-size:19px;line-height:1.25;word-break:keep-all}.pcard .pn small{display:block;font-size:14px;opacity:.6}
+.pcard .big{font-size:30px;line-height:1;text-align:left}
+.lv{font-style:normal;border:2px solid var(--ink);border-radius:999px;padding:0 10px;font-size:14px;white-space:nowrap;display:inline-block}
+.lv.good{background:#c8f2dc}.lv.mid{background:#ffeab0}.lv.low{background:#ffd0d8}
+.dl{font-size:14px;margin-left:4px}.dl.up{color:#1e8a57}.dl.dn{color:#d6334f}
+.qds{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.qd{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:13px;border:2px solid var(--ink)}
+.qd.ok{background:#c8f2dc}.qd.no{background:#ffd0d8}.qd.na{background:#eee;opacity:.6}.qd.fx{background:linear-gradient(135deg,#ffd0d8 50%,#c8f2dc 50%)}
+.mx{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:center}
+.mx svg{width:100%;height:auto;display:block}
+.qlist{display:grid;gap:8px;font-size:16px;line-height:1.5}
+.qlist div{border-left:6px solid var(--c);background:#faf7fc;border-radius:10px;padding:6px 10px;word-break:keep-all}
+.jw{overflow-x:auto}.jw svg{display:block;min-width:560px;width:100%;height:auto}
+.step{display:grid;grid-template-columns:72px 1fr;gap:14px;margin:14px 0;align-items:start}
+.step .sn{background:var(--pc);border:3px solid var(--ink);border-radius:18px;text-align:center;padding:8px 0;font-size:14px;line-height:1.1;box-shadow:0 4px 0 var(--ink)}
+.step .sn b{display:block;font-size:30px;font-weight:normal}
+.step h4{margin:2px 0 6px;font-size:21px;font-weight:normal}
+.gd{background:#f3fbff;border:2px solid #9fd2f5;border-radius:12px;padding:6px 12px;font-size:16px;margin:6px 0;line-height:1.5}
+.wi{border:2px solid var(--ink);border-radius:14px;padding:8px 12px;margin:8px 0;background:#fffafb;font-size:clamp(15px,2.2vw,18px);line-height:1.55;word-break:keep-all}
+.wi .an{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 2px}
+.wi .an span{border-radius:999px;padding:1px 10px;font-size:.88em;border:2px solid var(--ink)}
+.wi .my{background:#ffd0d8}.wi .co{background:#c8f2dc}.wi .rt{background:#fff3bf}
+.wi .ex{font-size:.92em;opacity:.85}
+.acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
+.loading{text-align:center;padding:60px 10px;font-size:24px}
+.spin{display:inline-block;width:46px;height:46px;border:6px solid var(--pink);border-top-color:var(--ink);border-radius:50%;animation:sp 1s linear infinite;margin-bottom:12px}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* 애니메이션 */
+@keyframes ringd{from{stroke-dashoffset:var(--c)}}
 @keyframes grow{from{transform:scale(0);opacity:0}}
-.lg{display:flex;gap:16px;justify-content:center;font-size:13.5px;margin-top:2px;flex-wrap:wrap}.lg span{display:flex;align-items:center;gap:6px}.lg i{width:24px;height:0;border-top:4px solid}
-.pcs{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:11px}
-.pc2{border:2.5px solid var(--ink);border-radius:18px;padding:12px 14px 12px 18px;background:#fff;position:relative;overflow:hidden}
-.pc2:before{content:'';position:absolute;left:0;top:0;bottom:0;width:7px;background:var(--pc)}
-.anim .pc2{animation:up .6s var(--d,0s) cubic-bezier(.2,.8,.2,1) both}@keyframes up{from{transform:translateY(16px);opacity:0}}
-.pc2 .h{display:flex;align-items:center;gap:7px;font-family:'Jua';font-size:18.5px}
-.pc2 .h em{font-style:normal;font-size:22px}
-.pc2 .v{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;margin:2px 0}
-.pc2 .v b{font-family:'Jua';font-weight:normal;font-size:40px;line-height:1.05;color:var(--pcd,var(--ink))}
-.dl{font-size:12.5px;font-weight:800;border-radius:999px;padding:2px 9px;white-space:nowrap}.dl.up{background:#d3f9d8;color:#1e7a4f}.dl.dn{background:#ffe3e3;color:#c92a2a}.dl.eq{background:#eee;color:#555}
-.meter{height:11px;border-radius:99px;background:#f1ecf4;position:relative;margin:20px 0 9px}
-.meter>u{display:block;height:100%;border-radius:99px;background:var(--pc)}
-.anim .meter>u{animation:wid 1.3s .3s cubic-bezier(.2,.8,.2,1) both}@keyframes wid{from{width:0}}
-.meter>s{position:absolute;top:-5px;width:4px;height:21px;background:var(--ink);border-radius:2px}
-.meter>s:after{content:'반';position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800;text-decoration:none;color:var(--ink)}
-.dots{display:flex;flex-wrap:wrap;gap:4px}.dots span{width:25px;height:25px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
-.dots .o{background:#3fbf7f}.dots .x{background:#ff6b6b}.dots .n{background:#c9bfd0}
-.cmp2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
-.mx svg,.hist svg,.rhy svg{width:100%;height:auto;display:block}.rhy svg{max-width:820px;margin:0 auto}
-.anim .bub{animation:pop2 .8s var(--d,0s) cubic-bezier(.3,1.6,.5,1) both;transform-box:fill-box;transform-origin:center}
-.anim .hb{animation:hb .9s var(--d,0s) cubic-bezier(.2,.8,.2,1) both;transform-box:fill-box;transform-origin:bottom}@keyframes hb{from{transform:scaleY(0)}}
-.anim .pin{animation:drop 1s 1s cubic-bezier(.3,1.5,.5,1) both}@keyframes drop{from{transform:translateY(-30px);opacity:0}}
-.mxl{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.mxl div{border-radius:14px;padding:8px 11px;font-size:13.5px;line-height:1.45;border:2px solid rgba(74,59,82,.15)}
-.mxl b{font-family:'Jua';font-weight:normal;font-size:16px;display:block}
-.mxl u{text-decoration:none;font-weight:800}
-.ptitle{font-family:'Jua';font-size:18px;margin:0 0 6px}
-.q4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
-.q4 div{border-radius:16px;padding:10px 12px;border:2.5px solid var(--ink);font-size:13.5px;line-height:1.45}
-.q4 b{font-family:'Jua';font-weight:normal;font-size:17px;display:flex;justify-content:space-between;align-items:center}
-.q4 b big{font-size:28px}
-.q4 p{margin:4px 0 6px}
-.qn{display:inline-block;background:rgba(255,255,255,.75);border:1.5px solid rgba(74,59,82,.3);border-radius:8px;padding:0 6px;margin:2px 3px 0 0;font-weight:800;font-size:12.5px}
-.rx{border:3px solid var(--ink);border-radius:22px;overflow:hidden;margin-bottom:16px;background:#fff;box-shadow:0 6px 0 var(--ink);break-inside:avoid}
-.rx-h{display:flex;gap:14px;align-items:center;padding:13px 18px;background:var(--pcl);border-bottom:2.5px dashed var(--ink)}
-.rx-h .no{font-family:'Jua';font-size:28px;width:50px;height:50px;border-radius:16px;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none;position:relative}
-.rx-h .no:after{content:'Rx';position:absolute;top:-8px;right:-8px;background:var(--pc);color:#fff;font-size:11px;border-radius:8px;padding:1px 5px;border:2px solid var(--ink)}
-.rx-h b{font-family:'Jua';font-weight:normal;font-size:22px;display:block;line-height:1.2}
-.rx-h span{font-size:14px}
-.rx-h .pct{margin-left:auto;font-family:'Jua';font-size:30px;white-space:nowrap}
-.rx-b{padding:12px 18px 6px}
-.ref{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}.ref span{background:#f6f2fa;border:1.5px solid #d9cfe0;border-radius:12px;padding:5px 11px;font-size:14px;line-height:1.45}
-.wq{border-left:6px solid #ff6b6b;background:#fff7f7;border-radius:0 16px 16px 0;padding:11px 15px;margin:10px 0 12px;font-size:15.5px;line-height:1.6}
-.wq .qq{font-weight:700}
-.wq .an{display:flex;flex-wrap:wrap;gap:6px 16px;margin:6px 0;font-size:14.5px}
-.wq .my{color:#c92a2a;text-decoration:line-through;text-decoration-thickness:2px}
-.wq .ok{color:#1e7a4f;font-weight:800}
-.wq .ex{background:#fff;border:1.5px dashed #e4cfd5;border-radius:12px;padding:8px 11px;font-size:14.5px}
-.tg{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:1px 9px;margin-left:6px;vertical-align:middle;white-space:nowrap}
-.tg.rush{background:#ffe8cc;color:#b35c00}.tg.deep{background:#e7f5ff;color:#1864ab}.tg.miss{background:#eee;color:#555}.tg.re{background:#d3f9d8;color:#1e7a4f}
-.note{font-size:13px;opacity:.66;margin-top:6px}
-.lock{text-align:center;padding:22px 10px;font-size:16px;background:repeating-linear-gradient(45deg,#faf7fc,#faf7fc 12px,#f3eef7 12px,#f3eef7 24px);border-radius:18px;border:2px dashed #cdbfd8}
-.lock b{font-family:'Jua';font-weight:normal;font-size:21px;display:block;margin-bottom:4px}
-.cta{margin-top:26px;border-radius:24px;padding:20px;text-align:center;background:linear-gradient(120deg,#fff3bf,#ffd6e0);border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink)}
-.cta h3{margin:0 0 4px;font-size:24px}.cta p{margin:0 0 12px}
-.scan{width:150px;height:150px;margin:10px auto 6px;border-radius:50%;background:conic-gradient(#5b4bc4,#ff7fa8,#ffb571,#4cc38a,#5b4bc4);animation:spin 1.1s linear infinite;display:grid;place-items:center}
-.scan-c{width:118px;height:118px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:54px;animation:spin 1.1s linear infinite reverse}
-@keyframes spin{to{transform:rotate(360deg)}}
-@media(max-width:760px){.rh{grid-template-columns:1fr;text-align:center;padding:22px 18px}.type{text-align:left}.chips{justify-content:center}.map,.cmp2{grid-template-columns:1fr}.q4{grid-template-columns:1fr 1fr}.mxl{grid-template-columns:1fr}}
-/* ================= 교사 대시보드 v2 ================= */
-.tdash{font-family:'Pretendard Variable',Pretendard,'Malgun Gothic',sans-serif}
-.tdash h2,.tdash h3{font-family:'Jua','Malgun Gothic',sans-serif;font-weight:normal}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:11px;margin:14px 0 6px}
-.kpi{border:3px solid var(--ink);border-radius:20px;padding:11px 14px;background:#fff;position:relative;overflow:hidden;box-shadow:0 5px 0 var(--ink)}
-.kpi small{font-size:13.5px;opacity:.75;display:block;font-weight:700}.kpi b{font-family:'Jua';font-weight:normal;font-size:34px;line-height:1.15;display:block}.kpi span{font-size:12.5px;opacity:.7}
-.kpi:after{content:'';position:absolute;right:-22px;top:-22px;width:76px;height:76px;border-radius:50%;background:var(--kc,#ffd6e0);opacity:.75}
-.kpi>*{position:relative;z-index:1}
-.tg2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:900px){.tg2{grid-template-columns:1fr}}
-.ins{list-style:none;margin:0;padding:0;display:grid;gap:9px}
-.ins li{display:flex;gap:12px;align-items:flex-start;background:#fffdf5;border:2px solid #eadfcf;border-radius:16px;padding:11px 14px;font-size:15.5px;line-height:1.6}
-.ins li em{font-style:normal;font-size:24px;line-height:1.2}
-.ins b{background:linear-gradient(transparent 60%,#ffe08a 60%)}
-.hmw{overflow:auto;max-height:70vh}
-.hm{border-collapse:separate;border-spacing:3px;width:100%;font-size:14px}
-.hm th{position:sticky;top:0;background:#fff;border:0;font-family:'Jua';font-weight:normal;font-size:15px;padding:4px;z-index:1}
-.hm td{border:0;border-radius:9px;padding:7px 5px;text-align:center;font-weight:800}
-.hm td.nm{text-align:left;font-weight:700;background:#f6f2fa;cursor:pointer;white-space:nowrap}
+@keyframes up{from{transform:translateY(16px);opacity:0}}
+@keyframes barw{from{width:0}}
+@keyframes bary{from{transform:scaleY(0)}}
+@keyframes pin{from{opacity:0;transform:scale(0)}}
+@keyframes dash{from{stroke-dashoffset:var(--l)}}
+.anim .rg{animation:ringd 1.4s cubic-bezier(.2,.8,.2,1) both}
+.anim .gr{animation:grow 1s cubic-bezier(.2,.9,.25,1.1) both}
+.anim .sec{animation:up .6s ease both}
+.anim .sec:nth-child(2){animation-delay:.08s}.anim .sec:nth-child(3){animation-delay:.16s}.anim .sec:nth-child(4){animation-delay:.24s}.anim .sec:nth-child(5){animation-delay:.32s}.anim .sec:nth-child(6){animation-delay:.4s}
+.anim .bw{animation:barw 1.1s cubic-bezier(.2,.8,.2,1) both}
+.anim .by{transform-box:fill-box;transform-origin:50% 100%;animation:bary .9s cubic-bezier(.2,.8,.2,1) both}
+.anim .pi{transform-box:fill-box;transform-origin:center;animation:pin .5s cubic-bezier(.2,.9,.3,1.4) both}
+.anim .ln{animation:dash 1.6s ease both}
+/* 교사 분석 */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
+.tabs button{font-family:inherit;font-size:19px;color:var(--ink);background:#fff;border:3px solid var(--ink);border-radius:14px;padding:6px 16px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff;box-shadow:0 4px 0 var(--yel2)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{border:3px solid var(--ink);border-radius:20px;padding:12px 14px;background:var(--kc,#fff)}
+.kpi span{font-size:15px;opacity:.75}.kpi b{display:block;font-size:38px;font-weight:normal;line-height:1.15}.kpi small{font-size:14px;opacity:.7}
+.g2{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px}
+.focus li{margin:6px 0;line-height:1.5;word-break:keep-all}
+.focus{margin:0;padding-left:22px;font-size:17px}
+.live-ch{display:flex;flex-wrap:wrap;gap:8px}
+.live-ch span{border:2px solid var(--ink);border-radius:12px;padding:3px 10px;font-size:15px;background:#fff;position:relative;overflow:hidden}
+.live-ch span i{position:absolute;left:0;bottom:0;height:4px;background:var(--mint2)}
+.strip{display:grid;grid-template-columns:minmax(90px,160px) 1fr 120px;gap:12px;align-items:center;margin:10px 0;font-size:17px}
+.strip svg{width:100%;height:auto;display:block;overflow:visible}
+.qrow{display:grid;grid-template-columns:52px minmax(0,1fr) 150px minmax(140px,220px) 74px 62px;gap:10px;align-items:center;padding:8px 6px;border-bottom:1.5px solid #e6dfeb;font-size:16px;cursor:pointer}
+.qrow:hover{background:#fffbea}.qrow.hd{font-size:14px;opacity:.65;cursor:default;background:none}
+.qrow .qt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stk{display:flex;height:20px;border:2px solid var(--ink);border-radius:8px;overflow:hidden}
+.stk i{display:block;height:100%;font-style:normal;font-size:11px;color:#fff;text-align:center;line-height:16px;overflow:hidden}
+.mini{height:14px;border:2px solid var(--ink);border-radius:999px;overflow:hidden;background:#fff}.mini i{display:block;height:100%}
+.dc{border-radius:999px;padding:0 8px;font-size:13px;border:2px solid var(--ink);text-align:center}
+.mcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.mc{border:3px solid var(--ink);border-radius:18px;padding:12px 14px;background:#fff6f8;font-size:16px;line-height:1.5;word-break:keep-all}
+.mc b.pct{font-size:34px;font-weight:normal;color:#d6334f;display:block;line-height:1.1}
+.hm{border-collapse:separate;border-spacing:3px;font-size:14px}
+.hm th,.hm td{border:none;padding:0}
+.hm td.c{width:24px;height:24px;border-radius:6px}
+.hm td.c.ok{background:#5fd39a}.hm td.c.no{background:#ff8fa3}.hm td.c.na{background:#eee}
+.hm th.ph{font-size:13px;padding:2px 4px;border-radius:6px;color:#fff;white-space:nowrap}
+.hm td.nm{padding:0 8px;white-space:nowrap;text-align:left;font-size:16px}
+.hm td.sc{padding:0 8px;font-size:16px}
 .hm tr:hover td.nm{background:var(--yel)}
-.hm tfoot td{background:var(--ink);color:#fff}
-.ia{width:100%;border-collapse:collapse;font-size:14px}
-.ia th{background:var(--sky);position:static}.ia td,.ia th{padding:7px 6px;border:1.5px solid #e4dcea}
-.ia td.l{text-align:left}
-.vd{border-radius:999px;padding:2px 9px;font-size:12px;font-weight:800;white-space:nowrap}
-.vd.g{background:#d3f9d8;color:#1e7a4f}.vd.w{background:#fff3bf;color:#a26900}.vd.b{background:#ffe3e3;color:#c92a2a}.vd.n{background:#eee;color:#666}
-.stk{display:flex;height:22px;border-radius:8px;overflow:hidden;border:2px solid var(--ink);margin:3px 0;min-width:140px}
-.stk span{display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;color:#fff;min-width:0;overflow:hidden;white-space:nowrap}
-.mis{border:2.5px solid var(--ink);border-radius:18px;padding:12px 14px;margin-bottom:10px;font-size:15px;line-height:1.55;background:#fff}
-.mis .big{font-family:'Jua';font-size:30px;color:#e03131;float:right;margin-left:10px;line-height:1}
-.grp{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}.grp span{background:#ffe3e3;border-radius:999px;padding:3px 11px;font-size:14px;font-weight:700}
-.live2{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.live2 span{background:#e7f5ff;border-radius:999px;padding:3px 11px;font-size:13.5px;font-weight:700}
-.pbar{display:grid;grid-template-columns:minmax(80px,150px) 1fr 54px;gap:10px;align-items:center;margin:9px 0;font-size:15px}
-.pbar .t{font-family:'Jua';font-size:16px}
-.pbar .bb{height:16px;background:#f1ecf4;border-radius:99px;overflow:hidden}.pbar .bb u{display:block;height:100%;border-radius:99px}
-.anim .pbar .bb u{animation:wid 1.2s .2s cubic-bezier(.2,.8,.2,1) both}
+.hmw{overflow:auto;max-height:70vh;border:3px solid var(--ink);border-radius:16px;padding:8px;background:#fff}
+@media(max-width:760px){.hero,.duo,.mx,.g2{grid-template-columns:1fr}.hero .ringbox{margin:0 auto}.qrow{grid-template-columns:44px 1fr 100px}.qrow>:nth-child(n+4){display:none}.strip{grid-template-columns:1fr}}
 @media print{
  body{background:none!important}#app{display:none!important}
  .ov{position:static!important;background:none!important;display:block!important;padding:0!important}
  .ov .card{box-shadow:none!important;border:none!important;max-height:none!important;overflow:visible!important;max-width:none!important;padding:0!important}
- .np{display:none!important}.rep{page-break-after:always;break-after:page;padding:2mm}
- .rep *{animation:none!important}
- .panel,.rx,.one{box-shadow:none!important}
- *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .np{display:none!important}.rp{page-break-after:always;break-after:page}
+ .sec{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+ *{animation:none!important;transition:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
-@media(max-width:520px){.wrap{padding:12px 8px 30px}.card{padding:18px 12px;border-radius:22px}.panel{padding:14px 12px}.q4{grid-template-columns:1fr!important}.rh h2{font-size:26px}.pcs{grid-template-columns:1fr}}
 </style></head><body><div class="wrap" id="app"></div>
 <script>
 /* =====================================================================
-   춘해보건대학교 파트별 리포트 퀴즈 - 설정 영역 (여기만 고치면 돼요)
+   춘해보건대학교 파트별 리포트 퀴즈 v2 - 설정 영역 (여기만 고치면 돼요)
    ===================================================================== */
 const TITLE='춘해보건대학교<br>쑥쑥 퀴즈!';          // 첫 화면 제목
-const SUBJECT='○○학과 · ○○과목 · ○주차';              // 첫 화면/리포트 부제
+const SUBJECT='○○학과 · ○○과목 · ○주차';              // 첫 화면 부제 · 리포트 머리글
 const MASCOT='🩺';
 const LIMIT=0;                                          // 제한시간(초). 0이면 제한 없음 (예: 600 = 10분)
-const QUIZ='chunhae';                                   // Supabase quiz_config.quiz 값 (바꾸면 기록이 분리돼요 - 새 값은 등록 필요)
-const NEED_NO=false;                                    // true면 학번 입력 필수
-const TEACHER_PW='ch9mub9g5y9q48nckiqte8t7';                              // 교사용 비밀번호(입력창 없이 자동 사용) - 지우거나 바꾸지 마세요
+const QUIZ='chunhae';                                   // Supabase quiz_config.quiz 값 (바꾸려면 먼저 등록 필요)
+const NEED_NO=false;                                    // true면 학번 입력을 필수로
+const TEACHER_PW='ch9mub9g5y9q48nckiqte8t7';                      // 교사용 비밀번호(입력창 없이 자동 사용). 코드에 들어 있으니 링크/코드를 공개하지 마세요
 
-/* 파트 정보(선택): 리포트의 '복습 처방전'에 아이콘·교재 위치·복습 팁으로 나와요. 문제의 t 값과 이름이 같아야 해요. */
-const PARTS={
- "기초 개념":{ic:"🧠",ref:"교재 1장 · 정의, 청각 발달, 원인, 청력손실 정도",tip:"특수교육법(기능) vs 복지법(dB) 기준을 표 하나로 비교해 정리해 보세요."},
- "조기발견·보조기기":{ic:"🦻",ref:"교재 2장 · 조기발견(1-2-3)과 보청기 종류",tip:"'듣게 하는 기술'과 '보게 하는 기술'을 나눠서 기기 이름을 분류해 보세요."},
- "디지털 포용":{ic:"💻",ref:"수업 슬라이드 · AI와 포용 기술",tip:"각 기술이 '대체'인지 '보완'인지 한 줄씩 써 보세요."},
- "제도·서비스":{ic:"🏛️",ref:"수업 슬라이드 · 제도와 일상 인프라",tip:"번호(107)·법 시행 시기처럼 외울 것은 카드로 만들어 반복해요."}
+/* 파트별 복습 안내(선택): 리포트의 '맞춤 복습 플랜'에 나와요. 없는 파트는 생략돼요. */
+const PART_GUIDE={
+"기초 개념":{tip:"법 기준(특수교육법=교육적 성취, 복지법=dB)과 청력손실 단계(WHO 2021: 경도 20dB~)를 표로 정리해 보세요.",ref:"(예시) 교재 1장 · 수업자료 3~8쪽"},
+"청각 발달·조기발견":{tip:"태아 청각 발달 타임라인(3~4주→10주→20주→24~25주)과 1-2-3 원칙을 순서대로 외워요.",ref:"(예시) 교재 2장"},
+"보청기·보조기술":{tip:"'듣게 하는 기술'(보청기·FM)과 '보게 하는 기술'(자막 글래스)을 나눠서 비교해요.",ref:"(예시) 수업자료 12~15쪽"},
+"디지털 포용":{tip:"Auracast·수어 AI처럼 기술 이름과 '무엇을 해결하는지'를 짝지어 보세요.",ref:"(예시) 수업자료 16~20쪽"},
+"제도·서비스":{tip:"107 손말이음센터, 디지털포용법(2026.1 시행) 등 숫자와 연도를 카드로 정리해요.",ref:"(예시) 수업자료 21~24쪽"}
 };
 
-/* 문제: t = 파트 이름, q = 문제, o = 보기, a = 정답 위치(첫 번째 보기 = 0), e = 해설
+/* 문제: t = 파트 이름(같은 이름끼리 묶여 분석), a = 정답 번호(0부터), e = 해설
    OX 문제는 o:["O","X"], ox:1, a:0(O) 또는 1(X).  아래는 예시 문제예요 - 지우고 새로 넣으세요. */
 const Q=[
-{t:"기초 개념",q:"청각장애를 판단하는 두 가지 법의 기준으로 옳은 것은?",o:["특수교육법은 dB 수치, 장애인복지법은 교육적 성취","특수교육법은 교육적 성취(기능), 장애인복지법은 dB 수치","두 법 모두 dB 수치로만 판단","두 법 모두 교육적 성취로만 판단"],a:1,e:"특수교육법은 ‘보청기를 착용해도 의사소통이 어렵거나, 청력이 남아 있어도 보청기를 써야 의사소통이 가능해 교육적 성취가 어려운 사람’이에요. 복지법은 두 귀 청력 손실 dB 수치(예: 각각 80dB 이상 = 심한 장애)로 판정해요."},
-{t:"기초 개념",q:"태아가 소리에 심박이나 움직임으로 ‘처음 반응’하기 시작하는 시기는?",o:["임신 3~4주","임신 10주","임신 24~25주","임신 35주 이후"],a:2,e:"임신 24~25주예요. 3~4주 귀 시작 → 10주 와우 모양 완성 → 20주 성인 크기 와우 → 24~25주 첫 반응 → 28~32주 소리 구별 → 35주 이후 엄마 목소리를 선호해요."},
-{t:"기초 개념",q:"중이의 ‘이관기능장애’와 관련이 깊은 것은?",o:["구개열 · 다운증후군","소이증 · 대이증","선천성 외이도 폐쇄","심한 신생아 황달"],a:0,e:"이관은 입천장 주변 근육이 열어 주는데, 구개열·다운증후군에서는 이 기능이 약해 중이염이 잘 생겨요. 소이증·대이증·외이도 폐쇄는 외이, 신생아 황달은 청신경·중추 원인이에요."},
-{t:"기초 개념",q:"청력손실 정도에서 ‘경도’가 시작되는 기준이 26dB에서 바뀌었다. 최신(WHO 2021) 기준은?",o:["15dB","25dB","30dB","20dB"],a:3,e:"경도 시작이 26dB(ISO 1964, 교재 기준)에서 20dB(WHO 2021)로 바뀌었어요. ‘완전 난청’(95dB 이상) 단계도 추가됐고, ‘장애’보다 ‘청각 돌봄이 필요한 정도’로 보는 관점이에요."},
-{t:"조기발견·보조기기",q:"조기발견의 시계가 ‘1-3-6’에서 ‘1-2-3’으로 바뀌었다. ‘1-2-3’이 뜻하는 것은?",o:["선별 1세 · 진단 2세 · 중재 3세","선별 1개월 · 진단 2개월 · 중재 3개월","선별 1주 · 진단 2주 · 중재 3주","선별 1개월 · 진단 3개월 · 중재 6개월"],a:1,e:"JCIH(2019) 새 목표예요. 선별 1개월 · 진단 2개월 · 중재 3개월! 기존 1-3-6(선별 1 · 진단 3 · 중재 6개월)을 앞당겼어요."},
-{t:"조기발견·보조기기",q:"특수 보청기인 FM 보청기에 대한 설명으로 옳은 것은?",o:["수술로 내이에 전극을 삽입한다","소리를 시야 속 자막으로 바꿔 준다","화자는 마이크로 말하고, 수신자는 수신기를 통해 무선으로 듣는다","뼈의 진동만으로 소리를 전달한다"],a:2,e:"FM 보청기는 라디오 주파수로 소리를 보내요. 적외선 보청기는 TV 리모컨처럼 적외선을 쓰고, 송출기는 위에서 아래로 쏘는 방식이 가장 좋아요."},
-{t:"조기발견·보조기기",q:"AI 자막 글래스는 소리를 키워 주기 때문에 보청기를 대신할 수 있다.",o:["O","X"],ox:1,a:1,e:"X! 글래스는 음성을 시야 속 자막으로 바꿔 주는 ‘보게 하는 기술’이고 보청기가 아니에요. ‘듣게 하는 기술’에서 ‘보게 하는 기술’로 선택지가 넓어지고 있어요."},
-{t:"조기발견·보조기기",q:"AI 보청기가 소음 속에서 해 주는 일은?",o:["모든 소리를 똑같이 크게 키운다","소리를 전부 차단한다","들리는 소리를 글자로만 보여 준다","전용 AI 칩으로 말소리를 실시간 분리해 또렷하게 한다"],a:3,e:"AI 칩이 소음 속에서 말소리를 실시간으로 분리해요. 그래도 맞춤 피팅과 재활은 여전히 전문가의 몫이에요."},
-{t:"디지털 포용",q:"시·청각장애인 중 필수 IT 보조기기를 지원받지 못하는 비율은?",o:["92.5%","약 7.5%","약 50%","약 1/3"],a:0,e:"92.5%예요. 기술이 있어도 닿지 않으면 소용없어요. 거꾸로 말하면 100명 중 약 7~8명만 지원받는 ‘현실의 사각지대’예요."},
-{t:"디지털 포용",q:"역·극장·강당의 안내 방송을 보청기·인공와우·무선 이어폰으로 직접 보내 주는 블루투스 방송 기술은?",o:["Auracast","유튜브 라이브","골도 진동기","팩스 방송"],a:0,e:"Auracast(블루투스 LE Audio 방송)예요. ‘소리가 나에게 오는’ 공간을 만들어 거리·소음·잔향이 더는 장벽이 되지 않도록 해요."},
-{t:"디지털 포용",q:"AI 수어 아바타는 표정·시선 같은 비수지 신호까지 완벽해서 통역사를 대체할 수 있다.",o:["O","X"],ox:1,a:1,e:"X! 표정·시선·입모양(비수지 신호), 공간 문법의 정확도가 아직 한계예요. 농인 검수가 필요하고, 통역사를 대체하는 것이 아니라 ‘보완’해요."},
-{t:"디지털 포용",q:"수어 AI의 번역 품질은 누가 검증해야 할까?",o:["개발자만","보청기 제조사","농인(당사자)","번역 앱 광고 모델"],a:2,e:"농인이 함께 만들고 검증해야 해요. 한국수어 데이터 부족과 비수지 신호가 과제예요. ‘통역사가 없는 순간에도 대화가 끊기지 않는’ 사회를 향해 가고 있어요."},
-{t:"제도·서비스",q:"청각·언어장애인의 전화를 영상·문자로 중계해 주는 서비스는?",o:["114 번호안내","119 신고","112 신고","107 손말이음센터"],a:3,e:"107 손말이음센터예요. 영상·문자로 전화를 중계해서 고객센터·병원·경찰·소방까지 연결해 줘요. 국번이 없는 107이에요."},
-{t:"제도·서비스",q:"「디지털포용법」은 2026년 1월에 시행되었다.",o:["O","X"],ox:1,a:0,e:"O! 모든 국민이 AI·디지털 혜택을 차별 없이 누리도록 하는 법(2026.1 시행)이에요. 키오스크 배리어프리 의무도 2026년부터 모든 사업자에게 전면 적용돼요."},
-{t:"제도·서비스",q:"유전성 난청의 첫 유전자 치료제가 승인되었다. 치료로 소리가 들리게 된 뒤에 대해 옳은 것은?",o:["들리게 되면 언어도 저절로 습득된다","더 이상 어떤 지원도 필요 없다","들려도 언어는 따로 배워야 한다","농문화에 대한 안내는 필요 없다"],a:2,e:"청력 회복 ≠ 언어 습득! 들려도 언어는 따로 배워야 하고, 선택은 농문화까지 균형 있게 안내해요. 치료가 발전할수록 ‘듣기를 언어로 바꾸는’ 언어재활사의 일이 더 중요해져요."}
+{"t":"기초 개념","q":"청각장애를 판단하는 두 가지 법의 기준으로 옳은 것은?","o":["특수교육법은 dB 수치, 장애인복지법은 교육적 성취","특수교육법은 교육적 성취(기능), 장애인복지법은 dB 수치","두 법 모두 dB 수치로만 판단","두 법 모두 교육적 성취로만 판단"],"a":1,"e":"특수교육법은 ‘보청기를 착용해도 의사소통이 어렵거나, 청력이 남아 있어도 보청기를 써야 의사소통이 가능해 교육적 성취가 어려운 사람’이에요. 복지법은 두 귀 청력 손실 dB 수치(예: 각각 80dB 이상 = 심한 장애)로 판정해요."},
+{"t":"기초 개념","q":"중이의 ‘이관기능장애’와 관련이 깊은 것은?","o":["구개열 · 다운증후군","소이증 · 대이증","선천성 외이도 폐쇄","심한 신생아 황달"],"a":0,"e":"이관은 입천장 주변 근육이 열어 주는데, 구개열·다운증후군에서는 이 기능이 약해 중이염이 잘 생겨요. 소이증·대이증·외이도 폐쇄는 외이, 신생아 황달은 청신경·중추 원인이에요."},
+{"t":"기초 개념","q":"청력손실 정도에서 ‘경도’가 시작되는 기준이 26dB에서 바뀌었다. 최신(WHO 2021) 기준은?","o":["15dB","25dB","30dB","20dB"],"a":3,"e":"경도 시작이 26dB(ISO 1964, 교재 기준)에서 20dB(WHO 2021)로 바뀌었어요. ‘완전 난청’(95dB 이상) 단계도 추가됐고, ‘장애’보다 ‘청각 돌봄이 필요한 정도’로 보는 관점이에요."},
+{"t":"청각 발달·조기발견","q":"태아가 소리에 심박이나 움직임으로 ‘처음 반응’하기 시작하는 시기는?","o":["임신 3~4주","임신 10주","임신 24~25주","임신 35주 이후"],"a":2,"e":"임신 24~25주예요. 3~4주 귀 시작 → 10주 와우 모양 완성 → 20주 성인 크기 와우 → 24~25주 첫 반응 → 28~32주 소리 구별 → 35주 이후 엄마 목소리를 선호해요."},
+{"t":"청각 발달·조기발견","q":"조기발견의 시계가 ‘1-3-6’에서 ‘1-2-3’으로 바뀌었다. ‘1-2-3’이 뜻하는 것은?","o":["선별 1세 · 진단 2세 · 중재 3세","선별 1개월 · 진단 2개월 · 중재 3개월","선별 1주 · 진단 2주 · 중재 3주","선별 1개월 · 진단 3개월 · 중재 6개월"],"a":1,"e":"JCIH(2019) 새 목표예요. 선별 1개월 · 진단 2개월 · 중재 3개월! 기존 1-3-6(선별 1 · 진단 3 · 중재 6개월)을 앞당겼어요."},
+{"t":"보청기·보조기술","q":"특수 보청기인 FM 보청기에 대한 설명으로 옳은 것은?","o":["수술로 내이에 전극을 삽입한다","소리를 시야 속 자막으로 바꿔 준다","화자는 마이크로 말하고, 수신자는 수신기를 통해 무선으로 듣는다","뼈의 진동만으로 소리를 전달한다"],"a":2,"e":"FM 보청기는 라디오 주파수로 소리를 보내요. 적외선 보청기는 TV 리모컨처럼 적외선을 쓰고, 송출기는 위에서 아래로 쏘는 방식이 가장 좋아요."},
+{"t":"보청기·보조기술","q":"AI 자막 글래스는 소리를 키워 주기 때문에 보청기를 대신할 수 있다.","o":["O","X"],"a":1,"e":"X! 글래스는 음성을 시야 속 자막으로 바꿔 주는 ‘보게 하는 기술’이고 보청기가 아니에요. ‘듣게 하는 기술’에서 ‘보게 하는 기술’로 선택지가 넓어지고 있어요.","ox":1},
+{"t":"보청기·보조기술","q":"AI 보청기가 소음 속에서 해 주는 일은?","o":["모든 소리를 똑같이 크게 키운다","소리를 전부 차단한다","들리는 소리를 글자로만 보여 준다","전용 AI 칩으로 말소리를 실시간 분리해 또렷하게 한다"],"a":3,"e":"AI 칩이 소음 속에서 말소리를 실시간으로 분리해요. 그래도 맞춤 피팅과 재활은 여전히 전문가의 몫이에요."},
+{"t":"디지털 포용","q":"시·청각장애인 중 필수 IT 보조기기를 지원받지 못하는 비율은?","o":["92.5%","약 7.5%","약 50%","약 1/3"],"a":0,"e":"92.5%예요. 기술이 있어도 닿지 않으면 소용없어요. 거꾸로 말하면 100명 중 약 7~8명만 지원받는 ‘현실의 사각지대’예요."},
+{"t":"디지털 포용","q":"역·극장·강당의 안내 방송을 보청기·인공와우·무선 이어폰으로 직접 보내 주는 블루투스 방송 기술은?","o":["Auracast","유튜브 라이브","골도 진동기","팩스 방송"],"a":0,"e":"Auracast(블루투스 LE Audio 방송)예요. ‘소리가 나에게 오는’ 공간을 만들어 거리·소음·잔향이 더는 장벽이 되지 않도록 해요."},
+{"t":"디지털 포용","q":"AI 수어 아바타는 표정·시선 같은 비수지 신호까지 완벽해서 통역사를 대체할 수 있다.","o":["O","X"],"a":1,"e":"X! 표정·시선·입모양(비수지 신호), 공간 문법의 정확도가 아직 한계예요. 농인 검수가 필요하고, 통역사를 대체하는 것이 아니라 ‘보완’해요.","ox":1},
+{"t":"디지털 포용","q":"수어 AI의 번역 품질은 누가 검증해야 할까?","o":["개발자만","보청기 제조사","농인(당사자)","번역 앱 광고 모델"],"a":2,"e":"농인이 함께 만들고 검증해야 해요. 한국수어 데이터 부족과 비수지 신호가 과제예요. ‘통역사가 없는 순간에도 대화가 끊기지 않는’ 사회를 향해 가고 있어요."},
+{"t":"제도·서비스","q":"청각·언어장애인의 전화를 영상·문자로 중계해 주는 서비스는?","o":["114 번호안내","119 신고","112 신고","107 손말이음센터"],"a":3,"e":"107 손말이음센터예요. 영상·문자로 전화를 중계해서 고객센터·병원·경찰·소방까지 연결해 줘요. 국번이 없는 107이에요."},
+{"t":"제도·서비스","q":"「디지털포용법」은 2026년 1월에 시행되었다.","o":["O","X"],"a":0,"e":"O! 모든 국민이 AI·디지털 혜택을 차별 없이 누리도록 하는 법(2026.1 시행)이에요. 키오스크 배리어프리 의무도 2026년부터 모든 사업자에게 전면 적용돼요.","ox":1},
+{"t":"제도·서비스","q":"유전성 난청의 첫 유전자 치료제가 승인되었다. 치료로 소리가 들리게 된 뒤에 대해 옳은 것은?","o":["들리게 되면 언어도 저절로 습득된다","더 이상 어떤 지원도 필요 없다","들려도 언어는 따로 배워야 한다","농문화에 대한 안내는 필요 없다"],"a":2,"e":"청력 회복 ≠ 언어 습득! 들려도 언어는 따로 배워야 하고, 선택은 농문화까지 균형 있게 안내해요. 치료가 발전할수록 ‘듣기를 언어로 바꾸는’ 언어재활사의 일이 더 중요해져요."}
 ];
 /* ===================================================================== */
 
 const $=s=>document.querySelector(s),app=$('#app'),EM=['🐣','🐰','🐻','🐱'];
-const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const strip=s=>String(s).replace(/<[^>]*>/g,'');
 const fmtT=ms=>{if(!(ms>0))return '';const s=Math.round(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
-const fmtS=ms=>ms>=60000?fmtT(ms):Math.round(ms/1000)+'초';
 const mmss=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
-const short=(s,n)=>{s=String(s);return s.length>n?s.slice(0,n-1)+'…':s};
-const median=a=>{a=a.filter(x=>x>0);if(!a.length)return 0;const b=[...a].sort((x,y)=>x-y),m=b.length>>1;return b.length%2?b[m]:(b[m-1]+b[m])/2};
-const wait=ms=>new Promise(r=>setTimeout(r,ms));
-const shuffle=a=>{for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a};
-const PT=[...new Set(Q.map(q=>q.t))];
-const PC=['#ff6f9b','#2fb57a','#f0a020','#3d8bfd','#8b6cf0','#ff8a3d','#14b8a6','#e05a47'],PCL=['#ffe3ec','#daf5e8','#fff0cc','#e0edff','#ece6ff','#ffe8d8','#d5f5f1','#fbe0db'];
-const pidx=t=>Math.max(0,PT.indexOf(t))%PC.length,pcol=t=>PC[pidx(t)],pcl=t=>PCL[pidx(t)];
-const pinfo=t=>(typeof PARTS!=='undefined'&&PARTS&&PARTS[t])||{};
-const isOk=(a,k)=>!!(a&&a[k]&&a[k][1]);
-const optTxt=(q,k)=>q.ox?(k?'X':'O'):(k+1)+'. '+q.o[k];
-const lvOf=pc=>pc>=80?['탄탄해요','good']:pc>=60?['보통','mid']:['보충 필요','low'];
-const heat=pc=>`hsl(${Math.round(Math.max(0,Math.min(100,pc))*1.25)},78%,${pc>=80?80:84}%)`;
-
-let tick=null,mode='home',i=0,score=0,locked=false,me=null,myKey='',saveQ=Promise.resolve(),qT0=0,myS=null;
+let tick=null,mode='home',i=0,score=0,locked=false,me=null,myKey='',saveQ=Promise.resolve(),qT0=0,rList=[],rI=0,uid=0;
 const left=()=>!LIMIT?Infinity:(me&&me.st?Math.max(0,Math.ceil((me.st+LIMIT*1000-Date.now())/1000)):LIMIT);
 function startTimer(){clearInterval(tick);if(!LIMIT)return;const draw=()=>{const s=left(),el=$('#tm');
   if(el){el.textContent='⏱ '+mmss(s);el.classList.toggle('low',s<=30)}
   if(s<=0){clearInterval(tick);timeUp()}};draw();tick=setInterval(draw,250)}
-function timeUp(){if(mode!=='play'||!me||me.d)return;locked=true;me.to=true;me.d=true;me.f=me.st+LIMIT*1000;me.c=Q.length;save();end(true)}
+function timeUp(){if(mode!=='play'||!me||me.d)return;locked=true;me.to=true;me.d=true;me.f=me.st+LIMIT*1000;me.c=Q.length;save();end()}
 
 /* ---------- 저장소: Supabase ---------- */
 const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw';
@@ -306,170 +267,140 @@ const isBadPw=e=>!!e&&(e.status===403||/wrong_password/.test(e.message||''));
 const LS={get(k){try{return JSON.parse(localStorage.getItem('chq:'+QUIZ+':'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('chq:'+QUIZ+':'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('chq:'+QUIZ+':'+k)}catch(e){}}};
 const SS={get(k){try{return sessionStorage.getItem('chq:'+QUIZ+':'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('chq:'+QUIZ+':'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('chq:'+QUIZ+':'+k)}catch(e){}}};
 let tPw=SS.get('pw')||TEACHER_PW;
-async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await wait(1500)}}}
+async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await new Promise(r=>setTimeout(r,1500))}}}
 function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringify(me)),id=myKey;
   saveQ=saveQ.then(()=>putRec(id,v)).catch(e=>console.error('저장 실패',e))}
+async function fetchClass(){try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});return ((r&&r.players)||[]).filter(Boolean)}catch(e){return null}}
 
-/* ================= 분석 엔진 ================= */
-function partStats(a,rt){a=a||{};rt=rt||{};return PT.map(t=>{const idx=Q.map((q,k)=>q.t===t?k:-1).filter(k=>k>=0),ok=idx.filter(k=>isOk(a,k)).length;
-  return{t,idx,n:idx.length,ok,pc:Math.round(ok/idx.length*100),rtT:idx.filter(k=>rt[k]!=null).length,rtO:idx.filter(k=>rt[k]==1).length}})}
-const scoreOf=a=>Q.filter((_,k)=>isOk(a,k)).length;
-/* 반 통계: 완료한 학생 기준 */
-function classStats(L){L=(L||[]).filter(p=>p&&p.d&&p.a);const n=L.length;if(!n)return null;
-  const q=Q.map((qq,k)=>{let an=0,ok=0;const ts=[],ch=qq.o.map(()=>0);L.forEach(p=>{const r=p.a[k];if(r){an++;if(r[1])ok++;if(r[2])ts.push(r[2]);if(ch[r[0]]!=null)ch[r[0]]++}});
-    return{an,ok,pc:an?ok/an*100:0,med:median(ts),ch}});
-  const part={};PT.forEach(t=>{let s=0;L.forEach(p=>s+=partStats(p.a).find(x=>x.t===t).pc);part[t]=s/n});
-  const scores=L.map(p=>scoreOf(p.a));
-  /* 변별도: 상위 27% 정답률 - 하위 27% 정답률 */
-  let D=null;if(n>=4){const so=L.map(p=>({p,s:scoreOf(p.a)})).sort((x,y)=>y.s-x.s),g=Math.max(1,Math.round(n*.27)),U=so.slice(0,g),Lo=so.slice(-g);
-    D=Q.map((_,k)=>U.filter(x=>isOk(x.p.a,k)).length/g-Lo.filter(x=>isOk(x.p.a,k)).length/g)}
-  return{n,q,part,scores,avg:scores.reduce((x,y)=>x+y,0)/n,D,L}}
-/* 문항별 풀이 유형: 시간(반 중앙값 또는 내 중앙값) × 정오 */
-function kinds(a,S){a=a||{};const myMed=median(Q.map((_,k)=>a[k]&&a[k][2]||0));
-  return Q.map((_,k)=>{const r=a[k];if(!r)return 'miss';const ref=(S&&S.n>=3&&S.q[k].med)||myMed,t=r[2]||0,fast=t>0&&ref>0&&t<ref*.8;
-    return r[1]?(fast?'sure':'think'):(fast?'rush':'deep')})}
-const KD={sure:['⚡','확실히 앎','빠르고 정확하게 맞혔어요','#e3f8ea'],think:['🧩','고민 끝 정답','시간은 걸렸지만 맞혔어요. 한 번 더 보면 확실해져요','#fff4d6'],rush:['💨','성급한 실수','빨리 골랐다가 틀렸어요. 끝까지 읽기만 해도 점수 UP','#ffe8d6'],deep:['📚','개념 보충','충분히 고민했는데 틀렸어요. 개념을 다시 정리해요','#ffe3e8']};
-function typeOf(P,pc){const v=P.map(x=>x.pc),mx=Math.max(...v),mn=Math.min(...v);
-  if(mn>=80)return['🏆','올라운더형','모든 파트를 고르게 꽉 잡았어요!'];
-  if(pc>=60&&mx-mn>=40)return['🎯','스페셜리스트형','강한 파트가 확실해요. 약한 파트만 채우면 올라운더!'];
-  if(pc>=60)return['🌱','균형 성장형','파트별 실력이 고르게 자라고 있어요.'];
-  if(mx>=80)return['💎','숨은 강점형','확실한 강점 파트가 있어요. 그 감각으로 나머지를 채워요.'];
-  return['🚀','도약 준비형','지금부터가 시작! 처방전 순서대로 하면 쑥 올라가요.']}
-const quad=(m,c)=>m>=70?(c>=70?['탄탄 유지','✅','#e3f8ea','다들 알고 나도 알아요']:['나만의 강점','⭐','#fff1c7','다들 어려워했는데 해냈어요']):(c>=70?['최우선 복습','🚨','#ffe0e5','다들 맞힌 내용 - 꼭 잡아야 해요']:['함께 어려운 부분','🤝','#e3eeff','반 전체가 어려워했어요 - 수업에서 다시 다뤄요']);
+/* =================== 분석 엔진 =================== */
+const PL=[...new Set(Q.map(q=>q.t))];
+const PCOL=['#ff7aa2','#2fb879','#f2a516','#4d9fff','#a77bf3','#ff8c5a','#1fb5a8','#e0607e'];
+const pcol=t=>PCOL[Math.max(0,PL.indexOf(t))%PCOL.length];
+const lvOf=pc=>pc>=80?['탄탄','good']:pc>=60?['보통','mid']:['보충 필요','low'];
+const LVC={good:'#2fb879',mid:'#f2a516',low:'#f0506e'};
+const optTxt=(q,k)=>q.ox?(k?'X':'O'):(k+1)+'. '+strip(q.o[k]);
+function st(rec){const a=(rec&&rec.a)||{};
+  const parts=PL.map(t=>{const idx=Q.map((_,k)=>k).filter(k=>Q[k].t===t),ok=idx.filter(k=>a[k]&&a[k][1]).length;return{t,idx,n:idx.length,ok,pc:Math.round(ok/idx.length*100)}});
+  const s=Q.filter((_,k)=>a[k]&&a[k][1]).length;
+  return{a,parts,s,n:Q.length,pc:Math.round(s/Q.length*100),wrong:Q.map((_,k)=>k).filter(k=>!(a[k]&&a[k][1])),r:(rec&&rec.r)||{}}}
+function cstat(players){const D=(players||[]).filter(p=>p&&p.d);if(!D.length)return null;const S=D.map(st);
+  const part={};PL.forEach((t,j)=>part[t]=Math.round(S.reduce((x,s)=>x+s.parts[j].pc,0)/S.length));
+  const sc=S.map(s=>s.s).sort((x,y)=>x-y),avg=sc.reduce((a,b)=>a+b,0)/sc.length,med=sc.length%2?sc[(sc.length-1)/2]:(sc[sc.length/2-1]+sc[sc.length/2])/2;
+  return{n:D.length,D,S,part,sc,avg,med}}
 
-/* ================= 그래픽 ================= */
-function radar2(P,S){const n=P.length;if(n<3)return '';const W=480,H=380,cx=240,cy=192,R=122;
-  const pt=(k,v)=>{const a=-Math.PI/2+2*Math.PI*k/n,r=R*v/100;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]};
-  const poly=vs=>vs.map((v,k)=>pt(k,v).map(x=>x.toFixed(1)).join(',')).join(' ');
-  let s=`<svg class="radar2" viewBox="-52 0 ${W+104} ${H}" role="img" aria-label="파트별 레이더 차트"><defs><radialGradient id="rg${n}" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#ffb3c9" stop-opacity=".95"/><stop offset="1" stop-color="#8b6cf0" stop-opacity=".6"/></radialGradient><filter id="gl"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`;
-  s+=`<polygon points="${poly(P.map(()=>100))}" fill="#eafaf0"/><polygon points="${poly(P.map(()=>80))}" fill="#fffbea"/><polygon points="${poly(P.map(()=>60))}" fill="#fff1f2"/>`;
-  [20,40,60,80,100].forEach(v=>s+=`<polygon points="${poly(P.map(()=>v))}" fill="none" stroke="#d9cfe0" stroke-width="${v===60||v===80?1.6:1}" ${v===60||v===80?'stroke-dasharray="3 3"':''}/>`);
-  P.forEach((_,k)=>{const [x,y]=pt(k,100);s+=`<line x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" stroke="#d9cfe0"/>`});
-  [60,80].forEach(v=>{const [x,y]=pt(0,v);s+=`<text x="${x+5}" y="${y+4}" font-size="10.5" fill="#a093ab" font-weight="700">${v}%</text>`});
-  if(S)s+=`<polygon points="${poly(P.map(x=>S.part[x.t]))}" fill="rgba(74,59,82,.06)" stroke="#4a3b52" stroke-width="2.4" stroke-dasharray="7 5"/>`;
-  s+=`<g class="me" style="transform-origin:${cx}px ${cy}px"><polygon points="${poly(P.map(x=>Math.max(4,x.pc)))}" fill="url(#rg${n})" stroke="#6a55d8" stroke-width="3.5" stroke-linejoin="round" filter="url(#gl)"/>`;
-  P.forEach((x,k)=>{const [px,py]=pt(k,Math.max(4,x.pc));s+=`<circle cx="${px.toFixed(1)}" cy="${py.toFixed(1)}" r="8" fill="${pcol(x.t)}" stroke="#fff" stroke-width="3"/>`});
-  s+='</g>';
-  P.forEach((x,k)=>{const [px,py]=pt(k,100),a=-Math.PI/2+2*Math.PI*k/n,lx=cx+(R+16)*Math.cos(a),ly=cy+(R+16)*Math.sin(a),an=Math.abs(Math.cos(a))<.2?'middle':(Math.cos(a)<0?'end':'start'),
-    y1=Math.sin(a)<-.5?ly-20:Math.sin(a)>.5?ly+14:ly-4;
-    s+=`<text x="${lx.toFixed(1)}" y="${y1.toFixed(1)}" text-anchor="${an}" font-family="Jua" font-size="16" fill="#4a3b52">${esc(short((pinfo(x.t).ic?pinfo(x.t).ic+' ':'')+x.t,13))}</text><text x="${lx.toFixed(1)}" y="${(y1+18).toFixed(1)}" text-anchor="${an}" font-size="14" font-weight="800" fill="${pcol(x.t)}">${x.pc}%${S?` <tspan fill="#8a7d94" font-weight="600" font-size="12">(반 ${Math.round(S.part[x.t])}%)</tspan>`:''}</text>`});
+/* ---------- SVG 차트 ---------- */
+function ring(pc,size,stroke,cols,label){const id='g'+(++uid),r=(size-stroke)/2,C=2*Math.PI*r,o=C*(1-pc/100);
+  return `<svg viewBox="0 0 ${size} ${size}"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">${cols.map((c,k)=>`<stop offset="${k/(cols.length-1||1)}" stop-color="${c}"/>`).join('')}</linearGradient></defs>
+<circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#f1eaf4" stroke-width="${stroke}"/>
+<circle class="rg" style="--c:${C.toFixed(1)}" cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="url(#${id})" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${o.toFixed(1)}"/></svg>`}
+function radar(series,showLbl){const n=PL.length;if(n<3)return '';const W=560,H=430,cx=280,cy=215,R=145;
+  const pt=(k,v)=>{const a=-Math.PI/2+2*Math.PI*k/n;return[cx+Math.cos(a)*R*v/100,cy+Math.sin(a)*R*v/100]};
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="파트별 실력 지도">`;
+  [20,40,60,80,100].forEach((v,j)=>s+=`<polygon points="${PL.map((_,k)=>pt(k,v).join(',')).join(' ')}" fill="${j%2?'#fbf8fd':'#fff'}" stroke="#e3d9ea" stroke-width="1.4"/>`);
+  [60,80].forEach(v=>s+=`<text x="${cx+3}" y="${cy-R*v/100+12}" font-size="11" fill="#a99bb4">${v}</text>`);
+  PL.forEach((t,k)=>{const[x,y]=pt(k,100);s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#e3d9ea" stroke-width="1.4"/>`});
+  series.forEach((S,j)=>{const P=S.vals.map((v,k)=>pt(k,Math.max(2,v)).join(',')).join(' ');
+    s+=`<g class="gr" style="transform-origin:${cx}px ${cy}px;animation-delay:${.25+j*.35}s"><polygon points="${P}" fill="${S.fill}" stroke="${S.col}" stroke-width="${S.w||3.5}" stroke-linejoin="round" ${S.dash?'stroke-dasharray="7 6"':''}/>`;
+    if(S.dots)S.vals.forEach((v,k)=>{const[x,y]=pt(k,Math.max(2,v));s+=`<circle cx="${x}" cy="${y}" r="7" fill="${pcol(PL[k])}" stroke="#4a3b52" stroke-width="2.5"/>`});s+='</g>'});
+  PL.forEach((t,k)=>{const[x,y]=pt(k,100),a=-Math.PI/2+2*Math.PI*k/n,lx=cx+Math.cos(a)*(R+26),ly=cy+Math.sin(a)*(R+24),an=Math.abs(Math.cos(a))<.25?'middle':(Math.cos(a)>0?'start':'end');
+    const v=series[0].vals[k];s+=`<text x="${lx}" y="${ly}" text-anchor="${an}" font-size="16" fill="#4a3b52">${esc(t.length>11?t.slice(0,10)+'…':t)}</text>`;
+    if(showLbl)s+=`<text x="${lx}" y="${ly+19}" text-anchor="${an}" font-size="15" fill="${LVC[lvOf(v)[1]]}">${v}%</text>`});
   return s+'</svg>'}
-
-let _cv=null;function txtW(s,f){try{_cv=_cv||document.createElement('canvas');const c=_cv.getContext('2d');c.font=f+",'Malgun Gothic',sans-serif";return c.measureText(String(s)).width}catch(e){return String(s).length*15}}
-function matrix(P,S){const W=440,H=360,L=48,T=14,R=W-14,B=H-44,X=v=>L+(R-L)*v/100,Y=v=>B-(B-T)*v/100;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="복습 우선순위 매트릭스">`;
-  const rect=(x0,y0,x1,y1,c)=>`<rect x="${X(x0)}" y="${Y(y1)}" width="${X(x1)-X(x0)}" height="${Y(y0)-Y(y1)}" fill="${c}"/>`;
-  s+=rect(0,70,70,100,'#fff1c7')+rect(70,70,100,100,'#e3f8ea')+rect(0,0,70,70,'#e3eeff')+rect(70,0,100,70,'#ffe0e5');
-  const cl=(x,y,t,an)=>`<text x="${x}" y="${y}" font-family="Jua" font-size="14" fill="#4a3b52" opacity=".8" text-anchor="${an}">${t}</text>`;
-  s+=cl(X(2),Y(100)+18,'⭐ 나만의 강점','start')+cl(X(98),Y(100)+18,'✅ 탄탄 유지','end')+cl(X(2),Y(0)-8,'🤝 함께 어려운 부분','start')+cl(X(98),Y(0)-8,'🚨 최우선 복습','end');
-  s+=`<line x1="${X(0)}" y1="${Y(0)}" x2="${X(100)}" y2="${Y(100)}" stroke="#4a3b52" stroke-width="1.6" stroke-dasharray="5 5" opacity=".5"/><text x="${X(52)}" y="${Y(52)-6}" font-size="11" fill="#7a6d84" transform="rotate(${-Math.atan2(Y(0)-Y(100),X(100)-X(0))*180/Math.PI} ${X(52)} ${Y(52)-6})" text-anchor="middle">반 평균과 같은 선 · 위쪽일수록 반보다 잘함</text>`;
-  s+=`<rect x="${L}" y="${T}" width="${R-L}" height="${B-T}" fill="none" stroke="#4a3b52" stroke-width="2.5" rx="4"/>`;
-  [0,50,100].forEach(v=>{s+=`<text x="${X(v)}" y="${B+16}" font-size="11.5" text-anchor="middle" fill="#7a6d84">${v}%</text><text x="${L-6}" y="${Y(v)+4}" font-size="11.5" text-anchor="end" fill="#7a6d84">${v}%</text>`});
-  s+=`<text x="${(L+R)/2}" y="${H-6}" font-size="13" font-weight="800" text-anchor="middle" fill="#4a3b52">반 평균 정답률 → (오른쪽 = 다들 잘 맞힘)</text><text x="14" y="${(T+B)/2}" font-size="13" font-weight="800" text-anchor="middle" fill="#4a3b52" transform="rotate(-90 14 ${(T+B)/2})">내 정답률 →</text>`;
-  const pts=P.map(x=>({x,cx:X(S.part[x.t]),cy:Y(x.pc),r:Math.min(22,10+x.n*2.2)}));
-  const clampP=p=>{p.cx=Math.max(L+p.r+2,Math.min(R-p.r-2,p.cx));p.cy=Math.max(T+p.r+2,Math.min(B-p.r-2,p.cy))};
-  pts.forEach(clampP);
-  for(let it=0;it<120;it++){let mv=false;pts.forEach((p,k)=>pts.forEach((o,j)=>{if(j<=k)return;let dx=o.cx-p.cx,dy=o.cy-p.cy,d=Math.hypot(dx,dy);const need=p.r+o.r+5;
-    if(d<need){if(d<.01){dx=(k%2?1:-1);dy=.6;d=Math.hypot(dx,dy)}const m=(need-d)/2/d;p.cx-=dx*m;p.cy-=dy*m;o.cx+=dx*m;o.cy+=dy*m;mv=true}}));pts.forEach(clampP);if(!mv)break}
-  const lbs=[],ov=(a,b)=>Math.max(0,Math.min(a.x1,b.x1)-Math.max(a.x0,b.x0))*Math.max(0,Math.min(a.y1,b.y1)-Math.max(a.y0,b.y0));
-  pts.forEach(p=>{const w=txtW(short(p.x.t,9),'14px Jua')+10;
-    const C=[[p.cx,p.cy-p.r-6,'middle'],[p.cx,p.cy+p.r+17,'middle'],[p.cx+p.r+5,p.cy+5,'start'],[p.cx-p.r-5,p.cy+5,'end'],[p.cx+p.r*.55,p.cy-p.r-4,'start'],[p.cx-p.r*.55,p.cy-p.r-4,'end'],[p.cx+p.r*.55,p.cy+p.r+15,'start'],[p.cx-p.r*.55,p.cy+p.r+15,'end']].map(([x,y,an])=>{const x0=an==='middle'?x-w/2:an==='start'?x:x-w;return{x,y,an,b:{x0,x1:x0+w,y0:y-14,y1:y+4}}});
-    const cost=c=>{let s=0;lbs.forEach(o=>s+=ov(c.b,o));pts.forEach(o=>{if(o!==p)s+=ov(c.b,{x0:o.cx-o.r,x1:o.cx+o.r,y0:o.cy-o.r,y1:o.cy+o.r})});
-      if(c.b.x0<L||c.b.x1>R||c.b.y0<T||c.b.y1>B)s+=400;return s};
-    let best=C[0],bc=Infinity;C.forEach(c=>{const v=cost(c);if(v<bc-1){bc=v;best=c}});p.lx=best.x;p.ly=best.y;p.an=best.an;lbs.push(best.b)});
-  pts.forEach((p,k)=>{s+=`<g class="bub" style="--d:${.4+k*.15}s"><circle cx="${p.cx.toFixed(1)}" cy="${p.cy.toFixed(1)}" r="${p.r}" fill="${pcol(p.x.t)}" fill-opacity=".88" stroke="#4a3b52" stroke-width="2.5"/><text x="${p.cx.toFixed(1)}" y="${(p.cy+5).toFixed(1)}" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">${p.x.pc}</text><text x="${p.lx.toFixed(1)}" y="${p.ly.toFixed(1)}" text-anchor="${p.an}" font-family="Jua" font-size="14" fill="#4a3b52" stroke="#fff" stroke-width="4" paint-order="stroke">${esc(short(p.x.t,9))}</text></g>`});
+function matrix(S,cls){const W=420,H=380,x0=56,x1=400,y0=26,y1=320,X=v=>x0+(x1-x0)*v/100,Y=v=>y1-(y1-y0)*v/100,T=70;
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="복습 우선순위 매트릭스">
+<rect x="${x0}" y="${y0}" width="${X(T)-x0}" height="${Y(T)-y0}" fill="#ffe1e7"/><rect x="${X(T)}" y="${y0}" width="${x1-X(T)}" height="${Y(T)-y0}" fill="#dcf6e8"/>
+<rect x="${x0}" y="${Y(T)}" width="${X(T)-x0}" height="${y1-Y(T)}" fill="#fff1c7"/><rect x="${X(T)}" y="${Y(T)}" width="${x1-X(T)}" height="${y1-Y(T)}" fill="#ddeeff"/>
+<text x="${x0+8}" y="${y0-6}" font-size="14" fill="#c2334f">🔥 나만 놓친 곳</text><text x="${x1-8}" y="${y0-6}" font-size="14" fill="#1e8a57" text-anchor="end">✅ 탄탄한 기본</text>
+<text x="${x0+8}" y="${y1-10}" font-size="14" fill="#a87100">🤝 모두 어려웠던 곳</text><text x="${x1-8}" y="${y1-10}" font-size="14" fill="#2a6fc4" text-anchor="end">⭐ 나만의 강점</text>
+<rect x="${x0}" y="${y0}" width="${x1-x0}" height="${y1-y0}" fill="none" stroke="#4a3b52" stroke-width="2.5" rx="6"/>`;
+  [0,50,100].forEach(v=>{s+=`<text x="${X(v)}" y="${y1+18}" font-size="12" text-anchor="middle" fill="#8a7d95">${v}</text><text x="${x0-8}" y="${Y(v)+4}" font-size="12" text-anchor="end" fill="#8a7d95">${v}</text>`});
+  s+=`<text x="${(x0+x1)/2}" y="${H-8}" font-size="14" text-anchor="middle" fill="#4a3b52">나의 정답률 →</text><text transform="translate(16 ${(y0+y1)/2}) rotate(-90)" font-size="14" text-anchor="middle" fill="#4a3b52">반 평균 정답률 →</text>`;
+  const used=[],dots=[];S.parts.forEach((p,k)=>{let x=Math.min(x1-14,Math.max(x0+14,X(p.pc))),y=Math.min(y1-14,Math.max(y0+14,Y(cls.part[p.t])));
+    dots.forEach(d=>{if(Math.hypot(d[0]-x,d[1]-y)<18){x+=16;y+=4}});dots.push([x,y]);
+    const rt=x>(x0+x1)/2,lx=rt?x-17:x+17;let ly=y+5,tries=0;while(used.some(u=>u[2]===rt&&Math.abs(u[0]-lx)<110&&Math.abs(u[1]-ly)<17)&&tries<8){tries++;ly=y+5+(tries%2?1:-1)*18*Math.ceil(tries/2)}used.push([lx,ly,rt]);
+    s+=`<g class="pi" style="animation-delay:${.4+k*.12}s"><circle cx="${x}" cy="${y}" r="11" fill="${pcol(p.t)}" stroke="#4a3b52" stroke-width="3"/><text x="${lx}" y="${ly}" font-size="14" text-anchor="${rt?'end':'start'}" fill="#4a3b52" stroke="#fff" stroke-width="4" paint-order="stroke">${esc(p.t.length>8?p.t.slice(0,7)+'…':p.t)}</text></g>`});
   return s+'</svg>'}
+function quadOf(my,cl){return my<70?(cl>=70?['🔥 나만 놓친 곳','1순위 복습! 반 친구들은 잘 맞힌 파트예요.','#f0506e']:['🤝 모두 어려웠던 곳','반 전체가 어려워했어요. 수업 자료를 다시 보면 좋아요.','#f2a516']):(cl>=70?['✅ 탄탄한 기본','지금처럼 유지하면 돼요.','#2fb879']:['⭐ 나만의 강점','반 친구들보다 확실히 잘 아는 파트예요!','#4d9fff'])}
+function journey(rec){const a=rec.a||{},n=Q.length,W=Math.max(560,n*46+80),H=250,x0=46,x1=W-20,base=170,top=34,step=(x1-x0)/n;
+  const ts=Q.map((_,k)=>a[k]&&a[k][2]||0),mx=Math.max(...ts,1),hasT=ts.some(Boolean);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="문항별 풀이 여정">`;
+  [0,50,100].forEach(v=>{const y=base-(base-top)*v/100;s+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#eee5f2" stroke-dasharray="4 4"/><text x="${x0-8}" y="${y+4}" font-size="11" text-anchor="end" fill="#a99bb4">${v}%</text>`});
+  let ok=0,pts=[],best=0,cur=0,bs=-1,be=-1,cs=0;
+  Q.forEach((q,k)=>{const r=a[k],cx=x0+step*(k+.5),bw=Math.min(30,step*.62),hh=hasT?Math.max(10,(base-top)*.62*ts[k]/mx):(base-top)*.4,cl=r?(r[1]?'#5fd39a':'#ff8fa3'):'#ddd';
+    if(r&&r[1]){ok++;if(!cur)cs=k;cur++;if(cur>best){best=cur;bs=cs;be=k}}else cur=0;pts.push([cx,base-(base-top)*ok/(k+1)]);
+    s+=`<rect class="by" style="animation-delay:${k*.04}s" x="${cx-bw/2}" y="${base-hh}" width="${bw}" height="${hh}" rx="7" fill="${cl}" fill-opacity=".8" stroke="#4a3b52" stroke-width="2"/>`;
+    s+=`<text x="${cx}" y="${base+18}" font-size="13" text-anchor="middle" fill="#4a3b52">${k+1}</text>`;
+    if(hasT&&ts[k])s+=`<text x="${cx}" y="${base-hh-6}" font-size="11" text-anchor="middle" fill="#8a7d95">${Math.round(ts[k]/1000)}s</text>`});
+  let k0=0;PL.forEach(t=>{});let run=null;Q.forEach((q,k)=>{if(!run||run.t!==q.t){run={t:q.t,s:k,e:k};runs.push(run)}else run.e=k});
+  runs.forEach(R=>{const xa=x0+step*R.s+2,xb=x0+step*(R.e+1)-2;s+=`<rect x="${xa}" y="${base+26}" width="${xb-xa}" height="14" rx="7" fill="${pcol(R.t)}"/><text x="${(xa+xb)/2}" y="${base+56}" font-size="12" text-anchor="middle" fill="#4a3b52">${esc(R.t.length>Math.max(3,(R.e-R.s+1)*3)?R.t.slice(0,Math.max(2,(R.e-R.s+1)*3-1))+'…':R.t)}</text>`});
+  const d=pts.map((p,k)=>(k?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' '),L=pts.reduce((x,p,k)=>k?x+Math.hypot(p[0]-pts[k-1][0],p[1]-pts[k-1][1]):0,0);
+  s+=`<path class="ln" style="--l:${L.toFixed(0)}" d="${d}" fill="none" stroke="#7048e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${L.toFixed(0)}" stroke-dashoffset="0"/>`;
+  pts.forEach(p=>s+=`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="#fff" stroke="#7048e8" stroke-width="2.5"/>`);
+  if(best>=2){const xa=x0+step*bs,xb=x0+step*(be+1);s+=`<path d="M${xa+4} ${top-8} L${xa+4} ${top-14} L${xb-4} ${top-14} L${xb-4} ${top-8}" fill="none" stroke="#f2a516" stroke-width="3"/><text x="${(xa+xb)/2}" y="${top-20}" font-size="13" text-anchor="middle" fill="#a87100">🔥 ${best}연속 정답</text>`}
+  return {svg:s+'</svg>',best,hasT,avgT:hasT?Math.round(ts.filter(Boolean).reduce((a,b)=>a+b,0)/ts.filter(Boolean).length/1000):0,
+    slow:hasT?ts.map((t,k)=>[t,k]).sort((x,y)=>y[0]-x[0])[0][1]:-1}}
+let runs=[];
 
-function hist(scores,my){const N=Q.length,c=Array(N+1).fill(0);scores.forEach(v=>c[Math.min(N,Math.max(0,v))]++);const mx=Math.max(...c,1),W=460,H=230,L=12,B=182,bw=(W-2*L)/(N+1),avg=scores.reduce((x,y)=>x+y,0)/scores.length;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="점수 분포"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7fa8"/><stop offset="1" stop-color="#8b6cf0"/></linearGradient></defs>`;
-  c.forEach((v,k)=>{const h=v/mx*128,x=L+k*bw,isMe=my!=null&&k===my;
-    s+=`<rect class="hb" style="--d:${(k*.04).toFixed(2)}s" x="${(x+2).toFixed(1)}" y="${(B-Math.max(h,2)).toFixed(1)}" width="${(bw-4).toFixed(1)}" height="${Math.max(h,2).toFixed(1)}" rx="5" fill="${isMe?'url(#hg)':(v?'#d9cfe6':'#f0ebf4')}"/>`;
-    if(v)s+=`<text x="${(x+bw/2).toFixed(1)}" y="${(B-h-5).toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="#8a7d94">${v}명</text>`;
-    if(N<=20||k%5===0||k===N)s+=`<text x="${(x+bw/2).toFixed(1)}" y="${B+15}" text-anchor="middle" font-size="11" fill="#8a7d94">${k}</text>`;
-    if(isMe){const py=B-h-(v?22:8);s+=`<g class="pin"><path d="M${(x+bw/2).toFixed(1)} ${(py+6).toFixed(1)} l-7 -10 h14 z" fill="#4a3b52"/><rect x="${(x+bw/2-18).toFixed(1)}" y="${(py-22).toFixed(1)}" width="36" height="20" rx="10" fill="#4a3b52"/><text x="${(x+bw/2).toFixed(1)}" y="${(py-8).toFixed(1)}" text-anchor="middle" font-family="Jua" font-size="14" fill="#fff">나</text></g>`}});
-  const ax=L+(avg+.5)*bw;s+=`<line x1="${ax.toFixed(1)}" y1="22" x2="${ax.toFixed(1)}" y2="${B}" stroke="#2fb57a" stroke-width="2.5" stroke-dasharray="5 4"/><text x="${ax.toFixed(1)}" y="16" text-anchor="middle" font-size="12" font-weight="800" fill="#2fb57a">평균 ${avg.toFixed(1)}점</text>`;
-  s+=`<line x1="${L}" y1="${B}" x2="${W-L}" y2="${B}" stroke="#4a3b52" stroke-width="2"/><text x="${W/2}" y="${H-4}" text-anchor="middle" font-size="12" fill="#7a6d84">맞힌 문항 수</text>`;
-  return s+'</svg>'}
+/* ---------- 학생 리포트 ---------- */
+function report(rec,players){runs=[];const S=st(rec),cls=cstat(players),hasC=!!cls&&cls.n>=2;
+  const lvl=S.pc>=90?['🏆','마스터','#ffe066']:S.pc>=75?['🌟','우수','#c8f2dc']:S.pc>=50?['📘','성장 중','#d6ecff']:['🌱','새싹','#ffd6e0'];
+  const weak=S.parts.filter(p=>p.pc<80).sort((a,b)=>a.pc-b.pc||(hasC?cls.part[b.t]-cls.part[a.t]:0));
+  const strong=S.parts.filter(p=>p.pc>=80).sort((a,b)=>b.pc-a.pc);
+  let rank='';if(hasC){const above=cls.sc.filter(x=>x>S.s).length;rank=Math.max(1,Math.round((above+1)/cls.n*100))}
+  let dg;
+  if(!weak.length)dg=`모든 파트에서 80% 이상! 특히 <b>${esc(strong[0].t)}</b> 파트가 빛나요. 지금 실력을 유지하는 복습이면 충분해요.`;
+  else{const w=weak[0];dg=(strong.length?`강점은 <b>${esc(strong[0].t)}</b>(${strong[0].pc}%), `:'')+`가장 먼저 복습할 곳은 <b>${esc(w.t)}</b>(${w.pc}%)예요.`;
+    if(hasC){const c=cls.part[w.t];dg+=c>=70?` 반 평균은 ${c}%라서 <b>나에게 특히 필요한 복습</b>이에요.`:` 반 평균도 ${c}%로, 모두에게 어려웠던 파트예요.`}
+    if(weak[1])dg+=` 그다음은 <b>${esc(weak[1].t)}</b>(${weak[1].pc}%)예요.`}
+  const tm=rec.d&&rec.f&&rec.st?fmtT(rec.f-rec.st):'';
+  /* 1. 히어로 */
+  let h=`<div class="rp"><div class="sec hero"><div class="ringbox">${ring(S.pc,220,22,['#ff7aa2','#f2a516','#2fb879'])}<div class="ctr"><b data-to="${S.pc}">${S.pc}<small>%</small></b><span>${S.s} / ${S.n} 정답</span></div></div>
+<div><div class="who">${esc(SUBJECT)} · ${new Date(rec.f||Date.now()).toLocaleDateString('ko-KR')}</div><h2>${esc(rec.n||'')}${rec.no?` <small style="font-size:.5em;opacity:.6">${esc(rec.no)}</small>`:''}님의 학습 리포트</h2>
+<span class="lvb" style="background:${lvl[2]}">${lvl[0]} ${lvl[1]} 레벨</span>
+<div class="chips">${tm?`<span class="chip">⏱ ${tm}</span>`:''}${hasC?`<span class="chip hot">🏅 반 상위 ${rank}%</span><span class="chip">📊 반 평균 ${Math.round(cls.avg/S.n*100)}%</span><span class="chip">👥 ${cls.n}명 기준</span>`:''}${strong.length?`<span class="chip">💪 강점 ${strong.length}개 파트</span>`:''}${weak.length?`<span class="chip">🎯 보완 ${weak.length}개 파트</span>`:''}</div>
+<div class="diag">💬 ${dg}</div></div></div>`;
+  /* 2. 실력 지도 */
+  const ser=[];if(hasC)ser.push({vals:PL.map(t=>cls.part[t]),col:'#2fb879',fill:'rgba(47,184,121,.12)',dash:1,w:2.5});
+  ser.unshift({vals:S.parts.map(p=>p.pc),col:'#ff4f86',fill:'rgba(255,122,162,.32)',dots:1});
+  const rd=PL.length>=3?radar(hasC?[ser[0],ser[1]]:[ser[0]],1):'';
+  const rank2=[...S.parts].sort((a,b)=>b.pc-a.pc);
+  const rkl=`<div>${rank2.map((p,k)=>{const c=hasC?cls.part[p.t]:null;return `<div style="display:grid;grid-template-columns:30px minmax(70px,130px) 1fr 52px;gap:8px;align-items:center;margin:9px 0;font-size:16px"><b style="font-weight:normal;font-size:20px;color:${pcol(p.t)}">${k+1}</b><span style="word-break:keep-all;line-height:1.2">${esc(p.t)}</span><div style="position:relative;height:22px;border:2px solid var(--ink);border-radius:999px;background:#fff;overflow:visible"><i class="bw" style="display:block;height:100%;border-radius:999px;width:${p.pc}%;background:linear-gradient(90deg,${pcol(p.t)}aa,${pcol(p.t)});animation-delay:${.2+k*.1}s"></i>${c==null?'':`<span title="반 평균 ${c}%" style="position:absolute;left:calc(${c}% - 2px);top:-6px;width:4px;height:30px;background:#2fb879;border-radius:2px"></span>`}</div><b style="font-weight:normal;text-align:right;color:${LVC[lvOf(p.pc)[1]]}">${p.pc}%</b></div>`}).join('')}${hasC?'<p class="hint" style="text-align:left;margin:6px 0 0">초록 세로선 = 반 평균</p>':''}</div>`;
+  h+=`<div class="sec"><h3><span class="no">1</span>나의 실력 지도</h3><p class="cap">파트별 정답률을 한눈에 봐요. 바깥으로 넓게 퍼질수록 고르게 잘 아는 거예요.${hasC?' 초록 점선은 반 평균이에요.':''}</p>
+<div class="duo">${rd?`<div>${rd}<div class="lg"><span><i style="background:#ff7aa2"></i>나</span>${hasC?'<span><i style="background:#2fb879"></i>반 평균</span>':''}</div></div>`:''}${rkl}</div><div class="pcards" style="margin-top:16px">${S.parts.map((p,k)=>{const[lb,cl]=lvOf(p.pc),C=2*Math.PI*26,d=hasC?p.pc-cls.part[p.t]:null;
+  return `<div class="pcard" style="--pc:${pcol(p.t)}"><div class="ph">${`<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#f1eaf4" stroke-width="9"/><circle class="rg" style="--c:${C.toFixed(1)};animation-delay:${.3+k*.1}s" cx="32" cy="32" r="26" fill="none" stroke="${pcol(p.t)}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p.pc/100)).toFixed(1)}"/></svg>`}
+<div><div class="pn">${esc(p.t)}<small>${p.n}문제 중 ${p.ok}개</small></div><div class="big">${p.pc}%</div></div></div>
+<div style="margin-top:8px"><em class="lv ${cl}">${lb}</em>${d==null?'':`<span class="dl ${d>=0?'up':'dn'}">반 평균 대비 ${d>0?'▲'+d+'%p':d<0?'▼'+(-d)+'%p':'='}</span>`}</div>
+<div class="qds">${p.idx.map(k=>{const r=S.a[k],fx=!(r&&r[1])&&S.r[k]===1;return `<span class="qd ${fx?'fx':r?(r[1]?'ok':'no'):'na'}" title="${k+1}번 ${r?(r[1]?'정답':'오답'):'안 풂'}${fx?' → 재도전 성공':''}">${k+1}</span>`}).join('')}</div></div>`}).join('')}</div></div>`;
+  /* 3. 우선순위 매트릭스 */
+  if(hasC){const qs=S.parts.map(p=>({p,q:quadOf(p.pc,cls.part[p.t])})).sort((a,b)=>a.p.pc-b.p.pc);
+    h+=`<div class="sec"><h3><span class="no">2</span>복습 우선순위 매트릭스</h3><p class="cap">가로는 나의 정답률, 세로는 반 평균이에요. <b>왼쪽 위(🔥)</b>에 있는 파트가 나에게 가장 시급한 복습이에요.</p>
+<div class="mx"><div>${matrix(S,cls)}</div><div class="qlist">${qs.map(x=>`<div style="--c:${x.q[2]}"><b>${esc(x.p.t)}</b> · 나 ${x.p.pc}% / 반 ${cls.part[x.p.t]}%<br>${x.q[0]} <small>${x.q[1]}</small></div>`).join('')}</div></div></div>`}
+  /* 4. 풀이 여정 */
+  const J=journey(rec);
+  h+=`<div class="sec"><h3><span class="no">${hasC?3:2}</span>문항별 풀이 여정</h3><p class="cap">막대는 각 문항${J.hasT?'에 걸린 시간':''}(초록=정답, 분홍=오답), 보라색 선은 <b>누적 정답률</b>이에요. 아래 색 띠는 파트 구간이에요.</p>
+<div class="jw">${J.svg}</div><div class="chips">${J.best>=2?`<span class="chip">🔥 최고 ${J.best}연속 정답</span>`:''}${J.hasT?`<span class="chip">⏱ 문항당 평균 ${J.avgT}초</span><span class="chip">🐢 가장 오래 고민한 문제: ${J.slow+1}번</span>`:''}</div></div>`;
+  /* 5. 맞춤 복습 플랜 */
+  const plan=S.parts.filter(p=>p.idx.some(k=>!(S.a[k]&&S.a[k][1]))).sort((a,b)=>a.pc-b.pc);
+  h+=`<div class="sec"><h3><span class="no">${hasC?4:3}</span>맞춤 복습 플랜</h3><p class="cap">약한 파트부터 순서대로 정리했어요. 틀린 문제의 정답과 해설을 확인해요.</p>`+
+  (plan.length?plan.map((p,j)=>{const g=PART_GUIDE[p.t]||{},items=p.idx.filter(k=>!(S.a[k]&&S.a[k][1]));
+    return `<div class="step"><div class="sn" style="--pc:${pcol(p.t)}">STEP<b>${j+1}</b></div><div><h4>${esc(p.t)} <em class="lv ${lvOf(p.pc)[1]}">${p.pc}%</em>${hasC?` <small style="opacity:.6">반 평균 ${cls.part[p.t]}%</small>`:''}</h4>
+${g.tip||g.ref?`<div class="gd">${g.tip?'💡 '+esc(g.tip):''}${g.tip&&g.ref?'<br>':''}${g.ref?'📖 다시 볼 곳: '+esc(g.ref):''}</div>`:''}
+${items.map(k=>{const q=Q[k],r=S.a[k];return `<div class="wi"><b>${k+1}.</b> ${q.q}<div class="an">${r?`<span class="my">내 답 ${esc(optTxt(q,r[0]))}</span>`:'<span class="my">못 푼 문제</span>'}<span class="co">정답 ${esc(optTxt(q,q.a))}</span>${S.r[k]===1?'<span class="rt">🔁 재도전 성공</span>':S.r[k]===0?'<span class="rt">🔁 재도전 오답</span>':''}</div><div class="ex">💡 ${q.e||''}</div></div>`}).join('')}</div></div>`}).join('')
+  :'<div class="res">🎊 틀린 문제가 없어요! 완벽해요.</div>')+`</div></div>`;
+  return h}
+function countUp(root){root.querySelectorAll('[data-to]').forEach(el=>{const to=+el.dataset.to,t0=performance.now(),sm=el.querySelector('small'),sh=sm?sm.outerHTML:'';
+  const f=t=>{const p=Math.min(1,(t-t0)/1300),v=Math.round(to*(1-Math.pow(1-p,3)));el.innerHTML=v+sh;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}
 
-function rhythm(a,S,K){const ts=Q.map((_,k)=>a[k]&&a[k][2]||0);if(!ts.some(Boolean))return '';const N=Q.length,W=480,H=210,L=34,R=W-8,T=18,B=160,bw=(R-L)/N;
-  const meds=S&&S.n>=3?S.q.map(x=>x.med):null,mx=Math.max(...ts,...(meds||[0]),1),Yh=v=>Math.sqrt(v/mx)*(B-T);
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="문항별 풀이 시간">`;
-  [.25,1].forEach(f=>{const y=B-Yh(mx*f);s+=`<line x1="${L}" y1="${y.toFixed(1)}" x2="${R}" y2="${y.toFixed(1)}" stroke="#eee7f2"/><text x="${L-4}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="10" fill="#9a8fa3">${fmtS(mx*f)}</text>`});
-  Q.forEach((q,k)=>{const x=L+k*bw,h=Yh(ts[k]),c=K[k]==='miss'?'#c9bfd0':(a[k]&&a[k][1]?'#3fbf7f':'#ff6b6b');
-    s+=`<rect class="hb" style="--d:${(k*.05).toFixed(2)}s" x="${(x+bw*.18).toFixed(1)}" y="${(B-Math.max(h,3)).toFixed(1)}" width="${(bw*.64).toFixed(1)}" height="${Math.max(h,3).toFixed(1)}" rx="${Math.min(6,bw*.2).toFixed(1)}" fill="${c}"><title>${k+1}번 · ${fmtS(ts[k])}</title></rect>`;
-    if(K[k]==='rush')s+=`<text x="${(x+bw/2).toFixed(1)}" y="${(B-h-5).toFixed(1)}" text-anchor="middle" font-size="13">💨</text>`;
-    if(meds&&meds[k])s+=`<line x1="${(x+bw*.08).toFixed(1)}" x2="${(x+bw*.92).toFixed(1)}" y1="${(B-Yh(meds[k])).toFixed(1)}" y2="${(B-Yh(meds[k])).toFixed(1)}" stroke="#4a3b52" stroke-width="2.5" stroke-linecap="round"/>`;
-    s+=`<rect x="${(x+1).toFixed(1)}" y="${B+5}" width="${(bw-2).toFixed(1)}" height="6" rx="3" fill="${pcol(q.t)}"/>`;
-    if(N<=25||k%2===0)s+=`<text x="${(x+bw/2).toFixed(1)}" y="${B+25}" text-anchor="middle" font-size="11" font-weight="700" fill="#7a6d84">${k+1}</text>`});
-  s+=`<text x="${L}" y="${H-4}" font-size="11.5" fill="#7a6d84"><tspan fill="#3fbf7f">■</tspan> 정답 · <tspan fill="#ff6b6b">■</tspan> 오답${meds?' · <tspan fill="#4a3b52" font-weight="800">━</tspan> 반 친구들 중간 시간':''} · 아래 색 띠 = 파트</text>`;
-  return s+'</svg>'}
-
-function countUp(root){(root||document).querySelectorAll('[data-count]').forEach(el=>{const to=+el.dataset.count,t0=performance.now(),d=1600;
-  const f=now=>{const p=Math.min(1,(now-t0)/d),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(f)};el.textContent='0';requestAnimationFrame(f)})}
-
-/* ================= 학생 리포트 ================= */
-function report(rec,S,opt){opt=opt||{};const a=rec.a||{},rt=rec.rt||{},N=Q.length,P=partStats(a,rt),sc=scoreOf(a),pc=Math.round(sc/N*100);
-  const cmp=S&&S.n>=3?S:null,K=kinds(a,cmp),nm=esc(rec.n||'학생'),tp=typeOf(P,pc),C=2*Math.PI*84;
-  const ch=[`✅ ${sc} / ${N} 문항`];if(rec.d&&rec.f&&rec.st)ch.push('⏱ '+fmtT(rec.f-rec.st));
-  if(cmp){const hi=cmp.scores.filter(v=>v>sc).length;ch.push(`👥 반 평균 ${Math.round(cmp.avg/N*100)}% · ${cmp.n}명`);ch.push(`📍 반 상위 ${Math.max(1,Math.round((hi+1)/cmp.n*100))}%`)}
-  const dt=new Date(rec.f||rec.t||Date.now()).toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'short'});
-  const hero=`<section class="rh"><span class="spark" style="right:9%;top:16%">✦</span><span class="spark" style="right:24%;bottom:14%;animation-delay:.8s">✧</span><span class="spark" style="left:30%;top:10%;animation-delay:1.4s">✦</span>
-<div><svg class="ring" viewBox="0 0 200 200"><circle class="bg" cx="100" cy="100" r="84"/><circle class="fg" cx="100" cy="100" r="84" style="stroke-dasharray:${C.toFixed(1)};stroke-dashoffset:${(C*(1-pc/100)).toFixed(1)};--c:${C.toFixed(1)}"/><text x="100" y="108"><tspan font-size="58" data-count="${pc}">${pc}</tspan><tspan font-size="24" dx="2">%</tspan></text><text x="100" y="136" font-size="15" opacity=".92">정답률</text></svg></div>
-<div><div class="rh-k">PERSONAL LEARNING REPORT · ${esc(SUBJECT)}</div><h2>${nm}님의 학습 리포트</h2><div class="rh-s">${dt}${rec.no?' · 학번 '+esc(rec.no):''}</div>
-<div class="type"><em>${tp[0]}</em><div><b>${tp[1]}</b><span>${tp[2]}</span></div></div><div class="chips">${ch.map(x=>`<span>${x}</span>`).join('')}</div></div></section>`;
-
-  const srt=[...P].sort((x,y)=>x.pc-y.pc),weak=srt.filter(x=>x.pc<80),strong=P.filter(x=>x.pc>=80),rush=K.filter(x=>x==='rush').length;let one;
-  if(!weak.length)one=`<b>모든 파트 80% 이상!</b> ${nm}님은 이번 범위를 고르게 이해하고 있어요. 틀린 문제만 가볍게 확인하면 충분해요.`;
-  else{const w=weak[0];one=(strong.length?`${nm}님은 <b>${strong.map(x=>esc(x.t)).join(', ')}</b>에서 강해요. `:'')+`가장 먼저 채울 곳은 <b>${esc(w.t)}</b>(${w.ok}/${w.n})예요.`;
-    if(cmp){const d=Math.round(w.pc-cmp.part[w.t]);one+=d<0?` 이 파트는 반 평균보다 <b>${-d}%p 낮아서</b> 처방전 1번으로 정리했어요.`:` 다만 반 평균(${Math.round(cmp.part[w.t])}%)도 낮아 모두에게 어려운 부분이었어요.`}
-    if(rush)one+=` 오답 중 <b>${rush}개</b>는 빠르게 고른 ‘성급한 실수’로 보여요. 끝까지 읽기만 해도 점수가 올라요!`}
-
-  const cards=P.map((x,j)=>{const [lb,cl]=lvOf(x.pc),ic=pinfo(x.t).ic||'📘';let dl='';
-    if(cmp){const d=Math.round(x.pc-cmp.part[x.t]);dl=`<span class="dl ${d>0?'up':d<0?'dn':'eq'}">${d>0?'▲ 반보다 +'+d+'%p':d<0?'▼ 반보다 '+d+'%p':'＝ 반 평균'}</span>`}
-    return `<div class="pc2" style="--pc:${pcol(x.t)};--pcd:${pcol(x.t)};--d:${(.15+j*.1).toFixed(2)}s"><div class="h"><em>${ic}</em>${esc(x.t)}<span class="lv ${cl}" style="margin-left:auto;font-family:inherit;font-size:12.5px;font-weight:800">${lb}</span></div>
-<div class="v"><b>${x.pc}<small style="font-size:18px">%</small></b><span style="font-weight:700;opacity:.7">${x.ok}/${x.n}</span>${dl}</div>
-<div class="meter"><u style="width:${x.pc}%"></u>${cmp?`<s style="left:calc(${cmp.part[x.t].toFixed(1)}% - 2px)" title="반 평균 ${Math.round(cmp.part[x.t])}%"></s>`:''}</div>
-<div class="dots">${x.idx.map(k=>`<span class="${a[k]?(a[k][1]?'o':'x'):'n'}" title="${k+1}번">${k+1}</span>`).join('')}</div>${x.rtT?`<div class="note">🔁 재도전 ${x.rtO}/${x.rtT} 성공</div>`:''}</div>`}).join('');
-  const sec1=`<section class="sec"><div class="sh"><i>1</i><h3>파트별 실력 지도</h3><small>${cmp?'색칠 = 나 · 점선 = 반 평균':'초록 80%↑ 탄탄 · 노랑 60~79% · 빨강 60%↓ 보충'}</small></div>
-<div class="panel"><div class="map ${P.length<3?'one-col':''}">${P.length>=3?`<div>${radar2(P,cmp)}${cmp?'<div class="lg"><span><i style="border-color:#6a55d8"></i>나</span><span><i style="border-color:#4a3b52;border-top-style:dashed"></i>반 평균</span></div>':''}</div>`:''}<div class="pcs">${cards}</div></div></div></section>`;
-
-  let sec2;
-  if(cmp){const groups={};P.forEach(x=>{const g=quad(x.pc,cmp.part[x.t]);(groups[g[0]]=groups[g[0]]||{g,ps:[]}).ps.push(x)});
-    const ord=['최우선 복습','함께 어려운 부분','나만의 강점','탄탄 유지'];
-    sec2=`<section class="sec"><div class="sh"><i>2</i><h3>반 친구들과 비교해 보기</h3><small>완료한 ${cmp.n}명 기준 · 이름은 보이지 않아요</small></div>
-<div class="cmp2"><div class="panel mx"><div class="ptitle">🧭 복습 우선순위 매트릭스</div>${matrix(P,cmp)}<div class="mxl">${ord.filter(o=>groups[o]).map(o=>{const G=groups[o];return `<div style="background:${G.g[2]}"><b>${G.g[1]} ${G.g[0]}</b>${G.ps.map(x=>`<u>${esc(x.t)}</u>`).join(', ')}<br><span style="opacity:.75">${G.g[3]}</span></div>`}).join('')}</div></div>
-<div class="panel hist"><div class="ptitle">📊 반 점수 분포 속의 나</div>${hist(cmp.scores,sc)}<p class="note" style="font-size:14px;opacity:.8">보라색 막대가 ${nm}님 자리예요. 초록 점선은 반 평균이에요.</p></div></div></section>`}
-  else sec2=`<section class="sec"><div class="sh"><i>2</i><h3>반 친구들과 비교해 보기</h3></div><div class="lock"><b>🔒 친구들이 더 끝내면 열려요</b>3명 이상 완료하면 복습 우선순위 매트릭스와 점수 분포가 나타나요.${opt.live?'<br><button class="btn sm alt np" id="rf" style="margin-top:10px">🔄 다시 확인</button>':''}</div></section>`;
-
-  const rh=rhythm(a,cmp,K);let sec3='';
-  if(rh){const box=Object.entries(KD).map(([k,v])=>{const ks=K.map((x,j)=>x===k?j:-1).filter(j=>j>=0);return `<div style="background:${v[3]}"><b><span>${v[0]} ${v[1]}</span><big>${ks.length}</big></b><p>${v[2]}</p>${ks.map(j=>`<span class="qn">${j+1}</span>`).join('')}</div>`}).join('');
-    sec3=`<section class="sec"><div class="sh"><i>3</i><h3>풀이 리듬 & 오답 유형</h3><small>막대 높이 = 문제마다 고민한 시간</small></div><div class="panel rhy">${rh}<div class="q4">${box}</div></div></section>`}
-
-  const pr=P.filter(x=>x.ok<x.n).map(x=>{const c=cmp?cmp.part[x.t]:null;return{...x,c,sc:(100-x.pc)+(c!=null?Math.max(0,c-x.pc)*1.2:0)}}).sort((x,y)=>y.sc-x.sc);
-  const rx=pr.map((x,j)=>{const inf=pinfo(x.t),g=x.c!=null?quad(x.pc,x.c):null;
-    const why=x.c!=null?`${g[1]} ${g[0]} · 반 평균 ${Math.round(x.c)}% 대비 ${x.pc-Math.round(x.c)>=0?'+':''}${x.pc-Math.round(x.c)}%p`:`${x.n-x.ok}문제를 놓쳤어요`;
-    const ws=x.idx.filter(k=>!isOk(a,k)).map(k=>{const q=Q[k],r=a[k],kd=K[k];
-      const tag=(kd==='rush'?'<span class="tg rush">💨 성급한 실수</span>':kd==='deep'?'<span class="tg deep">📚 개념 보충</span>':'')+(rt[k]==1?'<span class="tg re">✅ 재도전 성공</span>':rt[k]===0?'<span class="tg miss">🔁 재도전 실패</span>':'');
-      return `<div class="wq"><div class="qq">Q${k+1}. ${q.q} ${tag}</div><div class="an">${r?`<span>내 답 <span class="my">${esc(optTxt(q,r[0]))}</span></span>`:'<span class="tg miss" style="margin:0">못 푼 문제</span>'}<span class="ok">정답 ✓ ${esc(optTxt(q,q.a))}</span>${cmp?`<span style="opacity:.7">반 정답률 ${Math.round(cmp.q[k].pc)}%</span>`:''}</div>${q.e?`<div class="ex">💡 ${q.e}</div>`:''}</div>`}).join('');
-    return `<div class="rx" style="--pc:${pcol(x.t)};--pcl:${pcl(x.t)}"><div class="rx-h"><div class="no">${j+1}</div><div><b>${inf.ic||'📘'} ${esc(x.t)}</b><span>${why}</span></div><div class="pct" style="color:${pcol(x.t)}">${x.pc}%</div></div>
-<div class="rx-b">${inf.ref||inf.tip?`<div class="ref">${inf.ref?`<span>📖 <b>다시 볼 곳</b> ${esc(inf.ref)}</span>`:''}${inf.tip?`<span>💡 <b>복습 팁</b> ${esc(inf.tip)}</span>`:''}</div>`:''}${ws}</div></div>`}).join('');
-  const sec4=`<section class="sec"><div class="sh"><i>${rh?4:3}</i><h3>오늘의 복습 처방전</h3><small>위에서부터 순서대로 보면 가장 효율적이에요</small></div>${rx||'<div class="panel center" style="font-size:20px">🎊 틀린 문제가 하나도 없어요! 처방이 필요 없어요.</div>'}</section>`;
-
-  const wr=Q.map((_,k)=>k).filter(k=>!isOk(a,k)),done=wr.filter(k=>rt[k]!=null).length;
-  const cta=opt.live&&wr.length?`<div class="cta np"><h3>🔁 오답 재도전</h3><p>틀린 ${wr.length}문제를 보기 순서를 섞어서 다시 풀어 봐요.${done?` (지난 재도전: ${wr.filter(k=>rt[k]==1).length}/${done} 성공)`:''}</p><button class="btn" id="rtb">재도전 시작 ▶</button></div>`:'';
-  return `<div class="rep ${opt.anim?'anim':''}">${hero}<div class="one">${one}</div>${sec1}${sec2}${sec3}${sec4}${cta}</div>`}
-
-/* 인쇄/PDF 저장용 창 (여러 명도 한 번에) */
-function printView(list,S){const o=document.createElement('div');o.className='ov';o.id='pov';document.body.appendChild(o);
-  o.innerHTML=`<div class="card" style="max-width:1060px;text-align:left"><div class="center np" style="margin-bottom:16px;position:sticky;top:0;z-index:3"><button class="btn sm" id="pp">🖨 인쇄 / PDF로 저장</button> <button class="btn sm alt" id="pc">닫기</button></div>${list.map(x=>report(x,S,{anim:list.length===1})).join('<div style="height:30px"></div>')}</div>`;
-  if(list.length===1)countUp(o);
-  $('#pc').onclick=()=>o.remove();$('#pp').onclick=()=>window.print();o.onclick=e=>{if(e.target===o)o.remove()}}
+/* 인쇄/PDF 저장 창 */
+function printView(list,players){const o=document.createElement('div');o.className='ov';o.id='pov';document.body.appendChild(o);
+  o.innerHTML=`<div class="card" style="max-width:1040px;text-align:left"><div class="center np" style="margin-bottom:6px"><button class="btn sm" id="pp">🖨 인쇄 / PDF로 저장</button> <button class="btn sm alt" id="pc">닫기</button><p class="hint">인쇄 창에서 '배경 그래픽'을 켜면 색이 그대로 나와요</p></div><div class="${list.length===1?'anim':''}">${list.map(x=>report(x,players)).join('')}</div></div>`;
+  $('#pc').onclick=()=>o.remove();$('#pp').onclick=()=>window.print();o.onclick=e=>{if(e.target===o)o.remove()};if(list.length===1)countUp(o)}
 
 /* ---------- 학생 화면 ---------- */
-function home(){document.querySelectorAll('.ov').forEach(o=>o.remove());clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
+function home(){clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
 app.innerHTML=`<div class="card"><div class="mascot">${MASCOT}</div><h1>${TITLE}</h1>
-<p class="sub">${esc(SUBJECT)} · 총 ${Q.length}문제${LIMIT?' · ⏱ 제한시간 '+Math.round(LIMIT/60)+'분':''}<br>끝나면 <b>나만의 파트별 분석 리포트</b>가 나와요 📊</p>
-<div class="center"><div id="resume"></div><div class="fld"><input class="inp" id="no" maxlength="12" placeholder="학번${NEED_NO?'':' (선택)'}" inputmode="numeric" autocomplete="off"><input class="inp" id="nm" maxlength="12" placeholder="이름" autocomplete="off"></div>
+<p class="sub">${esc(SUBJECT)} · 총 ${Q.length}문제 · ${PL.length}개 파트${LIMIT?' · ⏱ 제한시간 '+Math.round(LIMIT/60)+'분':''}<br>끝나면 <b>나만의 파트별 학습 리포트</b>가 나와요 📊</p>
+<div class="center"><div id="resume"></div><div class="fld" style="display:grid;gap:10px;justify-items:center"><input class="inp" id="no" maxlength="12" placeholder="학번${NEED_NO?'':' (선택)'}" inputmode="numeric" autocomplete="off"><input class="inp" id="nm" maxlength="12" placeholder="이름" autocomplete="off"></div>
 <div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
 <p class="hint" id="msg"></p><div id="solo"></div>
 <button class="link" id="tc">👩‍🏫 교사용 대시보드</button></div></div>`;
@@ -480,11 +411,11 @@ let g=null;try{g=await rpc('quiz_get',{p_id:ss.key})}catch(e){return}
 if(!g){LS.del('sess');return}
 if(g.round!==g.current)return;
 const rec=g.data;if(!rec||mode!=='home'||!$('#resume'))return;
-$('#resume').innerHTML=`<button class="btn alt" id="rs">${rec.d?'📋 '+esc(rec.n)+' 리포트 다시 보기':'▶ '+esc(rec.n)+' 이어서 풀기'}</button><p class="hint" style="margin:10px 0 18px">다른 사람으로 새로 시작하려면 아래에 입력하세요</p>`;
+$('#resume').innerHTML=`<button class="btn alt" id="rs">${rec.d?'📊 '+esc(rec.n)+' 리포트 다시 보기':'▶ '+esc(rec.n)+' 이어서 풀기'}</button><p class="hint" style="margin:10px 0 18px">다른 사람으로 새로 시작하려면 아래에 입력하세요</p>`;
 $('#rs').onclick=()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
   if(me.d){i=Q.length;end();return}
   i=0;while(i<Q.length&&me.a[i])i++;
-  mode='play';if(left()<=0){timeUp();return}startTimer();i<Q.length?show():end(true)}}
+  mode='play';if(left()<=0){timeUp();return}startTimer();i<Q.length?show():end()}}
 
 async function join(){const n=$('#nm').value.trim(),no=$('#no').value.trim();
 if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();return}
@@ -499,59 +430,53 @@ try{const id=now.toString(36)+Math.random().toString(36).slice(2,9);
   $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';me.st=Date.now();startTimer();show()};return}
 mode='play';startTimer();show()}
 
-function show(){locked=false;const d=Q[i];if(me&&myKey){me.c=i;save()}qT0=Date.now();app.className='wrap';
-app.innerHTML=`<div class="top"><span>${i+1}/${Q.length}</span><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><span class="score">⭐ ${score}</span>${LIMIT?`<span class="score tmr" id="tm">⏱ ${mmss(left())}</span>`:''}</div>
-<div class="card"><div class="row"><span class="tag">${pinfo(d.t).ic||EM[i%4]} ${esc(d.t)}</span><span class="tag" style="background:var(--yel)">🙋 ${esc(me?me.n:'')}${myKey?'':' (혼자)'}</span></div><div class="q">${d.q}</div>
-<div class="opts ${d.ox?'ox':''}">${d.o.map((x,k)=>`<button class="opt" data-k="${k}"><span class="n">${d.ox?(k?'✖':'⭕'):k+1}</span>${d.ox?'':x}</button>`).join('')}</div>
-<div class="fb" id="fb"></div><div class="next" id="nx"><button class="btn" id="nb">${i==Q.length-1?'내 리포트 보기 📊':'다음 문제 ▶'}</button></div></div>`;
+function qCard(d,k,head,btn){return `${head}
+<div class="card"><div class="row"><span class="tag" style="background:${pcol(d.t)};color:#fff">${EM[k%4]} ${esc(d.t)}</span><span class="tag" style="background:var(--yel)">🙋 ${esc(me?me.n:'')}${myKey?'':' (혼자)'}</span></div><div class="q">${d.q}</div>
+<div class="opts ${d.ox?'ox':''}">${d.o.map((x,j)=>`<button class="opt" data-k="${j}"><span class="n">${d.ox?(j?'✖':'⭕'):j+1}</span>${d.ox?'':x}</button>`).join('')}</div>
+<div class="fb" id="fb"></div><div class="next" id="nx"><button class="btn" id="nb">${btn}</button></div></div>`}
+function show(){locked=false;app.className='wrap';const d=Q[i];if(me&&myKey){me.c=i;save()}qT0=Date.now();
+app.innerHTML=qCard(d,i,`<div class="top"><span>${i+1}/${Q.length}</span><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><span class="score">⭐ ${score}</span>${LIMIT?`<span class="score tmr" id="tm">⏱ ${mmss(left())}</span>`:''}</div>`,i==Q.length-1?'리포트 보기 📊':'다음 문제 ▶');
 document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));$('#nb').onclick=next}
-
-function pick(k){if(locked||left()<=0)return;locked=true;const d=Q[i],ok=k===d.a,bs=document.querySelectorAll('.opt'),ms=Date.now()-qT0;
-bs.forEach((b,n)=>{b.disabled=true;if(n===d.a)b.classList.add('right');else if(n===k)b.classList.add('wrong');else b.classList.add('dim')});
+function mark(d,k){const bs=document.querySelectorAll('.opt');bs.forEach((b,n)=>{b.disabled=true;if(n===d.a)b.classList.add('right');else if(n===k)b.classList.add('wrong');else b.classList.add('dim')})}
+function pick(k){if(locked||left()<=0)return;if(mode==='retry')return rpick(k);locked=true;const d=Q[i],ok=k===d.a;mark(d,k);
 if(ok){score++;confetti()}
-if(me){me.a[i]=[k,ok?1:0,Math.min(ms,3600000)];me.s=score;save()}
+if(me){me.a[i]=[k,ok?1:0,Math.min(Date.now()-qT0,600000)];me.s=score;save()}
 const f=$('#fb');f.innerHTML=(ok?'<b>🎉 정답!</b> ':'<b>🥲 아쉬워요!</b> ')+(d.e||'');f.classList.add('show');$('#nx').classList.add('show');$('.score').textContent='⭐ '+score}
+function next(){if(mode==='retry')return rnext();if(me&&me.d)return;i++;i<Q.length?show():end()}
 
-function next(){if(me&&me.d)return;i++;i<Q.length?show():end(true)}
+/* 틀린 문제 재도전 */
+function retry(){rList=st(me).wrong;rI=0;if(!rList.length)return;mode='retry';rshow()}
+function rshow(){locked=false;const k=rList[rI],d=Q[k];
+app.innerHTML=qCard(d,k,`<div class="top"><span>🔁 재도전 ${rI+1}/${rList.length}</span><div class="bar"><i style="width:${rI/rList.length*100}%"></i></div><span class="score">원래 ${k+1}번</span></div>`,rI==rList.length-1?'리포트로 돌아가기 📊':'다음 문제 ▶');
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));$('#nb').onclick=next}
+function rpick(k){if(locked)return;locked=true;const q=rList[rI],d=Q[q],ok=k===d.a;mark(d,k);if(ok)confetti();
+me.r=me.r||{};me.r[q]=ok?1:0;save();
+const f=$('#fb');f.innerHTML=(ok?'<b>💪 이번엔 정답!</b> ':'<b>🧐 한 번 더 확인해요.</b> ')+(d.e||'');f.classList.add('show');$('#nx').classList.add('show')}
+function rnext(){rI++;if(rI<rList.length)rshow();else{mode='play';end()}}
 
-async function fetchStats(){if(!myKey)return null;try{const r=await rpc('quiz_stats',{p_quiz:QUIZ});return classStats(((r&&r.a)||[]).map(a=>({d:true,a})))}catch(e){return null}}
-async function end(fx,quick){clearInterval(tick);mode='report';locked=true;if(me&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
-if(me)score=scoreOf(me.a);
-if(!quick){app.className='wrap';const msgs=['파트별 정답률 계산 중...','반 친구들과 비교하는 중...','풀이 리듬 분석 중...','복습 처방전 쓰는 중...'];let m=0;
-  app.innerHTML=`<div class="card center"><div class="scan"><div class="scan-c">📊</div></div><h2 class="jua" style="margin:6px 0">리포트 분석 중</h2><p class="sub" id="scs">${msgs[0]}</p></div>`;
-  const iv=setInterval(()=>{const el=$('#scs');if(el)el.textContent=msgs[++m%msgs.length]},450);
-  await Promise.all([saveQ,wait(1900)]);myS=await fetchStats();clearInterval(iv)}
-if(mode!=='report')return;
+async function end(){clearInterval(tick);mode='play';locked=true;if(me&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
+if(me)score=me.s||0;
+app.className='wrap rpw';app.innerHTML=`<div class="card loading"><div class="spin"></div><br>📊 나만의 리포트를 만들고 있어요...</div>`;
+await saveQ;const P=myKey?await fetchClass():null;
+const others=P?P.filter(p=>p.id!==myKey):[];const all=me?[...others,me]:others;
 const tu=me&&me.to?`<div class="timeup">⏰ 시간 종료! 푼 문제까지만 채점했어요</div>`:'';
-app.className='wrap mid';
-app.innerHTML=`<div class="card" style="padding:22px">${tu}${report(me||{a:{},n:''},myS,{live:true,anim:true})}
-<div class="center np" style="margin-top:22px"><button class="btn alt" id="pr">🖨 리포트 저장(PDF)</button> <button class="btn" id="re">처음으로 🏠</button></div></div>`;
-countUp(app);window.scrollTo(0,0);
-$('#re').onclick=home;$('#pr').onclick=()=>printView([me],myS);
-const rf=$('#rf');if(rf)rf.onclick=async()=>{rf.disabled=true;rf.textContent='확인 중...';myS=await fetchStats();end(false,true)};
-const rb=$('#rtb');if(rb)rb.onclick=retry;
-if(fx&&score/Q.length>=.6)for(let n=0;n<3;n++)setTimeout(confetti,n*350)}
-
-function retry(){const ks=shuffle(Q.map((_,k)=>k).filter(k=>!isOk(me.a,k)));if(!ks.length)return;let j=0,got=0;me.rt=me.rt||{};
-const o=document.createElement('div');o.className='ov';o.id='rov';document.body.appendChild(o);
-const fin=()=>{save();o.remove();end(false,true)};
-const step=()=>{if(j>=ks.length){save();o.innerHTML=`<div class="card"><div class="mascot">${got===ks.length?'🏆':'💪'}</div><h2 class="jua">재도전 결과 ${got} / ${ks.length}</h2><p class="sub">${got===ks.length?'틀렸던 문제를 모두 맞혔어요!':'다시 틀린 문제는 처방전에서 한 번 더 확인해요.'}</p><button class="btn" id="rc">리포트로 돌아가기</button></div>`;$('#rc').onclick=fin;if(got===ks.length)confetti();return}
-  const k=ks[j],q=Q[k],ord=q.ox?[0,1]:shuffle(q.o.map((_,x)=>x));let lk=false;
-  o.innerHTML=`<div class="card" style="text-align:left"><div class="row"><span class="tag">🔁 오답 재도전 ${j+1}/${ks.length}</span><span class="tag" style="background:var(--yel)">${pinfo(q.t).ic||'📘'} ${esc(q.t)}</span></div><div class="q">${q.q}</div><div class="opts ${q.ox?'ox':''}">${ord.map((x,n)=>`<button class="opt" data-k="${x}"><span class="n">${q.ox?(x?'✖':'⭕'):n+1}</span>${q.ox?'':q.o[x]}</button>`).join('')}</div><div class="fb" id="rfb"></div><div class="next" id="rnx"><button class="btn" id="rnb">${j==ks.length-1?'결과 보기 🎉':'다음 ▶'}</button></div><div class="center"><button class="link" id="rq">그만하고 리포트로</button></div></div>`;
-  o.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(lk)return;lk=true;const x=+b.dataset.k,ok=x===q.a;me.rt[k]=ok?1:0;if(ok){got++;confetti()}
-    o.querySelectorAll('.opt').forEach(c=>{c.disabled=true;const y=+c.dataset.k;if(y===q.a)c.classList.add('right');else if(y===x)c.classList.add('wrong');else c.classList.add('dim')});
-    const f=$('#rfb');f.innerHTML=(ok?'<b>🎉 이번엔 정답!</b> ':'<b>🥲 한 번 더 보기</b> ')+(q.e||'');f.classList.add('show');$('#rnx').classList.add('show')});
-  $('#rnb').onclick=()=>{j++;step()};$('#rq').onclick=fin};step()}
+const W=st(me||{}).wrong.length,R=me&&me.r?Object.keys(me.r).length:0;
+app.innerHTML=`${tu}<div class="anim">${report(me||{a:{},s:0,n:''},all)}</div>
+<div class="acts">${W?`<button class="btn" id="rt" style="background:var(--pink2)">🔁 틀린 문제 다시 도전 (${W})</button>`:''}${myKey?`<button class="btn alt" id="rf">🔄 반 비교 새로고침</button>`:''}<button class="btn alt" id="pr">🖨 리포트 저장(PDF)</button><button class="btn" id="re">처음으로 🏠</button></div>
+${P&&cstat(all)&&cstat(all).n<2?'<p class="hint">반 친구들이 더 끝내면 \'반 비교 새로고침\'으로 반 평균과 비교할 수 있어요.</p>':''}`;
+countUp(app);
+$('#re').onclick=home;$('#pr').onclick=()=>printView([me],all);if($('#rt'))$('#rt').onclick=retry;if($('#rf'))$('#rf').onclick=end;
+if(st(me||{}).pc>=60&&!R)for(let n=0;n<3;n++)setTimeout(confetti,n*350);scrollTo(0,0)}
 
 function confetti(){const c=['🎉','⭐','🌸','🍬','💖','✨'];for(let n=0;n<14;n++){const s=document.createElement('span');s.className='conf';s.textContent=c[n%c.length];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.4+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2200)}}
 
-document.addEventListener('keydown',e=>{if(mode!=='play'||e.target.tagName==='INPUT')return;const nx=$('#nx');
+document.addEventListener('keydown',e=>{if((mode!=='play'&&mode!=='retry')||e.target.tagName==='INPUT')return;const nx=$('#nx');
 if(e.key==='Enter'||e.key===' '||e.key==='ArrowRight'){if(nx&&nx.classList.contains('show')){e.preventDefault();next()}return}
-const n=parseInt(e.key);if(n>=1&&n<=4&&document.querySelectorAll('.opt').length>=n)pick(n-1);
-if(e.key.toLowerCase()==='o'&&Q[i]&&Q[i].ox)pick(0);if(e.key.toLowerCase()==='x'&&Q[i]&&Q[i].ox)pick(1)});
+const cq=mode==='retry'?Q[rList[rI]]:Q[i];const n=parseInt(e.key);if(n>=1&&n<=4&&document.querySelectorAll('.opt').length>=n)pick(n-1);
+if(e.key.toLowerCase()==='o'&&cq&&cq.ox)pick(0);if(e.key.toLowerCase()==='x'&&cq&&cq.ox)pick(1)});
 
-/* ================= 교사 대시보드 ================= */
-let tTimer=null,tRound=1,tData=[],tUrl=/^https?:$/.test(location.protocol)?location.origin+location.pathname:'',tPaused=false,resetArm=false,busy=false,tSig='',tAnim=true;
+/* =================== 교사 대시보드 =================== */
+let tTimer=null,tRound=1,tData=[],tSel=null,tUrl=/^https?:$/.test(location.protocol)?location.origin+location.pathname:'',tPaused=false,resetArm=false,busy=false,tTab='live',tSig='',tSeen={};
 
 function teacherLogin(msg){mode='login';clearInterval(tTimer);app.className='wrap';
 app.innerHTML=`<div class="card"><div class="mascot">👩‍🏫</div><h1 style="font-size:clamp(28px,5vw,44px)">교사용 대시보드</h1>
@@ -565,13 +490,17 @@ const go=async()=>{const v=$('#pw').value;if(!v){$('#pm').textContent='비밀번
   catch(e){$('#pg').disabled=false;$('#pm').textContent=isBadPw(e)?'⚠️ 비밀번호가 맞지 않아요.':'⚠️ 연결하지 못했어요. 인터넷 연결을 확인해 주세요.';$('#pw').select()}};
 $('#pg').onclick=go;$('#pw').onkeydown=e=>{if(e.key==='Enter')go()};$('#ph').onclick=home;$('#pw').focus()}
 
-function teacher(){document.querySelectorAll('.ov').forEach(o=>o.remove());if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';tSig='';tAnim=true;
-app.innerHTML=`<div class="card tdash">
+const TABS=[['live','📡 한눈에 보기'],['part','🧩 파트 분석'],['item','🔍 문항·오개념'],['stu','🧒 학생별']];
+function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';tSig='';tSeen={};
+app.innerHTML=`<div class="card">
 <div class="row"><h2 style="margin:0">👩‍🏫 수업 분석 대시보드</h2>
 <div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
-<div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div><div id="tb"></div></div>`;
-$('#bq').onclick=qrOpen;$('#ba').onclick=()=>{const L=[...tData].filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,classStats(tData))};
+<div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
+<div class="tabs">${TABS.map(([k,l])=>`<button data-t="${k}" class="${k===tTab?'on':''}">${l}</button>`).join('')}</div>
+<div id="tv"></div></div>`;
+$('#bq').onclick=qrOpen;$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
 $('#bc').onclick=csv;
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{tTab=b.dataset.t;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));tSig='';render()});
 $('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
 $('#br').onclick=resetRound;$('#bh').onclick=()=>{clearInterval(tTimer);home()};
 render();refresh();clearInterval(tTimer);tTimer=setInterval(()=>{if(!tPaused&&mode==='teacher')refresh()},3000)}
@@ -584,91 +513,93 @@ try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});
   const s=$('#st');if(s)s.textContent='⚠️ 불러오기 실패: '+(e&&e.message||e)+' (인터넷 연결 확인)'}
 busy=false}
 
-function verdict(pc,D){if(pc==null)return['n','-'];if(D!=null&&D<0)return['b','검토 필요 (역변별)'];if(pc>=90)return['n','매우 쉬움'];if(pc<30)return['w','매우 어려움'];if(D!=null&&D<.15)return['w','변별력 낮음'];return['g','좋은 문항']}
-function itemPlot(S){const W=470,H=330,L=50,T=14,R=W-12,B=H-46,X=v=>L+(R-L)*v/100,Y=v=>B-(B-T)*(v+.5)/1.5;
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="문항 난이도와 변별도">`;
-  s+=`<rect x="${L}" y="${Y(1)}" width="${R-L}" height="${Y(.3)-Y(1)}" fill="#e3f8ea"/><rect x="${L}" y="${Y(.3)}" width="${R-L}" height="${Y(.15)-Y(.3)}" fill="#fffbea"/><rect x="${L}" y="${Y(.15)}" width="${R-L}" height="${Y(0)-Y(.15)}" fill="#fff4e0"/><rect x="${L}" y="${Y(0)}" width="${R-L}" height="${Y(-.5)-Y(0)}" fill="#ffe3e6"/>`;
-  s+=`<text x="${L+8}" y="${Y(1)+18}" text-anchor="start" font-family="Jua" font-size="14" fill="#1e7a4f">👍 변별력 좋음</text><text x="${L+8}" y="${B-8}" text-anchor="start" font-family="Jua" font-size="14" fill="#c92a2a">🔍 검토 필요 (상위권이 더 틀림)</text>`;
-  s+=`<rect x="${L}" y="${T}" width="${R-L}" height="${B-T}" fill="none" stroke="#4a3b52" stroke-width="2.5" rx="4"/>`;
-  [0,50,100].forEach(v=>s+=`<text x="${X(v)}" y="${B+16}" text-anchor="middle" font-size="11.5" fill="#7a6d84">${v}%</text>`);
-  [-.5,0,.5,1].forEach(v=>s+=`<text x="${L-6}" y="${Y(v)+4}" text-anchor="end" font-size="11.5" fill="#7a6d84">${v}</text>`);
-  s+=`<text x="${(L+R)/2}" y="${H-8}" text-anchor="middle" font-size="13" font-weight="800" fill="#4a3b52">정답률 → (왼쪽 = 어려운 문항)</text><text x="14" y="${(T+B)/2}" text-anchor="middle" font-size="13" font-weight="800" fill="#4a3b52" transform="rotate(-90 14 ${(T+B)/2})">변별도 →</text>`;
-  const pts=Q.map((q,k)=>({k,x:X(S.q[k].pc),y:Y(Math.max(-.5,Math.min(1,S.D[k])))}));
-  const cl=p=>{p.x=Math.max(L+15,Math.min(R-15,p.x));p.y=Math.max(T+15,Math.min(B-15,p.y))};pts.forEach(cl);
-  for(let it=0;it<150;it++){let mv=false;pts.forEach((p,a)=>pts.forEach((o,b)=>{if(b<=a)return;let dx=o.x-p.x,dy=o.y-p.y,d=Math.hypot(dx,dy);if(d<28){if(d<.01){dx=1;dy=(a%2?1:-1)*.5;d=Math.hypot(dx,dy)}const m=(28-d)/2/d;p.x-=dx*m;p.y-=dy*m;o.x+=dx*m;o.y+=dy*m;mv=true}}));pts.forEach(cl);if(!mv)break}
-  pts.forEach((p,j)=>s+=`<g class="bub" style="--d:${(.2+j*.05).toFixed(2)}s"><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="13" fill="${pcol(Q[p.k].t)}" stroke="#4a3b52" stroke-width="2"/><text x="${p.x.toFixed(1)}" y="${(p.y+4.5).toFixed(1)}" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">${p.k+1}</text><title>Q${p.k+1} · 정답률 ${Math.round(S.q[p.k].pc)}% · 변별도 ${S.D[p.k].toFixed(2)}</title></g>`);
-  return s+'</svg>'}
+/* 문항 통계: 정답률, 선택지 분포, 변별도(상위27%-하위27%), 평균 시간 */
+function itemStats(D){const done=D.filter(p=>p.d).map(p=>({p,s:st(p).s})).sort((a,b)=>b.s-a.s),g=Math.max(1,Math.round(done.length*.27));
+  const up=done.slice(0,g).map(x=>x.p),lo=done.slice(-g).map(x=>x.p);
+  return Q.map((q,k)=>{const cnt=q.o.map(()=>0);let an=0,ok=0,tt=0,tn=0;D.forEach(p=>{const r=p.a&&p.a[k];if(r){an++;ok+=r[1];if(cnt[r[0]]!=null)cnt[r[0]]++;if(r[2]){tt+=r[2];tn++}}});
+    const pr=L=>{const v=L.filter(p=>p.a&&p.a[k]);return v.length?v.filter(p=>p.a[k][1]).length/v.length:0};
+    const di=done.length>=6?pr(up)-pr(lo):null;let wk=-1,wc=0;cnt.forEach((c,j)=>{if(j!==q.a&&c>wc){wc=c;wk=j}});
+    return{k,q,an,ok,pc:an?Math.round(ok/an*100):null,cnt,di,t:tn?Math.round(tt/tn/1000):null,wk,wc,wp:an?Math.round(wc/an*100):0}})}
+const OPC=['#4d9fff','#a77bf3','#ff8c5a','#e0607e','#1fb5a8'];
 
-function render(){if(mode!=='teacher')return;const sig=JSON.stringify(tData);if(sig===tSig)return;tSig=sig;const el=$('#tb');if(!el)return;
-const D=tData,n=D.length,F=D.filter(p=>p.d),S=classStats(D),N=Q.length,live=D.filter(p=>!p.d);
-const liveH=live.length?`<div class="live2">${live.map(p=>`<span>👀 ${esc(p.n)} · ${Math.min(N,(p.c||0)+1)}번 푸는 중</span>`).join('')}</div>`:'';
-if(!n){el.innerHTML='<p class="wait center">아직 입장한 학생이 없어요.<br>📱 입장 QR을 띄워 주세요!</p>';return}
-el.classList.toggle('anim',tAnim);
-if(!S){el.innerHTML=`<div class="kpis"><div class="kpi" style="--kc:#ffe3ec"><small>👥 참여</small><b>${n}</b><span>완료 0명</span></div></div>${liveH}<p class="wait center">완료한 학생이 생기면 분석이 시작돼요 ⏳</p>`;return}
-tAnim=false;
-const sc=S.scores,avg=S.avg,srt=[...sc].sort((x,y)=>x-y),med=median(sc.map(x=>x+.0001))-.0001,P=PT.map(t=>({t,pc:S.part[t]}));
-const weakP=[...P].sort((x,y)=>x.pc-y.pc)[0];
-let rtT=0,rtO=0;F.forEach(p=>{const r=p.rt||{};Object.values(r).forEach(v=>{rtT++;if(v==1)rtO++})});
-const kp=[['👥 참여',n,`완료 ${F.length}명`,'#ffe3ec'],['⭐ 평균',(avg/N*100).toFixed(0)+'%',`${avg.toFixed(1)} / ${N}문항`,'#fff0cc'],['📍 중앙값',Math.round(med/N*100)+'%',`${Math.round(med*10)/10}문항`,'#daf5e8'],['🔝 최고 · 최저',`${srt[srt.length-1]}·${srt[0]}`,`${N}문항 기준`,'#e0edff'],['🧩 가장 약한 파트',esc(short(weakP.t,7)),`반 평균 ${Math.round(weakP.pc)}%`,'#ffe0e5'],['🔁 재도전 회복률',rtT?Math.round(rtO/rtT*100)+'%':'-',rtT?`${rtO}/${rtT}문항 회복`:'아직 없음','#ece6ff']];
-const kpis=`<div class="kpis">${kp.map(x=>`<div class="kpi" style="--kc:${x[3]}"><small>${x[0]}</small><b>${x[1]}</b><span>${x[2]}</span></div>`).join('')}</div>`;
+function render(){if(mode!=='teacher')return;const sig=tTab+'|'+JSON.stringify(tData);if(sig===tSig)return;tSig=sig;
+const v=$('#tv');if(!v)return;const first=!tSeen[tTab];tSeen[tTab]=1;v.className=first?'anim':'';
+const D=tData,n=D.length,cls=cstat(D),IS=itemStats(D);
+if(!n){v.innerHTML='<p class="wait center">아직 입장한 학생이 없어요.<br>📱 입장 QR을 띄워 주세요!</p>';return}
+const done=D.filter(p=>p.d).length;
+if(tTab==='live'){
+  const avgPc=cls?Math.round(cls.avg/Q.length*100):null,wp=cls?[...PL].sort((a,b)=>cls.part[a]-cls.part[b]):[],C=2*Math.PI*30;
+  let h=`<div class="kpis">
+<div class="kpi" style="--kc:#fff8d6"><span>👥 참여 / 🏁 완료</span><b>${n} / ${done}</b><div class="mini"><i class="bw" style="width:${n?done/n*100:0}%;background:var(--mint2)"></i></div></div>
+<div class="kpi" style="--kc:#ffe8ee"><span>⭐ 반 평균 정답률</span><b>${avgPc==null?'-':avgPc+'%'}</b><small>${cls?'평균 '+cls.avg.toFixed(1)+' / '+Q.length+'문제':'완료자 없음'}</small></div>
+<div class="kpi" style="--kc:#e2f7ec"><span>📍 중앙값</span><b>${cls?cls.med+' / '+Q.length:'-'}</b><small>${cls?'최고 '+cls.sc[cls.sc.length-1]+' · 최저 '+cls.sc[0]:''}</small></div>
+<div class="kpi" style="--kc:#e3f0ff"><span>🧩 가장 약한 파트</span><b style="font-size:28px">${cls?esc(wp[0]):'-'}</b><small>${cls?'반 평균 '+cls.part[wp[0]]+'%':''}</small></div></div>`;
+  /* 점수 분포 히스토그램 */
+  let hs='';if(cls){const N=Q.length,cnt=Array(N+1).fill(0);cls.sc.forEach(s=>cnt[s]++);const mx=Math.max(...cnt,1),W=640,H=240,x0=36,x1=W-10,y0=16,y1=196,bw=(x1-x0)/(N+1);
+    hs=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><defs><linearGradient id="hg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff7aa2"/><stop offset="1" stop-color="#f2a516"/></linearGradient></defs>`;
+    for(let j=0;j<=mx;j+=Math.max(1,Math.ceil(mx/4))){const y=y1-(y1-y0)*j/mx;hs+=`<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#eee5f2"/><text x="${x0-6}" y="${y+4}" font-size="11" text-anchor="end" fill="#a99bb4">${j}</text>`}
+    cnt.forEach((c,s)=>{const x=x0+bw*s,hh=(y1-y0)*c/mx;if(c)hs+=`<rect class="by" style="animation-delay:${s*.03}s" x="${x+3}" y="${y1-hh}" width="${bw-6}" height="${hh}" rx="6" fill="url(#hg)" stroke="#4a3b52" stroke-width="2"/><text x="${x+bw/2}" y="${y1-hh-5}" font-size="12" text-anchor="middle" fill="#4a3b52">${c}명</text>`;
+      if(N<=20||s%2===0)hs+=`<text x="${x+bw/2}" y="${y1+16}" font-size="12" text-anchor="middle" fill="#4a3b52">${s}</text>`});
+    const ax=x0+bw*(cls.avg+.5);hs+=`<line x1="${ax}" y1="${y0}" x2="${ax}" y2="${y1}" stroke="#7048e8" stroke-width="3" stroke-dasharray="6 5"/><text x="${ax}" y="${y0-2}" font-size="12" text-anchor="middle" fill="#7048e8">평균 ${cls.avg.toFixed(1)}</text><text x="${(x0+x1)/2}" y="${H-6}" font-size="13" text-anchor="middle" fill="#4a3b52">맞힌 문제 수 →</text></svg>`}
+  /* 수업 보강 포인트 */
+  const hard=IS.filter(x=>x.an).sort((a,b)=>a.pc-b.pc).slice(0,3),mis=IS.filter(x=>x.wk>=0&&x.an>=2&&x.wp>=25).sort((a,b)=>b.wp-a.wp)[0];
+  const fl=cls?`<ol class="focus">${wp.slice(0,2).filter(t=>cls.part[t]<80).map(t=>`<li><b style="color:${pcol(t)}">■</b> <b>${esc(t)}</b> 파트 다시 짚기 · 반 평균 ${cls.part[t]}% (보충 필요 ${cls.S.filter(s=>s.parts[PL.indexOf(t)].pc<60).length}명)</li>`).join('')}
+${hard.map(x=>`<li>${x.k+1}번 문항 · 정답률 ${x.pc}% <small style="opacity:.7">${esc(strip(x.q.q).slice(0,40))}…</small></li>`).join('')}
+${mis?`<li>🧠 오개념: ${mis.k+1}번에서 <b>${mis.wp}%</b>가 '${esc(optTxt(mis.q,mis.wk))}'를 골랐어요</li>`:''}</ol>`:'<p class="hint">완료한 학생이 생기면 자동으로 정리돼요.</p>';
+  const ing=D.filter(p=>!p.d);
+  h+=`<div class="g2"><div class="sec"><h3>📊 점수 분포</h3><p class="cap">완료한 ${cls?cls.n:0}명의 맞힌 문제 수예요. 보라 점선은 반 평균.</p>${hs||'<p class="hint">완료자가 생기면 그려져요.</p>'}</div>
+<div class="sec" style="background:#fffdf3"><h3>🎯 오늘 수업 보강 포인트</h3><p class="cap">데이터로 자동 정리했어요.</p>${fl}</div></div>
+<div class="sec"><h3>👀 지금 푸는 중 (${ing.length}명)</h3><div class="live-ch">${ing.map(p=>`<span>${esc(p.n)} · ${Object.keys(p.a||{}).length}/${Q.length}<i style="width:${Object.keys(p.a||{}).length/Q.length*100}%"></i></span>`).join('')||'<span>모두 완료했어요 🎉</span>'}</div></div>`;
+  v.innerHTML=h}
+else if(tTab==='part'){
+  if(!cls){v.innerHTML='<p class="wait center">완료한 학생이 생기면 파트 분석이 나와요.</p>';return}
+  const rd=PL.length>=3?radar([{vals:PL.map(t=>cls.part[t]),col:'#2fb879',fill:'rgba(47,184,121,.25)',dots:1}],1):'';
+  let sp='';PL.forEach((t,j)=>{const vals=cls.S.map((s,x)=>({pc:s.parts[j].pc,n:cls.D[x].n})),W=600,x0=8,x1=592,X=v=>x0+(x1-x0)*v/100,low=vals.filter(x=>x.pc<60).length;
+    const bins={};let svg=`<svg viewBox="0 0 ${W} 46"><rect x="${x0}" y="16" width="${X(60)-x0}" height="14" rx="7" fill="#ffe1e7"/><rect x="${X(60)}" y="16" width="${X(80)-X(60)}" height="14" fill="#fff1c7"/><rect x="${X(80)}" y="16" width="${x1-X(80)}" height="14" rx="7" fill="#dcf6e8"/>`;
+    vals.forEach((o,k)=>{const b=bins[o.pc]=(bins[o.pc]||0)+1,dy=((b-1)%5-2)*6;svg+=`<circle class="pi" style="animation-delay:${k*.02}s" cx="${X(o.pc)}" cy="${23+dy}" r="6" fill="${pcol(t)}" stroke="#4a3b52" stroke-width="1.6" opacity=".9"><title>${esc(o.n)} ${o.pc}%</title></circle>`});
+    svg+=`<path d="M${X(cls.part[t])} 2 l7 9 l-7 9 l-7 -9z" fill="#4a3b52"/></svg>`;
+    sp+=`<div class="strip"><span><b style="color:${pcol(t)}">■</b> ${esc(t)}</span>${svg}<span>평균 <b>${cls.part[t]}%</b><br><small>보충 필요 <b style="color:#d6334f">${low}명</b></small></span></div>`});
+  v.innerHTML=`<div class="${rd?'g2':''}">${rd?`<div class="sec"><h3>🕸 반 전체 실력 지도</h3><p class="cap">완료한 ${cls.n}명의 파트별 평균 정답률이에요.</p>${rd}</div>`:''}
+<div class="sec"><h3>🧩 파트별 평균</h3><p class="cap">80% 이상 탄탄 · 60~79% 보통 · 60% 미만 보충 필요</p>${PL.map(t=>{const[lb,cl]=lvOf(cls.part[t]);return `<div style="display:grid;grid-template-columns:minmax(80px,140px) 1fr 120px;gap:10px;align-items:center;margin:10px 0;font-size:17px"><span>${esc(t)}</span><div class="mini" style="height:20px"><i class="bw" style="width:${cls.part[t]}%;background:${pcol(t)}"></i></div><span>${cls.part[t]}% <em class="lv ${cl}">${lb}</em></span></div>`}).join('')}</div></div>
+<div class="sec"><h3>🫧 학생 분포 (파트별)</h3><p class="cap">점 하나가 학생 한 명이에요. 점에 마우스를 올리면 이름이 보여요. ◆는 반 평균. 빨간 구간에 점이 몰린 파트가 수업 보강 1순위예요.</p>${sp}</div>`}
+else if(tTab==='item'){
+  const mis=IS.filter(x=>x.wk>=0&&x.an>=2&&x.wc>0).sort((a,b)=>b.wp-a.wp).slice(0,3);
+  let h=`<div class="sec" style="background:#fff8fa"><h3>🧠 오개념 TOP ${mis.length||''}</h3><p class="cap">학생들이 가장 많이 고른 '오답 보기'예요. 같은 오해를 하고 있다는 신호예요.</p><div class="mcs">${mis.map(x=>`<div class="mc"><b class="pct">${x.wp}%</b>${x.k+1}번 [${esc(x.q.t)}] 에서 <b>'${esc(optTxt(x.q,x.wk))}'</b> 선택<br><small>정답: ${esc(optTxt(x.q,x.q.a))}</small><br><small style="opacity:.75">💡 ${strip(x.q.e||'').slice(0,80)}</small></div>`).join('')||'<p class="hint">아직 뚜렷한 오개념이 없어요.</p>'}</div></div>`;
+  h+=`<div class="sec"><h3>🔍 문항 분석</h3><p class="cap">문항을 누르면 선택지별 인원이 보여요. <b>변별도</b>는 상위 27%와 하위 27% 학생의 정답률 차이(완료 6명 이상일 때)로, 0.3 이상이면 실력을 잘 가르는 좋은 문항이에요.</p>
+<div class="qrow hd"><span>문항</span><span>내용</span><span>정답률</span><span>선택지 분포</span><span>변별도</span><span>평균시간</span></div>
+${IS.map(x=>{const tot=x.cnt.reduce((a,b)=>a+b,0),dc=x.di==null?['-','#eee']:x.di>=.3?[x.di.toFixed(2),'#c8f2dc']:x.di>=.2?[x.di.toFixed(2),'#ffeab0']:[x.di.toFixed(2),'#ffd0d8'];
+ return `<div class="qrow" data-k="${x.k}"><span><b>Q${x.k+1}</b></span><span class="qt"><span class="lv" style="background:${pcol(x.q.t)};color:#fff;border-color:${pcol(x.q.t)}">${esc(x.q.t)}</span> ${esc(strip(x.q.q))}</span>
+<span><div class="mini"><i class="bw" style="width:${x.pc||0}%;background:${x.pc==null?'#ddd':LVC[lvOf(x.pc)[1]]}"></i></div><small>${x.pc==null?'-':x.pc+'% ('+x.ok+'/'+x.an+')'}</small></span>
+<span><div class="stk">${tot?x.cnt.map((c,j)=>c?`<i style="width:${c/tot*100}%;background:${j===x.q.a?'#2fb879':OPC[j%OPC.length]}" title="${esc(optTxt(x.q,j))}: ${c}명">${x.q.ox?(j?'X':'O'):j+1}</i>`:'').join(''):'<i style="width:100%;background:#eee"></i>'}</div></span>
+<span><span class="dc" style="background:${dc[1]}">${dc[0]}</span></span><span>${x.t==null?'-':x.t+'초'}</span></div>
+${tSel===x.k?`<div class="fb show" style="margin:8px 0 12px"><b>Q${x.k+1}.</b> ${x.q.q}${x.q.o.map((o,j)=>`<div class="dr ${j===x.q.a?'ok':''}"><span>${j===x.q.a?'✅':'▫️'} ${esc(optTxt(x.q,j))}</span><div class="bar"><i style="width:${tot?x.cnt[j]/tot*100:0}%"></i></div><span>${x.cnt[j]}명</span></div>`).join('')}<div style="margin-top:10px;font-size:.85em">💡 ${x.q.e||''}</div></div>`:''}`}).join('')}</div>`;
+  v.innerHTML=h;v.querySelectorAll('.qrow[data-k]').forEach(r=>r.onclick=()=>{const k=+r.dataset.k;tSel=tSel===k?null:k;tSig='';render()})}
+else if(tTab==='stu'){
+  const rows=[...D].sort((a,b)=>st(b).s-st(a).s||String(a.n).localeCompare(String(b.n),'ko'));
+  const runs2=[];Q.forEach((q,k)=>{const l=runs2[runs2.length-1];if(l&&l.t===q.t)l.c++;else runs2.push({t:q.t,c:1})});
+  let h=`<div class="sec"><h3>🗺 반 전체 히트맵</h3><p class="cap">한 줄이 학생 한 명, 한 칸이 문항이에요. 초록=정답, 분홍=오답, 회색=아직. 세로로 분홍이 몰린 열이 반 전체의 약점이에요. 이름을 누르면 그 학생 리포트가 열려요.</p>
+<div class="hmw"><table class="hm"><thead><tr><th></th><th></th>${runs2.map(r=>`<th class="ph" colspan="${r.c}" style="background:${pcol(r.t)}">${esc(r.t.length>r.c*3?r.t.slice(0,Math.max(2,r.c*3-1))+'…':r.t)}</th>`).join('')}<th></th><th></th></tr>
+<tr><th style="font-size:13px">이름</th><th style="font-size:13px">학번</th>${Q.map((_,k)=>`<th style="font-size:11px;opacity:.6">${k+1}</th>`).join('')}<th style="font-size:13px">점수</th><th style="font-size:13px">파트 프로필</th></tr></thead><tbody>
+${rows.map(p=>{const S=st(p),rc=p.r?Object.values(p.r).filter(x=>x===1).length:0;return `<tr><td class="nm"><a href="#" data-id="${esc(p.id)}" style="color:inherit">${p.d?'🏁':'👀'} ${esc(p.n)}</a></td><td class="sc" style="font-size:13px;opacity:.7">${esc(p.no||'')}</td>${Q.map((_,k)=>{const r=p.a&&p.a[k];return `<td class="c ${r?(r[1]?'ok':'no'):'na'}" title="${esc(p.n)} · ${k+1}번 ${r?(r[1]?'정답':'오답: '+esc(optTxt(Q[k],r[0]))):'아직'}"></td>`}).join('')}
+<td class="sc"><b>${S.s}</b>/${Q.length}${rc?` <small title="재도전 성공">🔁${rc}</small>`:''}</td><td class="sc"><svg width="${PL.length*16}" height="26">${S.parts.map((x,j)=>`<rect x="${j*16+2}" y="${24-Math.max(2,x.pc*.22)}" width="12" height="${Math.max(2,x.pc*.22)}" rx="3" fill="${pcol(x.t)}"><title>${esc(x.t)} ${x.pc}%</title></rect>`).join('')}</svg></td></tr>`}).join('')}</tbody></table></div></div>`;
+  v.innerHTML=h;v.querySelectorAll('a[data-id]').forEach(a=>a.onclick=e=>{e.preventDefault();const p=tData.find(x=>x.id===a.dataset.id);if(p)printView([p],tData)})}
+}
 
-/* 파트별 */
-const pb=P.map(x=>{const cnt=[0,0,0];F.forEach(p=>{const v=partStats(p.a).find(y=>y.t===x.t).pc;cnt[v>=80?0:v>=60?1:2]++});const tot=F.length||1;
-  return `<div class="pbar"><span class="t">${pinfo(x.t).ic||'📘'} ${esc(x.t)}</span><div><div class="bb"><u style="width:${x.pc}%;background:${pcol(x.t)}"></u></div><div class="stk" style="height:16px;border-width:1.5px;margin-top:4px">${[['#2fb57a',cnt[0],'탄탄'],['#f0a020',cnt[1],'보통'],['#ff6b6b',cnt[2],'보충']].map(c=>c[1]?`<span style="width:${c[1]/tot*100}%;background:${c[0]};font-size:10.5px" title="${c[2]} ${c[1]}명">${c[2]} ${c[1]}</span>`:'').join('')}</div></div><b class="jua" style="font-size:20px;font-weight:normal">${Math.round(x.pc)}%</b></div>`}).join('');
-
-/* 인사이트 */
-const ins=[],qs=Q.map((q,k)=>({k,pc:S.q[k].pc,an:S.q[k].an,D:S.D?S.D[k]:null,ch:S.q[k].ch}));
-ins.push(['🧩',`<b>${esc(weakP.t)}</b> 파트 반 평균이 <b>${Math.round(weakP.pc)}%</b>로 가장 낮아요. 다음 수업 도입 5분을 이 파트 복습에 쓰면 효과가 커요.`]);
-qs.filter(x=>x.an&&x.pc<60).sort((x,y)=>x.pc-y.pc).slice(0,2).forEach(x=>{const q=Q[x.k],wr=x.ch.map((c,j)=>({j,c})).filter(o=>o.j!==q.a).sort((p,r)=>r.c-p.c)[0];
-  ins.push(['🎯',`<b>Q${x.k+1}</b> 정답률 ${Math.round(x.pc)}%. 가장 많이 고른 오답은 <b>${esc(short(optTxt(q,wr.j),28))}</b>(${Math.round(wr.c/x.an*100)}%)예요. 이 보기를 고른 이유를 함께 짚어 주세요.`])});
-if(S.D)qs.filter(x=>x.D!=null&&x.D<0).forEach(x=>ins.push(['🔍',`<b>Q${x.k+1}</b>은 상위권 학생이 오히려 더 많이 틀렸어요(변별도 ${x.D.toFixed(2)}). 문항 표현이나 정답 표시를 한 번 점검해 보세요.`]));
-const easy=qs.filter(x=>x.an&&x.pc>=90).map(x=>'Q'+(x.k+1));if(easy.length)ins.push(['⚡',`${easy.join(', ')}은 90% 이상 맞혔어요. 수업에서는 짧게 넘어가도 좋아요.`]);
-const many=F.filter(p=>partStats(p.a).filter(x=>x.pc<60).length>=2);if(many.length)ins.push(['🤝',`보충 필요 파트가 2개 이상인 학생이 <b>${many.length}명</b>이에요. 아래 ⑦ 명단을 확인해 주세요.`]);
-let rushN=0,wrN=0;F.forEach(p=>{const K=kinds(p.a,S);K.forEach((x,k)=>{if(p.a[k]&&!p.a[k][1]){wrN++;if(x==='rush')rushN++}})});
-if(wrN&&rushN/wrN>=.25)ins.push(['💨',`전체 오답의 <b>${Math.round(rushN/wrN*100)}%</b>가 반 평균보다 빨리 고른 ‘성급한 실수’였어요. 문제를 끝까지 읽도록 안내해 주세요.`]);
-
-/* 히트맵 */
-const rows=[...F].sort((x,y)=>scoreOf(y.a)-scoreOf(x.a));
-const hm=`<table class="hm"><thead><tr><th style="text-align:left">학생 (누르면 리포트)</th><th>점수</th>${PT.map(t=>`<th>${pinfo(t).ic||''} ${esc(short(t,8))}</th>`).join('')}<th>재도전</th><th>걸린 시간</th></tr></thead><tbody>${rows.map(p=>{const ps=partStats(p.a),s2=scoreOf(p.a),r=p.rt||{},rv=Object.values(r);
-  return `<tr><td class="nm" data-id="${esc(p.id)}">📋 ${esc(p.n)}${p.no?` <small style="opacity:.6">${esc(p.no)}</small>`:''}</td><td style="background:${heat(s2/N*100)}">${s2}/${N}</td>${ps.map(x=>`<td style="background:${heat(x.pc)}">${x.pc}</td>`).join('')}<td style="background:#f6f2fa">${rv.length?rv.filter(v=>v==1).length+'/'+rv.length:'-'}</td><td style="background:#f6f2fa;font-weight:600">${p.f&&p.st?(p.to?'⏰ ':'')+fmtT(p.f-p.st):'-'}</td></tr>`}).join('')}</tbody>
-<tfoot><tr><td>반 평균</td><td>${avg.toFixed(1)}</td>${P.map(x=>`<td>${Math.round(x.pc)}</td>`).join('')}<td>${rtT?Math.round(rtO/rtT*100)+'%':'-'}</td><td></td></tr></tfoot></table>`;
-
-/* 문항 분석 표 */
-const OC=['#3d8bfd','#8b6cf0','#f0a020','#14b8a6','#ff8a3d'];
-const ia=`<table class="ia"><thead><tr><th>문항</th><th>파트</th><th>정답률</th><th>변별도</th><th style="min-width:160px">선택 분포 (✓ 정답 = 초록)</th><th>판정</th></tr></thead><tbody>${qs.map(x=>{const q=Q[x.k],v=verdict(x.an?x.pc:null,x.D),t=x.ch.reduce((p,r)=>p+r,0)||1;
-  return `<tr><td><b>Q${x.k+1}</b></td><td class="l" style="white-space:nowrap"><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${pcol(q.t)}"></span> ${esc(short(q.t,8))}</td><td style="background:${heat(x.pc)};font-weight:800">${x.an?Math.round(x.pc)+'%':'-'}</td><td>${x.D!=null?x.D.toFixed(2):'-'}</td><td><div class="stk">${x.ch.map((c,j)=>c?`<span style="width:${c/t*100}%;background:${j===q.a?'#2fb57a':OC[j%OC.length]}" title="${esc(optTxt(q,j))} · ${c}명">${q.ox?(j?'X':'O'):j+1}${j===q.a?'✓':''}<small style="opacity:.85;margin-left:3px;font-size:10.5px">${c}명</small></span>`:'').join('')}</div></td><td><span class="vd ${v[0]}">${v[1]}</span></td></tr>`}).join('')}</tbody></table>`;
-
-/* 오개념 TOP */
-const mis=qs.map(x=>{const q=Q[x.k],w=x.ch.map((c,j)=>({j,c})).filter(o=>o.j!==q.a).sort((p,r)=>r.c-p.c)[0];return{...x,w,r:x.an&&w?w.c/x.an:0}}).filter(x=>x.r>0).sort((x,y)=>y.r-x.r).slice(0,5);
-const misH=mis.length?mis.map((x,j)=>{const q=Q[x.k];return `<div class="mis"><span class="big">${Math.round(x.r*100)}%</span><b class="jua" style="font-size:17px;font-weight:normal">#${j+1} · Q${x.k+1} <span style="opacity:.6">${esc(q.t)}</span></b><div>${q.q}</div><div style="margin-top:4px"><span style="color:#c92a2a;font-weight:800">✗ 많이 고른 오답: ${esc(optTxt(q,x.w.j))}</span> · <span style="color:#1e7a4f;font-weight:800">✓ 정답: ${esc(optTxt(q,q.a))}</span></div>${q.e?`<div class="note" style="opacity:.8">💡 ${q.e}</div>`:''}</div>`}).join(''):'<p class="note">아직 오답이 없어요.</p>';
-
-/* 보충 그룹 */
-const grp=PT.map(t=>{const L=F.filter(p=>partStats(p.a).find(x=>x.t===t).pc<60);return `<div><b class="jua" style="font-weight:normal;font-size:17px">${pinfo(t).ic||'📘'} ${esc(t)}</b> <small style="opacity:.6">${L.length}명</small><div class="grp">${L.length?L.map(p=>`<span>${esc(p.n)}</span>`).join(''):'<span style="background:#d3f9d8">없음 👍</span>'}</div></div>`}).join('');
-
-el.innerHTML=`${kpis}${liveH}
-<div class="tg2" style="margin-top:14px"><section class="panel hist"><div class="sh"><i>1</i><h3>점수 분포</h3><small>완료 ${F.length}명</small></div>${hist(sc,null)}</section>
-<section class="panel"><div class="sh"><i>2</i><h3>파트별 반 평균</h3><small>막대 아래 = 학생 수 분포</small></div>${pb}${PT.length>=3?`<div style="max-width:380px;margin:6px auto 0">${radar2(PT.map(t=>({t,pc:Math.round(S.part[t])})),null)}</div>`:''}</section></div>
-<section class="panel sec"><div class="sh"><i>3</i><h3>다음 수업 보강 포인트</h3><small>자동 분석</small></div><ul class="ins">${ins.map(x=>`<li><em>${x[0]}</em><span>${x[1]}</span></li>`).join('')}</ul></section>
-<section class="panel sec"><div class="sh"><i>4</i><h3>학생 × 파트 히트맵</h3><small>숫자 = 파트 정답률(%) · 초록일수록 탄탄</small></div><div class="hmw">${hm}</div></section>
-<section class="panel sec"><div class="sh"><i>5</i><h3>문항 분석</h3><small>변별도 = 상위 27% 정답률 − 하위 27% 정답률</small></div>${S.D?`<div style="max-width:620px;margin:0 auto 12px">${itemPlot(S)}</div>`:'<p class="note">완료 4명 이상이면 난이도 × 변별도 그래프가 나와요.</p>'}<div style="overflow:auto">${ia}</div></section>
-<div class="tg2 sec"><section class="panel"><div class="sh"><i>6</i><h3>오개념 TOP ${mis.length||''}</h3><small>가장 많이 고른 오답</small></div>${misH}</section>
-<section class="panel"><div class="sh"><i>7</i><h3>파트별 보충 필요 학생</h3><small>파트 정답률 60% 미만</small></div>${grp}</section></div>`;
-el.querySelectorAll('td.nm[data-id]').forEach(td=>td.onclick=()=>{const p=tData.find(x=>x.id===td.dataset.id);if(p)printView([p],classStats(tData))})}
-
-function csv(){const D=[...tData].sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(!D.length)return;
-const rows=[['학번','이름','완료','점수','정답률(%)',...PT.map(t=>t+'(%)'),'가장 약한 파트','걸린 시간','재도전 성공',...Q.map((_,k)=>'Q'+(k+1))]];
-D.forEach(p=>{const ps=partStats(p.a),s2=scoreOf(p.a),w=[...ps].sort((x,y)=>x.pc-y.pc)[0],r=Object.values(p.rt||{});
-  rows.push([p.no||'',p.n,p.d?'O':'풀이 중',s2,Math.round(s2/Q.length*100),...ps.map(x=>x.pc),w&&w.pc<80?w.t:'-',p.f&&p.st?fmtT(p.f-p.st):'',r.length?r.filter(v=>v==1).length+'/'+r.length:'',...Q.map((_,k)=>p.a&&p.a[k]?(p.a[k][1]?'O':'X'):'')])});
-const txt='\ufeff'+rows.map(r=>r.map(c=>'"'+String(c==null?'':c).replace(/"/g,'""')+'"').join(',')).join('\r\n');
-const u=URL.createObjectURL(new Blob([txt],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=u;a.download=`${QUIZ}_결과_${new Date().toISOString().slice(0,10)}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
+function csv(){const D=[...tData].sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(!D.length){alert('아직 데이터가 없어요.');return}
+  const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"';
+  const head=['이름','학번','완료','점수','정답률(%)',...PL.map(t=>t+'(%)'),'가장 약한 파트','걸린 시간',...Q.map((_,k)=>'Q'+(k+1))];
+  const lines=[head.map(q).join(',')].concat(D.map(p=>{const S=st(p),w=[...S.parts].sort((a,b)=>a.pc-b.pc)[0];
+    return [p.n,p.no||'',p.d?'O':'',S.s,S.pc,...S.parts.map(x=>x.pc),w&&w.pc<80?w.t:'',p.d&&p.f&&p.st?fmtT(p.f-p.st):'',...Q.map((_,k)=>{const r=p.a&&p.a[k];return r?(r[1]?'O':'X('+(Q[k].ox?(r[0]?'X':'O'):r[0]+1)+')'):''})].map(q).join(',')}));
+  const b=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download='춘해퀴즈_'+QUIZ+'_라운드'+tRound+'_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 
 async function resetRound(){const b=$('#br');
 if(!resetArm){resetArm=true;b.textContent='⚠️ 한 번 더 누르면 초기화';setTimeout(()=>{resetArm=false;const x=$('#br');if(x&&!x.disabled)x.textContent='🔄 새 라운드'},3000);return}
 resetArm=false;b.disabled=true;b.textContent='초기화 중...';let err='';
 try{tRound=Number(await rpc('quiz_reset',{p_quiz:QUIZ,p_pw:tPw}))||tRound+1}catch(e){console.error(e);err=e&&e.message||String(e)}
-if(!err){tData=[];tSig='';tAnim=true}b.disabled=false;b.textContent='🔄 새 라운드';
+tSel=null;if(!err)tData=[];tSig='';b.disabled=false;b.textContent='🔄 새 라운드';
 if(err){const s=$('#st');if(s)s.textContent='⚠️ 새 라운드 실패: '+err;return}
-render();refresh()}
+refresh()}
 
 function qrOpen(){const o=document.createElement('div');o.className='ov';o.id='ov';document.body.appendChild(o);o.onclick=e=>{if(e.target===o)o.remove()};qrDraw()}
 function qrDraw(){const o=$('#ov');if(!o)return;
@@ -684,6 +615,9 @@ $('#uc').onclick=()=>o.remove();$('#ue').onclick=()=>{tUrl='';qrDraw()};
 if(window.QRCode){new QRCode($('#qr'),{text:tUrl,width:512,height:512,correctLevel:QRCode.CorrectLevel.M})}
 else $('#qr').textContent='QR 라이브러리를 불러오지 못했어요. 링크를 직접 공유해 주세요.'}
 
+/* 문제 검사: 잘못 쓴 문제가 있으면 콘솔과 화면 위쪽에 알려 줘요 */
+(function(){const er=[];Q.forEach((q,k)=>{if(!q.t)er.push((k+1)+'번: 파트(t) 없음');if(!Array.isArray(q.o)||q.o.length<2)er.push((k+1)+'번: 보기(o) 확인');else if(!(q.a>=0&&q.a<q.o.length))er.push((k+1)+'번: 정답 번호(a)가 보기 범위를 벗어남')});
+ if(er.length){console.warn(er);const d=document.createElement('div');d.className='timeup';d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:99;font-size:16px';d.textContent='⚠️ 문제 확인 필요: '+er.join(' / ');document.body.appendChild(d)}})();
 home();
 </script>
 </body></html>
