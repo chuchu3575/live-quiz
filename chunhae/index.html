@@ -192,6 +192,99 @@ td.tm{white-space:nowrap;font-size:15px}
 .hm td.sc{padding:0 8px;font-size:16px}
 .hm tr:hover td.nm{background:var(--yel)}
 .hmw{overflow:auto;max-height:70vh;border:3px solid var(--ink);border-radius:16px;padding:8px;background:#fff}
+.conf{z-index:80!important}
+/* 반응 속도 진단 */
+.sq{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sq>div{border:3px solid var(--ink);border-radius:18px;padding:10px 14px}
+.sq b.n{font-size:38px;font-weight:normal;line-height:1}
+.sq .qd{width:26px;height:26px;font-size:12px}
+.trk{display:grid;grid-template-columns:44px 1fr 70px;gap:10px;align-items:center;font-size:15px;margin:5px 0}
+.tk{position:relative;height:16px;border-radius:999px;background:#f6f0f8;border:2px solid var(--ink)}
+.tk .fz{position:absolute;left:0;top:0;bottom:0;background:#c8f2dc;border-radius:999px 0 0 999px}
+.tk .md{position:absolute;top:-6px;bottom:-6px;width:3px;margin-left:-1px;background:#7048e8;border-radius:2px}
+.tk .dot{position:absolute;top:50%;width:20px;height:20px;border-radius:50%;border:2.5px solid var(--ink);transform:translate(-50%,-50%)}
+@keyframes slide{from{left:0}}
+.anim .tk .dot{animation:slide 1.1s cubic-bezier(.2,.8,.2,1) both}
+/* ===== 라이브 진행 (전자칠판) ===== */
+.lvx{position:fixed;inset:0;z-index:60;color:#fff;font-family:'Jua','Malgun Gothic',sans-serif;display:flex;flex-direction:column;overflow:hidden;background:#1b1530}
+.lvx::before{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 20% 20%,rgba(112,72,232,.6),transparent 40%),radial-gradient(circle at 80% 30%,rgba(255,122,162,.45),transparent 40%),radial-gradient(circle at 50% 90%,rgba(34,197,94,.32),transparent 45%);animation:drift 14s ease-in-out infinite alternate;z-index:0;pointer-events:none}
+.lvx>*{position:relative;z-index:1}
+@keyframes drift{to{transform:translate(4%,-3%) rotate(8deg) scale(1.08)}}
+.lv-top{display:flex;align-items:center;gap:12px;padding:14px 22px;font-size:clamp(20px,2.2vw,30px)}
+.lv-pill{background:rgba(255,255,255,.14);border-radius:999px;padding:4px 18px;font-size:clamp(18px,1.8vw,26px);white-space:nowrap}
+.lv-pill:empty{display:none}
+.lv-pill b{color:#ffd43b;font-weight:normal;font-size:1.2em}
+.lv-btn{font-family:inherit;font-size:20px;border:0;border-radius:14px;padding:10px 22px;background:rgba(255,255,255,.92);color:#2b2140;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.35)}
+.lv-btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
+.lv-btn.sm{font-size:17px;padding:6px 14px}.lv-btn.go{background:#ffd43b}.lv-btn.xl{font-size:clamp(24px,2.6vw,38px);padding:14px 40px;border-radius:20px}
+.lv-mid{flex:1;display:grid;place-items:center;padding:20px}
+.lv-panel{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.25);border-radius:26px;padding:26px 30px;max-width:760px;text-align:center;font-size:20px;line-height:1.6}
+.lv-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.lv-lobby{flex:1;display:grid;grid-template-columns:auto 1fr;gap:4vw;align-items:center;padding:10px 5vw 30px;min-height:0}
+.lv-qrbox{background:#fff;border-radius:28px;padding:20px;text-align:center;color:#2b2140;box-shadow:0 0 0 10px rgba(255,255,255,.15),0 20px 60px rgba(0,0,0,.4)}
+.lv-qrbox img,.lv-qrbox canvas{width:min(50vh,38vw)!important;height:auto!important;display:block}
+.lv-qrbox small{display:block;margin-top:8px;font-size:14px;opacity:.7;word-break:break-all;max-width:min(50vh,38vw)}
+.lv-lright h1{font-size:clamp(34px,4.4vw,64px);margin:0 0 10px}
+.lv-joined{font-size:clamp(22px,2.4vw,34px)}.lv-joined b{font-size:2em;color:#ffd43b;font-weight:normal}
+.lv-names{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 20px;max-height:30vh;overflow:auto;min-height:50px}
+.lv-names span{padding:6px 16px;border-radius:999px;font-size:clamp(18px,1.8vw,26px);animation:popin .55s cubic-bezier(.2,.9,.3,1.5) both;box-shadow:0 4px 0 rgba(0,0,0,.3)}
+@keyframes popin{from{transform:scale(0) rotate(-14deg);opacity:0}}
+.lv-set{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:20px;margin:10px 0}
+.lv-seg{font-family:inherit;font-size:19px;border:2px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:12px;padding:4px 14px;cursor:pointer}.lv-seg.on{background:#ffd43b;color:#2b2140;border-color:#ffd43b}
+.lv-qwrap{display:grid;grid-template-columns:1fr auto;gap:3vw;align-items:center;padding:4px 3vw 14px;flex:1;min-height:0}
+.lv-q{font-size:clamp(28px,3.4vw,58px);line-height:1.35;word-break:keep-all;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+.lv-q.sm{font-size:clamp(22px,2.4vw,38px)}
+.lv-timer{position:relative;width:min(30vh,240px);aspect-ratio:1}
+.lv-timer svg{width:100%;height:100%;display:block;filter:drop-shadow(0 0 18px rgba(255,255,255,.25))}
+.lv-timer b{position:absolute;inset:0;display:grid;place-items:center;font-size:min(12vh,96px);font-weight:normal}
+.lv-timer.hot{animation:hot .5s ease-in-out infinite}.lv-timer.hot b{color:#ff6b6b}
+@keyframes hot{50%{transform:scale(1.08) rotate(-3deg)}}
+.lv-opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 22px 14px}
+.lv-opts.ox .lv-opt{justify-content:center;font-size:clamp(40px,6vw,90px)}
+.lv-opt{position:relative;overflow:hidden;border-radius:22px;padding:14px 22px;font-size:clamp(22px,2.4vw,40px);display:flex;align-items:center;gap:16px;box-shadow:0 8px 0 rgba(0,0,0,.3);min-height:11vh;word-break:keep-all;animation:optin .5s cubic-bezier(.2,.9,.3,1.3) both}
+.lv-opt:nth-child(2){animation-delay:.08s}.lv-opt:nth-child(3){animation-delay:.16s}.lv-opt:nth-child(4){animation-delay:.24s}
+@keyframes optin{from{transform:translateY(30px) scale(.9);opacity:0}}
+.lv-opt .sh{flex:none;width:clamp(44px,4vw,64px);height:clamp(44px,4vw,64px);border-radius:14px;background:rgba(0,0,0,.18);display:grid;place-items:center;font-size:.85em;position:relative;z-index:1}
+.lv-opt .tx{position:relative;z-index:1}
+.lv-opt .cnt{margin-left:auto;position:relative;z-index:1;font-size:.85em;white-space:nowrap}
+.lv-opt .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.3);transition:width 1.2s cubic-bezier(.2,.8,.2,1);z-index:0}
+.c0{background:#e5484d}.c1{background:#3e7bfa}.c2{background:#d99a00}.c3{background:#1f9d63}
+.lv-opt.dim{opacity:.38;filter:saturate(.4)}
+.lv-opt.ok{box-shadow:0 0 0 6px #fff,0 0 40px 10px rgba(255,255,255,.55);animation:okp 1s ease both}
+@keyframes okp{30%{transform:scale(1.04)}}
+.lv-foot{display:flex;align-items:center;gap:14px;padding:0 22px 20px;margin-top:auto}
+.lv-opts.rv .lv-opt{min-height:17vh}
+@media(max-width:560px){.sq{grid-template-columns:1fr}}
+.lv-fuse{flex:1;height:18px;border-radius:999px;background:rgba(255,255,255,.14);position:relative}
+.lv-fuse i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;width:100%;background:#22c55e;box-shadow:0 0 18px currentColor}
+.lv-fuse b{position:absolute;top:50%;left:100%;width:38px;height:38px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#fff 0 18%,#ffd43b 34%,rgba(255,212,59,0) 70%);animation:spark .22s linear infinite alternate}
+@keyframes spark{to{transform:translate(-50%,-50%) scale(1.4) rotate(40deg)}}
+.lv-cd{position:absolute;inset:0;display:none;place-items:center;background:rgba(27,21,48,.78);z-index:5}
+.lv-cd span{font-size:42vh;line-height:1;color:#ffd43b;animation:cdz 1s ease-out both;text-shadow:0 12px 0 rgba(0,0,0,.3)}
+@keyframes cdz{from{transform:scale(2.4);opacity:0}25%{opacity:1}to{transform:scale(.8);opacity:.25}}
+.lv-rstat{display:grid;grid-template-columns:repeat(3,auto) 1fr;gap:14px;padding:0 22px 14px;align-items:stretch}
+.lv-rstat>div{background:rgba(255,255,255,.12);border-radius:18px;padding:10px 18px;font-size:18px}
+.lv-rstat b{display:block;font-size:clamp(30px,3vw,48px);font-weight:normal;color:#ffd43b}
+.lv-exp{font-size:clamp(17px,1.6vw,24px)!important;line-height:1.5;word-break:keep-all}
+.lv-end{flex:1;overflow:auto;padding:0 5vw 24px}
+.lv-end h1{font-size:clamp(36px,4.6vw,70px);margin:0 0 4px;text-align:center}
+.lv-kp{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:16px 0}
+.lv-kp div{background:rgba(255,255,255,.12);border-radius:20px;padding:14px 18px;text-align:center;font-size:20px}.lv-kp b{display:block;font-size:clamp(40px,4.4vw,64px);color:#ffd43b;font-weight:normal}
+.lv-prt{display:grid;grid-template-columns:minmax(120px,240px) 1fr 230px;gap:14px;align-items:center;margin:12px 0;font-size:clamp(18px,1.8vw,26px)}
+.lv-stk{display:flex;height:30px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.12)}
+.lv-stk i{height:100%;animation:barw 1.2s cubic-bezier(.2,.8,.2,1) both}
+.lv-call{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.lv-call div{border-radius:20px;padding:14px 18px;font-size:clamp(18px,1.8vw,26px);line-height:1.5}
+/* 학생 폰 라이브 */
+.sp-bar{height:22px;border:3px solid var(--ink);border-radius:999px;background:#fff;overflow:hidden}.sp-bar i{display:block;height:100%;width:100%}
+.sp-sec.low{background:var(--bad)!important;color:#fff;animation:blink .5s infinite}
+.sp-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sp-opt{font-family:inherit;color:#fff;border:4px solid var(--ink);border-radius:20px;min-height:min(22vh,150px);padding:10px;font-size:clamp(16px,4vw,22px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-shadow:0 6px 0 var(--ink);cursor:pointer;word-break:keep-all;line-height:1.3}
+.sp-opt .sh{font-size:clamp(28px,8vw,44px)}
+.sp-opt:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}.sp-opt:disabled{opacity:.5}
+.sp-opts.ox .sp-opt{min-height:min(30vh,220px)}.sp-opts.ox .sp-opt .sh{font-size:clamp(50px,16vw,90px)}
+.sp-cd{position:fixed;inset:0;display:none;place-items:center;background:rgba(255,248,240,.94);font-size:40vw;color:var(--ink);z-index:10}
+@media(max-width:900px){.lv-lobby,.lv-qwrap{grid-template-columns:1fr}.lv-rstat{grid-template-columns:1fr 1fr 1fr}.lv-exp{grid-column:1/-1}.lv-call{grid-template-columns:1fr}}
 @media(max-width:760px){.hero,.duo,.mx,.g2{grid-template-columns:1fr}.hero .ringbox{margin:0 auto}.qrow{grid-template-columns:44px 1fr 100px}.qrow>:nth-child(n+4){display:none}.strip{grid-template-columns:1fr}}
 @media print{
  body{background:none!important}#app{display:none!important}
@@ -213,6 +306,10 @@ const LIMIT=0;                                          // 제한시간(초). 0�
 const QUIZ='chunhae';                                   // Supabase quiz_config.quiz 값 (바꾸려면 먼저 등록 필요)
 const NEED_NO=false;                                    // true면 학번 입력을 필수로
 const TEACHER_PW='ch9mub9g5y9q48nckiqte8t7';                      // 교사용 비밀번호(입력창 없이 자동 사용). 코드에 들어 있으니 링크/코드를 공개하지 마세요
+
+const LIVE_SEC=30;                                      // 라이브 진행 기본 제한시간(초). 진행 화면에서 20/30/45/60초로 바꿀 수 있어요
+const FAST_RATIO=0.5;                                   // 제한시간의 이 비율 안에 정답을 누르면 '⚡ 확실히 앎'
+const SURE_PART=0.8;                                    // 파트 문제의 이 비율 이상이 ⚡이면 '확실히 아는 파트'
 
 /* 파트별 복습 안내(선택): 리포트의 '맞춤 복습 플랜'에 나와요. 없는 파트는 생략돼요. */
 const PART_GUIDE={
@@ -273,12 +370,28 @@ function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringi
 async function fetchClass(){try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});return ((r&&r.players)||[]).filter(Boolean)}catch(e){return null}}
 
 /* =================== 분석 엔진 =================== */
-const PL=[...new Set(Q.map(q=>q.t))];
+let PL=[...new Set(Q.map(q=>q.t))];const QALL=[...Q];
 const PCOL=['#ff7aa2','#2fb879','#f2a516','#4d9fff','#a77bf3','#ff8c5a','#1fb5a8','#e0607e'];
 const pcol=t=>PCOL[Math.max(0,PL.indexOf(t))%PCOL.length];
 const lvOf=pc=>pc>=80?['탄탄','good']:pc>=60?['보통','mid']:['보충 필요','low'];
 const LVC={good:'#2fb879',mid:'#f2a516',low:'#f0506e'};
-const optTxt=(q,k)=>q.ox?(k?'X':'O'):(k+1)+'. '+strip(q.o[k]);
+const optTxt=(q,k)=>k<0?'⏰ 시간 초과':q.ox?(k?'X':'O'):(k+1)+'. '+strip(q.o[k]);
+const CT={sure:['⚡','확실히 앎','빠르고 정확하게 맞혔어요','#2fb879','#dcf6e8'],slow:['🐢','맞았지만 고민','정답이지만 오래 걸렸어요. 한 번 더 다지면 확실해져요','#f2a516','#fff1c7'],rash:['⚠️','성급한 오답','빠르게 눌렀는데 틀렸어요. 착각하고 있는 개념일 수 있어요','#ff8c5a','#ffe4d6'],need:['📘','보충 필요','틀렸거나 시간 안에 못 풀었어요','#f0506e','#ffe1e7']};
+const CK=['sure','slow','rash','need'];
+function spdOf(r){if(!r||!r[3])return null;if(r[0]<0)return 'need';const f=r[2]<=r[3]*1000*FAST_RATIO;return r[1]?(f?'sure':'slow'):(f?'rash':'need')}
+function speedInfo(S){if(!Q.some((_,k)=>S.a[k]&&S.a[k][3]))return{any:false};const cats={sure:[],slow:[],rash:[],need:[]};
+  Q.forEach((_,k)=>cats[spdOf(S.a[k])||'need'].push(k));
+  const ps=S.parts.map(p=>{const c={sure:0,slow:0,rash:0,need:0};p.idx.forEach(k=>c[spdOf(S.a[k])||'need']++);return{t:p.t,n:p.n,c,sr:Math.round(c.sure/p.n*100)}});
+  return{any:true,cats,ps,surep:ps.filter(p=>p.sr>=SURE_PART*100)}}
+function speedSec(S,SP,cls,no){
+  const cards=CK.map(c=>{const L=SP.cats[c],m=CT[c];return `<div style="background:${m[4]};border-color:${m[3]}"><div style="display:flex;justify-content:space-between;align-items:baseline;gap:6px"><span style="font-size:20px">${m[0]} ${m[1]}</span><b class="n" style="color:${m[3]}">${L.length}</b></div><small style="opacity:.75;line-height:1.4;display:block">${m[2]}</small><div class="qds">${L.map(k=>`<span class="qd" style="background:#fff">${k+1}</span>`).join('')}</div></div>`}).join('');
+  const bars=SP.ps.map(p=>`<div style="display:grid;grid-template-columns:minmax(80px,140px) 1fr 96px;gap:8px;align-items:center;margin:9px 0;font-size:16px"><span style="word-break:keep-all;line-height:1.2">${esc(p.t)}</span><div class="stk" style="height:24px">${CK.map(c=>p.c[c]?`<i class="bw" style="width:${p.c[c]/p.n*100}%;background:${CT[c][3]};line-height:20px" title="${CT[c][1]} ${p.c[c]}文">${CT[c][0]}</i>`:'').join('')}</div><span>${p.sr>=SURE_PART*100?'<em class="lv" style="background:#2fb879;color:#fff;border-color:#1e8a57">⚡ 확실</em>':`<small>확실 ${p.sr}%</small>`}</span></div>`).join('').replace(/文/g,'문항');
+  const med=k=>{if(!cls)return null;const v=cls.D.map(p=>p.a&&p.a[k]).filter(r=>r&&r[3]&&r[0]>=0).map(r=>r[2]).sort((a,b)=>a-b);return v.length?v[Math.floor(v.length/2)]:null};
+  const trk=Q.map((q,k)=>{const r=S.a[k],c=spdOf(r)||'need',lim=((r&&r[3])||LIVE_SEC)*1000,m=med(k),pos=r&&r[0]>=0?Math.min(100,r[2]/lim*100):100;
+    return `<div class="trk"><span>Q${k+1}</span><div class="tk"><i class="fz" style="width:${FAST_RATIO*100}%"></i>${m!=null?`<i class="md" style="left:${Math.min(100,m/lim*100)}%" title="반 중앙값 ${(m/1000).toFixed(1)}초"></i>`:''}<b class="dot" style="left:${pos}%;background:${CT[c][3]};animation-delay:${k*.04}s" title="${CT[c][1]}"></b></div><span style="color:${CT[c][3]}">${r&&r[0]>=0?CT[c][0]+' '+(r[2]/1000).toFixed(1)+'초':'⏰ 미응답'}</span></div>`}).join('');
+  return `<div class="sec" style="background:linear-gradient(135deg,#ffffff,#f1fff7)"><h3><span class="no">${no}</span>⚡ 반응 속도 진단</h3><p class="cap">제한시간의 <b>${Math.round(FAST_RATIO*100)}% 안에</b> 정답을 누르면 <b>⚡ 확실히 앎</b>이에요. 한 파트 문제의 ${Math.round(SURE_PART*100)}% 이상이 ⚡이면 <b>확실히 아는 파트</b>로 지정돼요.</p>
+<div class="duo" style="align-items:start"><div class="sq">${cards}</div><div><div style="font-size:19px;margin-bottom:2px">🧩 파트별 확실도</div>${bars}<div class="lg" style="justify-content:flex-start">${CK.map(c=>`<span><i style="background:${CT[c][3]}"></i>${CT[c][1]}</span>`).join('')}</div></div></div>
+<h4 style="margin:20px 0 6px;font-weight:normal;font-size:19px">⏱ 문항별 반응 속도 <small style="opacity:.6">초록 구간 = ⚡ 빠른 응답${cls?' · 보라 선 = 반 중앙값':''} · 오른쪽 끝 = 제한시간</small></h4>${trk}</div>`}
 function st(rec){const a=(rec&&rec.a)||{};
   const parts=PL.map(t=>{const idx=Q.map((_,k)=>k).filter(k=>Q[k].t===t),ok=idx.filter(k=>a[k]&&a[k][1]).length;return{t,idx,n:idx.length,ok,pc:Math.round(ok/idx.length*100)}});
   const s=Q.filter((_,k)=>a[k]&&a[k][1]).length;
@@ -346,42 +459,45 @@ function report(rec,players){runs=[];const S=st(rec),cls=cstat(players),hasC=!!c
   const lvl=S.pc>=90?['🏆','마스터','#ffe066']:S.pc>=75?['🌟','우수','#c8f2dc']:S.pc>=50?['📘','성장 중','#d6ecff']:['🌱','새싹','#ffd6e0'];
   const weak=S.parts.filter(p=>p.pc<80).sort((a,b)=>a.pc-b.pc||(hasC?cls.part[b.t]-cls.part[a.t]:0));
   const strong=S.parts.filter(p=>p.pc>=80).sort((a,b)=>b.pc-a.pc);
+  const SP=speedInfo(S);let no=0;const N=()=>++no;
   let rank='';if(hasC){const above=cls.sc.filter(x=>x>S.s).length;rank=Math.max(1,Math.round((above+1)/cls.n*100))}
   let dg;
   if(!weak.length)dg=`모든 파트에서 80% 이상! 특히 <b>${esc(strong[0].t)}</b> 파트가 빛나요. 지금 실력을 유지하는 복습이면 충분해요.`;
   else{const w=weak[0];dg=(strong.length?`강점은 <b>${esc(strong[0].t)}</b>(${strong[0].pc}%), `:'')+`가장 먼저 복습할 곳은 <b>${esc(w.t)}</b>(${w.pc}%)예요.`;
     if(hasC){const c=cls.part[w.t];dg+=c>=70?` 반 평균은 ${c}%라서 <b>나에게 특히 필요한 복습</b>이에요.`:` 반 평균도 ${c}%로, 모두에게 어려웠던 파트예요.`}
     if(weak[1])dg+=` 그다음은 <b>${esc(weak[1].t)}</b>(${weak[1].pc}%)예요.`}
+  if(SP.any)dg+=SP.surep.length?`<br>⚡ <b>${SP.surep.map(p=>esc(p.t)).join(', ')}</b> 파트는 빠르고 정확해서 <b>확실히 아는 파트</b>예요!`:`<br>⚡ 아직 '빠르고 정확한' 파트는 없어요. 🐢 고민한 문제부터 다져 봐요.`;
   const tm=rec.d&&rec.f&&rec.st?fmtT(rec.f-rec.st):'';
   /* 1. 히어로 */
   let h=`<div class="rp"><div class="sec hero"><div class="ringbox">${ring(S.pc,220,22,['#ff7aa2','#f2a516','#2fb879'])}<div class="ctr"><b data-to="${S.pc}">${S.pc}<small>%</small></b><span>${S.s} / ${S.n} 정답</span></div></div>
 <div><div class="who">${esc(SUBJECT)} · ${new Date(rec.f||Date.now()).toLocaleDateString('ko-KR')}</div><h2>${esc(rec.n||'')}${rec.no?` <small style="font-size:.5em;opacity:.6">${esc(rec.no)}</small>`:''}님의 학습 리포트</h2>
 <span class="lvb" style="background:${lvl[2]}">${lvl[0]} ${lvl[1]} 레벨</span>
-<div class="chips">${tm?`<span class="chip">⏱ ${tm}</span>`:''}${hasC?`<span class="chip hot">🏅 반 상위 ${rank}%</span><span class="chip">📊 반 평균 ${Math.round(cls.avg/S.n*100)}%</span><span class="chip">👥 ${cls.n}명 기준</span>`:''}${strong.length?`<span class="chip">💪 강점 ${strong.length}개 파트</span>`:''}${weak.length?`<span class="chip">🎯 보완 ${weak.length}개 파트</span>`:''}</div>
+<div class="chips">${tm?`<span class="chip">⏱ ${tm}</span>`:''}${hasC?`<span class="chip hot">🏅 반 상위 ${rank}%</span><span class="chip">📊 반 평균 ${Math.round(cls.avg/S.n*100)}%</span><span class="chip">👥 ${cls.n}명 기준</span>`:''}${SP.any?`<span class="chip" style="background:#2fb879;color:#fff">⚡ 확실히 아는 파트 ${SP.surep.length}개</span><span class="chip">⚡ 확실 ${SP.cats.sure.length}문항 · ⚠️ 성급 ${SP.cats.rash.length}문항</span>`:''}${strong.length?`<span class="chip">💪 강점 ${strong.length}개 파트</span>`:''}${weak.length?`<span class="chip">🎯 보완 ${weak.length}개 파트</span>`:''}</div>
 <div class="diag">💬 ${dg}</div></div></div>`;
+  if(SP.any)h+=speedSec(S,SP,cls,N());
   /* 2. 실력 지도 */
   const ser=[];if(hasC)ser.push({vals:PL.map(t=>cls.part[t]),col:'#2fb879',fill:'rgba(47,184,121,.12)',dash:1,w:2.5});
   ser.unshift({vals:S.parts.map(p=>p.pc),col:'#ff4f86',fill:'rgba(255,122,162,.32)',dots:1});
   const rd=PL.length>=3?radar(hasC?[ser[0],ser[1]]:[ser[0]],1):'';
   const rank2=[...S.parts].sort((a,b)=>b.pc-a.pc);
   const rkl=`<div>${rank2.map((p,k)=>{const c=hasC?cls.part[p.t]:null;return `<div style="display:grid;grid-template-columns:30px minmax(70px,130px) 1fr 52px;gap:8px;align-items:center;margin:9px 0;font-size:16px"><b style="font-weight:normal;font-size:20px;color:${pcol(p.t)}">${k+1}</b><span style="word-break:keep-all;line-height:1.2">${esc(p.t)}</span><div style="position:relative;height:22px;border:2px solid var(--ink);border-radius:999px;background:#fff;overflow:visible"><i class="bw" style="display:block;height:100%;border-radius:999px;width:${p.pc}%;background:linear-gradient(90deg,${pcol(p.t)}aa,${pcol(p.t)});animation-delay:${.2+k*.1}s"></i>${c==null?'':`<span title="반 평균 ${c}%" style="position:absolute;left:calc(${c}% - 2px);top:-6px;width:4px;height:30px;background:#2fb879;border-radius:2px"></span>`}</div><b style="font-weight:normal;text-align:right;color:${LVC[lvOf(p.pc)[1]]}">${p.pc}%</b></div>`}).join('')}${hasC?'<p class="hint" style="text-align:left;margin:6px 0 0">초록 세로선 = 반 평균</p>':''}</div>`;
-  h+=`<div class="sec"><h3><span class="no">1</span>나의 실력 지도</h3><p class="cap">파트별 정답률을 한눈에 봐요. 바깥으로 넓게 퍼질수록 고르게 잘 아는 거예요.${hasC?' 초록 점선은 반 평균이에요.':''}</p>
+  h+=`<div class="sec"><h3><span class="no">${N()}</span>나의 실력 지도</h3><p class="cap">파트별 정답률을 한눈에 봐요. 바깥으로 넓게 퍼질수록 고르게 잘 아는 거예요.${hasC?' 초록 점선은 반 평균이에요.':''}</p>
 <div class="duo">${rd?`<div>${rd}<div class="lg"><span><i style="background:#ff7aa2"></i>나</span>${hasC?'<span><i style="background:#2fb879"></i>반 평균</span>':''}</div></div>`:''}${rkl}</div><div class="pcards" style="margin-top:16px">${S.parts.map((p,k)=>{const[lb,cl]=lvOf(p.pc),C=2*Math.PI*26,d=hasC?p.pc-cls.part[p.t]:null;
   return `<div class="pcard" style="--pc:${pcol(p.t)}"><div class="ph">${`<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke="#f1eaf4" stroke-width="9"/><circle class="rg" style="--c:${C.toFixed(1)};animation-delay:${.3+k*.1}s" cx="32" cy="32" r="26" fill="none" stroke="${pcol(p.t)}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p.pc/100)).toFixed(1)}"/></svg>`}
 <div><div class="pn">${esc(p.t)}<small>${p.n}문제 중 ${p.ok}개</small></div><div class="big">${p.pc}%</div></div></div>
-<div style="margin-top:8px"><em class="lv ${cl}">${lb}</em>${d==null?'':`<span class="dl ${d>=0?'up':'dn'}">반 평균 대비 ${d>0?'▲'+d+'%p':d<0?'▼'+(-d)+'%p':'='}</span>`}</div>
+<div style="margin-top:8px"><em class="lv ${cl}">${lb}</em>${SP.any&&SP.ps[k].sr>=SURE_PART*100?' <em class="lv" style="background:#2fb879;color:#fff;border-color:#1e8a57">⚡ 확실</em>':''}${d==null?'':`<span class="dl ${d>=0?'up':'dn'}">반 평균 대비 ${d>0?'▲'+d+'%p':d<0?'▼'+(-d)+'%p':'='}</span>`}</div>
 <div class="qds">${p.idx.map(k=>{const r=S.a[k],fx=!(r&&r[1])&&S.r[k]===1;return `<span class="qd ${fx?'fx':r?(r[1]?'ok':'no'):'na'}" title="${k+1}번 ${r?(r[1]?'정답':'오답'):'안 풂'}${fx?' → 재도전 성공':''}">${k+1}</span>`}).join('')}</div></div>`}).join('')}</div></div>`;
   /* 3. 우선순위 매트릭스 */
   if(hasC){const qs=S.parts.map(p=>({p,q:quadOf(p.pc,cls.part[p.t])})).sort((a,b)=>a.p.pc-b.p.pc);
-    h+=`<div class="sec"><h3><span class="no">2</span>복습 우선순위 매트릭스</h3><p class="cap">가로는 나의 정답률, 세로는 반 평균이에요. <b>왼쪽 위(🔥)</b>에 있는 파트가 나에게 가장 시급한 복습이에요.</p>
+    h+=`<div class="sec"><h3><span class="no">${N()}</span>복습 우선순위 매트릭스</h3><p class="cap">가로는 나의 정답률, 세로는 반 평균이에요. <b>왼쪽 위(🔥)</b>에 있는 파트가 나에게 가장 시급한 복습이에요.</p>
 <div class="mx"><div>${matrix(S,cls)}</div><div class="qlist">${qs.map(x=>`<div style="--c:${x.q[2]}"><b>${esc(x.p.t)}</b> · 나 ${x.p.pc}% / 반 ${cls.part[x.p.t]}%<br>${x.q[0]} <small>${x.q[1]}</small></div>`).join('')}</div></div></div>`}
   /* 4. 풀이 여정 */
   const J=journey(rec);
-  h+=`<div class="sec"><h3><span class="no">${hasC?3:2}</span>문항별 풀이 여정</h3><p class="cap">막대는 각 문항${J.hasT?'에 걸린 시간':''}(초록=정답, 분홍=오답), 보라색 선은 <b>누적 정답률</b>이에요. 아래 색 띠는 파트 구간이에요.</p>
+  h+=`<div class="sec"><h3><span class="no">${N()}</span>문항별 풀이 여정</h3><p class="cap">막대는 각 문항${J.hasT?'에 걸린 시간':''}(초록=정답, 분홍=오답), 보라색 선은 <b>누적 정답률</b>이에요. 아래 색 띠는 파트 구간이에요.</p>
 <div class="jw">${J.svg}</div><div class="chips">${J.best>=2?`<span class="chip">🔥 최고 ${J.best}연속 정답</span>`:''}${J.hasT?`<span class="chip">⏱ 문항당 평균 ${J.avgT}초</span><span class="chip">🐢 가장 오래 고민한 문제: ${J.slow+1}번</span>`:''}</div></div>`;
   /* 5. 맞춤 복습 플랜 */
   const plan=S.parts.filter(p=>p.idx.some(k=>!(S.a[k]&&S.a[k][1]))).sort((a,b)=>a.pc-b.pc);
-  h+=`<div class="sec"><h3><span class="no">${hasC?4:3}</span>맞춤 복습 플랜</h3><p class="cap">약한 파트부터 순서대로 정리했어요. 틀린 문제의 정답과 해설을 확인해요.</p>`+
+  h+=`<div class="sec"><h3><span class="no">${N()}</span>맞춤 복습 플랜</h3><p class="cap">약한 파트부터 순서대로 정리했어요. 틀린 문제의 정답과 해설을 확인해요.</p>`+
   (plan.length?plan.map((p,j)=>{const g=PART_GUIDE[p.t]||{},items=p.idx.filter(k=>!(S.a[k]&&S.a[k][1]));
     return `<div class="step"><div class="sn" style="--pc:${pcol(p.t)}">STEP<b>${j+1}</b></div><div><h4>${esc(p.t)} <em class="lv ${lvOf(p.pc)[1]}">${p.pc}%</em>${hasC?` <small style="opacity:.6">반 평균 ${cls.part[p.t]}%</small>`:''}</h4>
 ${g.tip||g.ref?`<div class="gd">${g.tip?'💡 '+esc(g.tip):''}${g.tip&&g.ref?'<br>':''}${g.ref?'📖 다시 볼 곳: '+esc(g.ref):''}</div>`:''}
@@ -404,7 +520,8 @@ app.innerHTML=`<div class="card"><div class="mascot">${MASCOT}</div><h1>${TITLE}
 <div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
 <p class="hint" id="msg"></p><div id="solo"></div>
 <button class="link" id="tc">👩‍🏫 교사용 대시보드</button></div></div>`;
-$('#nm').onkeydown=e=>{if(e.key==='Enter')join()};$('#go').onclick=join;$('#tc').onclick=teacher;offerResume()}
+$('#nm').onkeydown=e=>{if(e.key==='Enter')join()};$('#go').onclick=join;$('#tc').onclick=teacher;offerResume();
+liveCheck().then(L=>{if(L&&mode==='home'&&$('#resume')){const d=document.createElement('div');d.className='timeup';d.style.background='#7048e8';d.innerHTML='🔴 지금 <b>라이브 퀴즈</b> 진행 중! 이름을 쓰고 입장하면 선생님 화면에 맞춰 문제가 나와요';app.querySelector('.card').prepend(d)}})}
 
 async function offerResume(){const ss=LS.get('sess');if(!ss||!ss.key||mode!=='home')return;
 let g=null;try{g=await rpc('quiz_get',{p_id:ss.key})}catch(e){return}
@@ -412,8 +529,9 @@ if(!g){LS.del('sess');return}
 if(g.round!==g.current)return;
 const rec=g.data;if(!rec||mode!=='home'||!$('#resume'))return;
 $('#resume').innerHTML=`<button class="btn alt" id="rs">${rec.d?'📊 '+esc(rec.n)+' 리포트 다시 보기':'▶ '+esc(rec.n)+' 이어서 풀기'}</button><p class="hint" style="margin:10px 0 18px">다른 사람으로 새로 시작하려면 아래에 입력하세요</p>`;
-$('#rs').onclick=()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
+$('#rs').onclick=async()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
   if(me.d){i=Q.length;end();return}
+  if(me.lv){const L=await liveCheck();if(L&&L.id===me.lv){liveStart();return}finishLive();return}
   i=0;while(i<Q.length&&me.a[i])i++;
   mode='play';if(left()<=0){timeUp();return}startTimer();i<Q.length?show():end()}}
 
@@ -422,12 +540,14 @@ if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();r
 if(NEED_NO&&!no){$('#msg').textContent='학번을 입력해 주세요!';$('#no').focus();return}
 $('#go').disabled=true;$('#msg').textContent='입장 중... 🚪';$('#solo').innerHTML='';
 i=0;score=0;const now=Date.now();me={n,no,a:{},s:0,c:0,d:false,st:now,f:0,t:now};
+const LV0=await liveCheck();if(LV0)me.lv=LV0.id;
 try{const id=now.toString(36)+Math.random().toString(36).slice(2,9);
   const round=await rpc('quiz_join',{p_quiz:QUIZ,p_id:id,p_data:me});
   myKey=id;LS.set('sess',{key:id,round:Number(round)});
 }catch(e){myKey='';$('#go').disabled=false;
   $('#msg').textContent='⚠️ 선생님 화면과 연결하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.';
   $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';me.st=Date.now();startTimer();show()};return}
+if(LV0){liveStart();return}
 mode='play';startTimer();show()}
 
 function qCard(d,k,head,btn){return `${head}
@@ -456,6 +576,7 @@ function rnext(){rI++;if(rI<rList.length)rshow();else{mode='play';end()}}
 
 async function end(){clearInterval(tick);mode='play';locked=true;if(me&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
 if(me)score=me.s||0;
+if(me&&me.qn&&me.qn<Q.length){Q.splice(me.qn);PL=[...new Set(Q.map(q=>q.t))]}
 app.className='wrap rpw';app.innerHTML=`<div class="card loading"><div class="spin"></div><br>📊 나만의 리포트를 만들고 있어요...</div>`;
 await saveQ;const P=myKey?await fetchClass():null;
 const others=P?P.filter(p=>p.id!==myKey):[];const all=me?[...others,me]:others;
@@ -494,18 +615,18 @@ const TABS=[['live','📡 한눈에 보기'],['part','🧩 파트 분석'],['ite
 function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';tSig='';tSeen={};
 app.innerHTML=`<div class="card">
 <div class="row"><h2 style="margin:0">👩‍🏫 수업 분석 대시보드</h2>
-<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
+<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bl" style="background:#7048e8;color:#fff">🎬 라이브 진행</button><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
 <div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
 <div class="tabs">${TABS.map(([k,l])=>`<button data-t="${k}" class="${k===tTab?'on':''}">${l}</button>`).join('')}</div>
 <div id="tv"></div></div>`;
-$('#bq').onclick=qrOpen;$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
+$('#bl').onclick=boardOpen;$('#bq').onclick=qrOpen;$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
 $('#bc').onclick=csv;
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{tTab=b.dataset.t;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));tSig='';render()});
 $('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
 $('#br').onclick=resetRound;$('#bh').onclick=()=>{clearInterval(tTimer);home()};
 render();refresh();clearInterval(tTimer);tTimer=setInterval(()=>{if(!tPaused&&mode==='teacher')refresh()},3000)}
 
-async function refresh(){if(busy)return;busy=true;
+async function refresh(){if(busy||boardOn)return;busy=true;
 try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});
   tRound=Number(r&&r.round)||1;tData=((r&&r.players)||[]).filter(Boolean);render();
   const s=$('#st');if(s&&mode==='teacher')s.innerHTML=`<span class="live"></span>라운드 ${tRound} · ${new Date().toLocaleTimeString('ko-KR')} 갱신 (3초마다)`;
@@ -577,10 +698,10 @@ ${tSel===x.k?`<div class="fb show" style="margin:8px 0 12px"><b>Q${x.k+1}.</b> $
 else if(tTab==='stu'){
   const rows=[...D].sort((a,b)=>st(b).s-st(a).s||String(a.n).localeCompare(String(b.n),'ko'));
   const runs2=[];Q.forEach((q,k)=>{const l=runs2[runs2.length-1];if(l&&l.t===q.t)l.c++;else runs2.push({t:q.t,c:1})});
-  let h=`<div class="sec"><h3>🗺 반 전체 히트맵</h3><p class="cap">한 줄이 학생 한 명, 한 칸이 문항이에요. 초록=정답, 분홍=오답, 회색=아직. 세로로 분홍이 몰린 열이 반 전체의 약점이에요. 이름을 누르면 그 학생 리포트가 열려요.</p>
+  let h=`<div class="sec"><h3>🗺 반 전체 히트맵</h3><p class="cap">한 줄이 학생 한 명, 한 칸이 문항이에요. 초록=정답, 분홍=오답, 회색=아직. 라이브에서는 ⚡=빠르고 정확, !=성급한 오답. 세로로 분홍이 몰린 열이 반 전체의 약점이에요. 이름을 누르면 그 학생 리포트가 열려요.</p>
 <div class="hmw"><table class="hm"><thead><tr><th></th><th></th>${runs2.map(r=>`<th class="ph" colspan="${r.c}" style="background:${pcol(r.t)}">${esc(r.t.length>r.c*3?r.t.slice(0,Math.max(2,r.c*3-1))+'…':r.t)}</th>`).join('')}<th></th><th></th></tr>
 <tr><th style="font-size:13px">이름</th><th style="font-size:13px">학번</th>${Q.map((_,k)=>`<th style="font-size:11px;opacity:.6">${k+1}</th>`).join('')}<th style="font-size:13px">점수</th><th style="font-size:13px">파트 프로필</th></tr></thead><tbody>
-${rows.map(p=>{const S=st(p),rc=p.r?Object.values(p.r).filter(x=>x===1).length:0;return `<tr><td class="nm"><a href="#" data-id="${esc(p.id)}" style="color:inherit">${p.d?'🏁':'👀'} ${esc(p.n)}</a></td><td class="sc" style="font-size:13px;opacity:.7">${esc(p.no||'')}</td>${Q.map((_,k)=>{const r=p.a&&p.a[k];return `<td class="c ${r?(r[1]?'ok':'no'):'na'}" title="${esc(p.n)} · ${k+1}번 ${r?(r[1]?'정답':'오답: '+esc(optTxt(Q[k],r[0]))):'아직'}"></td>`}).join('')}
+${rows.map(p=>{const S=st(p),rc=p.r?Object.values(p.r).filter(x=>x===1).length:0;return `<tr><td class="nm"><a href="#" data-id="${esc(p.id)}" style="color:inherit">${p.d?'🏁':'👀'} ${esc(p.n)}</a></td><td class="sc" style="font-size:13px;opacity:.7">${esc(p.no||'')}</td>${Q.map((_,k)=>{const r=p.a&&p.a[k];const sp=spdOf(r);return `<td class="c ${r?(r[1]?'ok':'no'):'na'}" style="text-align:center;font-size:13px" title="${esc(p.n)} · ${k+1}번 ${r?(r[1]?'정답':'오답: '+esc(optTxt(Q[k],r[0]))):'아직'}${sp?' · '+CT[sp][1]+(r[0]>=0?' '+(r[2]/1000).toFixed(1)+'초':''):''}">${sp==='sure'?'⚡':sp==='rash'?'!':''}</td>`}).join('')}
 <td class="sc"><b>${S.s}</b>/${Q.length}${rc?` <small title="재도전 성공">🔁${rc}</small>`:''}</td><td class="sc"><svg width="${PL.length*16}" height="26">${S.parts.map((x,j)=>`<rect x="${j*16+2}" y="${24-Math.max(2,x.pc*.22)}" width="12" height="${Math.max(2,x.pc*.22)}" rx="3" fill="${pcol(x.t)}"><title>${esc(x.t)} ${x.pc}%</title></rect>`).join('')}</svg></td></tr>`}).join('')}</tbody></table></div></div>`;
   v.innerHTML=h;v.querySelectorAll('a[data-id]').forEach(a=>a.onclick=e=>{e.preventDefault();const p=tData.find(x=>x.id===a.dataset.id);if(p)printView([p],tData)})}
 }
@@ -614,6 +735,130 @@ o.innerHTML=`<div class="card"><h1 style="font-size:clamp(28px,5vw,44px)">카메
 $('#uc').onclick=()=>o.remove();$('#ue').onclick=()=>{tUrl='';qrDraw()};
 if(window.QRCode){new QRCode($('#qr'),{text:tUrl,width:512,height:512,correctLevel:QRCode.CorrectLevel.M})}
 else $('#qr').textContent='QR 라이브러리를 불러오지 못했어요. 링크를 직접 공유해 주세요.'}
+
+/* =================== ⚡ 라이브 진행: 학생 폰 =================== */
+const SH=['▲','◆','●','■'];
+let clockOff=0,lvPoll=null,lvKey='',lvRaf=0;
+const snow=()=>Date.now()+clockOff;
+async function liveGet(){const a=Date.now(),r=await rpc('quiz_live_get',{p_quiz:QUIZ}),b=Date.now();if(r&&r.now)clockOff=r.now-(a+b)/2;return r}
+async function liveSet(L,stamp){const a=Date.now(),r=await rpc('quiz_live_set',{p_quiz:QUIZ,p_pw:tPw,p_live:L,p_stamp:!!stamp}),b=Date.now();if(r&&r.now)clockOff=r.now-(a+b)/2;return r&&r.live}
+const liveOn=L=>!!L&&['lobby','q','reveal'].includes(L.phase);
+async function liveCheck(){try{const r=await liveGet();return r&&liveOn(r.live)?r.live:null}catch(e){return null}}
+function liveStart(){mode='live';clearInterval(tick);clearInterval(lvPoll);lvKey='';lvTick();lvPoll=setInterval(lvTick,900)}
+async function lvTick(){if(mode!=='live')return;let r;try{r=await liveGet()}catch(e){return}if(mode!=='live')return;const L=(r&&r.live)||{};
+  if(!liveOn(L)||L.id!==me.lv){clearInterval(lvPoll);cancelAnimationFrame(lvRaf);
+    if(!Object.keys(me.a||{}).length&&L.phase!=='end'){mode='home';home();const m=$('#msg');if(m)m.textContent='라이브가 끝났어요. 혼자 풀려면 다시 입장하세요.';return}
+    finishLive();return}
+  if(L.idx>=0&&(me.qx||0)<L.idx+1){me.qx=L.idx+1;save()}
+  const key=L.phase+':'+L.idx+':'+(L.t0||0);if(key===lvKey)return;lvKey=key;
+  if(L.phase==='lobby')lvLobby();else if(L.phase==='q')(me.a[L.idx]?lvSent(L,me.a[L.idx]):lvQ(L));else lvReveal(L)}
+function finishLive(){clearInterval(lvPoll);mode='play';cancelAnimationFrame(lvRaf);if(me&&!me.d){if(me.qx)me.qn=me.qx;me.d=true;me.f=Date.now();me.c=Q.length;save()}end()}
+function lvLobby(){app.className='wrap';app.innerHTML=`<div class="card center"><div class="mascot">📡</div><h1 style="font-size:clamp(28px,6vw,46px)">라이브 퀴즈 대기실</h1><p class="sub"><span class="live"></span>선생님이 시작하면 문제가 이 화면에 나와요<br>보기를 <b>빠르고 정확하게</b> 누를수록<br>리포트에 <b>⚡ 확실히 아는 파트</b>로 표시돼요</p><span class="tag" style="background:var(--yel)">🙋 ${esc(me.n)}</span><p class="hint">화면을 켜 둔 채로 기다려 주세요</p></div>`}
+function lvQ(L){const k=L.idx,d=Q[k];if(!d)return;i=k;const lim=L.sec*1000,endT=L.t0+lim;app.className='wrap';
+  app.innerHTML=`<div><div class="row" style="margin-bottom:8px"><span class="tag">${k+1} / ${Q.length}</span><span class="tag" style="background:${pcol(d.t)};color:#fff">${esc(d.t)}</span><span class="tag sp-sec" id="sps" style="background:var(--yel)">⏱ ${L.sec}</span></div>
+<div class="sp-bar"><i id="spb"></i></div>
+<div class="card" style="padding:14px 18px;margin:12px 0"><div class="q" style="font-size:clamp(19px,4.6vw,30px);margin:0">${d.q}</div></div>
+<div class="sp-opts ${d.ox?'ox':''}">${d.o.map((x,j)=>`<button class="sp-opt c${j%4}" data-k="${j}" disabled><span class="sh">${d.ox?(j?'✖':'⭕'):SH[j%4]}</span><span>${d.ox?'':x}</span></button>`).join('')}</div>
+<p class="hint" id="spm"></p><div class="sp-cd" id="spc"></div></div>`;
+  document.querySelectorAll('.sp-opt').forEach(b=>b.onclick=()=>lvPick(L,+b.dataset.k));
+  let armed=false;const loop=()=>{const now=snow(),c=$('#spc'),b=$('#spb');if(!b)return;
+    if(now<L.t0){c.style.display='grid';c.textContent=Math.ceil((L.t0-now)/1000);lvRaf=requestAnimationFrame(loop);return}
+    if(!armed){armed=true;c.style.display='none';document.querySelectorAll('.sp-opt').forEach(x=>x.disabled=false)}
+    const left=endT-now,p=Math.max(0,Math.min(1,left/lim));b.style.width=p*100+'%';b.style.background=p>.5?'#22a06b':p>.25?'#e6a700':'#e5484d';
+    const ss=$('#sps');ss.textContent='⏱ '+Math.max(0,Math.ceil(left/1000));ss.classList.toggle('low',left<=5000);
+    if(left<=0){document.querySelectorAll('.sp-opt').forEach(x=>x.disabled=true);$('#spm').textContent='⏰ 시간 종료! 선생님 화면을 봐 주세요';return}
+    lvRaf=requestAnimationFrame(loop)};cancelAnimationFrame(lvRaf);loop()}
+function lvPick(L,j){const k=L.idx,ms=Math.round(snow()-L.t0);if(ms<0||ms>L.sec*1000+400||me.a[k])return;cancelAnimationFrame(lvRaf);
+  const ok=j===Q[k].a;me.a[k]=[j,ok?1:0,Math.min(ms,L.sec*1000),L.sec];me.s=Object.values(me.a).filter(r=>r[1]===1).length;score=me.s;me.c=k;save();lvSent(L,me.a[k])}
+function lvSent(L,r){const ms=r[2];app.className='wrap';app.innerHTML=`<div class="card center"><div class="mascot">🚀</div><h2 style="margin:0">제출 완료!</h2><div class="big" style="font-size:clamp(56px,16vw,100px)">${(ms/1000).toFixed(1)}<small style="font-size:.35em">초</small></div><p class="sub">${ms<=L.sec*1000*FAST_RATIO?'⚡ 빠른 응답이에요!':'응답했어요'}<br><small>정답은 선생님 화면에서 공개돼요</small></p><p class="hint">내가 고른 답: ${esc(optTxt(Q[L.idx],r[0]))}</p></div>`}
+function lvReveal(L){const k=L.idx,d=Q[k];if(!d)return;cancelAnimationFrame(lvRaf);if(!me.a[k]){me.a[k]=[-1,0,L.sec*1000,L.sec];save()}
+  const r=me.a[k],c=spdOf(r),M={sure:['⚡','빠르고 정확해요!'],slow:['🎉','정답이에요!'],rash:['😮','앗, 성급했어요!'],need:[r[0]<0?'⏰':'🥲',r[0]<0?'시간 초과':'아쉬워요!']}[c];
+  app.className='wrap';app.innerHTML=`<div class="card center"><div class="mascot">${M[0]}</div><h2 style="margin:0">${M[1]}</h2>${r[0]<0?'':`<span class="tag" style="background:var(--yel);margin-top:10px">⏱ ${(r[2]/1000).toFixed(1)}초</span>`}
+<div class="fb show" style="text-align:left">정답: <b>${esc(optTxt(d,d.a))}</b><br>${d.e||''}</div><p class="hint"><span class="live"></span>다음 문제를 기다려요...</p></div>`;if(r[1])confetti()}
+
+/* =================== 🎬 라이브 진행: 전자칠판 =================== */
+let BL=null,blPoll=null,blRaf=0,blSnd=true,blSec=LIVE_SEC,blAuto=true,boardOn=false,blLastS=-1,AC=null,blBusy=false;
+function snd(t){if(!blSnd)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const T=AC.currentTime;
+  const tone=(f,s,d,g,w)=>{const o=AC.createOscillator(),v=AC.createGain();o.type=w||'sine';o.frequency.value=f;v.gain.setValueAtTime(g||.18,T+s);v.gain.exponentialRampToValueAtTime(.0001,T+s+d);o.connect(v);v.connect(AC.destination);o.start(T+s);o.stop(T+s+d+.03)};
+  if(t==='tick')tone(1250,0,.07,.13,'square');else if(t==='cnt')tone(660,0,.18,.16,'triangle');else if(t==='go')[523,659,784,1047].forEach((f,j)=>tone(f,j*.07,.28,.15,'triangle'));
+  else if(t==='end')[392,262].forEach((f,j)=>tone(f,j*.18,.45,.2,'sawtooth'));else if(t==='rev')[784,988,1175,1568].forEach((f,j)=>tone(f,j*.09,.4,.14,'triangle'));else if(t==='join')tone(988,0,.12,.1,'sine')}catch(e){}}
+async function boardOpen(){boardOn=true;let o=$('#lv');if(!o){o=document.createElement('div');o.id='lv';o.className='lvx';document.body.appendChild(o)}
+  o.innerHTML='<div class="lv-mid"><div class="lv-panel">불러오는 중...</div></div>';let r=null;try{r=await liveGet()}catch(e){}
+  await blRefresh();if(r&&liveOn(r.live)){BL=r.live;blSec=BL.sec||blSec;boardRender()}else{BL=null;boardStart()}}
+function boardStart(){const o=$('#lv'),n=tData.length;
+  if(!n){lobbyNew(false);return}
+  o.innerHTML=`<div class="lv-top"><b>🎬 라이브 진행</b><span class="gsp" style="flex:1"></span><button class="lv-btn sm" id="lvx">✕ 닫기</button></div><div class="lv-mid"><div class="lv-panel"><h2 style="margin-top:0">이전 응답 ${n}명이 남아 있어요</h2>라이브는 보통 새로 시작해요. 필요하면 대시보드의 '⬇ 엑셀'로 먼저 저장하세요.<div class="lv-row"><button class="lv-btn go" id="lvn1">🔄 비우고 새로 시작</button><button class="lv-btn" id="lvn2">그대로 이어서</button></div></div></div>`;
+  $('#lvx').onclick=boardClose;$('#lvn1').onclick=()=>lobbyNew(true);$('#lvn2').onclick=()=>lobbyNew(false)}
+async function lobbyNew(clear){if(Q.length<QALL.length){Q.splice(0,Q.length,...QALL);PL=[...new Set(Q.map(q=>q.t))];tSig=''}if(clear){try{await rpc('quiz_reset',{p_quiz:QUIZ,p_pw:tPw})}catch(e){}tData=[];tSig=''}
+  try{BL=await liveSet({phase:'lobby',id:Date.now().toString(36),sec:blSec,idx:-1})}catch(e){alert('라이브를 열지 못했어요: '+e.message);boardClose();return}boardRender()}
+function boardClose(){boardOn=false;clearInterval(blPoll);cancelAnimationFrame(blRaf);const o=$('#lv');if(o)o.remove();
+  if(BL&&BL.phase==='lobby')liveSet({phase:'off',id:BL.id}).catch(()=>{});tSig='';refresh()}
+async function blRefresh(){if(blBusy)return;blBusy=true;try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});tData=((r&&r.players)||[]).filter(Boolean)}catch(e){}blBusy=false}
+const blPl=()=>BL?tData.filter(p=>p.lv===BL.id):[];
+function blTop(t){return `<div class="lv-top"><b>${t}</b><span style="flex:1"></span><span class="lv-pill" id="lvcnt"></span><button class="lv-btn sm" id="lvs">${blSnd?'🔊':'🔇'}</button><button class="lv-btn sm" id="lvx" title="닫기(진행은 유지)">✕</button></div>`}
+function blBind(){const x=$('#lvx'),s=$('#lvs');if(x)x.onclick=boardClose;if(s)s.onclick=()=>{blSnd=!blSnd;s.textContent=blSnd?'🔊':'🔇'}}
+function boardRender(){const o=$('#lv');if(!o||!BL)return;cancelAnimationFrame(blRaf);clearInterval(blPoll);blPoll=setInterval(async()=>{if(!boardOn)return;await blRefresh();blUpdate()},1000);
+  const ph=BL.phase;
+  if(ph==='lobby'){const url=tUrl||location.href.split('?')[0];
+    o.innerHTML=blTop('🎬 라이브 퀴즈 · 대기실')+`<div class="lv-lobby"><div class="lv-qrbox"><div id="lvqr"></div><small>${esc(url)}</small></div>
+<div class="lv-lright"><h1>📱 QR로 입장하세요!</h1><div class="lv-joined"><b id="lvn">0</b>명 입장</div><div class="lv-names" id="lvnames"></div>
+<div class="lv-set"><span>⏱ 문제당 시간</span>${[20,30,45,60].map(s=>`<button class="lv-seg ${s===blSec?'on':''}" data-s="${s}">${s}초</button>`).join('')}</div>
+<label class="lv-set"><input type="checkbox" id="lva" ${blAuto?'checked':''} style="width:22px;height:22px"> 모두 응답하면 바로 정답 공개</label>
+<div class="lv-set" style="opacity:.8;font-size:17px">⚡ 제한시간의 ${Math.round(FAST_RATIO*100)}% 안에 맞히면 '확실히 앎'으로 리포트에 표시돼요</div>
+<button class="lv-btn go xl" id="lvgo" style="margin-top:10px">▶ 시작하기</button></div></div>`;
+    if(window.QRCode)new QRCode($('#lvqr'),{text:url,width:420,height:420,correctLevel:QRCode.CorrectLevel.M});
+    o.querySelectorAll('.lv-seg').forEach(b=>b.onclick=()=>{blSec=+b.dataset.s;o.querySelectorAll('.lv-seg').forEach(x=>x.classList.toggle('on',x===b))});
+    $('#lva').onchange=e=>blAuto=e.target.checked;$('#lvgo').onclick=()=>blGo(0)}
+  else if(ph==='q'){const k=BL.idx,d=Q[k],lim=BL.sec*1000,C=2*Math.PI*88;blLastS=-1;
+    o.innerHTML=blTop(`Q ${k+1} / ${Q.length} <span class="lv-pill" style="background:${pcol(d.t)};margin-left:8px">${esc(d.t)}</span>`)+`<div class="lv-qwrap"><div class="lv-q">${d.q}</div>
+<div class="lv-timer" id="lvt"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" fill="rgba(0,0,0,.18)" stroke="rgba(255,255,255,.12)" stroke-width="16"/><circle id="lvring" cx="100" cy="100" r="88" fill="none" stroke="#22c55e" stroke-width="16" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="0" transform="rotate(-90 100 100)"/></svg><b id="lvsec">${BL.sec}</b></div></div>
+<div class="lv-opts ${d.ox?'ox':''}">${d.o.map((x,j)=>`<div class="lv-opt c${j%4}"><span class="sh">${d.ox?(j?'✖':'⭕'):SH[j%4]}</span><span class="tx">${d.ox?'':x}</span></div>`).join('')}</div>
+<div class="lv-foot"><div class="lv-fuse"><i id="lvf"></i><b id="lvsp"></b></div><button class="lv-btn sm" id="lvskip">⏭ 바로 공개</button></div><div class="lv-cd" id="lvcd"></div>`;
+    $('#lvskip').onclick=blReveal;
+    const loop=()=>{const now=snow(),cd=$('#lvcd');if(!cd)return;
+      if(now<BL.t0){const n=Math.ceil((BL.t0-now)/1000);if(cd.dataset.n!=n){cd.dataset.n=n;cd.style.display='grid';cd.innerHTML=`<span>${n}</span>`;snd('cnt')}blRaf=requestAnimationFrame(loop);return}
+      if(cd.style.display!=='none'){cd.style.display='none';snd('go')}
+      const left=BL.t0+lim-now,p=Math.max(0,Math.min(1,left/lim)),col=p>.5?'#22c55e':p>.25?'#f59f00':'#ff4d4f',rg=$('#lvring');
+      rg.setAttribute('stroke-dashoffset',(C*(1-p)).toFixed(1));rg.setAttribute('stroke',col);
+      const s=Math.max(0,Math.ceil(left/1000));$('#lvsec').textContent=s;$('#lvt').classList.toggle('hot',left<=5000);
+      const f=$('#lvf');f.style.width=p*100+'%';f.style.background=col;f.style.color=col;$('#lvsp').style.left=p*100+'%';
+      if(left<=5000&&s>0&&s!==blLastS){blLastS=s;snd('tick')}
+      if(left<=0){blReveal();return}blRaf=requestAnimationFrame(loop)};loop()}
+  else if(ph==='reveal'){const k=BL.idx,d=Q[k];
+    o.innerHTML=blTop(`Q ${k+1} / ${Q.length} · 정답 공개`)+`<div class="lv-qwrap" style="flex:none"><div class="lv-q sm">${d.q}</div></div>
+<div class="lv-opts rv ${d.ox?'ox':''}">${d.o.map((x,j)=>`<div class="lv-opt c${j%4} ${j===d.a?'ok':'dim'}"><span class="sh">${j===d.a?'✔':(d.ox?(j?'✖':'⭕'):SH[j%4])}</span><span class="tx">${d.ox?(j?'X':'O'):x}</span><span class="cnt" id="lvc${j}">0명</span><i class="fill" id="lvb${j}"></i></div>`).join('')}</div>
+<div class="lv-rstat"><div><span>✅ 정답률</span><b id="lvr1">-</b></div><div><span>⏱ 평균 반응</span><b id="lvr2">-</b></div><div><span>⚡ 빠르고 정확</span><b id="lvr3">-</b></div><div class="lv-exp">💡 ${d.e||''}</div></div>
+<div class="lv-foot"><span style="flex:1"></span><button class="lv-btn" id="lvstop">⏹ 여기서 끝내기</button><button class="lv-btn go xl" id="lvnext">${k<Q.length-1?'다음 문제 ▶':'🏁 결과 보기'}</button></div>`;
+    $('#lvnext').onclick=()=>k<Q.length-1?blGo(k+1):blEnd();$('#lvstop').onclick=blEnd;revealFill()}
+  else if(ph==='end')blEndView();
+  blBind();blUpdate()}
+async function blGo(k){const b=$('#lvgo')||$('#lvnext');if(b)b.disabled=true;try{BL=await liveSet({phase:'q',idx:k,sec:blSec,id:BL.id,lead:3000},true)}catch(e){alert('시작하지 못했어요: '+e.message);if(b)b.disabled=false;return}boardRender()}
+async function blReveal(){if(!BL||BL.phase!=='q')return;cancelAnimationFrame(blRaf);BL={...BL,phase:'reveal'};snd('end');setTimeout(()=>snd('rev'),450);
+  liveSet(BL).catch(()=>{});boardRender();setTimeout(async()=>{await blRefresh();if(BL.phase==='reveal')revealFill()},1100)}
+function revealFill(){if(!BL||BL.phase!=='reveal')return;const k=BL.idx,d=Q[k],R=blPl().map(p=>p.a&&p.a[k]).filter(r=>r&&r[0]>=0),cnt=d.o.map(()=>0);R.forEach(r=>{if(cnt[r[0]]!=null)cnt[r[0]]++});const mx=Math.max(1,...cnt);
+  cnt.forEach((c,j)=>{const b=$('#lvb'+j),t=$('#lvc'+j);if(b)b.style.width=(c/mx*100)+'%';if(t)t.textContent=c+'명'});
+  const ok=R.filter(r=>r[1]).length,av=R.length?R.reduce((a,r)=>a+r[2],0)/R.length/1000:0,su=R.filter(r=>spdOf(r)==='sure').length;
+  if($('#lvr1')){$('#lvr1').textContent=R.length?Math.round(ok/R.length*100)+'%':'-';$('#lvr2').textContent=R.length?av.toFixed(1)+'초':'-';$('#lvr3').textContent=su+'명'}}
+function blUpdate(){if(!BL||!boardOn)return;const P=blPl(),c=$('#lvcnt');
+  if(BL.phase==='lobby'){const nm=$('#lvnames');if(nm){$('#lvn').textContent=P.length;const have=new Set([...nm.children].map(x=>x.dataset.id));
+      P.forEach(p=>{if(!have.has(p.id)){const s=document.createElement('span');s.dataset.id=p.id;s.textContent=p.n;s.style.background=PCOL[nm.children.length%PCOL.length];nm.appendChild(s);snd('join')}})}
+    if(c)c.textContent='👥 '+P.length+'명';return}
+  if(BL.phase==='q'||BL.phase==='reveal'){const k=BL.idx,ans=P.filter(p=>p.a&&p.a[k]&&p.a[k][0]>=0).length;if(c)c.innerHTML=`🙋 응답 <b>${ans}</b> / ${P.length}`;
+    if(BL.phase==='q'&&blAuto&&P.length&&ans>=P.length&&snow()>BL.t0+800)blReveal();
+    if(BL.phase==='reveal')revealFill()}}
+async function blEnd(){BL={...BL,phase:'end'};try{await liveSet(BL)}catch(e){}snd('rev');await blRefresh();boardRender()}
+function blEndView(){const o=$('#lv');if(BL.idx>=0&&BL.idx+1<Q.length){Q.splice(BL.idx+1);PL=[...new Set(Q.map(q=>q.t))];tSig=''}const P=blPl().map(p=>({...p,d:true})),cls=cstat(P);
+  if(!cls){o.innerHTML=blTop('🏁 라이브 종료')+'<div class="lv-mid"><div class="lv-panel">참여한 학생이 없어요.<div class="lv-row"><button class="lv-btn go" id="lvdb">📊 대시보드로</button></div></div></div>';blBind();$('#lvdb').onclick=boardClose;return}
+  const PS=PL.map((t,j)=>{const c={sure:0,slow:0,rash:0,need:0};let n=0;P.forEach(p=>Q.forEach((q,k)=>{if(q.t!==t)return;n++;c[spdOf(p.a&&p.a[k])||'need']++}));return{t,c,n,sr:n?Math.round(c.sure/n*100):0,pc:cls.part[t]}});
+  const sure=PS.filter(x=>x.sr>=50).sort((a,b)=>b.sr-a.sr),weak=[...PS].sort((a,b)=>a.pc-b.pc).filter(x=>x.pc<70);
+  const all=P.flatMap(p=>Q.map((_,k)=>p.a&&p.a[k]).filter(r=>r&&r[0]>=0)),avT=all.length?all.reduce((a,r)=>a+r[2],0)/all.length/1000:0,suAll=all.filter(r=>spdOf(r)==='sure').length;
+  o.innerHTML=blTop('🏁 라이브 결과')+`<div class="lv-end"><h1>🎉 모두 수고하셨어요!</h1><p style="text-align:center;font-size:20px;opacity:.85;margin:0">개인 리포트는 각자 휴대폰에 도착했어요 📱</p>
+<div class="lv-kp"><div>👥 참여<b>${P.length}명</b></div><div>✅ 반 평균 정답률<b>${Math.round(cls.avg/Q.length*100)}%</b></div><div>⚡ 빠르고 정확한 응답<b>${all.length?Math.round(suAll/all.length*100):0}%</b><small>평균 반응 ${avT.toFixed(1)}초</small></div></div>
+<h2 style="margin:10px 0 4px">🧩 파트별 반 전체 확실도</h2>${PS.map((x,j)=>`<div class="lv-prt"><span>${esc(x.t)}</span><div class="lv-stk">${CK.map(c=>x.c[c]?`<i style="width:${x.c[c]/x.n*100}%;background:${CT[c][3]};animation-delay:${j*.12}s" title="${CT[c][1]}"></i>`:'').join('')}</div><span>⚡ ${x.sr}% · ✅ ${x.pc}%</span></div>`).join('')}
+<div class="lg" style="color:#fff;font-size:18px">${CK.map(c=>`<span><i style="background:${CT[c][3]}"></i>${CT[c][0]} ${CT[c][1]}</span>`).join('')}</div>
+<div class="lv-call"><div style="background:rgba(47,184,121,.25)">⚡ <b>반 전체가 확실히 아는 파트</b><br>${sure.length?sure.slice(0,3).map(x=>esc(x.t)+' ('+x.sr+'%)').join(' · '):'아직 없어요. 함께 다져 봐요!'}</div><div style="background:rgba(240,80,110,.25)">🔥 <b>다시 짚어 볼 파트</b><br>${weak.length?weak.slice(0,3).map(x=>esc(x.t)+' (정답률 '+x.pc+'%)').join(' · '):'모든 파트 70% 이상! 훌륭해요 🎊'}</div></div>
+<div class="lv-row" style="margin-top:22px"><button class="lv-btn go xl" id="lvdb">📊 자세한 분석 대시보드</button></div></div>`;
+  blBind();$('#lvdb').onclick=boardClose;for(let n=0;n<4;n++)setTimeout(confetti,n*300)}
 
 /* 문제 검사: 잘못 쓴 문제가 있으면 콘솔과 화면 위쪽에 알려 줘요 */
 (function(){const er=[];Q.forEach((q,k)=>{if(!q.t)er.push((k+1)+'번: 파트(t) 없음');if(!Array.isArray(q.o)||q.o.length<2)er.push((k+1)+'번: 보기(o) 확인');else if(!(q.a>=0&&q.a<q.o.length))er.push((k+1)+'번: 정답 번호(a)가 보기 범위를 벗어남')});
