@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>춘해보건대학교 쑥쑥 퀴즈</title>
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--pink:#ffd6e0;--pink2:#ff8fab;--mint:#d4f5e4;--mint2:#4cc38a;--yel:#fff3bf;--yel2:#f7b731;--sky:#d6ecff;--ink:#4a3b52;--bg:#fff8f0;--card:#fff;--bad:#ff6b6b}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:'Jua','Malgun Gothic','Apple SD Gothic Neo',sans-serif;background-image:radial-gradient(var(--pink) 2px,transparent 2px),radial-gradient(var(--sky) 2px,transparent 2px);background-size:36px 36px;background-position:0 0,18px 18px}
+.wrap{max-width:880px;margin:0 auto;padding:20px 16px 40px}
+.wrap.wide{max-width:1240px}
+.card{background:var(--card);border:4px solid var(--ink);border-radius:28px;box-shadow:0 8px 0 var(--ink);padding:26px 24px}
+h1{margin:0;font-size:clamp(30px,6vw,52px);text-align:center;line-height:1.25}
+h2{font-size:clamp(22px,3.4vw,30px)}h3{margin:22px 0 10px;font-size:22px;font-weight:normal}
+.mascot{font-size:clamp(70px,14vw,120px);text-align:center;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px) rotate(4deg)}}
+.sub{text-align:center;font-size:clamp(18px,3vw,24px);margin:8px 0 22px}
+.btn{font-family:inherit;font-size:clamp(20px,3.4vw,28px);background:var(--yel2);color:var(--ink);border:4px solid var(--ink);border-radius:999px;padding:12px 34px;cursor:pointer;box-shadow:0 6px 0 var(--ink);transition:.08s}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.btn:disabled{opacity:.6;cursor:default}
+.btn.sm{font-size:18px;padding:6px 16px;border-width:3px;box-shadow:0 4px 0 var(--ink)}
+.btn.alt{background:var(--sky)}.btn.red{background:var(--pink2)}
+.center{text-align:center}
+.inp{font-family:inherit;font-size:26px;color:var(--ink);border:4px solid var(--ink);border-radius:18px;padding:10px 16px;width:100%;max-width:380px;text-align:center;outline:none}
+.inp:focus{background:var(--yel)}
+.link{background:none;border:none;font-family:inherit;color:var(--ink);opacity:.55;text-decoration:underline;cursor:pointer;font-size:16px;margin-top:22px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:clamp(18px,3vw,24px)}
+.bar{flex:1;height:22px;background:#fff;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink2),var(--yel2));transition:width .4s}
+.score{background:var(--yel);border:3px solid var(--ink);border-radius:999px;padding:2px 14px}
+.tag{display:inline-block;background:var(--sky);border:3px solid var(--ink);border-radius:999px;padding:2px 14px;font-size:clamp(15px,2.4vw,20px);margin-bottom:10px}
+.q{font-size:clamp(24px,4.4vw,38px);line-height:1.4;margin:6px 0 20px;word-break:keep-all}
+.opts{display:grid;gap:14px}
+.opt{font-family:inherit;text-align:left;font-size:clamp(20px,3.4vw,30px);line-height:1.35;color:var(--ink);background:var(--pink);border:4px solid var(--ink);border-radius:22px;padding:14px 18px;cursor:pointer;box-shadow:0 6px 0 var(--ink);display:flex;gap:14px;align-items:center;word-break:keep-all;transition:.08s}
+.opt:nth-child(2){background:var(--mint)}.opt:nth-child(3){background:var(--yel)}.opt:nth-child(4){background:var(--sky)}
+.opt:hover:not(:disabled){transform:translateY(-3px)}
+.opt:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
+.opt .n{flex:none;width:46px;height:46px;border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center;font-size:26px}
+.opt:disabled{cursor:default}
+.opt.right{background:var(--mint2)!important;animation:pop .5s}
+.opt.wrong{background:var(--bad)!important;animation:shake .4s;color:#fff}
+.opt.dim{opacity:.45}
+.ox{grid-template-columns:1fr 1fr}.ox .opt{justify-content:center;font-size:clamp(34px,7vw,64px);padding:22px}
+@keyframes pop{40%{transform:scale(1.04)}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.fb{margin-top:20px;border:4px dashed var(--ink);border-radius:22px;padding:14px 18px;background:#fffdf5;font-size:clamp(18px,3vw,26px);line-height:1.5;display:none;word-break:keep-all}
+.fb.show{display:block;animation:pop .4s}
+.fb b{font-size:1.15em}
+.next{margin-top:20px;display:none;text-align:right}.next.show{display:block}
+.hint{text-align:center;margin-top:16px;font-size:16px;opacity:.7}
+.big{font-size:clamp(54px,12vw,110px);text-align:center;line-height:1.1}
+.res{font-size:clamp(22px,4vw,34px);text-align:center;margin:10px 0 20px}
+.wrongs{margin:16px 0 0;padding:0;list-style:none;font-size:clamp(16px,2.6vw,22px);text-align:left}
+.wrongs li{background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:8px 12px;margin-bottom:8px}
+.conf{position:fixed;top:-20px;font-size:28px;pointer-events:none;animation:fall 1.6s linear forwards;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);opacity:.8}}
+/* 교사 대시보드 */
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0 0}
+.stat{background:var(--yel);border:3px solid var(--ink);border-radius:18px;padding:10px;text-align:center;font-size:18px}
+.stat:nth-child(2){background:var(--mint)}.stat:nth-child(3){background:var(--pink)}.stat:nth-child(4){background:var(--sky)}
+.stat b{display:block;font-size:40px;font-weight:normal}
+.qbars{display:grid;gap:6px}
+.qb{display:grid;grid-template-columns:48px 1fr 110px;gap:10px;align-items:center;cursor:pointer;font-size:18px;padding:3px 8px;border-radius:12px}
+.qb:hover,.qb.sel{background:var(--yel)}
+.qb.low .bar>i{background:var(--bad)}
+.qb .bar{height:20px}
+.dr{display:grid;grid-template-columns:1fr minmax(100px,220px) 54px;gap:10px;align-items:center;margin-top:8px;font-size:.85em}
+.dr.ok{color:#1e7a4f}.dr .bar{height:16px}.dr.ok .bar>i{background:var(--mint2)}
+.tbl{overflow:auto;max-height:62vh;border:3px solid var(--ink);border-radius:14px}
+table{width:100%;border-collapse:collapse;font-size:17px}
+th,td{border:1.5px solid #c9bfd0;padding:5px 6px;text-align:center}
+th{background:var(--sky);position:sticky;top:0;z-index:1}
+td.nm{text-align:left;white-space:nowrap}
+td.c-ok{background:var(--mint)}td.c-no{background:#ffd3d3}
+.wait{font-size:22px;padding:30px 10px}
+.live{display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--mint2);margin-right:6px;animation:blink 1s infinite;vertical-align:middle}
+@keyframes blink{50%{opacity:.2}}
+.ov{position:fixed;inset:0;background:rgba(74,59,82,.6);display:grid;place-items:center;z-index:20;padding:16px}
+.ov .card{max-width:760px;width:100%;text-align:center;max-height:96vh;overflow:auto}
+#qr{display:inline-block;background:#fff;padding:16px;border:4px solid var(--ink);border-radius:20px;margin:14px 0}
+#qr img,#qr canvas{display:block;width:min(58vh,70vw);height:auto}
+td.tm{white-space:nowrap;font-size:15px}
+.tmr{white-space:nowrap}.tmr.low{background:var(--bad);color:#fff;animation:blink 1s infinite}
+.timeup{background:var(--bad);color:#fff;border:3px solid var(--ink);border-radius:18px;padding:8px 14px;font-size:clamp(20px,3.6vw,30px);text-align:center;margin:0 0 12px}
+/* ---------- 파트별 리포트 ---------- */
+.pr{display:grid;grid-template-columns:minmax(90px,170px) 1fr minmax(150px,200px);gap:10px;align-items:center;margin:8px 0;font-size:clamp(16px,2.4vw,20px);text-align:left}
+.pr .bar{height:20px}
+.pr .bar>i.good{background:var(--mint2)}.pr .bar>i.mid{background:var(--yel2)}.pr .bar>i.low{background:var(--bad)}
+.lv{font-style:normal;border:2px solid var(--ink);border-radius:999px;padding:0 10px;font-size:.8em;white-space:nowrap}
+.lv.good{background:var(--mint)}.lv.mid{background:var(--yel)}.lv.low{background:#ffd3d3}
+.sum{background:#fffdf5;border:3px dashed var(--ink);border-radius:18px;padding:12px 16px;font-size:clamp(17px,2.6vw,22px);line-height:1.6;text-align:left;word-break:keep-all;margin:12px 0}
+.rw{background:var(--pink);border:3px solid var(--ink);border-radius:14px;padding:8px 12px;margin:8px 0;font-size:clamp(15px,2.2vw,19px);text-align:left;line-height:1.5;word-break:keep-all}
+.rw small{display:block;opacity:.85}
+.rhd{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:8px;margin-bottom:10px;text-align:left}
+.rhd h2{margin:0}.rcols{display:grid;grid-template-columns:minmax(0,270px) 1fr;gap:16px;align-items:center}
+.rcols svg{width:100%;height:auto}
+@media(max-width:640px){.rcols{grid-template-columns:1fr}.pr{grid-template-columns:1fr}}
+td.pc{font-size:15px}td.pc.good{background:var(--mint)}td.pc.mid{background:var(--yel)}td.pc.low{background:#ffd3d3}
+.fld{display:grid;gap:10px;justify-items:center;margin-top:6px}
+@media print{
+ body{background:none!important}#app{display:none!important}
+ .ov{position:static!important;background:none!important;display:block!important;padding:0!important}
+ .ov .card{box-shadow:none!important;border:none!important;max-height:none!important;overflow:visible!important;max-width:none!important;padding:0!important}
+ .np{display:none!important}.rep{page-break-after:always;break-after:page;padding:6mm 2mm}
+ *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style></head><body><div class="wrap" id="app"></div>
+<script>
+/* =====================================================================
+   춘해보건대학교 파트별 리포트 퀴즈 - 설정 영역 (여기만 고치면 돼요)
+   ===================================================================== */
+const TITLE='춘해보건대학교<br>쑥쑥 퀴즈!';          // 첫 화면 제목
+const SUBJECT='○○학과 · ○○과목 · ○주차';              // 첫 화면 부제
+const MASCOT='🩺';
+const LIMIT=0;                                          // 제한시간(초). 0이면 제한 없음 (예: 600 = 10분)
+const QUIZ='chunhae';                                   // Supabase quiz_config.quiz 값 (학기/주차마다 바꾸면 기록이 분리돼요)
+const NEED_NO=false;
+const TEACHER_PW='ch9mub9g5y9q48nckiqte8t7';                      // 교사용 비밀번호(입력창 없이 자동 사용). 코드에 들어 있으니 링크/코드를 공개하지 마세요                                    // true면 학번 입력을 필수로
+
+/* 문제: t = 파트 이름(같은 이름끼리 묶여서 파트별 분석돼요), a = 정답 번호(0부터), e = 해설
+   OX 문제는 o:["O","X"], ox:1, a:0(O) 또는 1(X) 로 써요. 아래는 예시 문제예요 - 지우고 새로 넣으세요. */
+const Q=[
+{t:"파트 A",q:"(예시) 파트 A의 첫 번째 문제예요. 정답은 2번!",o:["보기 1","보기 2","보기 3","보기 4"],a:1,e:"예시 해설이에요."},
+{t:"파트 A",q:"(예시) 파트 A의 OX 문제예요. 정답은 O!",o:["O","X"],ox:1,a:0,e:"예시 해설이에요."},
+{t:"파트 B",q:"(예시) 파트 B의 첫 번째 문제예요. 정답은 3번!",o:["보기 1","보기 2","보기 3","보기 4"],a:2,e:"예시 해설이에요."},
+{t:"파트 B",q:"(예시) 파트 B의 두 번째 문제예요. 정답은 1번!",o:["보기 1","보기 2","보기 3","보기 4"],a:0,e:"예시 해설이에요."},
+{t:"파트 C",q:"(예시) 파트 C의 첫 번째 문제예요. 정답은 4번!",o:["보기 1","보기 2","보기 3","보기 4"],a:3,e:"예시 해설이에요."},
+{t:"파트 C",q:"(예시) 파트 C의 OX 문제예요. 정답은 X!",o:["O","X"],ox:1,a:1,e:"예시 해설이에요."}
+];
+/* ===================================================================== */
+
+const $=s=>document.querySelector(s),app=$('#app'),EM=['🐣','🐰','🐻','🐱'];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtT=ms=>{if(!(ms>0))return '';const s=Math.round(ms/1000);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
+const mmss=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+let tick=null,mode='home',i=0,score=0,locked=false,me=null,myKey='',saveQ=Promise.resolve();
+const left=()=>!LIMIT?Infinity:(me&&me.st?Math.max(0,Math.ceil((me.st+LIMIT*1000-Date.now())/1000)):LIMIT);
+function startTimer(){clearInterval(tick);if(!LIMIT)return;const draw=()=>{const s=left(),el=$('#tm');
+  if(el){el.textContent='⏱ '+mmss(s);el.classList.toggle('low',s<=30)}
+  if(s<=0){clearInterval(tick);timeUp()}};draw();tick=setInterval(draw,250)}
+function timeUp(){if(mode!=='play'||!me||me.d)return;locked=true;me.to=true;me.d=true;me.f=me.st+LIMIT*1000;me.c=Q.length;save();end()}
+
+/* ---------- 저장소: Supabase (학생은 로그인 없이 rpc 함수만 호출) ---------- */
+const SB_URL='https://qyhdfrzdojfzefghjtyx.supabase.co',SB_KEY='sb_publishable_mj6khP3rzzgSmc0KTXSTVQ_b45IH3iw';
+async function rpc(fn,args){const ac=new AbortController(),to=setTimeout(()=>ac.abort(),10000);
+  try{const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args||{}),signal:ac.signal});
+    const t=await r.text();let j=null;try{j=t?JSON.parse(t):null}catch(e){}
+    if(!r.ok){const er=new Error((j&&j.message)||('HTTP '+r.status));er.status=r.status;throw er}
+    return j}finally{clearTimeout(to)}}
+const isBadPw=e=>!!e&&(e.status===403||/wrong_password/.test(e.message||''));
+const LS={get(k){try{return JSON.parse(localStorage.getItem('chq:'+QUIZ+':'+k))}catch(e){return null}},set(k,v){try{localStorage.setItem('chq:'+QUIZ+':'+k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem('chq:'+QUIZ+':'+k)}catch(e){}}};
+const SS={get(k){try{return sessionStorage.getItem('chq:'+QUIZ+':'+k)}catch(e){return null}},set(k,v){try{sessionStorage.setItem('chq:'+QUIZ+':'+k,v)}catch(e){}},del(k){try{sessionStorage.removeItem('chq:'+QUIZ+':'+k)}catch(e){}}};
+let tPw=SS.get('pw')||TEACHER_PW;
+async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await new Promise(r=>setTimeout(r,1500))}}}
+function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringify(me)),id=myKey;
+  saveQ=saveQ.then(()=>putRec(id,v)).catch(e=>console.error('저장 실패',e))}
+
+/* ---------- 파트 분석 ---------- */
+function partStats(a){const m=new Map();
+  Q.forEach((q,k)=>{const o=m.get(q.t)||{t:q.t,n:0,ok:0,idx:[]};o.n++;o.idx.push(k);if(a&&a[k]&&a[k][1])o.ok++;m.set(q.t,o)});
+  return [...m.values()].map(o=>({...o,pc:Math.round(o.ok/o.n*100)}))}
+const lvOf=pc=>pc>=80?['탄탄해요','good']:pc>=60?['보통','mid']:['보충 필요','low'];
+const optTxt=(q,k)=>q.ox?(k?'X':'O'):(k+1)+'. '+q.o[k];
+function radar(P){const n=P.length;if(n<3)return '';const c=130,R=90,pt=(k,r)=>{const a=-Math.PI/2+2*Math.PI*k/n;return [c+r*Math.cos(a),c+r*Math.sin(a)]};
+  const ring=f=>P.map((_,k)=>pt(k,R*f).join(',')).join(' ');
+  let s=`<svg viewBox="0 0 260 260" role="img" aria-label="파트별 레이더 차트">`;
+  [.25,.5,.75,1].forEach(f=>s+=`<polygon points="${ring(f)}" fill="none" stroke="#c9bfd0" stroke-width="1.5"/>`);
+  P.forEach((_,k)=>{const [x,y]=pt(k,R);s+=`<line x1="${c}" y1="${c}" x2="${x}" y2="${y}" stroke="#c9bfd0"/>`});
+  s+=`<polygon points="${P.map((x,k)=>pt(k,R*Math.max(.03,x.pc/100)).join(',')).join(' ')}" fill="rgba(255,143,171,.45)" stroke="#4a3b52" stroke-width="3"/>`;
+  P.forEach((x,k)=>{const [px,py]=pt(k,R+22),an=Math.abs(px-c)<8?'middle':(px<c?'end':'start');
+    s+=`<text x="${px}" y="${py+4}" text-anchor="${an}" font-size="12" fill="#4a3b52">${esc(x.t.length>8?x.t.slice(0,7)+'…':x.t)}</text>`});
+  return s+'</svg>'}
+function report(rec,who){const a=rec.a||{},P=partStats(a),sc=rec.s||0,tot=Q.length;
+  const weak=P.filter(x=>x.pc<80).sort((x,y)=>x.pc-y.pc),strong=P.filter(x=>x.pc>=80);
+  let sum;
+  if(!weak.length)sum='모든 파트에서 80% 이상 맞혔어요! 지금처럼 복습하면 충분해요. 🎉';
+  else{const w=weak[0];sum=`가장 보충이 필요한 파트는 <b>${esc(w.t)}</b>(${w.ok}/${w.n}, ${w.pc}%)예요.`
+    +(weak[1]?` 다음으로 <b>${esc(weak[1].t)}</b>(${weak[1].ok}/${weak[1].n}, ${weak[1].pc}%)도 다시 살펴보세요.`:'')
+    +(strong.length?` <b>${strong.map(x=>esc(x.t)).join(', ')}</b> 파트는 탄탄해요.`:'')}
+  const na=Q.filter((_,k)=>!a[k]).length;
+  const bars=P.map(x=>{const [lb,cl]=lvOf(x.pc);return `<div class="pr"><span>${esc(x.t)}</span><div class="bar"><i class="${cl}" style="width:${x.pc}%"></i></div><span>${x.ok}/${x.n} · ${x.pc}% <em class="lv ${cl}">${lb}</em></span></div>`}).join('');
+  const order=[...P].sort((x,y)=>x.pc-y.pc);
+  const wr=order.map(x=>{const items=x.idx.filter(k=>!(a[k]&&a[k][1]));if(!items.length)return '';
+    return `<h3>🔁 ${esc(x.t)} <small style="opacity:.6">다시 볼 문제 ${items.length}개</small></h3>`+items.map(k=>{const q=Q[k],r=a[k];
+      return `<div class="rw"><b>${k+1}.</b> ${q.q}<small>${r?'내 답: '+esc(optTxt(q,r[0]))+' · ':'<i>(못 푼 문제)</i> · '}정답: <b>${esc(optTxt(q,q.a))}</b></small><small>💡 ${q.e||''}</small></div>`}).join('')}).join('');
+  return `<div class="rep"><div class="rhd"><div><h2>📋 ${esc(who||rec.n||'')} 파트별 학습 리포트</h2><small>${esc(SUBJECT)}</small></div><div style="font-size:clamp(22px,4vw,34px)">⭐ ${sc} / ${tot} <small style="opacity:.6">(${Math.round(sc/tot*100)}%)</small></div></div>
+<div class="sum">${sum}${na?`<br><small>※ 풀지 못한 문제 ${na}개는 오답으로 계산했어요.</small>`:''}</div>
+<div class="rcols"><div>${radar(P)}</div><div>${bars}</div></div>${wr||'<div class="res">틀린 문제가 없어요! 🎊</div>'}</div>`}
+
+/* 인쇄/PDF 저장용 창 (여러 명도 한 번에) */
+function printView(list){const o=document.createElement('div');o.className='ov';o.id='pov';document.body.appendChild(o);
+  o.innerHTML=`<div class="card" style="max-width:900px;text-align:left"><div class="center np" style="margin-bottom:14px"><button class="btn sm" id="pp">🖨 인쇄 / PDF로 저장</button> <button class="btn sm alt" id="pc">닫기</button></div>${list.map(x=>report(x)).join('')}</div>`;
+  $('#pc').onclick=()=>o.remove();$('#pp').onclick=()=>window.print();o.onclick=e=>{if(e.target===o)o.remove()}}
+
+/* ---------- 학생 화면 ---------- */
+function home(){clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
+app.innerHTML=`<div class="card"><div class="mascot">${MASCOT}</div><h1>${TITLE}</h1>
+<p class="sub">${esc(SUBJECT)} · 총 ${Q.length}문제${LIMIT?' · ⏱ 제한시간 '+Math.round(LIMIT/60)+'분':''}<br>끝나면 <b>나의 파트별 약점 리포트</b>가 나와요</p>
+<div class="center"><div id="resume"></div><div class="fld"><input class="inp" id="no" maxlength="12" placeholder="학번${NEED_NO?'':' (선택)'}" inputmode="numeric" autocomplete="off"><input class="inp" id="nm" maxlength="12" placeholder="이름" autocomplete="off"></div>
+<div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
+<p class="hint" id="msg"></p><div id="solo"></div>
+<button class="link" id="tc">👩‍🏫 교사용 대시보드</button></div></div>`;
+$('#nm').onkeydown=e=>{if(e.key==='Enter')join()};$('#go').onclick=join;$('#tc').onclick=teacher;offerResume()}
+
+async function offerResume(){const ss=LS.get('sess');if(!ss||!ss.key||mode!=='home')return;
+let g=null;try{g=await rpc('quiz_get',{p_id:ss.key})}catch(e){return}
+if(!g){LS.del('sess');return}
+if(g.round!==g.current)return;
+const rec=g.data;if(!rec||mode!=='home'||!$('#resume'))return;
+$('#resume').innerHTML=`<button class="btn alt" id="rs">${rec.d?'📋 '+esc(rec.n)+' 리포트 다시 보기':'▶ '+esc(rec.n)+' 이어서 풀기'}</button><p class="hint" style="margin:10px 0 18px">다른 사람으로 새로 시작하려면 아래에 입력하세요</p>`;
+$('#rs').onclick=()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
+  if(me.d){i=Q.length;end();return}
+  i=0;while(i<Q.length&&me.a[i])i++;
+  mode='play';if(left()<=0){timeUp();return}startTimer();i<Q.length?show():end()}}
+
+async function join(){const n=$('#nm').value.trim(),no=$('#no').value.trim();
+if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();return}
+if(NEED_NO&&!no){$('#msg').textContent='학번을 입력해 주세요!';$('#no').focus();return}
+$('#go').disabled=true;$('#msg').textContent='입장 중... 🚪';$('#solo').innerHTML='';
+i=0;score=0;const now=Date.now();me={n,no,a:{},s:0,c:0,d:false,st:now,f:0,t:now};
+try{const id=now.toString(36)+Math.random().toString(36).slice(2,9);
+  const round=await rpc('quiz_join',{p_quiz:QUIZ,p_id:id,p_data:me});
+  myKey=id;LS.set('sess',{key:id,round:Number(round)});
+}catch(e){myKey='';$('#go').disabled=false;
+  $('#msg').textContent='⚠️ 선생님 화면과 연결하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.';
+  $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';me.st=Date.now();startTimer();show()};return}
+mode='play';startTimer();show()}
+
+function show(){locked=false;const d=Q[i];if(me&&myKey){me.c=i;save()}
+app.innerHTML=`<div class="top"><span>${i+1}/${Q.length}</span><div class="bar"><i style="width:${i/Q.length*100}%"></i></div><span class="score">⭐ ${score}</span>${LIMIT?`<span class="score tmr" id="tm">⏱ ${mmss(left())}</span>`:''}</div>
+<div class="card"><div class="row"><span class="tag">${EM[i%4]} ${esc(d.t)}</span><span class="tag" style="background:var(--yel)">🙋 ${esc(me?me.n:'')}${myKey?'':' (혼자)'}</span></div><div class="q">${d.q}</div>
+<div class="opts ${d.ox?'ox':''}">${d.o.map((x,k)=>`<button class="opt" data-k="${k}"><span class="n">${d.ox?(k?'✖':'⭕'):k+1}</span>${d.ox?'':x}</button>`).join('')}</div>
+<div class="fb" id="fb"></div><div class="next" id="nx"><button class="btn" id="nb">${i==Q.length-1?'리포트 보기 📋':'다음 문제 ▶'}</button></div></div>`;
+document.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));$('#nb').onclick=next}
+
+function pick(k){if(locked||left()<=0)return;locked=true;const d=Q[i],ok=k===d.a,bs=document.querySelectorAll('.opt');
+bs.forEach((b,n)=>{b.disabled=true;if(n===d.a)b.classList.add('right');else if(n===k)b.classList.add('wrong');else b.classList.add('dim')});
+if(ok){score++;confetti()}
+if(me){me.a[i]=[k,ok?1:0];me.s=score;save()}
+const f=$('#fb');f.innerHTML=(ok?'<b>🎉 정답!</b> ':'<b>🥲 아쉬워요!</b> ')+(d.e||'');f.classList.add('show');$('#nx').classList.add('show');$('.score').textContent='⭐ '+score}
+
+function next(){if(me&&me.d)return;i++;i<Q.length?show():end()}
+
+function end(){clearInterval(tick);mode='play';locked=true;if(me&&!me.d){me.d=true;me.f=Date.now();me.c=Q.length;save()}
+if(me)score=me.s||0;
+const p=Math.round(score/Q.length*100),m=p>=90?['🏆','대단해요!']:p>=60?['🌟','잘했어요!']:['🌱','괜찮아요, 약한 파트를 같이 복습해요!'];
+const tu=me&&me.to?`<div class="timeup">⏰ 시간 종료! 푼 문제까지만 채점했어요</div>`:'';
+app.className='wrap';
+app.innerHTML=`<div class="card">${tu}<div class="center"><div class="mascot" style="font-size:clamp(50px,10vw,80px)">${m[0]}</div><div class="res" style="margin:0">${m[1]}</div></div>${report(me||{a:{},s:0,n:''})}
+<div class="center" style="margin-top:20px"><button class="btn alt" id="pr">🖨 리포트 저장(PDF)</button> <button class="btn" id="re">처음으로 🏠</button></div></div>`;
+$('#re').onclick=home;$('#pr').onclick=()=>printView([me]);if(p>=60)for(let n=0;n<3;n++)setTimeout(confetti,n*350)}
+
+function confetti(){const c=['🎉','⭐','🌸','🍬','💖','✨'];for(let n=0;n<14;n++){const s=document.createElement('span');s.className='conf';s.textContent=c[n%c.length];s.style.left=Math.random()*100+'vw';s.style.animationDelay=Math.random()*.4+'s';document.body.appendChild(s);setTimeout(()=>s.remove(),2200)}}
+
+document.addEventListener('keydown',e=>{if(mode!=='play'||e.target.tagName==='INPUT')return;const nx=$('#nx');
+if(e.key==='Enter'||e.key===' '||e.key==='ArrowRight'){if(nx&&nx.classList.contains('show')){e.preventDefault();next()}return}
+const n=parseInt(e.key);if(n>=1&&n<=4&&document.querySelectorAll('.opt').length>=n)pick(n-1);
+if(e.key.toLowerCase()==='o'&&Q[i]&&Q[i].ox)pick(0);if(e.key.toLowerCase()==='x'&&Q[i]&&Q[i].ox)pick(1)});
+
+/* ---------- 교사 대시보드 ---------- */
+let tTimer=null,tRound=1,tData=[],tSel=null,tUrl=/^https?:$/.test(location.protocol)?location.origin+location.pathname:'',tPaused=false,resetArm=false,busy=false;
+
+function teacherLogin(msg){mode='login';clearInterval(tTimer);app.className='wrap';
+app.innerHTML=`<div class="card"><div class="mascot">👩‍🏫</div><h1 style="font-size:clamp(28px,5vw,44px)">교사용 대시보드</h1>
+<p class="sub">비밀번호를 입력해 주세요</p>
+<div class="center"><input class="inp" id="pw" type="password" autocomplete="current-password" placeholder="비밀번호">
+<div style="margin-top:18px"><button class="btn" id="pg">확인 ▶</button> <button class="btn alt" id="ph">🏠</button></div>
+<p class="hint" id="pm">${msg||''}</p></div></div>`;
+const go=async()=>{const v=$('#pw').value;if(!v){$('#pm').textContent='비밀번호를 입력해 주세요!';$('#pw').focus();return}
+  $('#pg').disabled=true;$('#pm').textContent='확인 중...';
+  try{await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:v});tPw=v;SS.set('pw',v);teacher()}
+  catch(e){$('#pg').disabled=false;$('#pm').textContent=isBadPw(e)?'⚠️ 비밀번호가 맞지 않아요.':'⚠️ 연결하지 못했어요. 인터넷 연결을 확인해 주세요.';$('#pw').select()}};
+$('#pg').onclick=go;$('#pw').onkeydown=e=>{if(e.key==='Enter')go()};$('#ph').onclick=home;$('#pw').focus()}
+
+function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';
+app.innerHTML=`<div class="card">
+<div class="row"><h2 style="margin:0">👩‍🏫 실시간 대시보드 <small style="opacity:.6">파트별 분석</small></h2>
+<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
+<div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
+<div class="stats" id="stats"></div>
+<h3>🧩 파트별 반 평균 정답률 <small style="opacity:.6">(80% 이상 탄탄 · 60~79% 보통 · 60% 미만 보충 필요)</small></h3><div id="pbars"></div>
+<h3>📊 문항별 정답률 <small style="opacity:.6">(문항을 누르면 선택지별 응답 수)</small></h3><div class="qbars" id="bars"></div><div id="det"></div>
+<h3>🧒 학생별 파트 분석 <small style="opacity:.6">(이름 옆 📋을 누르면 그 학생의 리포트)</small></h3><div class="tbl" id="tbl"></div></div>`;
+$('#bq').onclick=qrOpen;$('#ba').onclick=()=>{const L=[...tData].sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L)};
+$('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
+$('#br').onclick=resetRound;$('#bh').onclick=()=>{clearInterval(tTimer);home()};
+render();refresh();clearInterval(tTimer);tTimer=setInterval(()=>{if(!tPaused&&mode==='teacher')refresh()},3000)}
+
+async function refresh(){if(busy)return;busy=true;
+try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});
+  tRound=Number(r&&r.round)||1;tData=((r&&r.players)||[]).filter(Boolean);render();
+  const s=$('#st');if(s&&mode==='teacher')s.innerHTML=`<span class="live"></span>라운드 ${tRound} · ${new Date().toLocaleTimeString('ko-KR')} 갱신 (3초마다)`;
+}catch(e){if(isBadPw(e)&&mode==='teacher'){busy=false;tPw='';SS.del('pw');teacherLogin('⚠️ 비밀번호를 다시 입력해 주세요.');return}
+  const s=$('#st');if(s)s.textContent='⚠️ 불러오기 실패: '+(e&&e.message||e)+' (인터넷 연결 확인)'}
+busy=false}
+
+function render(){if(mode!=='teacher')return;const D=tData,n=D.length,done=D.filter(p=>p.d).length;
+const avg=n?(D.reduce((s,p)=>s+(p.s||0),0)/n).toFixed(1):'-';
+const tot=D.reduce((s,p)=>s+Object.keys(p.a||{}).length,0);
+$('#stats').innerHTML=[['👥 참여',n],['🏁 완료',`${done}`],['⭐ 평균 점수',avg],['📝 총 응답',tot]].map(([a,b])=>`<div class="stat">${a}<b>${b}</b></div>`).join('');
+
+/* 파트별 반 평균: 응답이 있는 문항만 */
+const PT=[...new Set(Q.map(q=>q.t))],pAvg=PT.map(t=>{let an=0,ok=0;Q.forEach((q,k)=>{if(q.t!==t)return;D.forEach(p=>{const r=p.a&&p.a[k];if(r){an++;ok+=r[1]}})});return{t,an,ok,pc:an?Math.round(ok/an*100):null}});
+$('#pbars').innerHTML=n?pAvg.map(x=>{const [lb,cl]=x.pc==null?['-','mid']:lvOf(x.pc);return `<div class="pr"><span>${esc(x.t)}</span><div class="bar"><i class="${cl}" style="width:${x.pc||0}%"></i></div><span>${x.pc==null?'-':x.pc+'% <small>('+x.ok+'/'+x.an+')</small> <em class="lv '+cl+'">'+lb+'</em>'}</span></div>`}).join(''):'<p class="hint">아직 응답이 없어요.</p>';
+
+$('#bars').innerHTML=Q.map((q,k)=>{let an=0,ok=0;D.forEach(p=>{const r=p.a&&p.a[k];if(r){an++;ok+=r[1]}});
+  const pc=an?Math.round(ok/an*100):0;
+  return `<div class="qb ${an&&pc<50?'low':''} ${tSel===k?'sel':''}" data-k="${k}"><span>Q${k+1}</span><div class="bar"><i style="width:${pc}%"></i></div><span>${an?pc+'%':'-'} <small>(${ok}/${an})</small></span></div>`}).join('');
+document.querySelectorAll('.qb').forEach(b=>b.onclick=()=>{const k=+b.dataset.k;tSel=tSel===k?null:k;render()});
+if(tSel!==null){const q=Q[tSel],cnt=q.o.map(()=>0);D.forEach(p=>{const r=p.a&&p.a[tSel];if(r&&cnt[r[0]]!==undefined)cnt[r[0]]++});
+  const t=cnt.reduce((a,b)=>a+b,0);
+  $('#det').innerHTML=`<div class="fb show" style="margin-top:12px"><b>Q${tSel+1}. [${esc(q.t)}]</b> ${q.q}${q.o.map((o,k)=>`<div class="dr ${k===q.a?'ok':''}"><span>${k===q.a?'✅':'▫️'} ${q.ox?(k?'X':'O'):(k+1)+'. '+o}</span><div class="bar"><i style="width:${t?cnt[k]/t*100:0}%"></i></div><span>${cnt[k]}명</span></div>`).join('')}<div style="margin-top:10px;font-size:.85em">💡 ${q.e||''}</div></div>`;
+}else $('#det').innerHTML='';
+
+const rows=[...D].sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));
+$('#tbl').innerHTML=n?`<table><thead><tr><th>학번</th><th>이름</th><th>점수</th>${PT.map(t=>`<th>${esc(t)}</th>`).join('')}<th>가장 약한 파트</th><th>리포트</th></tr></thead><tbody>${rows.map(p=>{const P=partStats(p.a),w=[...P].sort((x,y)=>x.pc-y.pc)[0],wk=w&&w.pc<80?esc(w.t)+' ('+w.pc+'%)':'-';
+ return `<tr><td class="tm">${esc(p.no||'')}</td><td class="nm">${p.d?'🏁 ':'👀 '}${esc(p.n)}</td><td><b>${p.s||0}</b>/${Q.length}</td>${PT.map(t=>{const x=P.find(y=>y.t===t);return `<td class="pc ${lvOf(x.pc)[1]}">${x.pc}%</td>`}).join('')}<td class="nm">${p.d?wk:'<small>푸는 중</small>'}</td><td><button class="btn sm alt" data-id="${esc(p.id)}">📋</button></td></tr>`}).join('')}</tbody></table>`
+:'<p class="wait center">아직 입장한 학생이 없어요.<br>📱 입장 QR을 띄워 주세요!</p>';
+document.querySelectorAll('#tbl button[data-id]').forEach(b=>b.onclick=()=>{const p=tData.find(x=>x.id===b.dataset.id);if(p)printView([p])})}
+
+async function resetRound(){const b=$('#br');
+if(!resetArm){resetArm=true;b.textContent='⚠️ 한 번 더 누르면 초기화';setTimeout(()=>{resetArm=false;const x=$('#br');if(x&&!x.disabled)x.textContent='🔄 새 라운드'},3000);return}
+resetArm=false;b.disabled=true;b.textContent='초기화 중...';let err='';
+try{tRound=Number(await rpc('quiz_reset',{p_quiz:QUIZ,p_pw:tPw}))||tRound+1}catch(e){console.error(e);err=e&&e.message||String(e)}
+tSel=null;if(!err)tData=[];b.disabled=false;b.textContent='🔄 새 라운드';
+if(err){const s=$('#st');if(s)s.textContent='⚠️ 새 라운드 실패: '+err;return}
+refresh()}
+
+function qrOpen(){const o=document.createElement('div');o.className='ov';o.id='ov';document.body.appendChild(o);o.onclick=e=>{if(e.target===o)o.remove()};qrDraw()}
+function qrDraw(){const o=$('#ov');if(!o)return;
+if(!tUrl){o.innerHTML=`<div class="card"><h2 style="margin-top:0">📱 입장 QR 만들기</h2><p class="sub">이 퀴즈의 <b>공유 링크</b>를 붙여 넣어 주세요</p>
+<input class="inp" id="ui" placeholder="https://..." style="max-width:100%;font-size:18px">
+<div style="margin-top:18px"><button class="btn" id="ub">QR 만들기</button> <button class="btn alt" id="uc">닫기</button></div></div>`;
+  const go=()=>{const v=$('#ui').value.trim();if(/^https?:\/\//.test(v)){tUrl=v;qrDraw()}else{$('#ui').style.borderColor='var(--bad)'}};
+  $('#ub').onclick=go;$('#ui').onkeydown=e=>{if(e.key==='Enter')go()};$('#uc').onclick=()=>o.remove();$('#ui').focus();return}
+o.innerHTML=`<div class="card"><h1 style="font-size:clamp(28px,5vw,44px)">카메라로 찍고 입장! 📸</h1><div id="qr"></div>
+<div style="word-break:break-all;font-size:14px;opacity:.7;margin-bottom:14px">${esc(tUrl)}</div>
+<button class="btn" id="uc">닫기</button><br><button class="link" id="ue">링크 바꾸기</button></div>`;
+$('#uc').onclick=()=>o.remove();$('#ue').onclick=()=>{tUrl='';qrDraw()};
+if(window.QRCode){new QRCode($('#qr'),{text:tUrl,width:512,height:512,correctLevel:QRCode.CorrectLevel.M})}
+else $('#qr').textContent='QR 라이브러리를 불러오지 못했어요. 링크를 직접 공유해 주세요.'}
+
+home();
+</script>
+</body></html>
