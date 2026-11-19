@@ -544,7 +544,7 @@ function printView(list,players){const o=document.createElement('div');o.classNa
 /* ---------- 학생 화면 ---------- */
 function home(){clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
 app.innerHTML=`<div class="card"><div class="mascot">${MASCOT}</div><h1>${TITLE}</h1>
-<p class="sub">${esc(SUBJECT)} · 총 ${Q.length}문제 · ${PL.length}개 파트${LIMIT?' · ⏱ 제한시간 '+Math.round(LIMIT/60)+'분':''}<br>끝나면 <b>나만의 파트별 학습 리포트</b>가 나와요 📊</p>
+<p class="sub">${esc(SUBJECT)} · 총 ${Q.length}문제 · ${PL.length}개 파트${LIMIT?' · ⏱ 제한시간 '+Math.round(LIMIT/60)+'분':''}<br>선생님이 <b>라이브로 진행</b>해요 · 끝나면 <b>나만의 파트별 학습 리포트</b>가 나와요 📊</p>
 <div class="center"><div id="resume"></div><div class="fld" style="display:grid;gap:10px;justify-items:center"><input class="inp" id="no" maxlength="12" placeholder="학번${NEED_NO?'':' (선택)'}" inputmode="numeric" autocomplete="off"><input class="inp" id="nm" maxlength="12" placeholder="이름" autocomplete="off"></div>
 <div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
 <p class="hint" id="msg"></p><div id="solo"></div>
@@ -556,7 +556,7 @@ async function offerResume(){const ss=LS.get('sess');if(!ss||!ss.key||mode!=='ho
 let g=null;try{g=await rpc('quiz_get',{p_id:ss.key})}catch(e){return}
 if(!g){LS.del('sess');return}
 if(g.round!==g.current)return;
-const rec=g.data;if(!rec||mode!=='home'||!$('#resume'))return;
+const rec=g.data;if(!rec||mode!=='home'||!$('#resume'))return;if(!rec.d&&!rec.lv)return;
 $('#resume').innerHTML=`<button class="btn alt" id="rs">${rec.d?'📊 '+esc(rec.n)+' 리포트 다시 보기':'▶ '+esc(rec.n)+' 이어서 풀기'}</button><p class="hint" style="margin:10px 0 18px">다른 사람으로 새로 시작하려면 아래에 입력하세요</p>`;
 $('#rs').onclick=async()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
   if(me.d){i=Q.length;end();return}
@@ -569,15 +569,17 @@ if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();r
 if(NEED_NO&&!no){$('#msg').textContent='학번을 입력해 주세요!';$('#no').focus();return}
 $('#go').disabled=true;$('#msg').textContent='입장 중... 🚪';$('#solo').innerHTML='';
 i=0;score=0;const now=Date.now();me={n,no,a:{},s:0,c:0,d:false,st:now,f:0,t:now};
-const LV0=await liveCheck();if(LV0)me.lv=LV0.id;
+let LV0=await liveCheck();
+if(!LV0){$('#msg').innerHTML='⏳ 아직 라이브가 시작되지 않았어요.<br>선생님이 시작하면 <b>자동으로 입장</b>돼요. 이 화면을 그대로 두세요!';
+  while(!LV0){await new Promise(r=>setTimeout(r,2000));if(mode!=='home'||!$('#go'))return;LV0=await liveCheck()}}
+me.lv=LV0.id;me.st=Date.now();
 try{const id=now.toString(36)+Math.random().toString(36).slice(2,9);
   const round=await rpc('quiz_join',{p_quiz:QUIZ,p_id:id,p_data:me});
   myKey=id;LS.set('sess',{key:id,round:Number(round)});
 }catch(e){myKey='';$('#go').disabled=false;
   $('#msg').textContent='⚠️ 선생님 화면과 연결하지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.';
-  $('#solo').innerHTML='<button class="btn sm alt" id="sb">그냥 혼자 풀기</button>';$('#sb').onclick=()=>{mode='play';me.st=Date.now();startTimer();show()};return}
-if(LV0){liveStart();return}
-mode='play';startTimer();show()}
+  return}
+liveStart()}
 
 function qCard(d,k,head,btn){return `${head}
 <div class="card"><div class="row"><span class="tag" style="background:${pcol(d.t)};color:#fff">${EM[k%4]} ${esc(d.t)}</span><span class="tag" style="background:var(--yel)">🙋 ${esc(me?me.n:'')}${myKey?'':' (혼자)'}</span></div><div class="q">${d.q}</div>
@@ -776,7 +778,7 @@ async function liveCheck(){try{const r=await liveGet();return r&&liveOn(r.live)?
 function liveStart(){mode='live';clearInterval(tick);clearInterval(lvPoll);lvKey='';lvTick();lvPoll=setInterval(lvTick,900)}
 async function lvTick(){if(mode!=='live')return;let r;try{r=await liveGet()}catch(e){return}if(mode!=='live')return;const L=(r&&r.live)||{};
   if(!liveOn(L)||L.id!==me.lv){clearInterval(lvPoll);cancelAnimationFrame(lvRaf);
-    if(!Object.keys(me.a||{}).length&&L.phase!=='end'){mode='home';home();const m=$('#msg');if(m)m.textContent='라이브가 끝났어요. 혼자 풀려면 다시 입장하세요.';return}
+    if(!Object.keys(me.a||{}).length&&L.phase!=='end'){mode='home';home();const m=$('#msg');if(m)m.textContent='라이브가 끝났어요. 다음 라이브를 기다려 주세요.';return}
     finishLive();return}
   if(L.idx>=0&&(me.qx||0)<L.idx+1){me.qx=L.idx+1;save()}
   const key=L.phase+':'+L.idx+':'+(L.t0||0);if(key===lvKey)return;lvKey=key;
