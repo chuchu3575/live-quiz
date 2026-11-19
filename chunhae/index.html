@@ -647,11 +647,11 @@ const TABS=[['live','📡 한눈에 보기'],['part','🧩 파트 분석'],['ite
 function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';tSig='';tSeen={};
 app.innerHTML=`<div class="card">
 <div class="row"><h2 style="margin:0">👩‍🏫 수업 분석 대시보드</h2>
-<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bl" style="background:#7048e8;color:#fff">🎬 라이브 진행</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
+<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bl" style="background:#7048e8;color:#fff">🎬 라이브 진행</button><button class="btn sm" id="bv" style="background:var(--mint)">📝 문제 보기</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
 <div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
 <div class="tabs">${TABS.map(([k,l])=>`<button data-t="${k}" class="${k===tTab?'on':''}">${l}</button>`).join('')}</div>
 <div id="tv"></div></div>`;
-$('#bl').onclick=boardOpen;$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
+$('#bl').onclick=boardOpen;$('#bv').onclick=()=>window.open(location.pathname+'?preview','_blank');$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
 $('#bc').onclick=csv;
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{tTab=b.dataset.t;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));tSig='';render()});
 $('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
@@ -895,6 +895,11 @@ function blEndView(){const o=$('#lv');if(BL.idx>=0&&BL.idx+1<Q.length){Q.splice(
 /* 문제 검사: 잘못 쓴 문제가 있으면 콘솔과 화면 위쪽에 알려 줘요 */
 (function(){const er=[];Q.forEach((q,k)=>{if(!q.t)er.push((k+1)+'번: 파트(t) 없음');if(!Array.isArray(q.o)||q.o.length<2)er.push((k+1)+'번: 보기(o) 확인');else if(!(q.a>=0&&q.a<q.o.length))er.push((k+1)+'번: 정답 번호(a)가 보기 범위를 벗어남')});
  if(er.length){console.warn(er);const d=document.createElement('div');d.className='timeup';d.style.cssText='position:fixed;left:8px;right:8px;top:8px;z-index:99;font-size:16px';d.textContent='⚠️ 문제 확인 필요: '+er.join(' / ');document.body.appendChild(d)}})();
-home();
+function preview(){mode='preview';app.className='wrap';let show=false;
+const SHn=['①','②','③','④','⑤'];
+const draw=()=>{app.innerHTML='<div class="card" style="text-align:center"><h1 style="font-size:clamp(24px,4.5vw,38px);margin:0 0 6px">'+TITLE.replace(/<br>/g,' ')+' · 문제 미리보기</h1><div class="sub" style="margin:0">총 '+Q.length+'문제 · 입장·저장 없이 문제만 보여요</div><div style="margin-top:14px"><button class="btn sm" id="pvt">'+(show?'🙈 정답·해설 숨기기':'👀 정답·해설 보기')+'</button></div></div>'+
+ Q.map((d,k)=>'<div class="card" style="margin-top:14px"><div class="row"><span class="tag" style="background:'+pcol(d.t)+';color:#fff">'+(k+1)+' / '+Q.length+' · '+esc(d.t)+'</span></div><div class="q" style="font-size:clamp(18px,3.2vw,26px)">'+d.q+'</div><div style="display:grid;gap:8px;margin-top:10px">'+d.o.map((x,j)=>'<div style="border:3px solid var(--ink);border-radius:14px;padding:8px 12px;font-size:clamp(16px,2.6vw,21px);background:'+(show&&j===d.a?'#c8f2dc':'#fff')+'">'+SHn[j%5]+' '+x+(show&&j===d.a?' ✔':'')+'</div>').join('')+'</div>'+(show?'<div class="fb show" style="text-align:left;margin-top:10px">💡 '+(d.e||'')+'</div>':'')+'</div>').join('');
+ $('#pvt').onclick=()=>{show=!show;const y=scrollY;draw();scrollTo(0,y)}};draw()}
+if(/[?&]preview\b/.test(location.search))preview();else home();
 </script>
 </body></html>
