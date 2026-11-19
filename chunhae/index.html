@@ -326,7 +326,7 @@ const SUBJECT='언어치료과 2학년 · 유창성장애 · 9–13주차 총정
 const MASCOT='🗣️';
 const LIMIT=0;                                          // 제한시간(초). 0이면 제한 없음 (예: 600 = 10분)
 const QUIZ='chunhae';                                   // Supabase quiz_config.quiz 값 (바꾸려면 먼저 등록 필요)
-const NEED_NO=false;                                    // true면 학번 입력을 필수로
+const NEED_NO=true;                                     // true면 학번 입력을 필수로
 const TEACHER_PW='ch9mub9g5y9q48nckiqte8t7';                      // 교사용 비밀번호(입력창 없이 자동 사용). 코드에 들어 있으니 링크/코드를 공개하지 마세요
 
 const LIVE_SEC=45;                                      // 라이브 진행 기본 제한시간(초). 진행 화면에서 20/30/45/60초로 바꿀 수 있어요
@@ -396,6 +396,7 @@ let tPw=SS.get('pw')||TEACHER_PW;
 async function putRec(id,v){for(let n=0;;n++){try{return await rpc('quiz_save',{p_id:id,p_data:v})}catch(e){if(n>=2)throw e;await new Promise(r=>setTimeout(r,1500))}}}
 function save(){if(!myKey)return;me.t=Date.now();const v=JSON.parse(JSON.stringify(me)),id=myKey;
   saveQ=saveQ.then(()=>putRec(id,v)).catch(e=>console.error('저장 실패',e))}
+function dedupe(a){const seen={};[...a].sort((x,y)=>String(x.id).localeCompare(String(y.id))).forEach(p=>{const b=String(p.n||'');const c=(seen[b]=(seen[b]||0)+1);if(c>1)p.n=b+(['','','②','③','④','⑤','⑥','⑦','⑧','⑨'][c]||('#'+c))});return a}
 async function fetchClass(){try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});return ((r&&r.players)||[]).filter(Boolean)}catch(e){return null}}
 
 /* =================== 분석 엔진 =================== */
@@ -499,7 +500,7 @@ function report(rec,players){runs=[];const S=st(rec),cls=cstat(players),hasC=!!c
   const tm=rec.d&&rec.f&&rec.st?fmtT(rec.f-rec.st):'';
   /* 1. 히어로 */
   let h=`<div class="rp"><div class="sec hero"><div class="ringbox">${ring(S.pc,220,22,['#ff7aa2','#f2a516','#2fb879'])}<div class="ctr"><b data-to="${S.pc}">${S.pc}<small>%</small></b><span>${S.s} / ${S.n} 정답</span></div></div>
-<div><div class="who">${esc(SUBJECT)} · ${new Date(rec.f||Date.now()).toLocaleDateString('ko-KR')}</div><h2>${esc(rec.n||'')}${rec.no?` <small style="font-size:.5em;opacity:.6">${esc(rec.no)}</small>`:''}님의 학습 리포트</h2>
+<div><div class="who">${esc(SUBJECT)} · ${new Date(rec.f||Date.now()).toLocaleDateString('ko-KR')}</div><h2>${esc(rec.n||'')}님의 학습 리포트</h2>
 <span class="lvb" style="background:${lvl[2]}">${lvl[0]} ${lvl[1]} 레벨</span>
 <div class="chips">${tm?`<span class="chip">⏱ ${tm}</span>`:''}${hasC?`<span class="chip hot">🏅 반 상위 ${rank}%</span><span class="chip">📊 반 평균 ${Math.round(cls.avg/S.n*100)}%</span><span class="chip">👥 ${cls.n}명 기준</span>`:''}${SP.any?`<span class="chip" style="background:#2fb879;color:#fff">⚡ 확실히 아는 파트 ${SP.surep.length}개</span><span class="chip">⚡ 확실 ${SP.cats.sure.length}문항 · ⚠️ 성급 ${SP.cats.rash.length}문항</span>`:''}${strong.length?`<span class="chip">💪 강점 ${strong.length}개 파트</span>`:''}${weak.length?`<span class="chip">🎯 보완 ${weak.length}개 파트</span>`:''}</div>
 <div class="diag">💬 ${dg}</div></div></div>`;
@@ -545,12 +546,13 @@ function printView(list,players){const o=document.createElement('div');o.classNa
 function home(){clearInterval(tick);mode='home';myKey='';me=null;app.className='wrap';
 app.innerHTML=`<div class="card"><div class="mascot">${MASCOT}</div><h1>${TITLE}</h1>
 <p class="sub">${esc(SUBJECT)} · 총 ${Q.length}문제 · ${PL.length}개 파트${LIMIT?' · ⏱ 제한시간 '+Math.round(LIMIT/60)+'분':''}<br>선생님이 <b>라이브로 진행</b>해요 · 끝나면 <b>나만의 파트별 학습 리포트</b>가 나와요 📊</p>
-<div class="center"><div id="resume"></div><div class="fld" style="display:grid;gap:10px;justify-items:center"><input class="inp" id="no" maxlength="12" placeholder="학번${NEED_NO?'':' (선택)'}" inputmode="numeric" autocomplete="off"><input class="inp" id="nm" maxlength="12" placeholder="이름" autocomplete="off"></div>
+<div class="center"><div id="resume"></div><div class="fld" style="display:grid;gap:10px;justify-items:center"><input class="inp" id="no" maxlength="12" placeholder="학번" inputmode="numeric" autocomplete="off"><input class="inp" id="nm" maxlength="12" placeholder="이름 (실명)" autocomplete="off"><input class="inp" id="nk" maxlength="10" placeholder="별명 (화면에는 별명만 나와요)" autocomplete="off"></div>
+<div class="privacy" style="margin:16px auto 0;max-width:520px;background:#e9f7ef;border:3px solid #2fb879;border-radius:16px;padding:10px 14px;font-size:15px;line-height:1.55;text-align:left">🔒 <b>별명으로만 전송돼요.</b><br>내 점수와 리포트는 <b>나만</b> 볼 수 있고, 다른 친구들에게는 보이지 않아요.<br>실명과 학번은 선생님만 알 수 있어요.</div>
 <div style="margin-top:18px"><button class="btn" id="go">입장하기 ▶</button></div>
 <p class="hint" id="msg"></p><div id="solo"></div>
 <button class="link" id="tc">👩‍🏫 교사용 대시보드</button></div></div>`;
-$('#nm').onkeydown=e=>{if(e.key==='Enter')join()};$('#go').onclick=join;$('#tc').onclick=teacher;offerResume();
-liveCheck().then(L=>{if(L&&mode==='home'&&$('#resume')){const d=document.createElement('div');d.className='timeup';d.style.background='#7048e8';d.innerHTML='🔴 지금 <b>라이브 퀴즈</b> 진행 중! 이름을 쓰고 입장하면 선생님 화면에 맞춰 문제가 나와요';app.querySelector('.card').prepend(d)}})}
+$('#no').onkeydown=e=>{if(e.key==='Enter')$('#nm').focus()};$('#nm').onkeydown=e=>{if(e.key==='Enter')$('#nk').focus()};$('#nk').onkeydown=e=>{if(e.key==='Enter')join()};$('#go').onclick=join;$('#tc').onclick=teacher;offerResume();
+liveCheck().then(L=>{if(L&&mode==='home'&&$('#resume')){const d=document.createElement('div');d.className='timeup';d.style.background='#7048e8';d.innerHTML='🔴 지금 <b>라이브 퀴즈</b> 진행 중! 학번·이름·별명을 쓰고 입장하면 선생님 화면에 맞춰 문제가 나와요';app.querySelector('.card').prepend(d)}})}
 
 async function offerResume(){const ss=LS.get('sess');if(!ss||!ss.key||mode!=='home')return;
 let g=null;try{g=await rpc('quiz_get',{p_id:ss.key})}catch(e){return}
@@ -564,11 +566,12 @@ $('#rs').onclick=async()=>{myKey=ss.key;me=rec;me.a=me.a||{};score=me.s||0;
   i=0;while(i<Q.length&&me.a[i])i++;
   mode='play';if(left()<=0){timeUp();return}startTimer();i<Q.length?show():end()}}
 
-async function join(){const n=$('#nm').value.trim(),no=$('#no').value.trim();
-if(!n){$('#msg').textContent='이름을 입력해 주세요!';$('#nm').focus();return}
+async function join(){const rn=$('#nm').value.trim(),n=$('#nk').value.trim(),no=$('#no').value.trim();
 if(NEED_NO&&!no){$('#msg').textContent='학번을 입력해 주세요!';$('#no').focus();return}
+if(!rn){$('#msg').textContent='이름(실명)을 입력해 주세요!';$('#nm').focus();return}
+if(!n){$('#msg').textContent='별명을 입력해 주세요! (화면에는 별명만 나와요)';$('#nk').focus();return}
 $('#go').disabled=true;$('#msg').textContent='입장 중... 🚪';$('#solo').innerHTML='';
-i=0;score=0;const now=Date.now();me={n,no,a:{},s:0,c:0,d:false,st:now,f:0,t:now};
+i=0;score=0;const now=Date.now();me={n,rn,no,a:{},s:0,c:0,d:false,st:now,f:0,t:now};
 let LV0=await liveCheck();
 if(!LV0){$('#msg').innerHTML='⏳ 아직 라이브가 시작되지 않았어요.<br>선생님이 시작하면 <b>자동으로 입장</b>돼요. 이 화면을 그대로 두세요!';
   while(!LV0){await new Promise(r=>setTimeout(r,2000));if(mode!=='home'||!$('#go'))return;LV0=await liveCheck()}}
@@ -646,11 +649,11 @@ const TABS=[['live','📡 한눈에 보기'],['part','🧩 파트 분석'],['ite
 function teacher(){if(!tPw){teacherLogin();return}mode='teacher';app.className='wrap wide';tSig='';tSeen={};
 app.innerHTML=`<div class="card">
 <div class="row"><h2 style="margin:0">👩‍🏫 수업 분석 대시보드</h2>
-<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bl" style="background:#7048e8;color:#fff">🎬 라이브 진행</button><button class="btn sm" id="bq">📱 입장 QR</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
+<div class="row" style="gap:8px;justify-content:flex-end"><button class="btn sm" id="bl" style="background:#7048e8;color:#fff">🎬 라이브 진행</button><button class="btn sm" id="ba" style="background:var(--mint)">🖨 전체 리포트</button><button class="btn sm" id="bc" style="background:var(--yel)">⬇ 엑셀(CSV)</button><button class="btn sm alt" id="bp">⏸ 일시정지</button><button class="btn sm red" id="br">🔄 새 라운드</button><button class="btn sm alt" id="bh">🏠</button></div></div>
 <div class="hint" style="text-align:left" id="st"><span class="live"></span>불러오는 중...</div>
 <div class="tabs">${TABS.map(([k,l])=>`<button data-t="${k}" class="${k===tTab?'on':''}">${l}</button>`).join('')}</div>
 <div id="tv"></div></div>`;
-$('#bl').onclick=boardOpen;$('#bq').onclick=qrOpen;$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
+$('#bl').onclick=boardOpen;$('#ba').onclick=()=>{const L=tData.filter(p=>p.d).sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(L.length)printView(L,tData);else alert('아직 완료한 학생이 없어요.')};
 $('#bc').onclick=csv;
 document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{tTab=b.dataset.t;document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));tSig='';render()});
 $('#bp').onclick=()=>{tPaused=!tPaused;$('#bp').textContent=tPaused?'▶ 재개':'⏸ 일시정지'};
@@ -659,7 +662,7 @@ render();refresh();clearInterval(tTimer);tTimer=setInterval(()=>{if(!tPaused&&mo
 
 async function refresh(){if(busy||boardOn)return;busy=true;
 try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});
-  tRound=Number(r&&r.round)||1;tData=((r&&r.players)||[]).filter(Boolean);render();
+  tRound=Number(r&&r.round)||1;tData=dedupe(((r&&r.players)||[]).filter(Boolean));render();
   const s=$('#st');if(s&&mode==='teacher')s.innerHTML=`<span class="live"></span>라운드 ${tRound} · ${new Date().toLocaleTimeString('ko-KR')} 갱신 (3초마다)`;
 }catch(e){if(isBadPw(e)&&mode==='teacher'){busy=false;tPw='';SS.del('pw');teacherLogin('⚠️ 비밀번호를 다시 입력해 주세요.');return}
   const s=$('#st');if(s)s.textContent='⚠️ 불러오기 실패: '+(e&&e.message||e)+' (인터넷 연결 확인)'}
@@ -677,7 +680,7 @@ const OPC=['#4d9fff','#a77bf3','#ff8c5a','#e0607e','#1fb5a8'];
 function render(){if(mode!=='teacher')return;const sig=tTab+'|'+JSON.stringify(tData);if(sig===tSig)return;tSig=sig;
 const v=$('#tv');if(!v)return;const first=!tSeen[tTab];tSeen[tTab]=1;v.className=first?'anim':'';
 const D=tData,n=D.length,cls=cstat(D),IS=itemStats(D);
-if(!n){v.innerHTML='<p class="wait center">아직 입장한 학생이 없어요.<br>📱 입장 QR을 띄워 주세요!</p>';return}
+if(!n){v.innerHTML='<p class="wait center">아직 입장한 학생이 없어요.<br>🎬 라이브 진행을 눌러 QR을 띄워 주세요!</p>';return}
 const done=D.filter(p=>p.d).length;
 if(tTab==='live'){
   const avgPc=cls?Math.round(cls.avg/Q.length*100):null,wp=cls?[...PL].sort((a,b)=>cls.part[a]-cls.part[b]):[],C=2*Math.PI*30;
@@ -730,18 +733,18 @@ else if(tTab==='stu'){
   const rows=[...D].sort((a,b)=>st(b).s-st(a).s||String(a.n).localeCompare(String(b.n),'ko'));
   const runs2=[];Q.forEach((q,k)=>{const l=runs2[runs2.length-1];if(l&&l.t===q.t)l.c++;else runs2.push({t:q.t,c:1})});
   let h=`<div class="sec"><h3>🗺 반 전체 히트맵</h3><p class="cap">한 줄이 학생 한 명, 한 칸이 문항이에요. 초록=정답, 분홍=오답, 회색=아직. 라이브에서는 ⚡=빠르고 정확, !=성급한 오답. 세로로 분홍이 몰린 열이 반 전체의 약점이에요. 이름을 누르면 그 학생 리포트가 열려요.</p>
-<div class="hmw"><table class="hm"><thead><tr><th></th><th></th>${runs2.map(r=>`<th class="ph" colspan="${r.c}" style="background:${pcol(r.t)}">${esc(r.t.length>r.c*3?r.t.slice(0,Math.max(2,r.c*3-1))+'…':r.t)}</th>`).join('')}<th></th><th></th></tr>
-<tr><th style="font-size:13px">이름</th><th style="font-size:13px">학번</th>${Q.map((_,k)=>`<th style="font-size:11px;opacity:.6">${k+1}</th>`).join('')}<th style="font-size:13px">점수</th><th style="font-size:13px">파트 프로필</th></tr></thead><tbody>
-${rows.map(p=>{const S=st(p),rc=p.r?Object.values(p.r).filter(x=>x===1).length:0;return `<tr><td class="nm"><a href="#" data-id="${esc(p.id)}" style="color:inherit">${p.d?'🏁':'👀'} ${esc(p.n)}</a></td><td class="sc" style="font-size:13px;opacity:.7">${esc(p.no||'')}</td>${Q.map((_,k)=>{const r=p.a&&p.a[k];const sp=spdOf(r);return `<td class="c ${r?(r[1]?'ok':'no'):'na'}" style="text-align:center;font-size:13px" title="${esc(p.n)} · ${k+1}번 ${r?(r[1]?'정답':'오답: '+esc(optTxt(Q[k],r[0]))):'아직'}${sp?' · '+CT[sp][1]+(r[0]>=0?' '+(r[2]/1000).toFixed(1)+'초':''):''}">${sp==='sure'?'⚡':sp==='rash'?'!':''}</td>`}).join('')}
+<div class="hmw"><table class="hm"><thead><tr><th></th>${runs2.map(r=>`<th class="ph" colspan="${r.c}" style="background:${pcol(r.t)}">${esc(r.t.length>r.c*3?r.t.slice(0,Math.max(2,r.c*3-1))+'…':r.t)}</th>`).join('')}<th></th><th></th></tr>
+<tr><th style="font-size:13px">별명</th>${Q.map((_,k)=>`<th style="font-size:11px;opacity:.6">${k+1}</th>`).join('')}<th style="font-size:13px">점수</th><th style="font-size:13px">파트 프로필</th></tr></thead><tbody>
+${rows.map(p=>{const S=st(p),rc=p.r?Object.values(p.r).filter(x=>x===1).length:0;return `<tr><td class="nm"><a href="#" data-id="${esc(p.id)}" style="color:inherit">${p.d?'🏁':'👀'} ${esc(p.n)}</a></td>${Q.map((_,k)=>{const r=p.a&&p.a[k];const sp=spdOf(r);return `<td class="c ${r?(r[1]?'ok':'no'):'na'}" style="text-align:center;font-size:13px" title="${esc(p.n)} · ${k+1}번 ${r?(r[1]?'정답':'오답: '+esc(optTxt(Q[k],r[0]))):'아직'}${sp?' · '+CT[sp][1]+(r[0]>=0?' '+(r[2]/1000).toFixed(1)+'초':''):''}">${sp==='sure'?'⚡':sp==='rash'?'!':''}</td>`}).join('')}
 <td class="sc"><b>${S.s}</b>/${Q.length}${rc?` <small title="재도전 성공">🔁${rc}</small>`:''}</td><td class="sc"><svg width="${PL.length*16}" height="26">${S.parts.map((x,j)=>`<rect x="${j*16+2}" y="${24-Math.max(2,x.pc*.22)}" width="12" height="${Math.max(2,x.pc*.22)}" rx="3" fill="${pcol(x.t)}"><title>${esc(x.t)} ${x.pc}%</title></rect>`).join('')}</svg></td></tr>`}).join('')}</tbody></table></div></div>`;
   v.innerHTML=h;v.querySelectorAll('a[data-id]').forEach(a=>a.onclick=e=>{e.preventDefault();const p=tData.find(x=>x.id===a.dataset.id);if(p)printView([p],tData)})}
 }
 
-function csv(){const D=[...tData].sort((x,y)=>String(x.n).localeCompare(String(y.n),'ko'));if(!D.length){alert('아직 데이터가 없어요.');return}
+function csv(){const D=[...tData].sort((x,y)=>String(x.rn||x.n).localeCompare(String(y.rn||y.n),'ko'));if(!D.length){alert('아직 데이터가 없어요.');return}
   const q=s=>'"'+String(s==null?'':s).replace(/"/g,'""')+'"';
-  const head=['이름','학번','완료','점수','정답률(%)',...PL.map(t=>t+'(%)'),'가장 약한 파트','걸린 시간',...Q.map((_,k)=>'Q'+(k+1))];
+  const head=['이름(실명)','학번','별명','완료','점수','정답률(%)',...PL.map(t=>t+'(%)'),'가장 약한 파트','걸린 시간',...Q.map((_,k)=>'Q'+(k+1))];
   const lines=[head.map(q).join(',')].concat(D.map(p=>{const S=st(p),w=[...S.parts].sort((a,b)=>a.pc-b.pc)[0];
-    return [p.n,p.no||'',p.d?'O':'',S.s,S.pc,...S.parts.map(x=>x.pc),w&&w.pc<80?w.t:'',p.d&&p.f&&p.st?fmtT(p.f-p.st):'',...Q.map((_,k)=>{const r=p.a&&p.a[k];return r?(r[1]?'O':'X('+(Q[k].ox?(r[0]?'X':'O'):r[0]+1)+')'):''})].map(q).join(',')}));
+    return [p.rn||p.n,p.no||'',p.n,p.d?'O':'',S.s,S.pc,...S.parts.map(x=>x.pc),w&&w.pc<80?w.t:'',p.d&&p.f&&p.st?fmtT(p.f-p.st):'',...Q.map((_,k)=>{const r=p.a&&p.a[k];return r?(r[1]?'O':'X('+(Q[k].ox?(r[0]?'X':'O'):r[0]+1)+')'):''})].map(q).join(',')}));
   const b=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');
   a.href=URL.createObjectURL(b);a.download='춘해퀴즈_'+QUIZ+'_라운드'+tRound+'_'+new Date().toISOString().slice(0,10)+'.csv';document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 
@@ -824,7 +827,7 @@ async function lobbyNew(clear){if(Q.length<QALL.length){Q.splice(0,Q.length,...Q
   try{BL=await liveSet({phase:'lobby',id:Date.now().toString(36),sec:blSec,idx:-1})}catch(e){alert('라이브를 열지 못했어요: '+e.message);boardClose();return}boardRender()}
 function boardClose(){boardOn=false;clearInterval(blPoll);cancelAnimationFrame(blRaf);const o=$('#lv');if(o)o.remove();
   if(BL&&BL.phase==='lobby')liveSet({phase:'off',id:BL.id}).catch(()=>{});tSig='';refresh()}
-async function blRefresh(){if(blBusy)return;blBusy=true;try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});tData=((r&&r.players)||[]).filter(Boolean)}catch(e){}blBusy=false}
+async function blRefresh(){if(blBusy)return;blBusy=true;try{const r=await rpc('quiz_dashboard',{p_quiz:QUIZ,p_pw:tPw});tData=dedupe(((r&&r.players)||[]).filter(Boolean))}catch(e){}blBusy=false}
 const blPl=()=>BL?tData.filter(p=>p.lv===BL.id):[];
 function blTop(t){return `<div class="lv-top"><b>${t}</b><span style="flex:1"></span><span class="lv-pill" id="lvcnt"></span><button class="lv-btn sm" id="lvs">${blSnd?'🔊':'🔇'}</button><button class="lv-btn sm" id="lvx" title="닫기(진행은 유지)">✕</button></div>`}
 function blBind(){const x=$('#lvx'),s=$('#lvs');if(x)x.onclick=boardClose;if(s)s.onclick=()=>{blSnd=!blSnd;s.textContent=blSnd?'🔊':'🔇'}}
